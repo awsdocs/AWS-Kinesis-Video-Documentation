@@ -1,0 +1,82 @@
+# Amazon Kinesis Video Streams Developer Guide
+
+-----
+*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+
+-----
+Amazon's trademarks and trade dress may not be used in 
+     connection with any product or service that is not Amazon's, 
+     in any manner that is likely to cause confusion among customers, 
+     or in any manner that disparages or discredits Amazon. All other 
+     trademarks not owned by Amazon are the property of their respective
+     owners, who may or may not be affiliated with, connected to, or 
+     sponsored by Amazon.
+
+-----
+## Contents
++ [What Is Amazon Kinesis Video Streams?](what-is-kinesis-video.md)
++ [Amazon Kinesis Video Streams: How It Works](how-it-works.md)
+   + [Kinesis Video Streams API and Producer Libraries Support](how-it-works-kinesis-video-api-producer-sdk.md)
+   + [Controlling Access to Kinesis Video Streams Resources Using IAM](how-iam.md)
+   + [Using Server-Side Encryption with Kinesis Video Streams](how-kms.md)
+   + [Kinesis Video Streams Data Model](how-data.md)
++ [Getting Started with Kinesis Video Streams](getting-started.md)
+   + [Step 1: Set Up an AWS Account and Create an Administrator](gs-account.md)
+   + [Step 2: Create a Kinesis Video Stream](gs-createstream.md)
+   + [What's Next?](gs-console-whatnext.md)
++ [Kinesis Video Streams Producer Libraries](producer-sdk.md)
+   + [Using the Java Producer Library](producer-sdk-javaapi.md)
+      + [Step 1: Download and Configure the Java Producer Library Code](producersdk-javaapi-downloadcode.md)
+      + [Step 2: Write and Examine the Code](producersdk-javaapi-writecode.md)
+      + [Step 3: Run and Verify the Code](producersdk-javaapi-reviewcode.md)
+   + [Using the Android Producer Library](producer-sdk-android.md)
+      + [Step 1: Download and Configure the Android Producer Library Code](producersdk-android-downloadcode.md)
+      + [Step 2: Examine the Code](producersdk-android-writecode.md)
+      + [Step 3: Run and Verify the Code](producersdk-android-reviewcode.md)
+   + [Using the C++ Producer Library](producer-sdk-cpp.md)
+      + [Step 1: Download and Configure the C++ Producer Library Code](producersdk-cpp-download.md)
+      + [Step 2: Write and Examine the Code](producersdk-cpp-write.md)
+      + [Step 3: Run and Verify the Code](producersdk-cpp-test.md)
+   + [Producer SDK Reference](producer-reference.md)
+      + [Error Code Reference](producer-sdk-errors.md)
+      + [Network Abstraction Layer (NAL) Adaptation Flag Reference](producer-reference-nal.md)
++ [Kinesis Video Stream Parser Library](parser-library.md)
+   + [Step 1: Download and Configure the Code](parser-library-download.md)
+   + [Step 2: Write and Examine the Code](parser-library-write.md)
+   + [Step 3: Run and Verify the Code](parser-library-run.md)
++ [Examples](examples.md)
+   + [PutMedia API Example](examples-putmedia.md)
+   + [GStreamer Example](examples-gstreamer.md)
++ [Kinesis Video Streams Limits](limits.md)
++ [Document History for Amazon Kinesis Video Streams](doc-history.md)
++ [API Reference](API_Reference.md)
+   + [Actions](API_Operations.md)
+      + [Amazon Kinesis Video Streams](API_Operations_Amazon_Kinesis_Video_Streams.md)
+         + [CreateStream](API_CreateStream.md)
+         + [DeleteStream](API_DeleteStream.md)
+         + [DescribeStream](API_DescribeStream.md)
+         + [GetDataEndpoint](API_GetDataEndpoint.md)
+         + [ListStreams](API_ListStreams.md)
+         + [ListTagsForStream](API_ListTagsForStream.md)
+         + [TagStream](API_TagStream.md)
+         + [UntagStream](API_UntagStream.md)
+         + [UpdateDataRetention](API_UpdateDataRetention.md)
+         + [UpdateStream](API_UpdateStream.md)
+      + [Amazon Kinesis Video Streams Media](API_Operations_Amazon_Kinesis_Video_Streams_Media.md)
+         + [GetMedia](API_dataplane_GetMedia.md)
+         + [PutMedia](API_dataplane_PutMedia.md)
+      + [Amazon Kinesis Video Streams Archived Media](API_Operations_Amazon_Kinesis_Video_Streams_Archived_Media.md)
+         + [GetMediaForFragmentList](API_reader_GetMediaForFragmentList.md)
+         + [ListFragments](API_reader_ListFragments.md)
+   + [Data Types](API_Types.md)
+      + [Amazon Kinesis Video Streams](API_Types_Amazon_Kinesis_Video_Streams.md)
+         + [StreamInfo](API_StreamInfo.md)
+         + [StreamNameCondition](API_StreamNameCondition.md)
+      + [Amazon Kinesis Video Streams Media](API_Types_Amazon_Kinesis_Video_Streams_Media.md)
+         + [StartSelector](API_dataplane_StartSelector.md)
+      + [Amazon Kinesis Video Streams Archived Media](API_Types_Amazon_Kinesis_Video_Streams_Archived_Media.md)
+         + [Fragment](API_reader_Fragment.md)
+         + [FragmentSelector](API_reader_FragmentSelector.md)
+         + [TimestampRange](API_reader_TimestampRange.md)
+   + [Common Errors](CommonErrors.md)
+   + [Common Parameters](CommonParameters.md)
