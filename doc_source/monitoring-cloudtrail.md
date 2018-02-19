@@ -1,0 +1,1 @@
+# Logging Kinesis Video Streams API Calls with CloudTrail<a name="monitoring-cloudtrail"></a>
