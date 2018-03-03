@@ -170,7 +170,7 @@ The following table contains error and status information returned by methods in
 ****  
 
 | Code | Message | Notes |
-| --- | --- | 
+| --- | --- | --- | 
 | 0x01000001 | STATUS\_HEAP\_FLAGS\_ERROR  | Invalid combination of flags has been specified. |
 | 0x01000002 | STATUS\_HEAP\_NOT\_INITIALIZED  | An attempt to perform an operation prior the heap initialization. |
 | 0x01000003 | STATUS\_HEAP\_CORRUPTED  | Heap has been corrupted and/or guard band (in debug mode) has been written over. A buffer overflow in the client code can lead to a heap corruption. |
@@ -200,7 +200,7 @@ The following table contains error and status information returned by methods in
 ****  
 
 | Code | Message | Notes |
-| --- | --- | 
+| --- | --- | --- | 
 | 0x32000001 | STATUS\_MKV\_INVALID\_FRAME\_DATA  | Invalid members of the Frame data structure. Ensure the duration, size, frame data are valid and within the limits specified in the [limits document](producer-sdk-limits.md). |
 | 0x32000002 | STATUS\_MKV\_INVALID\_FRAME\_TIMESTAMP  | Invalid frame timestamp. The calculated PTS and DTS (Presentation timestamp and Decoding timestamp) are greater or equal to the timestamp of the start frame of the fragment. This is an indication of a potential media pipeline restart or encoder stability issue. |
 | 0x32000003 | STATUS\_MKV\_INVALID\_CLUSTER\_DURATION  | Invalid fragment duration is specified. Check [limits document](producer-sdk-limits.md) for more information. |
@@ -267,7 +267,7 @@ The following table contains error and status information returned by methods in
 ****  
 
 | Code | Message | Notes |
-| --- | --- | 
+| --- | --- | --- | 
 | 0x30000001 | STATUS\_MIN\_CONTENT\_VIEW\_ITEMS  | Invalid content view item count specified. Please refer to [limits document](producer-sdk-limits.md) for more information . |
 | 0x30000002 | STATUS\_INVALID\_CONTENT\_VIEW\_DURATION  | Invalid content view duration is specified. Please refer to [limits document](producer-sdk-limits.md) for more information . | 
 | 0x30000003 | STATUS\_CONTENT\_VIEW\_NO\_MORE\_ITEMS  | No more items error is returned when an attempt is made to get past the Head position. |
