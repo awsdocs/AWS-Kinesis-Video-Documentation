@@ -144,7 +144,7 @@ The following table contains error and status information returned by methods in
 ****  
 
 | Code | Message | Notes |
-| --- | --- | 
+| --- | --- | --- | 
 | 0x00000001 | STATUS\_NULL\_ARG  | NULL passed for a mandatory argument. |
 | 0x00000002 | STATUS\_INVALID\_ARG  | An invalid value specified for an argument. |
 | 0x00000003 | STATUS\_INVALID\_ARG\_LEN  Invalid argument length specified. |
