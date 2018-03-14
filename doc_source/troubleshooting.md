@@ -132,6 +132,8 @@ This section describes issues that you might encounter when using the [Producer 
 + [Error: "Illegal Instruction" when running GStreamer demo on Raspberry Pi](#troubleshooting-producer-raspberrypi-illegalinstruction)
 + [Camera fails to load on Raspberry Pi](#troubleshooting-producer-raspberrypi-camera)
 + [Camera can't be found on macOS High Sierra](#troubleshooting-producer-sierra-camera)
++ [jni\.h file not found when compiling on macOS High Sierra](#troubleshooting-producer-sierra-compile)
++ [Curl errors when running the GStreamer demo app](#troubleshooting-producer-curl)
 + [Time stamp/range assertion at run time on Raspberry Pi](#troubleshooting-producer-raspberrypi-timestamp-assert)
 + [Assertion on gst\_value\_set\_fraction\_range\_full on Raspberry Pi](#troubleshooting-producer-raspberrypi-gst-assert)
 
@@ -233,6 +235,14 @@ If the driver does not detect the camera, do the following:
 ### Camera can't be found on macOS High Sierra<a name="troubleshooting-producer-sierra-camera"></a>
 
 On macOS High Sierra, the demo application can't find the camera if more than one camera is available\.
+
+### jni\.h file not found when compiling on macOS High Sierra<a name="troubleshooting-producer-sierra-compile"></a>
+
+To resolve this error, update your installation of Xcode to the latest version\.
+
+### Curl errors when running the GStreamer demo app<a name="troubleshooting-producer-curl"></a>
+
+To resolve curl errors when you run the GStreamer demo application, copy [this certificate file](https://www.amazontrust.com/repository/SFSRootCAG2.pem) to `/etc/ssl/cert.pem`\.
 
 ### Time stamp/range assertion at run time on Raspberry Pi<a name="troubleshooting-producer-raspberrypi-timestamp-assert"></a>
 

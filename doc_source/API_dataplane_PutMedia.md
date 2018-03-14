@@ -228,7 +228,7 @@ HTTP Status Code: 404
 
 The format of the acknowledgement is as follows:
 
-#### <a name="w3ab1c32b4c11c11c47b3b5"></a>
+#### <a name="w3ab1c31b4c11c11c47b3b5"></a>
 
 ```
 {

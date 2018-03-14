@@ -8,7 +8,7 @@ The C\+\+ library provides the following objects to manage sending data to a Kin
 
 + **KinesisVideoProducer:** Contains information about your media source and AWS credentials, and maintains callbacks to report on Kinesis Video Streams events\.
 
-+ **KinesisVideoStream:** Represents the Kinesis video stream\. Contains information about the video stream's parameters, such as name, data retention period, media content type, etc\.
++ **KinesisVideoStream:** Represents the Kinesis video stream\. Contains information about the video stream's parameters, such as name, data retention period, media content type, and so on\.
 
 ## Putting Media into the Stream<a name="producer-sdk-cpp-putframe"></a>
 
@@ -24,7 +24,7 @@ The C\+\+ library provides methods \(for example, `PutFrame`\) that you can use 
 
 This layer exposes a set of callback interfaces, which enable it to talk to the application layer\. These callback interfaces include the following:
 
-+ Service callbacks interface \(`CallbackProvider`\): The library invokes events obtained through this interface when it creates a stream, obtains a stream description, deletes a stream, etc\.
++ Service callbacks interface \(`CallbackProvider`\): The library invokes events obtained through this interface when it creates a stream, obtains a stream description, deletes a stream, and so on\.
 
 + Client\-ready state or low storage events interface \(`ClientCallbackProvider`\): The library invokes events on this interface when the client is ready, or when it detects that it might run out of available storage or memory\.
 
@@ -37,7 +37,8 @@ Kinesis Video Streams provides default implementations for these interfaces\. Yo
 This procedure demonstrates how to use the Kinesis Video Streams client and media sources in a C\+\+ application to send data to your Kinesis video stream\.
 
 **Note**  
-The C\+\+ library includes a sample build script for macOS\. The C\+\+ Producer Library is not currently available for Windows\.
+The C\+\+ library includes a sample build script for macOS\. The C\+\+ Producer Library is not currently available for Windows\.   
+To use the C\+\+ Producer Library on a Raspberry Pi device, see [Appendix: Using the C\+\+ Producer SDK on Raspberry Pi](producersdk-cpp-rpi.md)\.
 
 The procedure includes the following steps:
 

@@ -24,9 +24,9 @@ In this section, you download the Java example code, import the project into you
 
 1. Open the Java IDE that you are using \(for example, [Eclipse](http://www.eclipse.org/) or [IntelliJ IDEA](https://www.jetbrains.com/idea/)\), and import the Apache Maven project that you downloaded: 
 
-   + **In Eclipse:** Choose **File**, **Import**, **Maven**, **Existing Maven Projects**, and navigate to the `kinesis-video-java-demo` folder\.
+   + **In Eclipse:** Choose **File**, **Import**, **Maven**, **Existing Maven Projects**, and navigate to the root of the downloaded package\. Select the `pom.xml` file\.
 
-   + **In IntelliJ Idea: ** Choose **Import**\. Navigate to the **pom\.xml** file in the root of the downloaded package\.
+   + **In IntelliJ Idea: ** Choose **Import**\. Navigate to the `pom.xml` file in the root of the downloaded package\.
 
     For more information, see the related IDE documentation\.
 
