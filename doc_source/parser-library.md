@@ -20,11 +20,11 @@ The library also includes tests that show how the tools are used\.
 
 This procedure includes the following steps:
 
-+ [[ERROR] BAD/MISSING LINK TEXT](parser-library-download.md)
++ [Step 1: Download and Configure the Code](parser-library-download.md)
 
-+ [[ERROR] BAD/MISSING LINK TEXT](parser-library-write.md)
++ [Step 2: Write and Examine the Code](parser-library-write.md)
 
-+ [[ERROR] BAD/MISSING LINK TEXT](parser-library-run.md)
++ [Step 3: Run and Verify the Code](parser-library-run.md)
 
 ## Prerequisites<a name="parser-library-prerequisites"></a>
 

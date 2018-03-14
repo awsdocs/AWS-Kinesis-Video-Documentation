@@ -4,28 +4,28 @@ Represents a segment of video or other time\-delimited data\.
 
 ## Contents<a name="API_reader_Fragment_Contents"></a>
 
- **FragmentLengthInMilliseconds**   
+ **FragmentLengthInMilliseconds**   <a name="KinesisVideo-Type-reader_Fragment-FragmentLengthInMilliseconds"></a>
 The playback duration or other time value associated with the fragment\.  
 Type: Long  
 Required: No
 
- **FragmentNumber**   
+ **FragmentNumber**   <a name="KinesisVideo-Type-reader_Fragment-FragmentNumber"></a>
 The index value of the fragment\.  
 Type: String  
 Length Constraints: Minimum length of 1\.  
 Required: No
 
- **FragmentSizeInBytes**   
+ **FragmentSizeInBytes**   <a name="KinesisVideo-Type-reader_Fragment-FragmentSizeInBytes"></a>
 The total fragment size, including information about the fragment and contained media data\.  
 Type: Long  
 Required: No
 
- **ProducerTimestamp**   
+ **ProducerTimestamp**   <a name="KinesisVideo-Type-reader_Fragment-ProducerTimestamp"></a>
 The time stamp from the producer corresponding to the fragment\.  
 Type: Timestamp  
 Required: No
 
- **ServerTimestamp**   
+ **ServerTimestamp**   <a name="KinesisVideo-Type-reader_Fragment-ServerTimestamp"></a>
 The time stamp from the AWS server corresponding to the fragment\.  
 Type: Timestamp  
 Required: No

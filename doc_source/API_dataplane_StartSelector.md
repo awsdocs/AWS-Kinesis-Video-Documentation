@@ -10,21 +10,21 @@ Identifies the chunk on the Kinesis video stream where you want the `GetMedia` A
 
 ## Contents<a name="API_dataplane_StartSelector_Contents"></a>
 
- **AfterFragmentNumber**   
+ **AfterFragmentNumber**   <a name="KinesisVideo-Type-dataplane_StartSelector-AfterFragmentNumber"></a>
 Specifies the fragment number from where you want the `GetMedia` API to start returning the fragments\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Pattern: `^[0-9]+$`   
 Required: No
 
- **ContinuationToken**   
+ **ContinuationToken**   <a name="KinesisVideo-Type-dataplane_StartSelector-ContinuationToken"></a>
 Continuation token that Kinesis Video Streams returned in the previous `GetMedia` response\. The `GetMedia` API then starts with the chunk identified by the continuation token\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Pattern: `^[a-zA-Z0-9_\.\-]+$`   
 Required: No
 
- **StartSelectorType**   
+ **StartSelectorType**   <a name="KinesisVideo-Type-dataplane_StartSelector-StartSelectorType"></a>
 Identifies the fragment on the Kinesis video stream where you want to start getting the data from\.  
 
 + NOW \- Start with the latest chunk on the stream\.
@@ -41,7 +41,7 @@ Type: String
 Valid Values:` FRAGMENT_NUMBER | SERVER_TIMESTAMP | PRODUCER_TIMESTAMP | NOW | EARLIEST | CONTINUATION_TOKEN`   
 Required: Yes
 
- **StartTimestamp**   
+ **StartTimestamp**   <a name="KinesisVideo-Type-dataplane_StartSelector-StartTimestamp"></a>
 A time stamp value\. This value is required if you choose the PRODUCER\_TIMESTAMP or the SERVER\_TIMESTAMP as the `startSelectorType`\. The `GetMedia` API then starts with the chunk containing the fragment that has the specified time stamp\.  
 Type: Timestamp  
 Required: No

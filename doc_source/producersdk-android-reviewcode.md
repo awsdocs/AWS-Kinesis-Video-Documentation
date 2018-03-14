@@ -30,5 +30,7 @@ These values have the following constraints:
    On the **Manage Streams** page, choose **demo\-stream**\. 
 
 1. The streaming video plays in the embedded player\. You might need to wait a short time \(up to ten seconds under typical bandwidth and processor conditions\) while the frames accumulate before the video appears\.
+**Note**  
+If the device's screen rotates \(for example, from portrait to landscape\), the application stops streaming video\.
 
 The code example creates a stream\. As the `MediaSource` in the code starts, it begins sending frames from the camera to the `KinesisVideoClient`\. The client then sends the data to a Kinesis video stream named **demo\-stream**\. 

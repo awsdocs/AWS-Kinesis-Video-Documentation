@@ -14,9 +14,9 @@ POST /getDataEndpoint HTTP/1.1
 Content-type: application/json
 
 {
-   "APIName": "string",
-   "StreamARN": "string",
-   "StreamName": "string"
+   "[APIName](#KinesisVideo-GetDataEndpoint-request-APIName)": "string",
+   "[StreamARN](#KinesisVideo-GetDataEndpoint-request-StreamARN)": "string",
+   "[StreamName](#KinesisVideo-GetDataEndpoint-request-StreamName)": "string"
 }
 ```
 
@@ -28,20 +28,20 @@ The request does not use any URI parameters\.
 
 The request accepts the following data in JSON format\.
 
- ** APIName **   
+ ** [APIName](#API_GetDataEndpoint_RequestSyntax) **   <a name="KinesisVideo-GetDataEndpoint-request-APIName"></a>
 The name of the API action for which to get an endpoint\.  
 Type: String  
 Valid Values:` PUT_MEDIA | GET_MEDIA | LIST_FRAGMENTS | GET_MEDIA_FOR_FRAGMENT_LIST`   
 Required: Yes
 
- ** StreamARN **   
+ ** [StreamARN](#API_GetDataEndpoint_RequestSyntax) **   <a name="KinesisVideo-GetDataEndpoint-request-StreamARN"></a>
 The Amazon Resource Name \(ARN\) of the stream that you want to get the endpoint for\. You must specify either this parameter or a `StreamName` in the request\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 1024\.  
 Pattern: `arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+`   
 Required: No
 
- ** StreamName **   
+ ** [StreamName](#API_GetDataEndpoint_RequestSyntax) **   <a name="KinesisVideo-GetDataEndpoint-request-StreamName"></a>
 The name of the stream that you want to get the endpoint for\. You must specify either this parameter or a `StreamARN` in the request\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
@@ -55,7 +55,7 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "DataEndpoint": "string"
+   "[DataEndpoint](#KinesisVideo-GetDataEndpoint-response-DataEndpoint)": "string"
 }
 ```
 
@@ -65,7 +65,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** DataEndpoint **   
+ ** [DataEndpoint](#API_GetDataEndpoint_ResponseSyntax) **   <a name="KinesisVideo-GetDataEndpoint-response-DataEndpoint"></a>
 The endpoint value\. To read data from the stream or to write data to it, specify this endpoint in your application\.  
 Type: String
 

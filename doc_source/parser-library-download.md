@@ -2,7 +2,7 @@
 
 In this section, you download the Java library and test code and import the project into your Java IDE\.
 
-For prerequisites and other details about this procedure, see [[ERROR] BAD/MISSING LINK TEXT](parser-library.md)\.
+For prerequisites and other details about this procedure, see [Kinesis Video Stream Parser Library](parser-library.md)\.
 
 1. Create a directory and clone the library source code from the GitHub repository\. 
 
@@ -20,4 +20,4 @@ For prerequisites and other details about this procedure, see [[ERROR] BAD/MISSI
 
 ## Next Step<a name="parser-library-download-next"></a>
 
-[[ERROR] BAD/MISSING LINK TEXT](parser-library-write.md)
+[Step 2: Write and Examine the Code](parser-library-write.md)

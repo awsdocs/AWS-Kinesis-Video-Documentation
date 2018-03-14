@@ -15,8 +15,8 @@ POST /getMediaForFragmentList HTTP/1.1
 Content-type: application/json
 
 {
-   "Fragments": [ "string" ],
-   "StreamName": "string"
+   "[Fragments](#KinesisVideo-reader_GetMediaForFragmentList-request-Fragments)": [ "string" ],
+   "[StreamName](#KinesisVideo-reader_GetMediaForFragmentList-request-StreamName)": "string"
 }
 ```
 
@@ -28,14 +28,14 @@ The request does not use any URI parameters\.
 
 The request accepts the following data in JSON format\.
 
- ** Fragments **   
+ ** [Fragments](#API_reader_GetMediaForFragmentList_RequestSyntax) **   <a name="KinesisVideo-reader_GetMediaForFragmentList-request-Fragments"></a>
 A list of the numbers of fragments for which to retrieve media\. You retrieve these values with [ListFragments](API_reader_ListFragments.md)\.  
 Type: Array of strings  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Pattern: `^[0-9]+$`   
 Required: Yes
 
- ** StreamName **   
+ ** [StreamName](#API_reader_GetMediaForFragmentList_RequestSyntax) **   <a name="KinesisVideo-reader_GetMediaForFragmentList-request-StreamName"></a>
 The name of the stream from which to retrieve fragment media\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
@@ -57,14 +57,14 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The response returns the following HTTP headers\.
 
- ** ContentType **   
+ ** [ContentType](#API_reader_GetMediaForFragmentList_ResponseSyntax) **   <a name="KinesisVideo-reader_GetMediaForFragmentList-response-ContentType"></a>
 The content type of the requested media\.  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Pattern: `^[a-zA-Z0-9_\.\-]+$` 
 
 The response returns the following as the HTTP body\.
 
- ** Payload **   
+ ** [Payload](#API_reader_GetMediaForFragmentList_ResponseSyntax) **   <a name="KinesisVideo-reader_GetMediaForFragmentList-response-Payload"></a>
 The payload that Kinesis Video Streams returns is a sequence of chunks from the specified stream\. For information about the chunks, see [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html)\. The chunks that Kinesis Video Streams returns in the `GetMediaForFragmentList` call also include the following additional Matroska \(MKV\) tags:   
 
 + AWS\_KINESISVIDEO\_FRAGMENT\_NUMBER \- Fragment number returned in the chunk\.

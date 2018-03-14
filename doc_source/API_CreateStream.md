@@ -17,11 +17,11 @@ POST /createStream HTTP/1.1
 Content-type: application/json
 
 {
-   "DataRetentionInHours": number,
-   "DeviceName": "string",
-   "KmsKeyId": "string",
-   "MediaType": "string",
-   "StreamName": "string"
+   "[DataRetentionInHours](#KinesisVideo-CreateStream-request-DataRetentionInHours)": number,
+   "[DeviceName](#KinesisVideo-CreateStream-request-DeviceName)": "string",
+   "[KmsKeyId](#KinesisVideo-CreateStream-request-KmsKeyId)": "string",
+   "[MediaType](#KinesisVideo-CreateStream-request-MediaType)": "string",
+   "[StreamName](#KinesisVideo-CreateStream-request-StreamName)": "string"
 }
 ```
 
@@ -33,7 +33,7 @@ The request does not use any URI parameters\.
 
 The request accepts the following data in JSON format\.
 
- ** DataRetentionInHours **   
+ ** [DataRetentionInHours](#API_CreateStream_RequestSyntax) **   <a name="KinesisVideo-CreateStream-request-DataRetentionInHours"></a>
 The number of hours that you want to retain the data in the stream\. Kinesis Video Streams retains the data in a data store that is associated with the stream\.  
 The default value is 0, indicating that the stream does not persist data\.  
 When the `DataRetentionInHours` value is 0, consumers can still consume the fragments that remain in the service host buffer, which has a retention time limit of 5 minutes and a retention memory limit of 200 MB\. Fragments are removed from the buffer when either limit is reached\.  
@@ -41,7 +41,7 @@ Type: Integer
 Valid Range: Minimum value of 0\.  
 Required: No
 
- ** DeviceName **   
+ ** [DeviceName](#API_CreateStream_RequestSyntax) **   <a name="KinesisVideo-CreateStream-request-DeviceName"></a>
 The name of the device that is writing to the stream\.   
 In the current implementation, Kinesis Video Streams does not use this name\.
 Type: String  
@@ -49,7 +49,7 @@ Length Constraints: Minimum length of 1\. Maximum length of 128\.
 Pattern: `[a-zA-Z0-9_.-]+`   
 Required: No
 
- ** KmsKeyId **   
+ ** [KmsKeyId](#API_CreateStream_RequestSyntax) **   <a name="KinesisVideo-CreateStream-request-KmsKeyId"></a>
 The ID of the AWS Key Management Service \(AWS KMS\) key that you want Kinesis Video Streams to use to encrypt stream data\.  
 If no key ID is specified, the default, Kinesis Video\-managed key \(`aws/kinesisvideo`\) is used\.  
  For more information, see [DescribeKey](http://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters)\.   
@@ -57,7 +57,7 @@ Type: String
 Length Constraints: Minimum length of 1\. Maximum length of 2048\.  
 Required: No
 
- ** MediaType **   
+ ** [MediaType](#API_CreateStream_RequestSyntax) **   <a name="KinesisVideo-CreateStream-request-MediaType"></a>
 The media type of the stream\. Consumers of the stream can use this information when processing the stream\. For more information about media types, see [Media Types](http://www.iana.org/assignments/media-types/media-types.xhtml)\. If you choose to specify the `MediaType`, see [Naming Requirements](https://tools.ietf.org/html/rfc6838#section-4.2) for guidelines\.  
 To play video on the console, the media must be H\.264 encoded, and you need to specify this video type in this parameter as `video/h264`\.   
 This parameter is optional; the default value is `null` \(or empty in JSON\)\.  
@@ -66,7 +66,7 @@ Length Constraints: Minimum length of 1\. Maximum length of 128\.
 Pattern: `[\w\-\.\+]+/[\w\-\.\+]+`   
 Required: No
 
- ** StreamName **   
+ ** [StreamName](#API_CreateStream_RequestSyntax) **   <a name="KinesisVideo-CreateStream-request-StreamName"></a>
 A name for the stream that you are creating\.  
 The stream name is an identifier for the stream, and must be unique for each account and region\.  
 Type: String  
@@ -81,7 +81,7 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "StreamARN": "string"
+   "[StreamARN](#KinesisVideo-CreateStream-response-StreamARN)": "string"
 }
 ```
 
@@ -91,7 +91,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** StreamARN **   
+ ** [StreamARN](#API_CreateStream_ResponseSyntax) **   <a name="KinesisVideo-CreateStream-response-StreamARN"></a>
 The Amazon Resource Name \(ARN\) of the stream\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 1024\.  

@@ -22,18 +22,22 @@ For prerequisites and other details about this example, see [Using the Java Prod
 
    ```
    final KinesisVideoClient kinesisVideoClient = KinesisVideoJavaClientFactory
-                       .createKinesisVideoClient(AuthHelper.getSystemPropertiesCredentialsProvider());
+       .createKinesisVideoClient(
+           Regions.US_WEST_2,
+           AuthHelper.getSystemPropertiesCredentialsProvider());
    ```
 
    Change the code to the following:
 
    ```
    final KinesisVideoClient kinesisVideoClient = KinesisVideoJavaClientFactory
-                       .createKinesisVideoClient(new ProfileCredentialsProvider("credentials-profile-name"););
+       .createKinesisVideoClient(
+           Regions.US_WEST_2,
+           new ProfileCredentialsProvider("credentials-profile-name"););
    ```
 
    For more information, see [ProfileCredentialsProvider](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/profile/ProfileCredentialsProvider.html#ProfileCredentialsProvider-java.lang.String-) in the *AWS SDK for Java* reference\.
 
 ## Next Step<a name="producersdk-javaapi-downloadcode-next"></a>
 
-[[ERROR] BAD/MISSING LINK TEXT](producersdk-javaapi-writecode.md)
+[Step 2: Write and Examine the Code](producersdk-javaapi-writecode.md)

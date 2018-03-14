@@ -42,4 +42,4 @@ The Java example uses a `SystemPropertiesCredentialsProvider` object to obtain y
 
   + **KinesisVideoProducerJNI\.dll** for Windows \(not currently available\)
 **Note**  
-Pre\-built libraries are not currently available\. You must build the libraries yourself for your platform\.
+Pre\-built libraries are not currently available\. You must build the libraries yourself for your platform, using the `install-script` script included with the [C\+\+ Producer Library](producer-sdk-cpp.md)\.

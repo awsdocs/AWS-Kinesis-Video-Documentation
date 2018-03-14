@@ -88,22 +88,22 @@ Payload
 
 The request requires the following URI parameters\.
 
- ** FragmentTimecodeType **   
+ ** [FragmentTimecodeType](#API_dataplane_PutMedia_RequestSyntax) **   <a name="KinesisVideo-dataplane_PutMedia-request-FragmentTimecodeType"></a>
 You pass this value as the `x-amzn-fragment-timecode-type` HTTP header\.  
 Indicates whether timecodes in the fragments \(payload, HTTP request body\) are absolute or relative to `producerStartTimestamp`\. Kinesis Video Streams uses this information to compute the `producer_timestamp` for the fragment received in the request, as described in the API overview\.  
 Valid Values:` ABSOLUTE | RELATIVE` 
 
- ** ProducerStartTimestamp **   
+ ** [ProducerStartTimestamp](#API_dataplane_PutMedia_RequestSyntax) **   <a name="KinesisVideo-dataplane_PutMedia-request-ProducerStartTimestamp"></a>
 You pass this value as the `x-amzn-producer-start-timestamp` HTTP header\.  
 This is the producer time stamp at which the producer started recording the media \(not the time stamp of the specific fragments in the request\)\.
 
- ** StreamARN **   
+ ** [StreamARN](#API_dataplane_PutMedia_RequestSyntax) **   <a name="KinesisVideo-dataplane_PutMedia-request-StreamARN"></a>
 You pass this value as the `x-amzn-stream-arn` HTTP header\.  
 Amazon Resource Name \(ARN\) of the Kinesis video stream where you want to write the media content\. If you don't specify the `streamARN`, you must specify the `streamName`\.  
 Length Constraints: Minimum length of 1\. Maximum length of 1024\.  
 Pattern: `arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+` 
 
- ** StreamName **   
+ ** [StreamName](#API_dataplane_PutMedia_RequestSyntax) **   <a name="KinesisVideo-dataplane_PutMedia-request-StreamName"></a>
 You pass this value as the `x-amzn-stream-name` HTTP header\.  
 Name of the Kinesis video stream where you want to write the media content\. If you don't specify the `streamName`, you must specify the `streamARN`\.  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
@@ -113,7 +113,7 @@ Pattern: `[a-zA-Z0-9_.-]+`
 
 The request accepts the following binary data\.
 
- ** Payload **   
+ ** [Payload](#API_dataplane_PutMedia_RequestSyntax) **   <a name="KinesisVideo-dataplane_PutMedia-request-Payload"></a>
  The media content to write to the Kinesis video stream\. In the current implementation, Kinesis Video Streams supports only the Matroska \(MKV\) container format with a single MKV segment\. A segment can contain one or more clusters\.   
 Each MKV cluster maps to a Kinesis video stream fragment\. Whatever cluster duration you choose becomes the fragment duration\. 
 
@@ -131,7 +131,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The response returns the following as the HTTP body\.
 
- ** Payload **   
+ ** [Payload](#API_dataplane_PutMedia_ResponseSyntax) **   <a name="KinesisVideo-dataplane_PutMedia-response-Payload"></a>
  After Kinesis Video Streams successfully receives a `PutMedia` request, the service validates the request headers\. The service then starts reading the payload and first sends an HTTP 200 response\.   
 The service then returns a stream containing a series of JSON objects \(`Acknowledgement` objects\) separated by newlines\. The acknowledgements are received on the same connection on which the media data is sent\. There can be many acknowledgements for a `PutMedia` request\. Each `Acknowledgement` consists of the following key\-value pairs:  
 
@@ -228,7 +228,7 @@ HTTP Status Code: 404
 
 The format of the acknowledgement is as follows:
 
-#### <a name="w3ab1c29b4c11c11c47b3b5"></a>
+#### <a name="w3ab1c32b4c11c11c47b3b5"></a>
 
 ```
 {

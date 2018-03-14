@@ -71,4 +71,4 @@ mCameraMediaSource.start();
 
 ## Next Step<a name="producersdk-android-writecode-next"></a>
 
-[[ERROR] BAD/MISSING LINK TEXT](producersdk-android-reviewcode.md)
+[Step 3: Run and Verify the Code](producersdk-android-reviewcode.md)

@@ -4,12 +4,12 @@ The range of time stamps for which to return fragments\.
 
 ## Contents<a name="API_reader_TimestampRange_Contents"></a>
 
- **EndTimestamp**   
+ **EndTimestamp**   <a name="KinesisVideo-Type-reader_TimestampRange-EndTimestamp"></a>
 The ending time stamp in the range of time stamps for which to return fragments\.  
 Type: Timestamp  
 Required: Yes
 
- **StartTimestamp**   
+ **StartTimestamp**   <a name="KinesisVideo-Type-reader_TimestampRange-StartTimestamp"></a>
 The starting time stamp in the range of time stamps for which to return fragments\.  
 Type: Timestamp  
 Required: Yes

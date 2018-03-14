@@ -2,6 +2,8 @@
 
 This section contains error and status code information for the [Producer Libraries](producer-sdk.md)\.
 
+For information about solutions to common issues, see [Troubleshooting Kinesis Video Streams](troubleshooting.md)\.
+
 ## Errors and Status Codes Returned by PutFrame Callbacks<a name="producer-sdk-errors-putframe"></a>
 
 The following sections contain error and status information returned by callbacks for the `PutFrame` operation\.

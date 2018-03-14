@@ -11,9 +11,9 @@ POST /listTagsForStream HTTP/1.1
 Content-type: application/json
 
 {
-   "NextToken": "string",
-   "StreamARN": "string",
-   "StreamName": "string"
+   "[NextToken](#KinesisVideo-ListTagsForStream-request-NextToken)": "string",
+   "[StreamARN](#KinesisVideo-ListTagsForStream-request-StreamARN)": "string",
+   "[StreamName](#KinesisVideo-ListTagsForStream-request-StreamName)": "string"
 }
 ```
 
@@ -25,20 +25,20 @@ The request does not use any URI parameters\.
 
 The request accepts the following data in JSON format\.
 
- ** NextToken **   
+ ** [NextToken](#API_ListTagsForStream_RequestSyntax) **   <a name="KinesisVideo-ListTagsForStream-request-NextToken"></a>
 If you specify this parameter and the result of a `ListTagsForStream` call is truncated, the response includes a token that you can use in the next request to fetch the next batch of tags\.  
 Type: String  
 Length Constraints: Minimum length of 0\. Maximum length of 512\.  
 Required: No
 
- ** StreamARN **   
+ ** [StreamARN](#API_ListTagsForStream_RequestSyntax) **   <a name="KinesisVideo-ListTagsForStream-request-StreamARN"></a>
 The Amazon Resource Name \(ARN\) of the stream that you want to list tags for\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 1024\.  
 Pattern: `arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+`   
 Required: No
 
- ** StreamName **   
+ ** [StreamName](#API_ListTagsForStream_RequestSyntax) **   <a name="KinesisVideo-ListTagsForStream-request-StreamName"></a>
 The name of the stream that you want to list tags for\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
@@ -52,8 +52,8 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "NextToken": "string",
-   "Tags": { 
+   "[NextToken](#KinesisVideo-ListTagsForStream-response-NextToken)": "string",
+   "[Tags](#KinesisVideo-ListTagsForStream-response-Tags)": { 
       "string" : "string" 
    }
 }
@@ -65,12 +65,12 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** NextToken **   
+ ** [NextToken](#API_ListTagsForStream_ResponseSyntax) **   <a name="KinesisVideo-ListTagsForStream-response-NextToken"></a>
 If you specify this parameter and the result of a `ListTags` call is truncated, the response includes a token that you can use in the next request to fetch the next set of tags\.  
 Type: String  
 Length Constraints: Minimum length of 0\. Maximum length of 512\.
 
- ** Tags **   
+ ** [Tags](#API_ListTagsForStream_ResponseSyntax) **   <a name="KinesisVideo-ListTagsForStream-response-Tags"></a>
 A map of tag keys and values associated with the specified stream\.  
 Type: String to string map  
 Key Length Constraints: Minimum length of 1\. Maximum length of 128\.  

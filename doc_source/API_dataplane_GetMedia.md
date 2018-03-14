@@ -20,14 +20,14 @@ POST /getMedia HTTP/1.1
 Content-type: application/json
 
 {
-   "StartSelector": { 
-      "AfterFragmentNumber": "string",
-      "ContinuationToken": "string",
-      "StartSelectorType": "string",
-      "StartTimestamp": number
+   "[StartSelector](#KinesisVideo-dataplane_GetMedia-request-StartSelector)": { 
+      "[AfterFragmentNumber](API_dataplane_StartSelector.md#KinesisVideo-Type-dataplane_StartSelector-AfterFragmentNumber)": "string",
+      "[ContinuationToken](API_dataplane_StartSelector.md#KinesisVideo-Type-dataplane_StartSelector-ContinuationToken)": "string",
+      "[StartSelectorType](API_dataplane_StartSelector.md#KinesisVideo-Type-dataplane_StartSelector-StartSelectorType)": "string",
+      "[StartTimestamp](API_dataplane_StartSelector.md#KinesisVideo-Type-dataplane_StartSelector-StartTimestamp)": number
    },
-   "StreamARN": "string",
-   "StreamName": "string"
+   "[StreamARN](#KinesisVideo-dataplane_GetMedia-request-StreamARN)": "string",
+   "[StreamName](#KinesisVideo-dataplane_GetMedia-request-StreamName)": "string"
 }
 ```
 
@@ -39,19 +39,19 @@ The request does not use any URI parameters\.
 
 The request accepts the following data in JSON format\.
 
- ** StartSelector **   
+ ** [StartSelector](#API_dataplane_GetMedia_RequestSyntax) **   <a name="KinesisVideo-dataplane_GetMedia-request-StartSelector"></a>
 Identifies the starting chunk to get from the specified stream\.   
 Type: [StartSelector](API_dataplane_StartSelector.md) object  
 Required: Yes
 
- ** StreamARN **   
+ ** [StreamARN](#API_dataplane_GetMedia_RequestSyntax) **   <a name="KinesisVideo-dataplane_GetMedia-request-StreamARN"></a>
 The ARN of the stream from where you want to get the media content\. If you don't specify the `streamARN`, you must specify the `streamName`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 1024\.  
 Pattern: `arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+`   
 Required: No
 
- ** StreamName **   
+ ** [StreamName](#API_dataplane_GetMedia_RequestSyntax) **   <a name="KinesisVideo-dataplane_GetMedia-request-StreamName"></a>
 The Kinesis video stream name from where you want to get the media content\. If you don't specify the `streamName`, you must specify the `streamARN`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
@@ -73,14 +73,14 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The response returns the following HTTP headers\.
 
- ** ContentType **   
+ ** [ContentType](#API_dataplane_GetMedia_ResponseSyntax) **   <a name="KinesisVideo-dataplane_GetMedia-response-ContentType"></a>
 The content type of the requested media\.  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Pattern: `^[a-zA-Z0-9_\.\-]+$` 
 
 The response returns the following as the HTTP body\.
 
- ** Payload **   
+ ** [Payload](#API_dataplane_GetMedia_ResponseSyntax) **   <a name="KinesisVideo-dataplane_GetMedia-response-Payload"></a>
  The payload Kinesis Video Streams returns is a sequence of chunks from the specified stream\. For information about the chunks, see [PutMedia](API_dataplane_PutMedia.md)\. The chunks that Kinesis Video Streams returns in the `GetMedia` call also include the following additional Matroska \(MKV\) tags:   
 
 + AWS\_KINESISVIDEO\_CONTINUATION\_TOKEN \(UTF\-8 string\) \- In the event your `GetMedia` call terminates, you can use this continuation token in your next request to get the next chunk where the last request terminated\.

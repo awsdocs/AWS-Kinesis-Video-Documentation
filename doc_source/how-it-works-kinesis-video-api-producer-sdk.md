@@ -36,8 +36,7 @@ Kinesis Video Streams provides APIs for creating and managing Kinesis video stre
 
 The following diagram shows the data flow for fragments and chunks during these API calls\.
 
-![\[Diagram showing data flow for fragments and chucks during API
-                        calls\]](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/images/arch-20.png)
+![\[Diagram showing data flow for fragments and chucks during API calls\]](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/images/arch-20.png)
 
 When a producer sends a `PutMedia` request, it sends media metadata in the payload, and then sends a sequence of media data fragments\. Upon receiving the data, Kinesis Video Streams stores incoming media data as Kinesis Video Streams chunks\. Each chunk consists of the following:
 

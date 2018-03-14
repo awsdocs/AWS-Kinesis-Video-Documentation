@@ -59,4 +59,4 @@ bytesMediaSource.start();
 
 ## Next Step<a name="producersdk-javaapi-writecode-next"></a>
 
-[[ERROR] BAD/MISSING LINK TEXT](producersdk-javaapi-reviewcode.md)
+[Step 3: Run and Verify the Code](producersdk-javaapi-reviewcode.md)

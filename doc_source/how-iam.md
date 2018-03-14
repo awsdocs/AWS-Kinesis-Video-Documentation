@@ -150,7 +150,8 @@ This policy allows a user or group to perform the `CreateStream` and `PutMedia` 
             "Effect": "Allow",
             "Action": [
                 "kinesisvideo:CreateStream",
-                "kinesisvideo:PutMedia"            ],
+                "kinesisvideo:PutMedia"            
+            ],
             "Resource": "*"
         }
     ]

@@ -17,8 +17,8 @@ POST /deleteStream HTTP/1.1
 Content-type: application/json
 
 {
-   "CurrentVersion": "string",
-   "StreamARN": "string"
+   "[CurrentVersion](#KinesisVideo-DeleteStream-request-CurrentVersion)": "string",
+   "[StreamARN](#KinesisVideo-DeleteStream-request-StreamARN)": "string"
 }
 ```
 
@@ -30,7 +30,7 @@ The request does not use any URI parameters\.
 
 The request accepts the following data in JSON format\.
 
- ** CurrentVersion **   
+ ** [CurrentVersion](#API_DeleteStream_RequestSyntax) **   <a name="KinesisVideo-DeleteStream-request-CurrentVersion"></a>
 Optional: The version of the stream that you want to delete\.   
 Specify the version as a safeguard to ensure that your are deleting the correct stream\. To get the stream version, use the `DescribeStream` API\.  
 If not specified, only the `CreationTime` is checked before deleting the stream\.  
@@ -39,7 +39,7 @@ Length Constraints: Minimum length of 1\. Maximum length of 64\.
 Pattern: `[a-zA-Z0-9]+`   
 Required: No
 
- ** StreamARN **   
+ ** [StreamARN](#API_DeleteStream_RequestSyntax) **   <a name="KinesisVideo-DeleteStream-request-StreamARN"></a>
 The Amazon Resource Name \(ARN\) of the stream that you want to delete\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 1024\.  

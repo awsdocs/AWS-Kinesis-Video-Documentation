@@ -11,9 +11,9 @@ POST /untagStream HTTP/1.1
 Content-type: application/json
 
 {
-   "StreamARN": "string",
-   "StreamName": "string",
-   "TagKeyList": [ "string" ]
+   "[StreamARN](#KinesisVideo-UntagStream-request-StreamARN)": "string",
+   "[StreamName](#KinesisVideo-UntagStream-request-StreamName)": "string",
+   "[TagKeyList](#KinesisVideo-UntagStream-request-TagKeyList)": [ "string" ]
 }
 ```
 
@@ -25,21 +25,21 @@ The request does not use any URI parameters\.
 
 The request accepts the following data in JSON format\.
 
- ** StreamARN **   
+ ** [StreamARN](#API_UntagStream_RequestSyntax) **   <a name="KinesisVideo-UntagStream-request-StreamARN"></a>
 The Amazon Resource Name \(ARN\) of the stream that you want to remove tags from\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 1024\.  
 Pattern: `arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+`   
 Required: No
 
- ** StreamName **   
+ ** [StreamName](#API_UntagStream_RequestSyntax) **   <a name="KinesisVideo-UntagStream-request-StreamName"></a>
 The name of the stream that you want to remove tags from\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
 Pattern: `[a-zA-Z0-9_.-]+`   
 Required: No
 
- ** TagKeyList **   
+ ** [TagKeyList](#API_UntagStream_RequestSyntax) **   <a name="KinesisVideo-UntagStream-request-TagKeyList"></a>
 A list of the keys of the tags that you want to remove\.  
 Type: Array of strings  
 Array Members: Minimum number of 1 item\. Maximum number of 50 items\.  

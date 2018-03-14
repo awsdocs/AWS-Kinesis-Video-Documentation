@@ -15,9 +15,9 @@ POST /tagStream HTTP/1.1
 Content-type: application/json
 
 {
-   "StreamARN": "string",
-   "StreamName": "string",
-   "Tags": { 
+   "[StreamARN](#KinesisVideo-TagStream-request-StreamARN)": "string",
+   "[StreamName](#KinesisVideo-TagStream-request-StreamName)": "string",
+   "[Tags](#KinesisVideo-TagStream-request-Tags)": { 
       "string" : "string" 
    }
 }
@@ -31,21 +31,21 @@ The request does not use any URI parameters\.
 
 The request accepts the following data in JSON format\.
 
- ** StreamARN **   
+ ** [StreamARN](#API_TagStream_RequestSyntax) **   <a name="KinesisVideo-TagStream-request-StreamARN"></a>
 The Amazon Resource Name \(ARN\) of the resource that you want to add the tag or tags to\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 1024\.  
 Pattern: `arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+`   
 Required: No
 
- ** StreamName **   
+ ** [StreamName](#API_TagStream_RequestSyntax) **   <a name="KinesisVideo-TagStream-request-StreamName"></a>
 The name of the stream that you want to add the tag or tags to\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
 Pattern: `[a-zA-Z0-9_.-]+`   
 Required: No
 
- ** Tags **   
+ ** [Tags](#API_TagStream_RequestSyntax) **   <a name="KinesisVideo-TagStream-request-Tags"></a>
 A list of tags to associate with the specified stream\. Each tag is a key\-value pair \(the value is optional\)\.  
 Type: String to string map  
 Key Length Constraints: Minimum length of 1\. Maximum length of 128\.  

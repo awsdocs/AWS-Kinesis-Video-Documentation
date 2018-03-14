@@ -6,6 +6,8 @@ This section includes the following code examples for Amazon Kinesis Video Strea
 
 + [GStreamer Example](examples-gstreamer.md)
 
++ [Renderer Example](examples-renderer.md)
+
 For an example of how to use `GetMedia`, see [MergeGetMediaOutput](parser-library-write.md#parser-library-write-MGMO)\.
 
 ## Prerequisites<a name="examples-prerequisites"></a>

@@ -59,18 +59,111 @@ The procedure includes the following steps:
 
   [https://www\.amazontrust\.com/repository/SFSRootCAG2\.pem](https://www.amazontrust.com/repository/SFSRootCAG2.pem)
 
-+ Install the following build dependencies:
++ Install the following build dependencies for macOS:
 
   + [Autoconf 2\.69](http://www.gnu.org/software/autoconf/autoconf.html) \(License GPLv3\+/Autoconf: GNU GPL version 3 or later\) 
 
   + [CMake 3\.7 or 3\.8](https://cmake.org/)
 
+  + [Pkg\-Config](https://www.freedesktop.org/wiki/Software/pkg-config/)
+
+  + [Flex 2\.5\.35 Apple \(flex\-31\) or later](https://github.com/westes/flex/releases)
+
   + [Bison 2\.4](https://www.gnu.org/software/bison/) \(GNU License\)
 
   + [Automake 1\.15\.1](https://www.gnu.org/software/automake/) \(GNU License\)
 
-  + Libtool \(Apple Inc\. version cctools\-898\)
+  + GNU Libtool \(Apple Inc\. version cctools\-898\)
 
   + xCode \(macOS\) / clang / gcc \(xcode\-select version 2347\)
 
   + Java Development Kit \(JDK\) \(for Java JNI compilation\)
+
+  + [Lib\-Pkg](https://github.com/freebsd/pkg/tree/master/libpkg)
+
++ Install the following build dependencies for Ubuntu \(responses to version commands are truncated\):
+
+  + Install Git: `sudo apt-get install git`
+
+    ```
+    $ git --version
+    git version 2.14.1
+    ```
+
+  + Install [CMake](http://kitware.com/cmake): `sudo apt-get install cmake`
+
+    ```
+    $ cmake --version
+    cmake version 3.9.1
+    ```
+
+  + Install Libtool: `sudo apt-get install libtool`
+
+    ```
+    2.4.6-2
+    ```
+
+  + Install libtool\-bin: `sudo apt-get install libtool-bin`
+
+    ```
+    $ libtool --version
+    libtool (GNU libtool) 2.4.6
+    Written by Gordon Matzigkeit, 1996
+    ```
+
+  + Install GNU Automake: `sudo apt-get install automake`
+
+    ```
+    $ automake --version
+    automake (GNU automake) 1.15
+    ```
+
+  + Install GNU Bison: `sudo apt-get install bison`
+
+    ```
+    $ bison -V
+    bison (GNU Bison) 3.0.4
+    ```
+
+  + Install G\+\+: `sudo apt-get install g++`
+
+    ```
+    g++ --version
+    g++ (Ubuntu 7.2.0-8ubuntu3) 7.2.0
+    ```
+
+  + Install curl: `sudo apt-get install curl`
+
+    ```
+    $ curl --version
+    curl 7.55.1 (x86_64-pc-linux-gnu) libcurl/7.55.1 OpenSSL/1.0.2g zlib/1.2.11 libidn2/2.0.2 libpsl/0.18.0 (+libidn2/2.0.2) librtmp/2.3
+    ```
+
+  + Install pkg\-config: `sudo apt-get install pkg-config`
+
+    ```
+    $ pkg-config --version
+    0.29.1
+    ```
+
+  + Install Flex: `sudo apt-get install flex`
+
+    ```
+    $ flex --version
+    flex 2.6.1
+    ```
+
+  + Install OpenJDK: `sudo apt-get install openjdk-8-jdk`
+
+    ```
+    $ java -showversion
+    openjdk version "1.8.0_151"
+    ```
+
+  + Set the `JAVA_HOME` environment variable: `export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/`
+
+  + Run the build script: `./install-script`
+
+### Next Step<a name="producer-sdk-cpp-prerequisites-next-step"></a>
+
+[Step 1: Download and Configure the C\+\+ Producer Library Code](producersdk-cpp-download.html)

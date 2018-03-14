@@ -4,13 +4,13 @@ Describes the time stamp range and time stamp origin of a range of fragments\.
 
 ## Contents<a name="API_reader_FragmentSelector_Contents"></a>
 
- **FragmentSelectorType**   
+ **FragmentSelectorType**   <a name="KinesisVideo-Type-reader_FragmentSelector-FragmentSelectorType"></a>
 The origin of the time stamps to use \(Server or Producer\)\.  
 Type: String  
 Valid Values:` PRODUCER_TIMESTAMP | SERVER_TIMESTAMP`   
 Required: Yes
 
- **TimestampRange**   
+ **TimestampRange**   <a name="KinesisVideo-Type-reader_FragmentSelector-TimestampRange"></a>
 The range of time stamps to return\.  
 Type: [TimestampRange](API_reader_TimestampRange.md) object  
 Required: Yes

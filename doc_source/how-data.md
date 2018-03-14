@@ -46,7 +46,7 @@ The following MKV header elements are used by `StreamDefinition` \(defined in `S
 | connection\_staleness | The duration that a connection is maintained when no data is received\. |  | 
 | codec\_id | The codec used by the content\. For more information, see [CodecID](https://matroska.org/technical/specs/codecid/index.html) in the Matroska specification\. | V\_MPEG2 | 
 | track\_name | The user\-defined name of the track\. | my\_track | 
-| codecPrivateData | Data provided by the encoder used to decode the frame data, such as the frame width and height in pixels, which is needed by many downstream consumers\. In the C\+\+ Producer Library, the gMkvTrackVideoBits array in MkvStatics\.cpp includes pixel width and height for the frame\. |  | 
+| codecPrivateData | Data provided by the encoder used to decode the frame data, such as the frame width and height in pixels, which is needed by many downstream consumers\. In the [C\+\+ Producer Library](producer-sdk-cpp.md), the gMkvTrackVideoBits array in MkvStatics\.cpp includes pixel width and height for the frame\. |  | 
 | codecPrivateDataSize | The size of the data in the codecPrivateData parameter\. |  | 
 
 ## Frame Header Elements<a name="how-data-header-frame"></a>

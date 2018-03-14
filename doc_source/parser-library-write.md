@@ -336,9 +336,9 @@ The following code example \(from the `KinesisVideoExample.java` file\) creates 
 
 + A `BufferedOutputStream` that buffers data bound for the `OutputStream`\.
 
-+ An [[ERROR] BAD/MISSING LINK TEXT](#parser-library-write-OSM) that merges consecutive elements in the `GetMedia` result with the same track and EBML data\.
++ An [OutputSegmentMerger](#parser-library-write-OSM) that merges consecutive elements in the `GetMedia` result with the same track and EBML data\.
 
-+ A `CompositeMkvElementVisitor` that composes the [FragmentMetadataVisitor](#parser-library-write-FMV), [[ERROR] BAD/MISSING LINK TEXT](#parser-library-write-OSM), and `LogVisitor` into a single element visitor
++ A `CompositeMkvElementVisitor` that composes the [FragmentMetadataVisitor](#parser-library-write-FMV), [OutputSegmentMerger](#parser-library-write-OSM), and `LogVisitor` into a single element visitor
 
 ```
 //A visitor used to log as the GetMedia stream is processed.
@@ -372,4 +372,4 @@ executorService.submit(getMediaWorker);
 
 ## Next Step<a name="parser-library-write-next"></a>
 
-[[ERROR] BAD/MISSING LINK TEXT](parser-library-run.md)
+[Step 3: Run and Verify the Code](parser-library-run.md)

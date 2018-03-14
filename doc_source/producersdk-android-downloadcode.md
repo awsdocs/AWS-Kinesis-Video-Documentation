@@ -49,6 +49,18 @@ For prerequisites and other details about this example, see [Using the Android P
    }
    ```
 
+1. Update the `StreamingFragment.java` file with your region:
+
+   ```
+   try {
+     mKinesisVideoClient = KinesisVideoAndroidClientFactory.createKinesisVideoClient(
+     getActivity(),
+     Regions.US_WEST_2,
+     KinesisVideoDemoApp.getCredentialsProvider());
+   ```
+
+   For AWS region constants, see [Regions](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/regions/Regions.html)\.
+
 ## Next Step<a name="producersdk-android-downloadcode-next"></a>
 
-[[ERROR] BAD/MISSING LINK TEXT](producersdk-android-writecode.md)
+[Step 2: Examine the Code](producersdk-android-writecode.md)

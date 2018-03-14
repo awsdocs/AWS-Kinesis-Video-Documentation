@@ -15,6 +15,10 @@ The GStreamer example is not currently available for Windows systems\.
 
 The GStreamer example typically requires the following components, which you can install using the following commands:
 
++ [Automake:](https://www.gnu.org/software/automake/) `brew install automake`
+
++ [Autoconf:](http://www.gnu.org/software/autoconf/autoconf.html) `brew install autoconf automake`
+
 + [CMake:](https://cmake.org/) `brew install cmake`
 
 + [GStreamer:](https://gstreamer.freedesktop.org/) `brew install gstreamer gst-plugins-base gst-plugins-bad gst-plugins-good gst-plugins-ugly`
@@ -25,7 +29,11 @@ For a more comprehensive list of requirements, see [Prerequisites](producer-sdk-
 
 ## Running the GStreamer Example<a name="examples-gstreamer-procedure"></a>
 
-1. Follow the directions in [Step 1: Download and Configure the C\+\+ Producer Library Code](producersdk-cpp-download.md) to download the C\+\+ Producer SDK\.
+1. Create a directory, and then clone the example source code from the GitHub repository\.
+
+   ```
+   $ git clone https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp
+   ```
 
 1. Run the following script in the `/kinesis-video-native-build` folder to build the C\+\+ Producer SDK:
 
@@ -38,9 +46,9 @@ For a more comprehensive list of requirements, see [Prerequisites](producer-sdk-
 1. After the C\+\+ Procedure SDK is installed and configured, run the application using the following command \(also in the `/kinesis-video-native-build` folder\): 
 
    ```
-   EXPORT AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE 
-   EXPORT AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY 
-   EXPORT AWS_DEFAULT_REGION=<AWS region>
+   export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+   export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+   export AWS_DEFAULT_REGION=<AWS region>
    ./kinesis_video_gstreamer_sample_app stream_name
    ```
 

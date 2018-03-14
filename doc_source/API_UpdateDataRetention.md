@@ -20,11 +20,11 @@ POST /updateDataRetention HTTP/1.1
 Content-type: application/json
 
 {
-   "CurrentVersion": "string",
-   "DataRetentionChangeInHours": number,
-   "Operation": "string",
-   "StreamARN": "string",
-   "StreamName": "string"
+   "[CurrentVersion](#KinesisVideo-UpdateDataRetention-request-CurrentVersion)": "string",
+   "[DataRetentionChangeInHours](#KinesisVideo-UpdateDataRetention-request-DataRetentionChangeInHours)": number,
+   "[Operation](#KinesisVideo-UpdateDataRetention-request-Operation)": "string",
+   "[StreamARN](#KinesisVideo-UpdateDataRetention-request-StreamARN)": "string",
+   "[StreamName](#KinesisVideo-UpdateDataRetention-request-StreamName)": "string"
 }
 ```
 
@@ -36,33 +36,33 @@ The request does not use any URI parameters\.
 
 The request accepts the following data in JSON format\.
 
- ** CurrentVersion **   
+ ** [CurrentVersion](#API_UpdateDataRetention_RequestSyntax) **   <a name="KinesisVideo-UpdateDataRetention-request-CurrentVersion"></a>
 The version of the stream whose retention period you want to change\. To get the version, call either the `DescribeStream` or the `ListStreams` API\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
 Pattern: `[a-zA-Z0-9]+`   
 Required: Yes
 
- ** DataRetentionChangeInHours **   
+ ** [DataRetentionChangeInHours](#API_UpdateDataRetention_RequestSyntax) **   <a name="KinesisVideo-UpdateDataRetention-request-DataRetentionChangeInHours"></a>
 The retention period, in hours\. The value you specify replaces the current value\.  
 Type: Integer  
 Valid Range: Minimum value of 1\.  
 Required: Yes
 
- ** Operation **   
+ ** [Operation](#API_UpdateDataRetention_RequestSyntax) **   <a name="KinesisVideo-UpdateDataRetention-request-Operation"></a>
 Indicates whether you want to increase or decrease the retention period\.  
 Type: String  
 Valid Values:` INCREASE_DATA_RETENTION | DECREASE_DATA_RETENTION`   
 Required: Yes
 
- ** StreamARN **   
+ ** [StreamARN](#API_UpdateDataRetention_RequestSyntax) **   <a name="KinesisVideo-UpdateDataRetention-request-StreamARN"></a>
 The Amazon Resource Name \(ARN\) of the stream whose retention period you want to change\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 1024\.  
 Pattern: `arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+`   
 Required: No
 
- ** StreamName **   
+ ** [StreamName](#API_UpdateDataRetention_RequestSyntax) **   <a name="KinesisVideo-UpdateDataRetention-request-StreamName"></a>
 The name of the stream whose retention period you want to change\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  

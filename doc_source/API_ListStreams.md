@@ -9,11 +9,11 @@ POST /listStreams HTTP/1.1
 Content-type: application/json
 
 {
-   "MaxResults": number,
-   "NextToken": "string",
-   "StreamNameCondition": { 
-      "ComparisonOperator": "string",
-      "ComparisonValue": "string"
+   "[MaxResults](#KinesisVideo-ListStreams-request-MaxResults)": number,
+   "[NextToken](#KinesisVideo-ListStreams-request-NextToken)": "string",
+   "[StreamNameCondition](#KinesisVideo-ListStreams-request-StreamNameCondition)": { 
+      "[ComparisonOperator](API_StreamNameCondition.md#KinesisVideo-Type-StreamNameCondition-ComparisonOperator)": "string",
+      "[ComparisonValue](API_StreamNameCondition.md#KinesisVideo-Type-StreamNameCondition-ComparisonValue)": "string"
    }
 }
 ```
@@ -26,19 +26,19 @@ The request does not use any URI parameters\.
 
 The request accepts the following data in JSON format\.
 
- ** MaxResults **   
+ ** [MaxResults](#API_ListStreams_RequestSyntax) **   <a name="KinesisVideo-ListStreams-request-MaxResults"></a>
 The maximum number of streams to return in the response\. The default is 10,000\.  
 Type: Integer  
 Valid Range: Minimum value of 1\. Maximum value of 10000\.  
 Required: No
 
- ** NextToken **   
+ ** [NextToken](#API_ListStreams_RequestSyntax) **   <a name="KinesisVideo-ListStreams-request-NextToken"></a>
 If you specify this parameter, when the result of a `ListStreams` operation is truncated, the call returns the `NextToken` in the response\. To get another batch of streams, provide this token in your next request\.  
 Type: String  
 Length Constraints: Minimum length of 0\. Maximum length of 512\.  
 Required: No
 
- ** StreamNameCondition **   
+ ** [StreamNameCondition](#API_ListStreams_RequestSyntax) **   <a name="KinesisVideo-ListStreams-request-StreamNameCondition"></a>
 Optional: Returns only streams that satisfy a specific condition\. Currently, you can specify only the prefix of a stream name as a condition\.   
 Type: [StreamNameCondition](API_StreamNameCondition.md) object  
 Required: No
@@ -50,18 +50,18 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "NextToken": "string",
-   "StreamInfoList": [ 
+   "[NextToken](#KinesisVideo-ListStreams-response-NextToken)": "string",
+   "[StreamInfoList](#KinesisVideo-ListStreams-response-StreamInfoList)": [ 
       { 
-         "CreationTime": number,
-         "DataRetentionInHours": number,
-         "DeviceName": "string",
-         "KmsKeyId": "string",
-         "MediaType": "string",
-         "Status": "string",
-         "StreamARN": "string",
-         "StreamName": "string",
-         "Version": "string"
+         "[CreationTime](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-CreationTime)": number,
+         "[DataRetentionInHours](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-DataRetentionInHours)": number,
+         "[DeviceName](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-DeviceName)": "string",
+         "[KmsKeyId](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-KmsKeyId)": "string",
+         "[MediaType](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-MediaType)": "string",
+         "[Status](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-Status)": "string",
+         "[StreamARN](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-StreamARN)": "string",
+         "[StreamName](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-StreamName)": "string",
+         "[Version](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-Version)": "string"
       }
    ]
 }
@@ -73,12 +73,12 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** NextToken **   
+ ** [NextToken](#API_ListStreams_ResponseSyntax) **   <a name="KinesisVideo-ListStreams-response-NextToken"></a>
 If the response is truncated, the call returns this element with a token\. To get the next batch of streams, use this token in your next request\.   
 Type: String  
 Length Constraints: Minimum length of 0\. Maximum length of 512\.
 
- ** StreamInfoList **   
+ ** [StreamInfoList](#API_ListStreams_ResponseSyntax) **   <a name="KinesisVideo-ListStreams-response-StreamInfoList"></a>
 An array of `StreamInfo` objects\.  
 Type: Array of [StreamInfo](API_StreamInfo.md) objects
 

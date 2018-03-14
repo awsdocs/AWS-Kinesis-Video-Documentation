@@ -9,8 +9,8 @@ POST /describeStream HTTP/1.1
 Content-type: application/json
 
 {
-   "StreamARN": "string",
-   "StreamName": "string"
+   "[StreamARN](#KinesisVideo-DescribeStream-request-StreamARN)": "string",
+   "[StreamName](#KinesisVideo-DescribeStream-request-StreamName)": "string"
 }
 ```
 
@@ -22,14 +22,14 @@ The request does not use any URI parameters\.
 
 The request accepts the following data in JSON format\.
 
- ** StreamARN **   
+ ** [StreamARN](#API_DescribeStream_RequestSyntax) **   <a name="KinesisVideo-DescribeStream-request-StreamARN"></a>
 The Amazon Resource Name \(ARN\) of the stream\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 1024\.  
 Pattern: `arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+`   
 Required: No
 
- ** StreamName **   
+ ** [StreamName](#API_DescribeStream_RequestSyntax) **   <a name="KinesisVideo-DescribeStream-request-StreamName"></a>
 The name of the stream\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
@@ -43,16 +43,16 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "StreamInfo": { 
-      "CreationTime": number,
-      "DataRetentionInHours": number,
-      "DeviceName": "string",
-      "KmsKeyId": "string",
-      "MediaType": "string",
-      "Status": "string",
-      "StreamARN": "string",
-      "StreamName": "string",
-      "Version": "string"
+   "[StreamInfo](#KinesisVideo-DescribeStream-response-StreamInfo)": { 
+      "[CreationTime](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-CreationTime)": number,
+      "[DataRetentionInHours](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-DataRetentionInHours)": number,
+      "[DeviceName](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-DeviceName)": "string",
+      "[KmsKeyId](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-KmsKeyId)": "string",
+      "[MediaType](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-MediaType)": "string",
+      "[Status](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-Status)": "string",
+      "[StreamARN](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-StreamARN)": "string",
+      "[StreamName](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-StreamName)": "string",
+      "[Version](API_StreamInfo.md#KinesisVideo-Type-StreamInfo-Version)": "string"
    }
 }
 ```
@@ -63,7 +63,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** StreamInfo **   
+ ** [StreamInfo](#API_DescribeStream_ResponseSyntax) **   <a name="KinesisVideo-DescribeStream-response-StreamInfo"></a>
 An object that describes the stream\.  
 Type: [StreamInfo](API_StreamInfo.md) object
 

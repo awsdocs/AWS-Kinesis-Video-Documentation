@@ -15,11 +15,11 @@ POST /updateStream HTTP/1.1
 Content-type: application/json
 
 {
-   "CurrentVersion": "string",
-   "DeviceName": "string",
-   "MediaType": "string",
-   "StreamARN": "string",
-   "StreamName": "string"
+   "[CurrentVersion](#KinesisVideo-UpdateStream-request-CurrentVersion)": "string",
+   "[DeviceName](#KinesisVideo-UpdateStream-request-DeviceName)": "string",
+   "[MediaType](#KinesisVideo-UpdateStream-request-MediaType)": "string",
+   "[StreamARN](#KinesisVideo-UpdateStream-request-StreamARN)": "string",
+   "[StreamName](#KinesisVideo-UpdateStream-request-StreamName)": "string"
 }
 ```
 
@@ -31,14 +31,14 @@ The request does not use any URI parameters\.
 
 The request accepts the following data in JSON format\.
 
- ** CurrentVersion **   
+ ** [CurrentVersion](#API_UpdateStream_RequestSyntax) **   <a name="KinesisVideo-UpdateStream-request-CurrentVersion"></a>
 The version of the stream whose metadata you want to update\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
 Pattern: `[a-zA-Z0-9]+`   
 Required: Yes
 
- ** DeviceName **   
+ ** [DeviceName](#API_UpdateStream_RequestSyntax) **   <a name="KinesisVideo-UpdateStream-request-DeviceName"></a>
 The name of the device that is writing to the stream\.   
  In the current implementation, Kinesis Video Streams does not use this name\. 
 Type: String  
@@ -46,7 +46,7 @@ Length Constraints: Minimum length of 1\. Maximum length of 128\.
 Pattern: `[a-zA-Z0-9_.-]+`   
 Required: No
 
- ** MediaType **   
+ ** [MediaType](#API_UpdateStream_RequestSyntax) **   <a name="KinesisVideo-UpdateStream-request-MediaType"></a>
 The stream's media type\. Use `MediaType` to specify the type of content that the stream contains to the consumers of the stream\. For more information about media types, see [Media Types](http://www.iana.org/assignments/media-types/media-types.xhtml)\. If you choose to specify the `MediaType`, see [Naming Requirements](https://tools.ietf.org/html/rfc6838#section-4.2)\.  
 To play video on the console, you must specify the correct video type\. For example, if the video in the stream is H\.264, specify `video/h264` as the `MediaType`\.  
 Type: String  
@@ -54,14 +54,14 @@ Length Constraints: Minimum length of 1\. Maximum length of 128\.
 Pattern: `[\w\-\.\+]+/[\w\-\.\+]+`   
 Required: No
 
- ** StreamARN **   
+ ** [StreamARN](#API_UpdateStream_RequestSyntax) **   <a name="KinesisVideo-UpdateStream-request-StreamARN"></a>
 The ARN of the stream whose metadata you want to update\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 1024\.  
 Pattern: `arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+`   
 Required: No
 
- ** StreamName **   
+ ** [StreamName](#API_UpdateStream_RequestSyntax) **   <a name="KinesisVideo-UpdateStream-request-StreamName"></a>
 The name of the stream whose metadata you want to update\.  
 The stream name is an identifier for the stream, and must be unique for each account and region\.  
 Type: String  

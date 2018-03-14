@@ -4,58 +4,58 @@ An object describing a Kinesis video stream\.
 
 ## Contents<a name="API_StreamInfo_Contents"></a>
 
- **CreationTime**   
+ **CreationTime**   <a name="KinesisVideo-Type-StreamInfo-CreationTime"></a>
 A time stamp that indicates when the stream was created\.  
 Type: Timestamp  
 Required: No
 
- **DataRetentionInHours**   
+ **DataRetentionInHours**   <a name="KinesisVideo-Type-StreamInfo-DataRetentionInHours"></a>
 How long the stream retains data, in hours\.  
 Type: Integer  
 Valid Range: Minimum value of 0\.  
 Required: No
 
- **DeviceName**   
+ **DeviceName**   <a name="KinesisVideo-Type-StreamInfo-DeviceName"></a>
 The name of the device that is associated with the stream\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Pattern: `[a-zA-Z0-9_.-]+`   
 Required: No
 
- **KmsKeyId**   
+ **KmsKeyId**   <a name="KinesisVideo-Type-StreamInfo-KmsKeyId"></a>
 The ID of the AWS Key Management Service \(AWS KMS\) key that Kinesis Video Streams uses to encrypt data on the stream\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 2048\.  
 Required: No
 
- **MediaType**   
+ **MediaType**   <a name="KinesisVideo-Type-StreamInfo-MediaType"></a>
 The `MediaType` of the stream\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Pattern: `[\w\-\.\+]+/[\w\-\.\+]+`   
 Required: No
 
- **Status**   
+ **Status**   <a name="KinesisVideo-Type-StreamInfo-Status"></a>
 The status of the stream\.  
 Type: String  
 Valid Values:` CREATING | ACTIVE | UPDATING | DELETING`   
 Required: No
 
- **StreamARN**   
+ **StreamARN**   <a name="KinesisVideo-Type-StreamInfo-StreamARN"></a>
 The Amazon Resource Name \(ARN\) of the stream\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 1024\.  
 Pattern: `arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+`   
 Required: No
 
- **StreamName**   
+ **StreamName**   <a name="KinesisVideo-Type-StreamInfo-StreamName"></a>
 The name of the stream\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
 Pattern: `[a-zA-Z0-9_.-]+`   
 Required: No
 
- **Version**   
+ **Version**   <a name="KinesisVideo-Type-StreamInfo-Version"></a>
 The version of the stream\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  

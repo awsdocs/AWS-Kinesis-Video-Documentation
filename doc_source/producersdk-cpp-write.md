@@ -68,7 +68,7 @@ The `StreamDefinition` object has the following fields:
 
 + Streaming type\. Currently, the only valid value is `STREAMING_TYPE_REALTIME`\.
 
-+ Media content type\. To view the stream in the console viewer, this value must be `"video/h264"`\.
++ Media content type\. To view the stream in the console viewer, set this value to `"video/h264"`\.
 
 + Media latency\. This value is not currently used, and should be set to 0\.
 
@@ -184,4 +184,4 @@ The `PStreamMetrics` object filled by `getKinesisVideoStreamMetrics` contains th
 
 ## Next Step<a name="producersdk-cpp-write-next"></a>
 
-[[ERROR] BAD/MISSING LINK TEXT](producersdk-cpp-test.md)
+[Step 3: Run and Verify the Code](producersdk-cpp-test.md)

@@ -4,13 +4,13 @@ Specifies the condition that streams must satisfy to be returned when you list s
 
 ## Contents<a name="API_StreamNameCondition_Contents"></a>
 
- **ComparisonOperator**   
+ **ComparisonOperator**   <a name="KinesisVideo-Type-StreamNameCondition-ComparisonOperator"></a>
 A comparison operator\. Currently, you can specify only the `BEGINS_WITH` operator, which finds streams whose names start with a given prefix\.  
 Type: String  
 Valid Values:` BEGINS_WITH`   
 Required: No
 
- **ComparisonValue**   
+ **ComparisonValue**   <a name="KinesisVideo-Type-StreamNameCondition-ComparisonValue"></a>
 A value to compare\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
