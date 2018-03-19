@@ -233,10 +233,10 @@ The format of the acknowledgement is as follows:
 ```
 {
        Acknowledgement : {
-          “EventType”: enum
+          "EventType": enum
           "FragmentTimecode": Long,
-          “FragmentNumber”: Long,
-          “ErrorId” : String       
+          "FragmentNumber": Long,
+          "ErrorId" : String       
       }
 }
 ```
