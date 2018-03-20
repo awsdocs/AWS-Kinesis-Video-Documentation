@@ -2,7 +2,7 @@
 
 Use the following information to troubleshoot common issues encountered with Amazon Kinesis Video Streams\.
 
-
+**Topics**
 + [General Troubleshooting](#troubleshooting-general)
 + [API Troubleshooting](#troubleshooting-api)
 + [Java Issues](#troubleshooting-java)
@@ -13,7 +13,7 @@ Use the following information to troubleshoot common issues encountered with Ama
 
 This section describes general issues that you might encounter when working with Kinesis Video Streams\.
 
-
+**Topics**
 + [Latency too high](#troubleshooting-general-latency)
 
 ### Latency too high<a name="troubleshooting-general-latency"></a>
@@ -30,7 +30,7 @@ g_object_set(G_OBJECT (data.encoder), "bframes", 0, "key-int-max", 45, "bitrate"
 
 This section describes API issues that you might encounter when working with Kinesis Video Streams\.
 
-
+**Topics**
 + [Error: “Unable to determine service/operation name to be authorized”](#troubleshooting-api-name-auth)
 + [Error: “Failed to put a frame in the stream”](#troubleshooting-api-putframe)
 + [Error: “Service closed connection before final AckEvent was received”](#troubleshooting-api-closeconnection)
@@ -82,7 +82,7 @@ This error might occur if `PushbackInputStream` is improperly implemented\. Ensu
 
 This section describes how to troubleshoot common Java issues encountered when working with Kinesis Video Streams\.
 
-
+**Topics**
 + [Enabling Java logs](#troubleshooting-java-log)
 + [Java libraries or samples do not compile in Eclipse](#troubleshooting-java-compile)
 
@@ -125,7 +125,7 @@ If a library or sample fails to compile in the Eclipse IDE, verify that Lombok i
 
 This section describes issues that you might encounter when using the [Producer Libraries](producer-sdk.md)\.
 
-
+**Topics**
 + [Error: "Security token included in the request is invalid" when streaming data using the GStreamer demo application](#troubleshooting-producer-general-securitytoken)
 + [GStreamer application stops with "streaming stopped, reason not\-negotiated" message on OS X](#troubleshooting-producer-failed-stream-osx)
 + [Error: "Failed to allocate heap" when creating Kinesis Video Client in GStreamer demo on Raspberry Pi](#troubleshooting-producer-raspberrypi-heap)
@@ -140,13 +140,9 @@ This section describes issues that you might encounter when using the [Producer 
 ### Error: "Security token included in the request is invalid" when streaming data using the GStreamer demo application<a name="troubleshooting-producer-general-securitytoken"></a>
 
 If this error occurs, there is an issue with your credentials\. Verify the following:
-
 + If you are using temporary credentials, you must specify the session token\.
-
 + Verify that your temporary credentials are not expired\.
-
 + Verify that you have the proper rights set up\.
-
 + On macOS, verify that you do not have credentials cached in Keychain\.
 
 ### GStreamer application stops with "streaming stopped, reason not\-negotiated" message on OS X<a name="troubleshooting-producer-failed-stream-osx"></a>

@@ -3,9 +3,7 @@
 This section contains information about available flags for the `StreamInfo.NalAdaptationFlags` enumeration\.
 
 The [elementary stream](https://en.wikipedia.org/wiki/Elementary_stream) in an application can be in either **Annex\-B** or **AVCC** format: 
-
 + The **Annex\-B** format delimits [NALUs \(Network Abstraction Layer units\)](https://en.wikipedia.org/wiki/Network_Abstraction_Layer#NAL_units) with two bytes of zeroes, followed by one or three bytes of zeroes, followed by the number *1* \(called a **start code**, for example, 00000001\)\. 
-
 + The **AVCC** format also wraps NALUs, but each NALU is preceded by a value that indicates the size of the NALU \(usually four bytes\)\.
 
 Many encoders produce the Annex\-B bitstream format\. Some higher\-level bitstream processors \(such as a playback engine or the [Media Source Extensions \(MSE\)](https://en.wikipedia.org/wiki/Media_Source_Extensions) player in the AWS Management Console\) use the AVCC format for their frames\.

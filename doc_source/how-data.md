@@ -10,7 +10,7 @@ For information about the full MKV specification, see [Matroska Specifications](
 
 The following sections describe the components of MKV\-formatted data produced by the [C\+\+ Producer Library](producer-sdk-cpp.md)\.
 
-
+**Topics**
 + [Stream Header Elements](#how-data-header-streamdefinition)
 + [Frame Header Elements](#how-data-header-frame)
 + [MKV Frame Data](#how-data-frame)
@@ -52,25 +52,15 @@ The following MKV header elements are used by `StreamDefinition` \(defined in `S
 ## Frame Header Elements<a name="how-data-header-frame"></a>
 
 The following MKV header elements are used by `Frame` \(defined in the `KinesisVideoPic` package, in `mkvgen/Include.h`\):
-
 + **Frame Index:** A monotonically increasing value\.
-
 + **Flags:** The type of frame\. Valid values include the following:
-
   + `FRAME_FLAGS_NONE`
-
   + `FRAME_FLAG_KEY_FRAME`: If `key_frame_fragmentation` is set on the stream, key frames start a new fragment\.
-
   + `FRAME_FLAG_DISCARDABLE_FRAME`: Tells the decoder that it can discard this frame if decoding is slow\.
-
   + `FRAME_FLAG_INVISIBLE_FRAME`: Duration of this block is 0\.
-
 + **Decoding Timestamp:** The time stamp of when this frame was decoded\. If previous frames depend on this frame for decoding, this time stamp might be earlier than that of earlier frames\. This value is relative to the start of the fragment\.
-
 + **Presentation Timestamp:** The time stamp of when this frame is displayed\. This value is relative to the start of the fragment\.
-
 + **Duration:** The playback duration of the frame\.
-
 + **Size:** The size of the frame data in bytes
 
 ## MKV Frame Data<a name="how-data-frame"></a>

@@ -7,7 +7,7 @@ The `PutMedia` operation is only available in the C\+\+ and Java SDKs, due to th
 
 This example includes the following steps:
 
-
+**Topics**
 + [Step 1: Download and Configure the Code](#examples-putmedia-download)
 + [Step 2: Write and Examine the Code](#examples-putmedia-write)
 + [Step 3: Run and Verify the Code](#examples-putmedia-run)
@@ -23,15 +23,12 @@ In this section, you download the Java example code, import the project into you
    ```
 
 1. Open the Java IDE that you are using \(for example, [Eclipse](http://www.eclipse.org/) or [IntelliJ IDEA](https://www.jetbrains.com/idea/)\), and import the Apache Maven project that you downloaded: 
-
    + **In Eclipse:** Choose **File**, **Import**, **Maven**, **Existing Maven Projects**, and navigate to the root of the downloaded package\. Select the `pom.xml` file\.
-
    + **In IntelliJ Idea: ** Choose **Import**\. Navigate to the `pom.xml` file in the root of the downloaded package\.
 
     For more information, see the related IDE documentation\.
 
 1. Update the project so that the IDE can find the libraries that you imported\.
-
    + For IntelliJ IDEA, do the following:
 
      1. Open the context \(right\-click\) menu for the project's **lib** directory, and choose **Add as library**\.
@@ -41,7 +38,6 @@ In this section, you download the Java example code, import the project into you
      1. Under **Project Settings**, choose **Modules**\. 
 
      1. In the **Sources** tab, set **Language Level** to **7** or higher\.
-
    + For Eclipse, do the following:
 
      1. Open the context \(right\-click\) menu for the project, and choose **Properties**, **Java Build Path**, **Source**\. Then do the following:
@@ -69,7 +65,7 @@ In this section, you download the Java example code, import the project into you
 
 The `PutMedia` API example \(`PutMediaDemo`\) shows the following coding pattern:
 
-
+**Topics**
 + [Create the PutMediaClient](#producersdk-javaapi-writecode-putmediaapi-putmediaclient)
 + [Stream Media and Pause the Thread](#producersdk-javaapi-writecode-putmediaapi-run)
 
@@ -78,27 +74,19 @@ The code examples in this section are from the `PutMediaDemo` class\.
 ### Create the PutMediaClient<a name="producersdk-javaapi-writecode-putmediaapi-putmediaclient"></a>
 
 Creating the `PutMediaClient` object takes the following parameters:
-
 + The URI for the `PutMedia` endpoint\.
-
 + An `InputStream` pointing to the MKV file to stream\.
-
 + The stream name\. This example uses the same stream created in the [Using the Java Producer Library](producer-sdk-javaapi.md) \(`my-stream`\)\. To use a different stream, change the following parameter:
 
   ```
   private static final String STREAM_NAME="my-stream";
   ```
 **Note**  
-The `PutMedia` API example does not create a stream; you must create a stream either by using the test application for the [Using the Java Producer Library](producer-sdk-javaapi.md), by using the Kinesis Video Streams console, or by using the AWS CLI\.
-
+The `PutMedia` API example does not create a stream\. You must create a stream either by using the test application for the [Using the Java Producer Library](producer-sdk-javaapi.md), by using the Kinesis Video Streams console, or by using the AWS CLI\.
 + The current time stamp\.
-
 + The time code type\. The example uses `RELATIVE`, indicating that the time stamp is relative to the start of the container\.
-
 + An `AWSKinesisVideoV4Signer` object that verifies that the received packets were sent by the authorized sender\.
-
 + The maximum upstream bandwidth in Kbps\.
-
 + An `AckConsumer` object to receive packet received acknowledgements\.
 
 ```

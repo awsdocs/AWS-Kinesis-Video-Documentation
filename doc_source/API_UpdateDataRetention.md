@@ -8,9 +8,7 @@ The retention period that you specify replaces the current value\.
 This operation requires permission for the `KinesisVideo:UpdateDataRetention` action\.
 
 Changing the data retention period affects the data in the stream as follows:
-
 + If the data retention period is increased, existing data is retained for the new retention period\. For example, if the data retention period is increased from one hour to seven hours, all existing data is retained for seven hours\.
-
 + If the data retention period is decreased, existing data is retained for the new retention period\. For example, if the data retention period is decreased from seven hours to one hour, all existing data is retained for one hour, and any data older than one hour is deleted immediately\.
 
 ## Request Syntax<a name="API_UpdateDataRetention_RequestSyntax"></a>
@@ -110,21 +108,12 @@ HTTP Status Code: 400
 ## See Also<a name="API_UpdateDataRetention_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
 +  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/kinesisvideo-2017-09-30/UpdateDataRetention) 
-
 +  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/kinesisvideo-2017-09-30/UpdateDataRetention) 
-
 +  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/kinesisvideo-2017-09-30/UpdateDataRetention) 
-
 +  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/kinesisvideo-2017-09-30/UpdateDataRetention) 
-
 +  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/kinesisvideo-2017-09-30/UpdateDataRetention) 
-
 +  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesisvideo-2017-09-30/UpdateDataRetention) 
-
 +  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/kinesisvideo-2017-09-30/UpdateDataRetention) 
-
 +  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/kinesisvideo-2017-09-30/UpdateDataRetention) 
-
 +  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/kinesisvideo-2017-09-30/UpdateDataRetention) 

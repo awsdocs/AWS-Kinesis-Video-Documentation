@@ -40,11 +40,8 @@ For security reasons, we recommend that you use the root user only to create an 
 The administrator can create more users in the account\. IAM users by default don't have any permissions\. The administrator can create users and manage their permissions\. For more information, see [Creating Your First IAM User and Administrators Group](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html)\. 
 
 For more information about IAM, see the following:
-
 + [AWS Identity and Access Management \(IAM\)](https://aws.amazon.com/iam/)
-
 + [Getting Started](http://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started.html)
-
 + [IAM User Guide](http://docs.aws.amazon.com/IAM/latest/UserGuide/)
 
 ## Next Step<a name="gs-next-step-2"></a>

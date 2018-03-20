@@ -21,25 +21,17 @@ This procedure demonstrates how to use the Kinesis Video Streams Java Producer C
 These steps don't require you to have a media source, such as a camera or microphone\. Instead, for testing purposes, the code generates sample frames that consist of a series of bytes\. You can use the same coding pattern when you send media data from real sources such as cameras and microphones\. 
 
 The procedure includes the following steps:
-
 + [Download and Configure the Code](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-javaapi-downloadcode.html)
-
 + [Write and Examine the Code](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-javaapi-writecode.html)
-
 + [Run and Verify the Code](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-javaapi-reviewcode.html)
 
 ### Prerequisites<a name="producersdk-javaapi-prerequisites"></a>
-
 + In the sample code, you provide credentials by specifying a profile that you set up in your AWS credentials profile file\. If you haven't already done so, first set up your credentials profile\. For more information, see [ Set up AWS Credentials and Region for Development](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html) in the *AWS SDK for Java*\.
 **Note**  
 The Java example uses a `SystemPropertiesCredentialsProvider` object to obtain your AWS credentials\. The provider retrieves these credentials from the `aws.accessKeyId` and `aws.secretKey` Java system properties\. You set these system properties in your Java development environment\. For information about how to set Java system properties, see the documentation for your particular integrated development environment \(IDE\)\.
-
 + Your NativeLibraryPath must contain your `KinesisVideoProducerJNI` file, available at [https://github\.com/awslabs/amazon\-kinesis\-video\-streams\-producer\-sdk\-cpp](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp)\. The file extension for this file will depend on your operating system: 
-
   + **KinesisVideoProducerJNI\.so** for Linux
-
   + **KinesisVideoProducerJNI\.dylib** for macOS
-
   + **KinesisVideoProducerJNI\.dll** for Windows \(not currently available\)
 **Note**  
 Pre\-built libraries are not currently available\. You must build the libraries yourself for your platform, using the `install-script` script included with the [C\+\+ Producer Library](producer-sdk-cpp.md)\.

@@ -8,7 +8,7 @@ For information about solutions to common issues, see [Troubleshooting Kinesis V
 
 The following sections contain error and status information that is returned by callbacks for the `PutFrame` operation\.
 
-
+**Topics**
 + [Error and Status Codes Returned by the Client Library](#producer-sdk-errors-client)
 + [Error and Status Codes Returned by the Duration Library](#producer-sdk-errors-duration)
 + [Error and Status Codes Returned by the Common Library](#producer-sdk-errors-common)

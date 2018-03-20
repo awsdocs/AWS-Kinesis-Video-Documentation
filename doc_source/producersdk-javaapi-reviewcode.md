@@ -7,9 +7,7 @@ To run the Java test harness for the [Java Producer library](http://docs.aws.ama
 1. Choose **Run**, **Run 'DemoAppMain'**\.
 
 1. Add your credentials to the JVM arguments for the application:
-
    + **For non\-temporary AWS credentials:** `"-Daws.accessKeyId={YourAwsAccessKey} -Daws.secretKey={YourAwsSecretKey} -Djava.library.path={NativeLibraryPath}"` 
-
    + **For temporary AWS credentials:** `"-Daws.accessKeyId={YourAwsAccessKey} -Daws.secretKey={YourAwsSecretKey} -Daws.sessionToken={YourAwsSessionToken} -Djava.library.path={NativeLibraryPath}" ` 
 
 1. Sign in to the AWS Management Console and open the Kinesis Video Streams console\. 

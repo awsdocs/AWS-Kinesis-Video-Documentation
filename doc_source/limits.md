@@ -33,13 +33,9 @@ When a stream\-level limit is exceeded, a `StreamLimitExceededException` is thro
 When a connection\-level limit is reached, a `ConnectionLimitExceededException` is thrown\.
 
 The following errors or acks are thrown when a fragment\-level limit is reached:
-
 + A `MIN_FRAGMENT_DURATION_REACHED` ack is returned for a fragment below the minumum duration\.
-
 + A `MAX_FRAGMENT_DURATION_REACHED` ack is returned for a fragment above the maximum duration\.
-
 + A `MAX_FRAGMENT_SIZE` ack is returned for a fragment above the maximum data size\.
-
 + A `FragmentLimitExceeded` exception is thrown if a fragment limit is reached in a `GetMediaForFragmentList` operation\.
 
 

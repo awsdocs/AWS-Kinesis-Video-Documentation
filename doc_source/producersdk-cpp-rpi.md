@@ -2,7 +2,7 @@
 
 The Raspberry Pi is a small, inexpensive computer that can be used to teach and learn basic computer programming skills\. This tutorial describes how you can set up and use the Amazon Kinesis Video Streams C\+\+ Producer SDK on a Raspberry Pi device\. The steps also include how to verify the installation using the GStreamer demo application\.
 
-
+**Topics**
 + [Prerequisites](#producersdk-cpp-rpi-prerequisites)
 + [Create an IAM User with Permission to Write to Kinesis Video Streams](#producersdk-cpp-rpi-iam)
 + [Join Your Raspberry Pi to Your Wi\-Fi Network](#producersdk-cpp-rpi-wifi)
@@ -15,16 +15,11 @@ The Raspberry Pi is a small, inexpensive computer that can be used to teach and 
 ## Prerequisites<a name="producersdk-cpp-rpi-prerequisites"></a>
 
 Before you set up the C\+\+ Producer SDK on your Raspberry Pi, ensure that you have the following prerequisites: 
-
 + A Raspberry Pi device with the following configuration:
-
   + A connected camera module\.
-
   + An SD card with a capacity of at least 8 GB\.
-
   + The Raspbian operating system installed\. You can download the latest Raspbian image from the [Raspberry Pi Foundation website](https://www.raspberrypi.org/downloads/raspbian/)\. Follow the Raspberry Pi instructions to [install the downloaded image on an SD card](https://www.raspberrypi.org/documentation/installation/installing-images/README.md)\. 
-
-+ An AWS account with a Kinesis video stream\. For more information, see [Getting Started with Kinesis Video Streams](http://http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/getting-started.html)\.
++ An AWS account with a Kinesis video stream\. For more information, see [Getting Started with Kinesis Video Streams](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/getting-started.html)\.
 
 ## Create an IAM User with Permission to Write to Kinesis Video Streams<a name="producersdk-cpp-rpi-iam"></a>
 
@@ -118,19 +113,15 @@ You can use the Raspberry Pi in *headless* mode, that is, without an attached ke
 You can connect remotely to your Raspberry Pi in headless mode\. If you are using your Raspberry Pi with a connected monitor and keyboard, proceed to [Configure the Raspberry Pi Camera](#producersdk-cpp-rpi-camera)\. 
 
 1. Before connecting to your Raspberry Pi device remotely, do one of the following to determine its IP address:
-
    + If you have access to your network's Wi\-Fi router, look at the connected Wi\-Fi devices\. Find the device named `Raspberry Pi` to find your device's IP address\.
-
    + If you don't have access to your network's Wi\-Fi router, you can use other software to find devices on your network\. [Fing](https://www.fing.io/) is a popular application that is available for both Android and iOS devices\. You can use the free version of this application to find the IP addresses of devices on your network\.
 
 1. When you know the IP address of the Raspberry Pi device, you can use any terminal application to connect\.
-
    + On macOS or Linux, use `ssh`:
 
      ```
      $ ssh pi@<IP address>
      ```
-
    + On Windows, use [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), a free SSH client for Windows\.
 
    The user name and password for a new install of Raspbian is **pi** and **raspberry**\. We recommend that you [change the default password](https://www.raspberrypi.org/documentation/linux/usage/users.md)\.
@@ -244,9 +235,7 @@ If you reboot the device before building the SDK, you must repeat this step\. Yo
 ## Stream Video to Your Kinesis Video Stream and View the Live Stream<a name="producersdk-cpp-rpi-run"></a>
 
 1. To run the sample application, you need the following information:
-
    + The name of the stream you created in the [Prerequisites](#producersdk-cpp-rpi-prerequisites) section\.
-
    + The account credentials \(Access Key ID and secret access key\) that you created in [Create an IAM User with Permission to Write to Kinesis Video Streams](#producersdk-cpp-rpi-iam)\.
 
 1. Run the sample application using the following command:
@@ -280,11 +269,8 @@ If you reboot the device before building the SDK, you must repeat this step\. Yo
 The video stream sent from the Raspberry Pi appears in the console\. 
 
 When the stream is playing, you can experiment with the following features of the Kinesis Video Streams console:
-
 + In the **Video preview** section, use the navigation controls to rewind or fast\-forward the stream\.
-
 + In the **Stream info** section, notice the codec, resolution, and bit rate of the stream\. The resolution and bit rate values are set purposefully low on the Raspberry Pi to minimize bandwidth usage for this tutorial\. To view the Amazon CloudWatch metrics that are being created for your stream, choose **View stream metrics in CloudWatch**\.
-
 + Under **Data retention period**, notice that the video stream is retained for one day\. You can edit this value and set it to **No data retention**, or set a value from one day to several years\.
 
   Under server\-side encryption, notice that your data is being encrypted at rest using a key maintained by the AWS Key Management Service \(AWS KMS\)\.

@@ -8,9 +8,7 @@
 When you put media data \(fragments\) on a stream, Kinesis Video Streams stores each incoming fragment and related metadata in what is called a "chunk\." For more information, see [PutMedia](API_dataplane_PutMedia.md)\. The `GetMedia` API returns a stream of these chunks starting from the chunk that you specify in the request\. 
 
 The following limits apply when using the `GetMedia` API:
-
 + A client can call `GetMedia` up to five times per second per stream\. 
-
 + Kinesis Video Streams sends media data at a rate of up to 25 megabytes per second \(or 200 megabits per second\) during a `GetMedia` session\. 
 
 ## Request Syntax<a name="API_dataplane_GetMedia_RequestSyntax"></a>
@@ -82,41 +80,24 @@ The response returns the following as the HTTP body\.
 
  ** [Payload](#API_dataplane_GetMedia_ResponseSyntax) **   <a name="KinesisVideo-dataplane_GetMedia-response-Payload"></a>
  The payload Kinesis Video Streams returns is a sequence of chunks from the specified stream\. For information about the chunks, see [PutMedia](API_dataplane_PutMedia.md)\. The chunks that Kinesis Video Streams returns in the `GetMedia` call also include the following additional Matroska \(MKV\) tags:   
-
 + AWS\_KINESISVIDEO\_CONTINUATION\_TOKEN \(UTF\-8 string\) \- In the event your `GetMedia` call terminates, you can use this continuation token in your next request to get the next chunk where the last request terminated\.
-
 + AWS\_KINESISVIDEO\_MILLIS\_BEHIND\_NOW \(UTF\-8 string\) \- Client applications can use this tag value to determine how far behind the chunk returned in the response is from the latest chunk on the stream\. 
-
 + AWS\_KINESISVIDEO\_FRAGMENT\_NUMBER \- Fragment number returned in the chunk\.
-
 + AWS\_KINESISVIDEO\_SERVER\_TIMESTAMP \- Server time stamp of the fragment\.
-
 + AWS\_KINESISVIDEO\_PRODUCER\_TIMESTAMP \- Producer time stamp of the fragment\.
 The following tags will be present if an error occurs:  
-
 + AWS\_KINESISVIDEO\_ERROR\_CODE \- String description of an error that caused GetMedia to stop\.
-
 + AWS\_KINESISVIDEO\_ERROR\_ID: Integer code of the error\.
 The error codes are as follows:  
-
 + 3002 \- Error writing to the stream
-
 + 4000 \- Requested fragment is not found
-
 + 4500 \- Access denied for the stream's KMS key
-
 + 4501 \- Stream's KMS key is disabled
-
 + 4502 \- Validation error on the Stream's KMS key
-
 + 4503 \- KMS key specified in the stream is unavailable
-
 + 4504 \- Invalid usage of the KMS key specified in the stream
-
 + 4505 \- Invalid state of the KMS key specified in the stream
-
 + 4506 \- Unable to find the KMS key specified in the stream
-
 + 5000 \- Internal error
 
 ## Errors<a name="API_dataplane_GetMedia_Errors"></a>
@@ -150,21 +131,12 @@ HTTP Status Code: 404
 ## See Also<a name="API_dataplane_GetMedia_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
 +  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/kinesis-video-data-2017-09-30/GetMedia) 
-
 +  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/kinesis-video-data-2017-09-30/GetMedia) 
-
 +  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/kinesis-video-data-2017-09-30/GetMedia) 
-
 +  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/kinesis-video-data-2017-09-30/GetMedia) 
-
 +  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/kinesis-video-data-2017-09-30/GetMedia) 
-
 +  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesis-video-data-2017-09-30/GetMedia) 
-
 +  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/kinesis-video-data-2017-09-30/GetMedia) 
-
 +  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/kinesis-video-data-2017-09-30/GetMedia) 
-
 +  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/kinesis-video-data-2017-09-30/GetMedia) 

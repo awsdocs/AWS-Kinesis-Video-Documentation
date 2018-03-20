@@ -93,21 +93,12 @@ HTTP Status Code: 400
 ## See Also<a name="API_TagStream_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
 +  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/kinesisvideo-2017-09-30/TagStream) 
-
 +  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/kinesisvideo-2017-09-30/TagStream) 
-
 +  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/kinesisvideo-2017-09-30/TagStream) 
-
 +  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/kinesisvideo-2017-09-30/TagStream) 
-
 +  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/kinesisvideo-2017-09-30/TagStream) 
-
 +  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesisvideo-2017-09-30/TagStream) 
-
 +  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/kinesisvideo-2017-09-30/TagStream) 
-
 +  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/kinesisvideo-2017-09-30/TagStream) 
-
 +  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/kinesisvideo-2017-09-30/TagStream) 

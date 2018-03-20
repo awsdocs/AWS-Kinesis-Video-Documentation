@@ -3,11 +3,8 @@
 In this section of the [C\+\+ Producer Library procedure](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html), you examine the code in the C\+\+ test harness \(`tst/ProducerTestFixture.h and other files`\)\. 
 
 The **Platform Independent** C\+\+ example shows the following coding pattern:
-
 + Create an instance of `KinesisVideoProducer` to access Kinesis Video Streams\.
-
 + Create an instance of `KinesisVideoStream`\. This creates a Kinesis video stream in your AWS account if a stream of the same name doesn't already exist\.
-
 + Call `putFrame` on the `KinesisVideoStream` for every frame of data, as it becomes available, to send it to the stream\.
 
 The following sections provide details:
@@ -25,15 +22,10 @@ kinesis_video_producer_ = KinesisVideoProducer::Create(move(device_provider_),
 ```
 
 The `KinesisVideoProducer` constructor takes the following parameters:
-
 + A `DeviceInfoProvider` object, which returns a `DeviceInfo` object containing information about the device or storage configuration\.
-
 + A `ClientCallbackProvider` object, which returns function pointers that report client\-specific events\.
-
 + A `StreamCallbackProvider` object, which returns function pointers that are called back when stream\-specific events occur\.
-
 + A `CredentialProvider` object, which provides access to AWS credential environment variables\.
-
 + The AWS Region \("us\-west\-2"\)\. The service endpoint is determined from the Region\.
 
 ## Creating an Instance of KinesisVideoStream<a name="producersdk-cpp-write-create-stream"></a>
@@ -57,29 +49,17 @@ return kinesis_video_producer_->createStream(move(stream_definition));
 ```
 
 The `StreamDefinition` object has the following fields:
-
 + Stream name\.
-
 + Data retention period\.
-
 + Tags for the stream\. These tags can be used by consumer applications to find the correct stream, or to get more information about the stream\. The tags can also be viewed in the AWS Management Console\.
-
 + AWS KMS encryption key for the stream\. For more information, see [Using Server\-Side Encryption with Kinesis Video Streams](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/how-kms.html)\.
-
 + Streaming type\. Currently, the only valid value is `STREAMING_TYPE_REALTIME`\.
-
 + Media content type\. To view the stream in the console viewer, set this value to `"video/h264"`\.
-
 + Media latency\. This value is not currently used, and should be set to 0\.
-
 + Playback duration of each fragment\.
-
 + Media timecode scale\.
-
 + Whether the media uses key frame fragmentation\.
-
 + Whether the media uses timecodes\.
-
 + Whether the media uses absolute fragment times\.
 
 ## Putting a Frame into the Kinesis Video Stream<a name="producersdk-cpp-write-putframe"></a>
@@ -107,19 +87,12 @@ frame.frameData = tempBuffer;
 The preceding C\+\+ Producer example sends a buffer of test data\. In a real\-world application, you should obtain the frame buffer and size from the frame data from a media source \(such as a camera\)\.
 
 The `Frame` object has the following fields:
-
 + Frame index\. This should be a monotonically incrementing value\.
-
 + Flags associated with the frame\. For example, if the encoder were configured to produce a key frame, this frame would be assigned the `FRAME_FLAG_KEY_FRAME` flag\.
-
 + Decoding time stamp\.
-
 + Presentation time stamp\.
-
 + Duration of the frame \(to 100 ns units\)\.
-
 + Size of the frame in bytes\.
-
 + Frame data\.
 
 For more information about the format of the frame, see [Kinesis Video Streams Data Model](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/how-data.html)\.
@@ -155,31 +128,19 @@ PUBLIC_API STATUS getKinesisVideoStreamMetrics(STREAM_HANDLE, PStreamMetrics);
 ```
 
 The `PClientMetrics` object filled by `getKinesisVideoMetrics` contains the following information:
-
 + **contentStoreSize:** The overall size in bytes of the content store \(the memory used to store streaming data\)\.
-
 + **contentStoreAvailableSize:** The free memory in the content store, in bytes\.
-
 + **contentStoreAllocatedSize:** The allocated memory in the content store\.
-
 + **totalContentViewsSize:** The total memory used for the content view\. \(The content view is a series of indices of information in the content store\.\)
-
 + **totalFrameRate:** The aggregate number of frames per second across all active streams\.
-
 + **totalTransferRate:** The total bits per second being sent in all streams\.
 
 The `PStreamMetrics` object filled by `getKinesisVideoStreamMetrics` contains the following information:
-
 + **currentViewDuration:** The difference in 100 ns units between the head of the content view \(when frames are encoded\) and the current position \(when frame data is being sent to Kinesis Video Streams\)\.
-
 + **overallViewDuration:** The difference in 100 ns units between the head of the content view \(when frames are encoded\) to the tail \(when frames are flushed from memory, either because the total allocated space for the content view is exceeded, or because a `PersistedAck` message is received from Kinesis Video Streams, and frames known to be persisted are flushed\)\.
-
 + **currentViewSize:** The size in bytes of the content view from the head \(when frames are encoded\) to the current position \(when frames are sent to Kinesis Video Streams\)\.
-
 + **overallViewSize:** The total size in bytes of the content view\.
-
 + **currentFrameRate:** The last measured rate of the stream, in frames per second\.
-
 + **currentTransferRate:** The last measured rate of the stream, in bytes per second\.
 
 ## Next Step<a name="producersdk-cpp-write-next"></a>

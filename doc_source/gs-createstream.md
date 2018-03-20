@@ -3,9 +3,7 @@
 This section describes how to create a Kinesis video stream\.
 
 This section contains the following procedures:
-
 + [Create a Video Stream Using the Console](#gs-createstream-console)
-
 + [Create a Video Stream Using the AWS CLI](#gs-createstream-cli)
 
 ## Create a Video Stream Using the Console<a name="gs-createstream-console"></a>

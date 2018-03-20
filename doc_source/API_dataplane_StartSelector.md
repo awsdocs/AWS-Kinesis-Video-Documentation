@@ -1,11 +1,8 @@
 # StartSelector<a name="API_dataplane_StartSelector"></a>
 
 Identifies the chunk on the Kinesis video stream where you want the `GetMedia` API to start returning media data\. You have the following options to identify the starting chunk: 
-
 + Choose the latest \(or oldest\) chunk\.
-
 + Identify a specific chunk\. You can identify a specific chunk either by providing a fragment number or time stamp \(server or producer\)\. 
-
 + Each chunk's metadata includes a continuation token as a Matroska \(MKV\) tag \(`AWS_KINESISVIDEO_CONTINUATION_TOKEN`\)\. If your previous `GetMedia` request terminated, you can use this tag value in your next `GetMedia` request\. The API then starts returning chunks starting where the last API ended\.
 
 ## Contents<a name="API_dataplane_StartSelector_Contents"></a>
@@ -26,15 +23,10 @@ Required: No
 
  **StartSelectorType**   <a name="KinesisVideo-Type-dataplane_StartSelector-StartSelectorType"></a>
 Identifies the fragment on the Kinesis video stream where you want to start getting the data from\.  
-
 + NOW \- Start with the latest chunk on the stream\.
-
 + EARLIEST \- Start with earliest available chunk on the stream\.
-
 + FRAGMENT\_NUMBER \- Start with the chunk containing the specific fragment\. You must also specify the `StartFragmentNumber`\.
-
 + PRODUCER\_TIMESTAMP or SERVER\_TIMESTAMP \- Start with the chunk containing a fragment with the specified producer or server time stamp\. You specify the time stamp by adding `StartTimestamp`\.
-
 +  CONTINUATION\_TOKEN \- Read using the specified continuation token\. 
 If you choose the NOW, EARLIEST, or CONTINUATION\_TOKEN as the `startSelectorType`, you don't provide any additional information in the `startSelector`\.
 Type: String  
@@ -49,11 +41,7 @@ Required: No
 ## See Also<a name="API_dataplane_StartSelector_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
 +  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/kinesis-video-data-2017-09-30/StartSelector) 
-
 +  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/kinesis-video-data-2017-09-30/StartSelector) 
-
 +  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/kinesis-video-data-2017-09-30/StartSelector) 
-
 +  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/kinesis-video-data-2017-09-30/StartSelector) 

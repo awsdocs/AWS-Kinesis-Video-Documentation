@@ -5,13 +5,9 @@ To run and verify the code for the [C\+\+ Producer Library procedure](http://doc
 1. See [Prerequisites](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html#producer-sdk-cpp-prerequisites) for credential, certificate, and build requirements\.
 
 1. Build the project by using the `/kinesis-video-native-build/install-script` script\. Running the install script installs the following open source dependencies:
-
    + [curl lib](https://curl.haxx.se/docs/copyright.html)
-
    + [openssl \(crypto and ssl\)](https://github.com/openssl/openssl/blob/master/LICENSE)
-
    + [log4cplus](https://github.com/log4cplus/log4cplus/blob/master/LICENSE)
-
    + [jsoncpp](https://github.com/open-source-parsers/jsoncpp/blob/master/LICENSE)
 
 1. The executable is built in `kinesis-video-native-build/start`\. Launch it to run the unit test and kick off dummy frame streaming\.

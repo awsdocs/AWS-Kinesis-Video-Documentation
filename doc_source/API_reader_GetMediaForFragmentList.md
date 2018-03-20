@@ -3,9 +3,7 @@
 Gets media for a list of fragments \(specified by fragment number\) from the archived data in a Kinesis video stream\.
 
 The following limits apply when using the `GetMediaForFragmentList` API:
-
 + A client can call `GetMediaForFragmentList` up to five times per second per stream\. 
-
 + Kinesis Video Streams sends media data at a rate of up to 25 megabytes per second \(or 200 megabits per second\) during a `GetMediaForFragmentList` session\. 
 
 ## Request Syntax<a name="API_reader_GetMediaForFragmentList_RequestSyntax"></a>
@@ -66,18 +64,12 @@ The response returns the following as the HTTP body\.
 
  ** [Payload](#API_reader_GetMediaForFragmentList_ResponseSyntax) **   <a name="KinesisVideo-reader_GetMediaForFragmentList-response-Payload"></a>
 The payload that Kinesis Video Streams returns is a sequence of chunks from the specified stream\. For information about the chunks, see [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html)\. The chunks that Kinesis Video Streams returns in the `GetMediaForFragmentList` call also include the following additional Matroska \(MKV\) tags:   
-
 + AWS\_KINESISVIDEO\_FRAGMENT\_NUMBER \- Fragment number returned in the chunk\.
-
 + AWS\_KINESISVIDEO\_SERVER\_SIDE\_TIMESTAMP \- Server\-side time stamp of the fragment\.
-
 + AWS\_KINESISVIDEO\_PRODUCER\_SIDE\_TIMESTAMP \- Producer\-side time stamp of the fragment\.
 The following tags will be included if an exception occurs:  
-
 + AWS\_KINESISVIDEO\_FRAGMENT\_NUMBER \- The number of the fragment that threw the exception
-
 + AWS\_KINESISVIDEO\_EXCEPTION\_ERROR\_CODE \- The integer code of the exception
-
 + AWS\_KINESISVIDEO\_EXCEPTION\_MESSAGE \- A text description of the exception
 
 ## Errors<a name="API_reader_GetMediaForFragmentList_Errors"></a>
@@ -103,21 +95,12 @@ HTTP Status Code: 404
 ## See Also<a name="API_reader_GetMediaForFragmentList_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
 +  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 
-
 +  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 
-
 +  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 
-
 +  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 
-
 +  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 
-
 +  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 
-
 +  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 
-
 +  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 
-
 +  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 

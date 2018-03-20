@@ -2,7 +2,7 @@
 
 Server\-side encryption using AWS Key Management Service \(AWS KMS\) keys makes it easier for you to meet strict data management requirements by encrypting your data at rest in Amazon Kinesis Video Streams\.
 
-
+**Topics**
 + [What Is Server\-Side Encryption for Kinesis Video Streams?](#what-is-sse-akvs)
 + [Costs, Regions, and Performance Considerations](#costs-performance-akvs)
 + [How Do I Get Started with Server\-Side Encryption?](#getting-started-with-sse-akvs)
@@ -24,9 +24,7 @@ API usage costs apply for every CMK, including custom ones\. The KMS costs scale
 The following describes the costs by resource:
 
 **Keys**
-
 + The CMK for Kinesis Video Streams that's managed by AWS \(alias = `aws/kinesis-video`\) is free\.
-
 + User\-generated AWS KMS keys are subject to AWS KMS key costs\. For more information, see [AWS Key Management Service Pricing](https://aws.amazon.com/kms/pricing/#Keys)\.
 
 ### AWS KMS API Usage<a name="api-usage"></a>
@@ -46,9 +44,7 @@ Server\-side encryption is always enabled on Kinesis video streams\. If a user\-
 A user\-provided AWS KMS master key must be assigned to a Kinesis video stream when it is created\. You can't later assign a different key to a stream using the [UpdateStream](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_UpdateStream.html) API\.
 
 You can assign a user\-provided AWS KMS master key to a Kinesis video stream in two ways:
-
 + When creating a Kinesis video stream in the AWS Management Console, specify the AWS KMS master key in the **Encryption** section on the **Create new Kinesis Video stream** page\.
-
 + When creating a Kinesis video stream using the [CreateStream](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_CreateStream.html) API, specify the key ID in the `KmsKeyId` parameter\.
 
 ## Creating and Using User\-Generated AWS KMS Master Keys<a name="creating-using-sse-master-keys-akvs"></a>

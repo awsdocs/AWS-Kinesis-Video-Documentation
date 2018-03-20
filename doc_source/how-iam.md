@@ -3,14 +3,11 @@
 By using AWS Identity and Access Management \(IAM\) with Amazon Kinesis Video Streams, you can control whether users in your organization can perform a task using specific Kinesis Video Streams API operations and whether they can use specific AWS resources\. 
 
 For more information about IAM, see the following:
-
 + [AWS Identity and Access Management \(IAM\)](https://aws.amazon.com/iam/)
-
 + [Getting Started](http://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started.html)
-
 + [IAM User Guide](http://docs.aws.amazon.com/IAM/latest/UserGuide/)
 
-
+**Topics**
 + [Policy Syntax](#policy-syntax)
 + [Actions for Kinesis Video Streams](#kinesis-using-iam-actions)
 + [Amazon Resource Names \(ARNs\) for Kinesis Video Streams](#kinesis-using-iam-arn-format)
@@ -38,13 +35,9 @@ An IAM policy is a JSON document that consists of one or more statements\. Each 
 ```
 
 There are various elements that make up a statement:
-
 + **Effect:** The *effect* can be `Allow` or `Deny`\. By default, IAM users don't have permission to use resources and API actions, so all requests are denied\. An explicit allow overrides the default\. An explicit deny overrides any allows\.
-
 + **Action**: The *action* is the specific API action for which you are granting or denying permission\.
-
 + **Resource**: The resource that's affected by the action\. To specify a resource in the statement, you need to use its Amazon Resource Name \(ARN\)\.
-
 + **Condition**: Conditions are optional\. They can be used to control when your policy is in effect\.
 
 As you create and manage IAM policies, you might want to use the [IAM Policy Generator](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-generator) and the [IAM Policy Simulator](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html)\.

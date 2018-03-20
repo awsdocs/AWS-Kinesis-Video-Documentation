@@ -3,13 +3,9 @@
 In this section of the [Java Producer Library procedure](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-javaapi.html), you write and examine the Java example code\. 
 
 The Java test application \(`DemoAppMain`\) shows the following coding pattern:
-
 + Create an instance of `KinesisVideoClient`\.
-
 + Create an instance of `MediaSource`\.
-
 + Register the `MediaSource` with the client\.
-
 + Start streaming\. That is, start the `MediaSource`, and it starts sending data to the client\.
 
 The following sections provide details\.
