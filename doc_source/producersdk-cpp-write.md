@@ -103,7 +103,11 @@ The C\+\+ Producer SDK includes functionality for metrics and metric logging\.
 
 You can use the `getKinesisVideoMetrics` and `getKinesisVideoStreamMetrics` APIs to retrieve information about Kinesis Video Streams and your active streams\.
 
-The following code is from the `src/KinesisVideoPlatformIndependentNativeRepository/src/client/include/com/amazonaws/kinesisvideo/client/Include.h` file\.
+The following code is from:
+
+```
+src/KinesisVideoPlatformIndependentNativeRepository/src/client/include/com/amazonaws/kinesisvideo/client/Include.h
+```
 
 ```
 /**
