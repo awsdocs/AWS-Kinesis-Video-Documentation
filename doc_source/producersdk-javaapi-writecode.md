@@ -16,10 +16,12 @@ You create the `KinesisVideoClient` object by calling the `createKinesisVideoCli
 
 ```
 final KinesisVideoClient kinesisVideoClient = KinesisVideoJavaClientFactory
-                    .createKinesisVideoClient(AuthHelper.getSystemPropertiesCredentialsProvider());
+    .createKinesisVideoClient(
+        Regions.US_WEST_2,
+        AuthHelper.getSystemPropertiesCredentialsProvider());
 ```
 
-For `KinesisVideoClient` to make network calls, it needs credentials to authenticate\. You pass in an instance of `ProfileCredentialsProvider`, which reads `AWSCredentials` for the default profile in the credentials file:
+For `KinesisVideoClient` to make network calls, it needs credentials to authenticate\. You pass in an instance of `SystemPropertiesCredentialsProvider`, which reads `AWSCredentials` for the default profile in the credentials file:
 
 ```
 [default]

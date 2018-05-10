@@ -2,7 +2,7 @@
 
 In this section of the [Android Producer Library procedure](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-android.html), you examine the example code\. 
 
-The Android test application \(`KinesisVideoDemoApp`\) shows the following coding pattern:
+The Android test application \(`AmazonKinesisVideoDemoApp`\) shows the following coding pattern:
 + Create an instance of `KinesisVideoClient`\.
 + Create an instance of `MediaSource`\.
 + Start streaming—that is, start the `MediaSource`, and it starts sending data to the client\.
@@ -14,11 +14,10 @@ The following sections provide details\.
 You create the `KinesisVideoClient` object by calling the `createKinesisVideoClient` operation\.
 
 ```
-try {
-    mKinesisVideoClient = KinesisVideoAndroidClientFactory.createKinesisVideoClient(getActivity(),KinesisVideoDemoApp.getCredentialsProvider());
-} catch (KinesisVideoException e) {
-    Log.e(TAG, "Failed to create Kinesis Video client", e);
-}
+mKinesisVideoClient = KinesisVideoAndroidClientFactory.createKinesisVideoClient(
+                    getActivity(),
+                    Regions.US_WEST_2,
+                    KinesisVideoDemoApp.getCredentialsProvider());
 ```
 
 For `KinesisVideoClient` to make network calls, it needs credentials to authenticate\. You pass in an instance of `AWSCredentialsProvider`, which reads your Amazon Cognito credentials from the `awsconfiguration.json` file that you modified in the previous section\.

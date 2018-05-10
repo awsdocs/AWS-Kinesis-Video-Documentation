@@ -6,3 +6,5 @@ This section contains limits, error codes, and other reference information for t
 + [Producer SDK Limits](producer-sdk-limits.md)
 + [Error Code Reference](producer-sdk-errors.md)
 + [Network Abstraction Layer \(NAL\) Adaptation Flag Reference](producer-reference-nal.md)
++ [Producer SDK Structures](producer-reference-structures-producer.md)
++ [KVS Stream Structures](producer-reference-structures-stream.md)

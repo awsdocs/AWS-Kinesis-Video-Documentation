@@ -2,13 +2,14 @@
 
 The following table describes the important changes to the documentation since the last release of Amazon Kinesis Video Streams\.
 + **Latest API version:** 2017\-11\-29
-+ **Latest documentation update:** March 15, 2018
++ **Latest documentation update:** May 7, 2018
 
 
 ****  
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+| Producer SDK structures reference documentation | Reference documentation for the structures used by the [Kinesis Video Streams Producer Libraries](producer-sdk.md)\. For more information, see [Producer SDK Structures](producer-reference-structures-producer.md) and [KVS Stream Structures](producer-reference-structures-stream.md)\. | May 7, 2018 | 
 | Renderer example documentation | Documentation for the Renderer example application, which shows how to decode and display frames from a Kinesis video stream\. For more information, see [Renderer Example](examples-renderer.md)\. | Mar 15, 2018 | 
 | Producer SDK Limits reference documentation | Information about limits for operations in the [C\+\+ Producer Library](producer-sdk-cpp.md)\. For more information, see [Producer SDK Limits](producer-sdk-limits.md)\. | Mar 13, 2018 | 
 | C\+\+ Producer SDK for Raspberry Pi | Procedure for setting up and running the [C\+\+ Producer Library](producer-sdk-cpp.md) on a Raspberry Pi device\. For more information, see [Using the C\+\+ Producer SDK on Raspberry Pi](producersdk-cpp-rpi.md)\. | Mar 13, 2018 | 

@@ -6,7 +6,6 @@ The library includes the following tools:
 + [StreamingMkvReader](parser-library-write.md#parser-library-write-SMSR): This class reads specified MKV elements from a video stream\.
 + [FragmentMetadataVisitor](parser-library-write.md#parser-library-write-FMV): This class retrieves metadata for fragments \(media elements\) and tracks \(individual data streams containing media information, such as audio or subtitles\)\.
 + [OutputSegmentMerger](parser-library-write.md#parser-library-write-OSM): This class merges consecutive fragments or chunks in a video stream\.
-+ [MergeGetMediaOutput](parser-library-write.md#parser-library-write-MGMO): This class parses the output of a [GetMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_GetMedia.html) operation\.
 + [KinesisVideoExample](parser-library-write.md#parser-library-write-example): This is a sample application that shows how to use the Kinesis Video Stream Parser Library\.
 
 The library also includes tests that show how the tools are used\.

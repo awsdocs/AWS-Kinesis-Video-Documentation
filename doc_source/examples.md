@@ -1,11 +1,10 @@
 # Amazon Kinesis Video Streams Examples<a name="examples"></a>
 
-This section includes the following code examples for Amazon Kinesis Video Streams:
+The Kinesis Video Streams Developer Guide has following code examples:
 + [PutMedia API Example](examples-putmedia.md)
 + [GStreamer Example](examples-gstreamer.md)
 + [Renderer Example](examples-renderer.md)
-
-For an example of how to use `GetMedia`, see [MergeGetMediaOutput](parser-library-write.md#parser-library-write-MGMO)\.
++ [KinesisVideoExample](parser-library-write.md#parser-library-write-example)
 
 ## Prerequisites<a name="examples-prerequisites"></a>
 + In the sample code, you provide credentials by specifying a profile that you set in your AWS credentials profile file, or by providing credentials in the Java system properties of your integrated development environment \(IDE\)\. So if you haven't already done so, you must first set up your credentials\. For more information, see [Set up AWS Credentials and Region for Development](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)\.

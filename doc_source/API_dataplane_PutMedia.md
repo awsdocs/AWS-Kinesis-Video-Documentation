@@ -40,7 +40,7 @@ Kinesis Video Streams stores each incoming fragment and related metadata in what
 
      If `fragmentTimeCodeType` is relative, then 
 
-     `producer_timestamp` = `producerStartTimeSamp` \+ fragment timecode 
+     `producer_timestamp` = `producerStartTimeStamp` \+ fragment timecode 
 
     If `fragmentTimeCodeType` is absolute, then 
 
@@ -184,7 +184,7 @@ HTTP Status Code: 404
 
 The format of the acknowledgement is as follows:
 
-#### <a name="w3ab1c32b4c11c11c47b3b5"></a>
+#### <a name="w3ab1c31b4c11c11c47b3b5"></a>
 
 ```
 {

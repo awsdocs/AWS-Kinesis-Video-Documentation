@@ -6,22 +6,21 @@ The Kinesis Video Stream Parser Library contains the following tools:
 + [StreamingMkvReader](#parser-library-write-SMSR)
 + [FragmentMetadataVisitor](#parser-library-write-FMV)
 + [OutputSegmentMerger](#parser-library-write-OSM)
-+ [MergeGetMediaOutput](#parser-library-write-MGMO)
 + [KinesisVideoExample](#parser-library-write-example)
 
 ## StreamingMkvReader<a name="parser-library-write-SMSR"></a>
 
 This class reads specified MKV elements from a stream in a non\-blocking way\.
 
-The following code example \(from `FragmentMetadataVisitorTest`\) shows how to create and use a `Streaming MkvReader` to retrieve `MkvElement` objects from an input stream called `in`:
+The following code example \(from `FragmentMetadataVisitorTest`\) shows how to create and use a `Streaming MkvReader` to retrieve `MkvElement` objects from an input stream called `inputStream`:
 
 ```
 StreamingMkvReader mkvStreamReader =
-                StreamingMkvReader.createDefault(new InputStreamParserByteSource(in));
+                StreamingMkvReader.createDefault(new InputStreamParserByteSource(inputStream));
         while (mkvStreamReader.mightHaveNext()) {
             Optional<MkvElement> mkvElement = mkvStreamReader.nextIfAvailable();
             if (mkvElement.isPresent()) {
-                mkvElement.get().accept(compositeVisitor);
+                mkvElement.get().accept(fragmentVisitor);
                 ...
                 }
             }
@@ -80,129 +79,52 @@ The preceding example shows the following coding pattern:
 To use `FragmentMetadataVisitor` in your project, pass `MkvElement` objects to the visitor using their `accept` method:
 
 ```
-mkvElement.get().accept(FragmentMetadataVisitor);
+mkvElement.get().accept(fragmentVisitor);
 ```
 
 ## OutputSegmentMerger<a name="parser-library-write-OSM"></a>
 
 This class merges metadata from different tracks in the stream into a stream with a single segment\.
 
-The following code example \(from the `OutputSegmentMergerTest` file\) shows how to use `OutputSegmentMerger` to merge track metadata from a byte array called `inputBytes`:
+The following code example \(from the `FragmentMetadataVisitorTest` file\) shows how to use `OutputSegmentMerger` to merge track metadata from a byte array called `inputBytes`:
 
 ```
-ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ByteArrayInputStream in = new ByteArrayInputStream(inputBytes);
-        OutputSegmentMerger merger =
-                new OutputSegmentMerger(outputStream, new ArrayList<>(), getCountVisitor(), false);
+FragmentMetadataVisitor fragmentVisitor = FragmentMetadataVisitor.create();
 
-        StreamingMkvReader mkvStreamReader =
-                StreamingMkvReader.createDefault(new InputStreamParserByteSource(in));
-        while(mkvStreamReader.mightHaveNext()) {
-            Optional<MkvElement> mkvElement = mkvStreamReader.nextIfAvailable();
-            if (mkvElement.isPresent()) {
-                mkvElement.get().accept(merger);
-            }
-        }
+ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+OutputSegmentMerger outputSegmentMerger =
+    OutputSegmentMerger.createDefault(outputStream);
+
+CompositeMkvElementVisitor compositeVisitor =
+    new TestCompositeVisitor(fragmentVisitor, outputSegmentMerger);
+
+final InputStream in = TestResourceUtil.getTestInputStream("output_get_media.mkv");
+
+StreamingMkvReader mkvStreamReader =
+    StreamingMkvReader.createDefault(new InputStreamParserByteSource(in));
+    
+while (mkvStreamReader.mightHaveNext()) {
+    Optional<MkvElement> mkvElement = mkvStreamReader.nextIfAvailable();
+    if (mkvElement.isPresent()) {
+        mkvElement.get().accept(compositeVisitor);
+    if (MkvTypeInfos.SIMPLEBLOCK.equals(mkvElement.get().getElementMetaData().getTypeInfo())) {
+        MkvDataElement dataElement = (MkvDataElement) mkvElement.get();
+        Frame frame = ((MkvValue<Frame>) dataElement.getValueCopy()).getVal();
+        Assert.assertTrue(frame.getFrameData().limit() > 0);
+        MkvTrackMetadata trackMetadata = fragmentVisitor.getMkvTrackMetadata(frame.getTrackNumber());
+        assertTrackAndFragmentInfo(fragmentVisitor, frame, trackMetadata);
+    }
+}
 ```
 
 The preceding example shows the following coding pattern:
++ Create a [FragmentMetadataVisitor](#parser-library-write-FMV)to retrieve the metadata from the stream\.
 + Create an output stream to receive the merged metadata\.
-+ Create a `ByteArrayInputStream` from the provided byte array\.
-+ Create an `OutputSegmentMerger`, passing in the following parameters:
-  + The `ByteArrayOutputStream`\.
-  + An empty list\. This list would contain the types of the master elements \(`MkvStartMasterElement` or `MkvEndMasterElement`\) in the stream\. Because the test input stream doesn't have any master elements, the test passes in an empty list\. 
-  + A count visitor containing a list of MKV information types to count\.
-  + `False`, indicating that the merger will continue merging when a non\-matching type is encountered\.
++ Create an `OutputSegmentMerger`, passing in the `ByteArrayOutputStream`\.
++ Create a `CompositeMkvElementVisitor` that contains the two visitors\. 
++ Create an `InputStream` that points to the specified file\.
 + Merge each element in the input data into the output stream\.
-
-## MergeGetMediaOutput<a name="parser-library-write-MGMO"></a>
-
-This class uses the AWS SDK for Java to execute a [GetMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_GetMedia.html) operation, and then parses the result into an MKV stream\.
-
-The following code examples are from the `MergeGetMediaOutput` file\.
-
-The following example demonstrates how to execute a `GetMedia` operation:
-
-```
- public static void main (String [] args) throws IOException {
-        AmazonKinesisVideo client = AmazonKinesisVideoClient.builder().standard()
-                .withCredentials(new ProfileCredentialsProvider())
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(
-                        "https://kinesisvideo.us-east-1.amazonaws.com",
-                        REGION.getName()))
-                .build();
-
-        String getMediaEndpoint = client.getDataEndpoint(new GetDataEndpointRequest().withStreamName(STREAM_NAME)
-                .withAPIName(APIName.GET_MEDIA)).getDataEndpoint();
-        System.out.println("GetMedia endpoint " + getMediaEndpoint);
-
-        AmazonKinesisVideoMedia mediaClient = AmazonKinesisVideoMediaClient.builder()
-                .withCredentials(new ProfileCredentialsProvider())
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(getMediaEndpoint,
-                        REGION.getName()))
-                .build();
-        GetMediaResult result = mediaClient.getMedia(getMediaRequest());
-        System.out.println("GetMedia response started: Request Id: " + result.getSdkResponseMetadata().getRequestId());
-        System.out.println("GetMedia response started  " + result.getContentType());
-
-        mergeGetMedia(result);
-    }
-```
-
-The previous code example shows the following coding pattern:
-+ Create an `AmazonKinesisVideo` client\. The client is used to make calls to Kinesis Video Streams\.
-+ Get an endpoint for the Kinesis Video Streams service\.
-+ Create an `AmazonKinesisVideoMedia` client\.
-+ Execute a `GetMedia` operation\.
-+ Pass the result of the operation to the private `mergeGetMedia` method\.
-
-The following example from the `mergeGetMedia` function uses a [StreamingMkvReader](#parser-library-write-SMSR) and a [OutputSegmentMerger](#parser-library-write-OSM) to parse the result of the `GetMedia` operation:
-
-```
-private static void mergeGetMedia(GetMediaResult result) throws IOException {
-        Path outputPath = Paths.get("merged_output2.mkv");
-        System.out.println("Writing merged file to " +outputPath.toAbsolutePath().toString());
-        OutputStream fileOutputStream = Files.newOutputStream(outputPath,
-                StandardOpenOption.WRITE, StandardOpenOption.CREATE);
-        try (BufferedOutputStream outputStream = new BufferedOutputStream(fileOutputStream)) {
-            outputStream.flush();
-
-            StreamingMkvReader mkvStreamReader = StreamingMkvReader.createDefault(new InputStreamParserByteSource(result.getPayload()));
-            OutputSegmentMerger outputSegmentMerger = OutputSegmentMerger.createDefault(fileOutputStream);
-
-            long prevFragmentDoneTime = System.currentTimeMillis();
-            //Apply the OutputSegmentMerger to the mkv elements from the mkv stream reader.
-            try {
-                while (mkvStreamReader.mightHaveNext()) {
-                    Optional<MkvElement> mkvElementOptional = mkvStreamReader.nextIfAvailable();
-                    if (mkvElementOptional.isPresent()) {
-                        MkvElement mkvElement = mkvElementOptional.get();
-                        //Apply the segment merger to this element.
-                        mkvElement.accept(outputSegmentMerger);
-
-                        //count the number of fragments merged.
-                        if (MkvTypeInfos.SEGMENT.equals(mkvElement.getElementMetaData().getTypeInfo())) {
-                            if (mkvElement instanceof MkvEndMasterElement) {
-                                System.out.println("Fragment numbers merged " + outputSegmentMerger.getClustersCount() + " took  "
-                                        + Long.toString(System.currentTimeMillis() - prevFragmentDoneTime) + " ms.");
-                                prevFragmentDoneTime = System.currentTimeMillis();
-                                outputStream.flush();
-                            }
-                        }
-                    }
-                }
-            } catch (MkvElementVisitException e) {
-                System.err.println("Exception from visitor to MkvElement "+e);
-            }
-        }
-    }
-```
-
-The previous code example shows the following coding pattern:
-+ Create an output stream\. The output stream writes the MKV data to a file\.
-+ Create a `StreamingMkvReader`, and a `OutputSegmentMerger`\.
-+ Iterate on the items in the `StreamingMkvReader` and write them to the `OutputSegmentMerger`\.
-+ When a `MkvEndMasterElement` is reached, flush the contents of the output stream to the file\.
 
 ## KinesisVideoExample<a name="parser-library-write-example"></a>
 
@@ -216,14 +138,14 @@ This class performs the following operations:
 
 ### Delete and recreate the stream<a name="parser-library-write-example-create"></a>
 
-The following code example \(from the `KinesisVideoExample.java` file\) deletes a given Kinesis video stream:
+The following code example \(from the `StreamOps.java` file\) deletes a given Kinesis video stream:
 
 ```
 //Delete the stream
 amazonKinesisVideo.deleteStream(new DeleteStreamRequest().withStreamARN(streamInfo.get().getStreamARN()));
 ```
 
-The following code example \(from the `KinesisVideoExample.java` file\) creates a Kinesis video stream with the specified name:
+The following code example \(from the `StreamOps.java` file\) creates a Kinesis video stream with the specified name:
 
 ```
 amazonKinesisVideo.createStream(new CreateStreamRequest().withStreamName(streamName)
@@ -264,15 +186,17 @@ The following code example \(from the `GetMediaWorker.java` file\) creates a [St
 StreamingMkvReader mkvStreamReader = StreamingMkvReader.createDefault(new InputStreamParserByteSource(result.getPayload()));
 log.info("StreamingMkvReader created for stream {} ", streamName);
 try {
-    while (mkvStreamReader.mightHaveNext()) {
-        Optional<MkvElement> mkvElementOptional = mkvStreamReader.nextIfAvailable();
+    mkvStreamReader.apply(this.elementVisitor);
+} catch (MkvElementVisitException e) {
+    log.error("Exception while accepting visitor {}", e);
+}
 ```
 
 In the preceding code example, the [StreamingMkvReader](#parser-library-write-SMSR) retrieves `MKVElement` objects from the payload of the `GetMedia` result\. In the next section, the elements are passed to a [FragmentMetadataVisitor](#parser-library-write-FMV)\.
 
 #### Retrieve Fragments with FragmentMetadataVisitor<a name="parser-library-write-example-parse-fmv"></a>
 
-The following code examples \(from the `KinesisVideoExample.java` and `GetMediaWorker.java` files\) create a [FragmentMetadataVisitor](#parser-library-write-FMV)\. The `MkvElement` objects iterated by the [StreamingMkvReader](#parser-library-write-SMSR) are then passed to the visitor using the `accept` method\. 
+The following code examples \(from the `KinesisVideoExample.java` and `StreamingMkvReader.java` files\) create a [FragmentMetadataVisitor](#parser-library-write-FMV)\. The `MkvElement` objects iterated by the [StreamingMkvReader](#parser-library-write-SMSR) are then passed to the visitor using the `accept` method\. 
 
 *from `KinesisVideoExample.java`:*
 
@@ -280,7 +204,7 @@ The following code examples \(from the `KinesisVideoExample.java` and `GetMediaW
 FragmentMetadataVisitor fragmentMetadataVisitor = FragmentMetadataVisitor.create();
 ```
 
-*from `GetMediaWorker.java`:*
+*from `StreamingMkvReader.java`:*
 
 ```
 if (mkvElementOptional.isPresent()) {

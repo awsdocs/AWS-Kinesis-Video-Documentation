@@ -14,6 +14,6 @@ To run the Java test harness for the [Java Producer library](http://docs.aws.ama
 
    On the **Manage Streams** page, choose your stream\.
 
-1. The sample video will play in the embedded player\. You may need to wait a short time \(up to ten seconds under typical bandwidth and processor conditions\) while the frames accumulate before the video appears\.
+1. The sample video will play in the embedded player\. You might need to wait a short time \(up to ten seconds under typical bandwidth and processor conditions\) while the frames accumulate before the video appears\.
 
 The code example creates a stream\. As the `MediaSource` in the code starts, it begins sending sample frames to the `KinesisVideoClient`\. The client then sends the data to your Kinesis video stream\. 

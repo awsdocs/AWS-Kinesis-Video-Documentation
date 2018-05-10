@@ -1,6 +1,6 @@
 # Step 2: Write and Examine the Code<a name="producersdk-cpp-write"></a>
 
-In this section of the [C\+\+ Producer Library procedure](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html), you examine the code in the C\+\+ test harness \(`tst/ProducerTestFixture.h and other files`\)\. 
+In this section of the [C\+\+ Producer Library procedure](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html), you examine the code in the C\+\+ test harness \(`tst/ProducerTestFixture.h` and other files\)\. 
 
 The **Platform Independent** C\+\+ example shows the following coding pattern:
 + Create an instance of `KinesisVideoProducer` to access Kinesis Video Streams\.
@@ -11,18 +11,25 @@ The following sections provide details:
 
 ## Creating an Instance of KinesisVideoProducer<a name="producersdk-cpp-write-create-producer"></a>
 
-You create the `KinesisVideoProducer` object by calling the `KinesisVideoProducer::Create` method\. The following example creates the `KinesisVideoProducer` in the `ProducerTestFixture.h` file:
+You create the `KinesisVideoProducer` object by calling the `KinesisVideoProducer::createSync` method\. The following example creates the `KinesisVideoProducer` in the `ProducerTestFixture.h` file:
 
 ```
-kinesis_video_producer_ = KinesisVideoProducer::Create(move(device_provider_),
-                                            move(client_callback_provider_),
-                                            move(stream_callback_provider_),
-                                            move(credential_provider_),
-                                            DEFAULT_REGION;
+kinesis_video_producer_ = KinesisVideoProducer::createSync(move(device_provider_),
+    move(client_callback_provider_),
+    move(stream_callback_provider_),
+    move(credential_provider_),
+    defaultRegion_);
 ```
 
-The `KinesisVideoProducer` constructor takes the following parameters:
+The `createSync` method takes the following parameters:
 + A `DeviceInfoProvider` object, which returns a `DeviceInfo` object containing information about the device or storage configuration\.
+**Note**  
+You configure your content store size using the `deviceInfo.storageInfo.storageSize` parameter\. Your content streams share the content store\. To determine your storage size requirement, multiply the average frame size by the number of frames stored for the max duration for all the streams, and then multiply by 1\.2 to account for defragmentation\. For example, if your application has the following configuration:  
+Three streams
+3 minutes of maximum duration
+Each stream is 30 fps
+Each frame is 10,000 KB in size
+The content store requirement for this application is **3 \(streams\) \* 3 \(minutes\) \* 60 \(seconds in a minute\) \* 10000 \(kb\) \* 1\.2 \(defragmentation allowance\) = 194\.4 Mb \~ 200Mb**\.
 + A `ClientCallbackProvider` object, which returns function pointers that report client\-specific events\.
 + A `StreamCallbackProvider` object, which returns function pointers that are called back when stream\-specific events occur\.
 + A `CredentialProvider` object, which provides access to AWS credential environment variables\.
@@ -44,7 +51,7 @@ auto stream_definition = make_unique<StreamDefinition>(stream_name,
                                                milliseconds(1),
                                                true,
                                                true,
-                                               false);
+                                               true);
 return kinesis_video_producer_->createStream(move(stream_definition));
 ```
 
@@ -67,17 +74,21 @@ The `StreamDefinition` object has the following fields:
 You put media into the Kinesis video stream using `KinesisVideoStream::putFrame`, passing in a `Frame` object that contains the header and media data\. The example calls `putFrame` in the `ProducerApiTest.cpp` file:
 
 ```
-frame.duration = FrameDurationInMicros * HUNDREDS_OF_NANOS_IN_A_MICROSECOND;
-frame.size = SIZEOF(tempBuffer);
-frame.frameData = tempBuffer;
-// Produce frames
-    frame.index = index++;
-    frame.decodingTs = timestamp;
-    frame.presentationTs = timestamp;
+frame.duration = FRAME_DURATION_IN_MICROS * HUNDREDS_OF_NANOS_IN_A_MICROSECOND;
+    frame.size = SIZEOF(frameBuffer_);
+    frame.frameData = frameBuffer_;
+    MEMSET(frame.frameData, 0x55, frame.size);
 
-    // Key frame every 50th
-    frame.flags = (frame.index % 50 == 0) ? FRAME_FLAG_KEY_FRAME : FRAME_FLAG_NONE;
+    while (!stop_producer_) {
+        // Produce frames
+        timestamp = std::chrono::duration_cast<std::chrono::nanoseconds>(
+                std::chrono::system_clock::now().time_since_epoch()).count() / DEFAULT_TIME_UNIT_IN_NANOS;
+        frame.index = index++;
+        frame.decodingTs = timestamp;
+        frame.presentationTs = timestamp;
 
+        // Key frame every 50th
+        frame.flags = (frame.index % 50 == 0) ? FRAME_FLAG_KEY_FRAME : FRAME_FLAG_NONE;
     ...
 
     EXPECT_TRUE(kinesis_video_stream->putFrame(frame));
@@ -103,7 +114,7 @@ The C\+\+ Producer SDK includes functionality for metrics and metric logging\.
 
 You can use the `getKinesisVideoMetrics` and `getKinesisVideoStreamMetrics` APIs to retrieve information about Kinesis Video Streams and your active streams\.
 
-The following code is from the `src/KinesisVideoPlatformIndependentNativeRepository/src/client/include/com/amazonaws/kinesisvideo/client/Include.h` file\.
+The following code is from the `kinesis-video-pic/src/client/include/com/amazonaws/kinesis/video/client/Include.h` file\.
 
 ```
 /**

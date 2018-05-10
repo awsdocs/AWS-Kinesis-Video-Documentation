@@ -9,6 +9,12 @@ To run and verify the code for the [C\+\+ Producer Library procedure](http://doc
    + [openssl \(crypto and ssl\)](https://github.com/openssl/openssl/blob/master/LICENSE)
    + [log4cplus](https://github.com/log4cplus/log4cplus/blob/master/LICENSE)
    + [jsoncpp](https://github.com/open-source-parsers/jsoncpp/blob/master/LICENSE)
+**Note**  
+To configure **log4cplus**, set the following value in `PlatformUtils.h` to point to your logging function:  
+
+   ```
+   #define __LOG(p1, p2, p3, ...)     printf(p3, ##__VA_ARGS__)
+   ```
 
 1. The executable is built in `kinesis-video-native-build/start`\. Launch it to run the unit test and kick off dummy frame streaming\.
 

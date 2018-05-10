@@ -3,9 +3,7 @@
 This example demonstrates how to use the [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) API\. It shows how to send data that is already in a container format \(MKV\)\. If your data needs to be assembled into a container format before sending \(for example, if you are assembling camera video data into frames\), see [Kinesis Video Streams Producer Libraries](producer-sdk.md)\.
 
 **Note**  
-The `PutMedia` operation is only available in the C\+\+ and Java SDKs, due to the full\-duplex management of connections, data flow, and acknowledgements\. It is not supported in other languages\.
-
-This example includes the following steps:
+The `PutMedia` operation is available only in the C\+\+ and Java SDKs, due to the full\-duplex management of connections, data flow, and acknowledgements\. It is not supported in other languages\.
 
 **Topics**
 + [Step 1: Download and Configure the Code](#examples-putmedia-download)
@@ -54,7 +52,7 @@ In this section, you download the Java example code, import the project into you
 
         1. In the **JAR selection** wizard, choose all \.jars in the project's `lib` directory\.
 
-1.  The `PutMedia` API example uses a profile called `my-profile`\. If you want to use any other credentials profile, update the following line in `PutMediaDemo.java`:
+1.  The `PutMedia` API example uses a profile named `my-profile`\. To use another credentials profile, update the following line in `PutMediaDemo.java`:
 
    ```
     /* the AWS credentials profile configured by: aws configure --profile my-profile */
@@ -76,7 +74,7 @@ The code examples in this section are from the `PutMediaDemo` class\.
 Creating the `PutMediaClient` object takes the following parameters:
 + The URI for the `PutMedia` endpoint\.
 + An `InputStream` pointing to the MKV file to stream\.
-+ The stream name\. This example uses the same stream created in the [Using the Java Producer Library](producer-sdk-javaapi.md) \(`my-stream`\)\. To use a different stream, change the following parameter:
++ The stream name\. This example uses the stream that was created in the [Using the Java Producer Library](producer-sdk-javaapi.md) \(`my-stream`\)\. To use a different stream, change the following parameter:
 
   ```
   private static final String STREAM_NAME="my-stream";
@@ -88,6 +86,8 @@ The `PutMedia` API example does not create a stream\. You must create a stream e
 + An `AWSKinesisVideoV4Signer` object that verifies that the received packets were sent by the authorized sender\.
 + The maximum upstream bandwidth in Kbps\.
 + An `AckConsumer` object to receive packet received acknowledgements\.
+
+The following code creates the `PutMediaClient` object:
 
 ```
 /* actually URI to send PutMedia request */
@@ -137,7 +137,7 @@ After the client is created, the sample starts asynchronous streaming with `putM
 
 To run the `PutMedia` API example, do the following:
 
-1. Create a stream called `my-stream` in the Kinesis Video Streams console or by using the AWS CLI\.
+1. Create a stream named `my-stream` in the Kinesis Video Streams console or by using the AWS CLI\.
 
 1. Choose **PutMediaDemo**\.
 

@@ -29,6 +29,7 @@ The request accepts the following data in JSON format\.
  ** [Fragments](#API_reader_GetMediaForFragmentList_RequestSyntax) **   <a name="KinesisVideo-reader_GetMediaForFragmentList-request-Fragments"></a>
 A list of the numbers of fragments for which to retrieve media\. You retrieve these values with [ListFragments](API_reader_ListFragments.md)\.  
 Type: Array of strings  
+Array Members: Minimum number of 1 item\. Maximum number of 1000 items\.  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Pattern: `^[0-9]+$`   
 Required: Yes

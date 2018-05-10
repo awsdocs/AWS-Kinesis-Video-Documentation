@@ -13,17 +13,7 @@ The following procedure demonstrates how to set up and use the Renderer demo app
 ## Prerequisites<a name="examples-renderer-prerequisites"></a>
 
 To examine and use the Renderer example library, you must have the following:
-+ An Amazon Web Services \(AWS\) account\. If you don't already have an AWS account, do the following:
-
-  1. Open [https://aws\.amazon\.com/](https://aws.amazon.com/), and then choose **Create an AWS Account**\.
-**Note**  
-This option might be unavailable in your browser if you previously signed in to the AWS Management Console\. In that case, choose **Sign In to the Console**, and then choose **Create a new AWS account**\.
-
-  1. Follow the online instructions\.
-
-     Part of the sign\-up procedure involves receiving a phone call and entering a PIN using the phone keypad\.
-
-     Note your AWS account ID because you need it for configuring programmatic access to Kinesis video streams\.
++ An Amazon Web Services \(AWS\) account\. If you don't already have an AWS account, see [Getting Started with Kinesis Video Streams](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/getting-started.html)
 + A Java integrated development environment \(IDE\), such as [Eclipse Java Neon](http://www.eclipse.org/downloads/packages/eclipse-ide-java-and-dsl-developers/neon3) or [JetBrains IntelliJ Idea](https://www.jetbrains.com/idea/download/)\.
 
 ## Running the Renderer Example<a name="examples-renderer-procedure"></a>
@@ -57,7 +47,7 @@ This option might be unavailable in your browser if you previously signed in to 
 
 ### Sending MKV data<a name="examples-renderer-howitworks-send"></a>
 
-The example sends sample MKV data from the `rendering_example_video.mkv` file, using PutMedia to send video data to a stream named **render\-example\-stream**\.
+The example sends sample MKV data from the `rendering_example_video.mkv` file, using `PutMedia` to send video data to a stream named **render\-example\-stream**\.
 
 The application creates a `PutMediaWorker`:
 
@@ -100,3 +90,5 @@ The following code example is from the `KinesisVideoFrameViewer` class, which ex
     repaint();
 }
 ```
+
+The image is displayed as an instance of [java\.awt\.image\.BufferedImage](https://docs.oracle.com/javase/7/docs/api/java/awt/image/BufferedImage.html)\. For examples that show how to work with `BufferedImage`, see [Reading/Loading an Image](https://docs.oracle.com/javase/tutorial/2d/images/loadimage.html)\.

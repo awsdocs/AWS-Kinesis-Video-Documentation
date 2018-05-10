@@ -42,6 +42,8 @@ Amazon's trademarks and trade dress may not be used in
       + [Producer SDK Limits](producer-sdk-limits.md)
       + [Error Code Reference](producer-sdk-errors.md)
       + [Network Abstraction Layer (NAL) Adaptation Flag Reference](producer-reference-nal.md)
+      + [Producer SDK Structures](producer-reference-structures-producer.md)
+      + [KVS Stream Structures](producer-reference-structures-stream.md)
 + [Kinesis Video Stream Parser Library](parser-library.md)
    + [Step 1: Download and Configure the Code](parser-library-download.md)
    + [Step 2: Write and Examine the Code](parser-library-write.md)

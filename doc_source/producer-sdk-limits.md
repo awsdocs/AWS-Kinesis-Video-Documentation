@@ -38,3 +38,4 @@ The following table contains the current limits for values in the [Producer Libr
 | Max update version length | 128 characters |   | 
 | Max ARN length | 1024 characters |   | 
 | Max fragment sequence length | 128 characters |   | 
+| Max retention period | 10 years |   | 
