@@ -102,18 +102,18 @@ Amazon Kinesis Video Streams can't find the stream that you specified\.
 HTTP Status Code: 404
 
  **VersionMismatchException**   
-The stream version that you specified is not the latest version\. To get the latest version, use the [DescribeStream](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html) API\.  
+The stream version that you specified is not the latest version\. To get the latest version, use the [DescribeStream](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html) API\.  
 HTTP Status Code: 400
 
 ## See Also<a name="API_UpdateDataRetention_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-+  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/kinesisvideo-2017-09-30/UpdateDataRetention) 
-+  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/kinesisvideo-2017-09-30/UpdateDataRetention) 
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/kinesisvideo-2017-09-30/UpdateDataRetention) 
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/kinesisvideo-2017-09-30/UpdateDataRetention) 
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/kinesisvideo-2017-09-30/UpdateDataRetention) 
-+  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesisvideo-2017-09-30/UpdateDataRetention) 
-+  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/kinesisvideo-2017-09-30/UpdateDataRetention) 
-+  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/kinesisvideo-2017-09-30/UpdateDataRetention) 
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/kinesisvideo-2017-09-30/UpdateDataRetention) 
++  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/kinesisvideo-2017-09-30/UpdateDataRetention) 
++  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/kinesisvideo-2017-09-30/UpdateDataRetention) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/kinesisvideo-2017-09-30/UpdateDataRetention) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/kinesisvideo-2017-09-30/UpdateDataRetention) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/kinesisvideo-2017-09-30/UpdateDataRetention) 
++  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesisvideo-2017-09-30/UpdateDataRetention) 
++  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/kinesisvideo-2017-09-30/UpdateDataRetention) 
++  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/kinesisvideo-2017-09-30/UpdateDataRetention) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/kinesisvideo-2017-09-30/UpdateDataRetention) 

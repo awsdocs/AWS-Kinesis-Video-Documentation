@@ -12,3 +12,4 @@ After you have defined your monitoring goals and have created your monitoring pl
 
 **Topics**
 + [Monitoring Kinesis Video Streams Metrics with CloudWatch](monitoring-cloudwatch.md)
++ [Logging Kinesis Video Streams API Calls with AWS CloudTrail](monitoring-cloudtrail.md)

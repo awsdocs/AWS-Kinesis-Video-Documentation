@@ -34,6 +34,7 @@ This section describes API issues that you might encounter when working with Kin
 + [Error: “Unable to determine service/operation name to be authorized”](#troubleshooting-api-name-auth)
 + [Error: “Failed to put a frame in the stream”](#troubleshooting-api-putframe)
 + [Error: “Service closed connection before final AckEvent was received”](#troubleshooting-api-closeconnection)
++ [Error: "STATUS\_STORE\_OUT\_OF\_MEMORY"](#troubleshooting-api-storeoutofmemory)
 
 ### Error: “Unable to determine service/operation name to be authorized”<a name="troubleshooting-api-name-auth"></a>
 
@@ -77,6 +78,16 @@ com.amazonaws.SdkClientException: Service closed connection before final AckEven
 ```
 
 This error might occur if `PushbackInputStream` is improperly implemented\. Ensure that the `unread()` methods are correctly implemented\.
+
+### Error: "STATUS\_STORE\_OUT\_OF\_MEMORY"<a name="troubleshooting-api-storeoutofmemory"></a>
+
+`PutMedia` can fail with the following error:
+
+```
+The content store is out of memory.
+```
+
+This error occurs when the content store is not allocated with sufficient size\. To increase the size of the content store, increase the value of `StorageInfo.storageSize`\. For more information, see [StorageInfo](producer-reference-structures-producer.md#producer-reference-structures-producer-storageinfo)\.
 
 ## Troubleshooting Java Issues<a name="troubleshooting-java"></a>
 

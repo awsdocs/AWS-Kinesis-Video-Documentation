@@ -184,7 +184,7 @@ HTTP Status Code: 404
 
 The format of the acknowledgement is as follows:
 
-#### <a name="w3ab1c31b4c11c11c47b3b5"></a>
+#### <a name="w3ab1c33b4c11c11c47b3b5"></a>
 
 ```
 {
@@ -200,12 +200,12 @@ The format of the acknowledgement is as follows:
 ## See Also<a name="API_dataplane_PutMedia_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-+  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/kinesis-video-data-2017-09-30/PutMedia) 
-+  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/kinesis-video-data-2017-09-30/PutMedia) 
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/kinesis-video-data-2017-09-30/PutMedia) 
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/kinesis-video-data-2017-09-30/PutMedia) 
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/kinesis-video-data-2017-09-30/PutMedia) 
-+  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesis-video-data-2017-09-30/PutMedia) 
-+  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/kinesis-video-data-2017-09-30/PutMedia) 
-+  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/kinesis-video-data-2017-09-30/PutMedia) 
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/kinesis-video-data-2017-09-30/PutMedia) 
++  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/kinesis-video-data-2017-09-30/PutMedia) 
++  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/kinesis-video-data-2017-09-30/PutMedia) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/kinesis-video-data-2017-09-30/PutMedia) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/kinesis-video-data-2017-09-30/PutMedia) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/kinesis-video-data-2017-09-30/PutMedia) 
++  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesis-video-data-2017-09-30/PutMedia) 
++  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/kinesis-video-data-2017-09-30/PutMedia) 
++  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/kinesis-video-data-2017-09-30/PutMedia) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/kinesis-video-data-2017-09-30/PutMedia) 

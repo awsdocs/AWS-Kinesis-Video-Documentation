@@ -2,13 +2,14 @@
 
 The following table describes the important changes to the documentation since the last release of Amazon Kinesis Video Streams\.
 + **Latest API version:** 2017\-11\-29
-+ **Latest documentation update:** May 7, 2018
++ **Latest documentation update:** May 24, 2018
 
 
 ****  
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+| CloudTrail support | Documentation for using CloudTrail to monitor API usage\. For more information, see [Logging Kinesis Video Streams API Calls with AWS CloudTrail](monitoring-cloudtrail.md)\. | May 24, 2018 | 
 | Producer SDK structures reference documentation | Reference documentation for the structures used by the [Kinesis Video Streams Producer Libraries](producer-sdk.md)\. For more information, see [Producer SDK Structures](producer-reference-structures-producer.md) and [KVS Stream Structures](producer-reference-structures-stream.md)\. | May 7, 2018 | 
 | Renderer example documentation | Documentation for the Renderer example application, which shows how to decode and display frames from a Kinesis video stream\. For more information, see [Renderer Example](examples-renderer.md)\. | Mar 15, 2018 | 
 | Producer SDK Limits reference documentation | Information about limits for operations in the [C\+\+ Producer Library](producer-sdk-cpp.md)\. For more information, see [Producer SDK Limits](producer-sdk-limits.md)\. | Mar 13, 2018 | 

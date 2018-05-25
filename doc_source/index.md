@@ -54,6 +54,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Renderer Example](examples-renderer.md)
 + [Monitoring Kinesis Video Streams](monitoring.md)
    + [Monitoring Kinesis Video Streams Metrics with CloudWatch](monitoring-cloudwatch.md)
+   + [Logging Kinesis Video Streams API Calls with AWS CloudTrail](monitoring-cloudtrail.md)
 + [Kinesis Video Streams Limits](limits.md)
 + [Troubleshooting Kinesis Video Streams](troubleshooting.md)
 + [Document History for Amazon Kinesis Video Streams](doc-history.md)
