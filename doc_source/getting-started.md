@@ -8,6 +8,9 @@ Other sections in this guide describe how to send data to the stream and view da
 
 If you are new to Amazon Kinesis Video Streams, we recommend that you read [Amazon Kinesis Video Streams: How It Works](how-it-works.md) first\. 
 
+**Note**  
+Following the Getting Started sample will not incur any charges to your AWS account\. See [Amazon Kinesis Video Streams Pricing](https://aws.amazon.com/kinesis/video-streams/pricing/) for data costs in your region\.
+
 **Topics**
 + [Step 1: Set Up an AWS Account and Create an Administrator](gs-account.md)
 + [Step 2: Create a Kinesis Video Stream](gs-createstream.md)

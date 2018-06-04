@@ -15,6 +15,7 @@ Amazon's trademarks and trade dress may not be used in
 -----
 ## Contents
 + [What Is Amazon Kinesis Video Streams?](what-is-kinesis-video.md)
++ [Kinesis Video Streams System Requirements](system-requirements.md)
 + [Amazon Kinesis Video Streams: How It Works](how-it-works.md)
    + [Kinesis Video Streams API and Producer Libraries Support](how-it-works-kinesis-video-api-producer-sdk.md)
    + [Controlling Access to Kinesis Video Streams Resources Using IAM](how-iam.md)

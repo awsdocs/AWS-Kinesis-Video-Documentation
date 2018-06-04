@@ -1,6 +1,6 @@
 # Kinesis Video Streams Producer Libraries<a name="producer-sdk"></a>
 
-The Amazon Kinesis Video Streams Producer libraries are a set of easy\-to\-use libraries that are part of the Kinesis Video Streams Producer SDK\. The client uses the libraries and SDK to build the on\-device application for securely connecting to Kinesis Video Streams and streaming video and other media data\. 
+The Amazon Kinesis Video Streams Producer libraries are a set of easy\-to\-use libraries that are part of the Kinesis Video Streams Producer SDK\. The client uses the libraries and SDK to build the on\-device application for securely connecting to Kinesis Video Streams and streaming video and other media data that can be viewed in the console or client applications in real time\. 
 
 Data can be streamed media in the following ways:
 + Streaming media data in real time
