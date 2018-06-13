@@ -2,16 +2,17 @@
 
 The following table describes the important changes to the documentation since the last release of Amazon Kinesis Video Streams\.
 + **Latest API version:** 2017\-11\-29
-+ **Latest documentation update:** May 30, 2018
++ **Latest documentation update:** June 12, 2018
 
 
 ****  
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+| Producer SDK callbacks reference documentation | Reference documentation for the callbacks used by the [Kinesis Video Streams Producer Libraries](producer-sdk.md)\. For more information, see [Producer SDK Callbacks](producer-reference-callbacks.md)\. | June 12, 2018 | 
 | System requirements | Documentation for memory and storage requirements for producer devices and SDK\. For more information, see [Kinesis Video Streams System Requirements](system-requirements.md)\. | May 30, 2018 | 
 | CloudTrail support | Documentation for using CloudTrail to monitor API usage\. For more information, see [Logging Kinesis Video Streams API Calls with AWS CloudTrail](monitoring-cloudtrail.md)\. | May 24, 2018 | 
-| Producer SDK structures reference documentation | Reference documentation for the structures used by the [Kinesis Video Streams Producer Libraries](producer-sdk.md)\. For more information, see [Producer SDK Structures](producer-reference-structures-producer.md) and [KVS Stream Structures](producer-reference-structures-stream.md)\. | May 7, 2018 | 
+| Producer SDK structures reference documentation | Reference documentation for the structures used by the [Kinesis Video Streams Producer Libraries](producer-sdk.md)\. For more information, see [Producer SDK Structures](producer-reference-structures-producer.md) and [Kinesis Video Stream Structures](producer-reference-structures-stream.md)\. | May 7, 2018 | 
 | Renderer example documentation | Documentation for the Renderer example application, which shows how to decode and display frames from a Kinesis video stream\. For more information, see [Renderer Example](examples-renderer.md)\. | Mar 15, 2018 | 
 | Producer SDK Limits reference documentation | Information about limits for operations in the [C\+\+ Producer Library](producer-sdk-cpp.md)\. For more information, see [Producer SDK Limits](producer-sdk-limits.md)\. | Mar 13, 2018 | 
 | C\+\+ Producer SDK for Raspberry Pi | Procedure for setting up and running the [C\+\+ Producer Library](producer-sdk-cpp.md) on a Raspberry Pi device\. For more information, see [Using the C\+\+ Producer SDK on Raspberry Pi](producersdk-cpp-rpi.md)\. | Mar 13, 2018 | 

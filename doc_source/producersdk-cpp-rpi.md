@@ -222,7 +222,7 @@ If you reboot the device before building the SDK, you must repeat this step\. Yo
 1. Make the install script executable:
 
    ```
-   $  chmod +x ./kinesis-video-native-build/install-script
+   $  chmod +x install-script
    ```
 
 1. Run the install script\. The script downloads the source and builds several open\-source projects\. It might take several hours to run the first time it is executed:

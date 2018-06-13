@@ -264,7 +264,7 @@ The following table contains error and status information that is returned by me
 
 ### Error and Status Codes Returned by the View Library<a name="producer-sdk-errors-view"></a>
 
-The following error and status information that is returned by methods in the `View` library\.
+The following table contains error and status information that is returned by methods in the `View` library\.
 
 
 ****  
