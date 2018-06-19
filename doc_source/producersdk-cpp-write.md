@@ -1,6 +1,6 @@
 # Step 2: Write and Examine the Code<a name="producersdk-cpp-write"></a>
 
-In this section of the [C\+\+ Producer Library procedure](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html), you examine the code in the C\+\+ test harness \(`tst/ProducerTestFixture.h` and other files\)\. 
+In this section of the [C\+\+ Producer Library procedure](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html), you examine the code in the C\+\+ test harness \(`tst/ProducerTestFixture.h` and other files\)\. You downloaded this code in the previous section\.
 
 The **Platform Independent** C\+\+ example shows the following coding pattern:
 + Create an instance of `KinesisVideoProducer` to access Kinesis Video Streams\.

@@ -1,6 +1,6 @@
 # Step 2: Write and Examine the Code<a name="producersdk-javaapi-writecode"></a>
 
-In this section of the [Java Producer Library procedure](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-javaapi.html), you write and examine the Java example code\. 
+In this section of the [Java Producer Library procedure](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-javaapi.html), you write and examine the Java example code you downloaded in the previous section\. 
 
 The Java test application \(`DemoAppMain`\) shows the following coding pattern:
 + Create an instance of `KinesisVideoClient`\.

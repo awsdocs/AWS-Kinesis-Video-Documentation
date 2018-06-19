@@ -1,6 +1,6 @@
-# Renderer Example<a name="examples-renderer"></a>
+# Example: Parsing and Rendering Kinesis Video Streams Fragments<a name="examples-renderer"></a>
 
-The [Stream Parser Library](parser-library.md) contains a demo application named `KinesisVideoRendererExample` that demonstrates parsing and rendering Amazon Kinesis video stream fragments\. The example uses [JCodec](http://jcodec.org/) to decode the H\.264 encoded frames that are ingested using the [GStreamer Example](examples-gstreamer.md) application\. After the frame is decoded using JCodec, the visible image is rendered using [JFrame](https://docs.oracle.com/javase/7/docs/api/javax/swing/JFrame.html)\. 
+The [Stream Parser Library](parser-library.md) contains a demo application named `KinesisVideoRendererExample` that demonstrates parsing and rendering Amazon Kinesis video stream fragments\. The example uses [JCodec](http://jcodec.org/) to decode the H\.264 encoded frames that are ingested using the [Example: Using GStreamer with Kinesis Video Streams](examples-gstreamer.md) application\. After the frame is decoded using JCodec, the visible image is rendered using [JFrame](https://docs.oracle.com/javase/7/docs/api/javax/swing/JFrame.html)\. 
 
 This example shows how to do the following:
 + Retrieve frames from a Kinesis video stream using the `GetMedia` API and render the stream for viewing\.

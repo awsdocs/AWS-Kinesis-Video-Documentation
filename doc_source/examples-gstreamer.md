@@ -1,4 +1,4 @@
-# GStreamer Example<a name="examples-gstreamer"></a>
+# Example: Using GStreamer with Kinesis Video Streams<a name="examples-gstreamer"></a>
 
 The [C\+\+ Producer Library](producer-sdk-cpp.md) contains a demo application for using [GStreamer](https://gstreamer.freedesktop.org/), an open source multimedia framework, with Amazon Kinesis Video Streams\. 
 
