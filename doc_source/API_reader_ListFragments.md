@@ -106,7 +106,8 @@ Status Code: 403, The caller is not authorized to perform an operation on the gi
 HTTP Status Code: 401
 
  **ResourceNotFoundException**   
-Kinesis Video Streams can't find the stream that you specified\.  
+ `GetMedia` throws this error when Kinesis Video Streams can't find the stream that you specified\.  
+ `GetHLSStreamingSessionURL` throws this error if a session with a `PlaybackMode` of `ON_DEMAND` is requested for a stream that has no fragments within the requested time range, or if a session with a `PlaybackMode` of `LIVE` is requested for a stream that has no fragments within the last 30 seconds\.  
 HTTP Status Code: 404
 
 ## See Also<a name="API_reader_ListFragments_SeeAlso"></a>

@@ -2,13 +2,14 @@
 
 The following table describes the important changes to the documentation since the last release of Amazon Kinesis Video Streams\.
 + **Latest API version:** 2017\-11\-29
-+ **Latest documentation update:** June 15, 2018
++ **Latest documentation update:** June 20, 2018
 
 
 ****  
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+| Streaming from an RTSP Source | Sample application for Kinesis Video Streams that runs in a Docker container and streams video from an RTSP source\. For more information, see [RTSP and Docker](examples-rtsp.md)\. | June 20, 2018 | 
 | C\+\+ Producer SDK GStreamer Plugin | Shows how to build the [C\+\+ Producer Library](producer-sdk-cpp.md) to use as a GStreamer destination\. For more information, see [GStreamer Plugin](examples-gstreamer-plugin.md)\. | June 15, 2018 | 
 | Producer SDK callbacks reference documentation | Reference documentation for the callbacks used by the [Kinesis Video Streams Producer Libraries](producer-sdk.md)\. For more information, see [Producer SDK Callbacks](producer-reference-callbacks.md)\. | June 12, 2018 | 
 | System requirements | Documentation for memory and storage requirements for producer devices and SDK\. For more information, see [Kinesis Video Streams System Requirements](system-requirements.md)\. | May 30, 2018 | 

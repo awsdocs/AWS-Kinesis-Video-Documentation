@@ -52,13 +52,6 @@ In this section, you download the Java example code, import the project into you
 
         1. In the **JAR selection** wizard, choose all \.jars in the project's `lib` directory\.
 
-1.  The `PutMedia` API example uses a profile named `my-profile`\. To use another credentials profile, update the following line in `PutMediaDemo.java`:
-
-   ```
-    /* the AWS credentials profile configured by: aws configure --profile my-profile */
-       private static final String AWS_CREDENTIALS_PROFILE_NAME = "my-profile";
-   ```
-
 ## Step 2: Write and Examine the Code<a name="examples-putmedia-write"></a>
 
 The `PutMedia` API example \(`PutMediaDemo`\) shows the following coding pattern:
@@ -139,8 +132,41 @@ To run the `PutMedia` API example, do the following:
 
 1. Create a stream named `my-stream` in the Kinesis Video Streams console or by using the AWS CLI\.
 
-1. Choose **PutMediaDemo**\.
+1. Change your working directory to the Java producer SDK directory:
 
-1. Choose **Run**, **Run 'PutMediaDemo'**\.
+   ```
+   $ cd /<YOUR_FOLDER_PATH_WHERE_SDK_IS_DOWNLOADED>/amazon-kinesis-video-streams-producer-sdk-java/
+   ```
+
+1. Compile the Java SDK and demo application:
+
+   ```
+   mvn package
+   ```
+
+1. Create a temporary filename in the `/tmp` directory:
+
+   ```
+   $ jar_files=$(mktemp)
+   ```
+
+1. Create a classpath string of dependencies from the local repository to a file:
+
+   ```
+   $ mvn -Dmdep.outputFile=$jar_files dependency:build-classpath
+   ```
+
+1. Set the value of the `LD_LIBRARY_PATH` environment variable as follows:
+
+   ```
+   $ export LD_LIBRARY_PATH=/<YOUR_FOLDER_PATH_WHERE_SDK_IS_DOWNLOADED>/amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-native-build/downloads/local/lib:$LD_LIBRARY_PATH
+   $ classpath_values=$(cat $jar_files)
+   ```
+
+1. Run the demo from the command line as follows, providing your AWS credentials:
+
+   ```
+   $ java -classpath target/kinesisvideo-java-demo-1.0-SNAPSHOT.jar:$classpath_values -Daws.accessKeyId=${ACCESS_KEY} -Daws.secretKey=${SECRET_KEY} -Djava.library.path=/opt/amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-native-build com.amazonaws.kinesisvideo.demoapp.DemoAppMain
+   ```
 
 1. Open the Kinesis Video Streams console at [https://console\.aws\.amazon\.com/kinesisvideo/](https://console.aws.amazon.com/kinesisvideo/), and choose your stream on the **Manage Streams** page\. The video plays in the **Video Preview** pane\.

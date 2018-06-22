@@ -3,4 +3,6 @@
 The following data types are supported by Amazon Kinesis Video Streams Archived Media:
 +  [Fragment](API_reader_Fragment.md) 
 +  [FragmentSelector](API_reader_FragmentSelector.md) 
++  [HLSFragmentSelector](API_reader_HLSFragmentSelector.md) 
++  [HLSTimestampRange](API_reader_HLSTimestampRange.md) 
 +  [TimestampRange](API_reader_TimestampRange.md) 

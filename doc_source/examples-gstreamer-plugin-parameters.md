@@ -5,6 +5,9 @@ To send video to the Amazon Kinesis Video Streams Producer SDK, you specify `kvs
 The `kvssink` element has the following required parameters:
 + `stream-name`: The name of the destination Kinesis video stream\.
 + `storage-size`: The storage size of the device in kilobytes\. For information about configuring device storage, see [StorageInfo](producer-reference-structures-producer.md#producer-reference-structures-producer-storageinfo)\.
++ `access-key`: The AWS access key that is used to access Kinesis Video Streams\. You must provide either this parameter or `credential-path`\.
++ `secret-key`: The AWS secret key that is used to access Kinesis Video Streams\. You must provide either this parameter or `credential-path`\.
++ `credential-path`: A path to a file containing your credentials for accessing Kinesis Video Streams\. For example credential files, see [Sample Static Credential](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gstreamer-plugin/sample_static_credential) and [Sample Rotating Credential](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gstreamer-plugin/sample_rotating_credential)\. You must provide either this parameter or `access-key` and `secret-key`\.
 
 The `kvssink` element has the following optional parameters\. For more information about these parameters, see [Kinesis Video Stream Structures](producer-reference-structures-stream.md)\.
 
@@ -32,8 +35,6 @@ The `kvssink` element has the following optional parameters\. For more informati
 | connection\-staleness | The time after which the stream staleness callback is called\. | Seconds | 60 | 
 | codec\-id | The codec ID of the stream\. | String | "V\_MPEG4/ISO/AVC" | 
 | track\-name | The MKV track name\. | String | "kinesis\_video" | 
-| access\-key | The AWS access key that is used to access Kinesis Video Streams\. | String |  | 
-| secret\-key | The AWS secret key that is used to access Kinesis Video Streams\. | String |  | 
 | rotation\-period | The key rotation period\. For more information, see [Rotating Customer Master Keys](http://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html)\. | Seconds | 2400 | 
 | log\-config | The log configuration path\. | String | "\./kvs\_log\_configuration" | 
 | frame\-timestamp |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/examples-gstreamer-plugin-parameters.html)  | Enum GstKvsSinkFrameTimestampType | default\-timestamp | 

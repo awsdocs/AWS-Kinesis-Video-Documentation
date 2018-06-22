@@ -1,6 +1,6 @@
 # GetMediaForFragmentList<a name="API_reader_GetMediaForFragmentList"></a>
 
-Gets media for a list of fragments \(specified by fragment number\) from the archived data in a Kinesis video stream\.
+Gets media for a list of fragments \(specified by fragment number\) from the archived data in an Amazon Kinesis video stream\.
 
 The following limits apply when using the `GetMediaForFragmentList` API:
 + A client can call `GetMediaForFragmentList` up to five times per second per stream\. 
@@ -90,7 +90,8 @@ Status Code: 403, The caller is not authorized to perform an operation on the gi
 HTTP Status Code: 401
 
  **ResourceNotFoundException**   
-Kinesis Video Streams can't find the stream that you specified\.  
+ `GetMedia` throws this error when Kinesis Video Streams can't find the stream that you specified\.  
+ `GetHLSStreamingSessionURL` throws this error if a session with a `PlaybackMode` of `ON_DEMAND` is requested for a stream that has no fragments within the requested time range, or if a session with a `PlaybackMode` of `LIVE` is requested for a stream that has no fragments within the last 30 seconds\.  
 HTTP Status Code: 404
 
 ## See Also<a name="API_reader_GetMediaForFragmentList_SeeAlso"></a>

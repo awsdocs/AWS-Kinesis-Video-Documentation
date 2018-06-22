@@ -31,6 +31,7 @@ We have tested the following USB cameras with Kinesis Video Streams:
 + Logitech C930
 + Logitech C920 \(H\.264\) 
 + Logitech Brio \(4K\) 
++ SVPRO USB Camera 170degree Fisheye Lens Wide Angle 1080P 2mp Sony IMX322 HD H\.264 30fps Mini Aluminum USB Webcam Camera
 
 We have tested the following IP cameras with Kinesis Video Streams:
 + Vivotek FD9371 – HTV/EHTV
@@ -39,6 +40,7 @@ We have tested the following IP cameras with Kinesis Video Streams:
 + Sricam SP012 IP 
 + VStarcam 720P WiFi IP Camera \(TCP\)
 + Ipccam Security Surveillance IP Camera 1080P
++ AXIS P3354 Fixed Dome Network Camera 
 
 Of the cameras that were tested with Kinesis Video Streams, the Vivotek cameras have the most consistent RTSP stream\. The Sricam camera has the least consistent RTSP stream\.
 
