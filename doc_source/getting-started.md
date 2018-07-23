@@ -1,9 +1,17 @@
-# Getting Started with Amazon Kinesis Data Analytics<a name="getting-started"></a>
+# Getting Started with Kinesis Video Streams<a name="getting-started"></a>
 
-Following, you can find topics to help get you started using Amazon Kinesis Data Analytics\. If you are new to Kinesis Data Analytics, we recommend that you review the concepts and terminology presented in [Amazon Kinesis Data Analytics: How It Works](how-it-works.md) before performing the steps in the Getting Started section\.
+ This section describes how to perform the following tasks in Amazon Kinesis Video Streams: 
++ Set up your AWS account and create an administrator, if you haven't already done so\.
++ Create a Kinesis video stream\.
+
+Other sections in this guide describe how to send data to the stream and view data on the stream\.
+
+If you are new to Amazon Kinesis Video Streams, we recommend that you read [Amazon Kinesis Video Streams: How It Works](how-it-works.md) first\. 
+
+**Note**  
+Following the Getting Started sample will not incur any charges to your AWS account\. See [Amazon Kinesis Video Streams Pricing](https://aws.amazon.com/kinesis/video-streams/pricing/) for data costs in your region\.
 
 **Topics**
-+ [Step 1: Set Up an AWS Account and Create an Administrator User](setting-up.md)
-+ [Step 2: Set Up the AWS Command Line Interface \(AWS CLI\)](setup-awscli.md)
-+ [Step 3: Create Your Starter Amazon Kinesis Data Analytics Application](get-started-exercise.md)
-+ [Step 4 \(Optional\) Edit the Schema and SQL Code Using the Console](console-feature-summary.md)
++ [Step 1: Set Up an AWS Account and Create an Administrator](gs-account.md)
++ [Step 2: Create a Kinesis Video Stream](gs-createstream.md)
++ [What's Next?](gs-console-whatnext.md)

@@ -1,72 +1,364 @@
-# Troubleshooting Amazon Kinesis Data Analytics<a name="troubleshooting"></a>
+# Troubleshooting Kinesis Video Streams<a name="troubleshooting"></a>
 
-The following can help you troubleshoot problems that you might encounter with Amazon Kinesis Data Analytics\. 
+Use the following information to troubleshoot common issues encountered with Amazon Kinesis Video Streams\.
 
 **Topics**
-+ [Get a SQL Statement to Work Correctly](#sql-statement)
-+ [Unable to Detect or Discover My Schema](#detect-schema)
-+ [Reference Data is Out of Date](#reference-reload)
-+ [Important Application Health Parameters to Monitor](#parameters)
-+ [Invalid Code Errors When Running an Application](#invalid-code)
-+ [Insufficient Throughput or High MillisBehindLatest](#insufficient-throughput)
++ [Troubleshooting General Issues](#troubleshooting-general)
++ [Troubleshooting API Issues](#troubleshooting-api)
++ [Troubleshooting HLS Issues](#troubleshooting-hls)
++ [Troubleshooting Java Issues](#troubleshooting-java)
++ [Troubleshooting Producer Library Issues](#troubleshooting-producer)
++ [Troubleshooting Stream Parser Library Issues](#troubleshooting-parser)
 
-## Get a SQL Statement to Work Correctly<a name="sql-statement"></a>
+## Troubleshooting General Issues<a name="troubleshooting-general"></a>
 
-If you need to figure out how to get a particular SQL statement to work correctly, you have several different resources when using Kinesis Data Analytics:
-+ For more information about SQL statements, see [Example Applications](examples.md)\. This section provides a number of SQL examples that you can use\. 
-+ The *[Amazon Kinesis Data Analytics SQL Reference](http://docs.aws.amazon.com/kinesisanalytics/latest/sqlref/sqlrf_Preface.html)* provides a detailed guide to authoring streaming SQL statements\. 
-+ If you're still running into issues, we recommend that you ask a question on the [Kinesis Data Analytics Forums](https://forums.aws.amazon.com/ann.jspa?annID=4153)\. 
+This section describes general issues that you might encounter when working with Kinesis Video Streams\.
 
-## Unable to Detect or Discover My Schema<a name="detect-schema"></a>
+**Topics**
++ [Latency too high](#troubleshooting-general-latency)
 
-In some cases, Kinesis Data Analytics can't detect or discover a schema\. In many of these cases, you can still use Kinesis Data Analytics\.
+### Latency too high<a name="troubleshooting-general-latency"></a>
 
-Suppose that you have UTF\-8 encoded data that doesn't use a delimiter, or data that uses a format other than comma\-separated values \(CSV\), or the discovery API did not discover your schema\. In these cases, you can define a schema manually or use string manipulation functions to structure your data\. 
+Latency might be caused by the duration of fragments that are sent to the Kinesis Video Streams service\. One way to reduce the latency between the producer and the service is to configure the media pipeline to produce shorter fragment durations\.
 
-To discover the schema for your stream, Kinesis Data Analytics randomly samples the latest data in your stream\. If you aren't consistently sending data to your stream, Kinesis Data Analytics might not be able to retrieve a sample and detect a schema\. For more information, see [Using the Schema Discovery Feature on Streaming Data](sch-dis.md)\.
+To reduce the number of frames sent in each fragment, and thus reduce the amount of time for each fragment, reduce the following value in `kinesis_video_gstreamer_sample_app.cpp`:
 
-## Reference Data is Out of Date<a name="reference-reload"></a>
+```
+g_object_set(G_OBJECT (data.encoder), "bframes", 0, "key-int-max", 45, "bitrate", 512, NULL);
+```
 
-Reference data is loaded from the Amazon Simple Storage Service \(Amazon S3\) object into the application when the application is started or updated, or during application interruptions that are caused by service issues\.
+## Troubleshooting API Issues<a name="troubleshooting-api"></a>
 
-Reference data is not loaded into the application when updates are made to the underlying Amazon S3 object\.
+This section describes API issues that you might encounter when working with Kinesis Video Streams\.
 
-If the reference data in the application is not up to date, you can reload the data by following these steps:
+**Topics**
++ [Error: "Unable to determine service/operation name to be authorized"](#troubleshooting-api-name-auth)
++ [Error: "Failed to put a frame in the stream"](#troubleshooting-api-putframe)
++ [Error: "Service closed connection before final AckEvent was received"](#troubleshooting-api-closeconnection)
++ [Error: "STATUS\_STORE\_OUT\_OF\_MEMORY"](#troubleshooting-api-storeoutofmemory)
 
-1. On the Kinesis Data Analytics console, choose the application name in the list, and then choose **Application details**\. 
+### Error: "Unable to determine service/operation name to be authorized"<a name="troubleshooting-api-name-auth"></a>
 
-1. Choose **Go to SQL editor** to open the **Real\-time analytics** page for the application\.
+`GetMedia` can fail with the following error:
 
-1. In the **Source Data** view, choose your reference data table name\.
+```
+Unable to determine service/operation name to be authorized
+```
 
-1. Choose **Actions**, **Synchronize reference data table**\.
+This error might occur if the endpoint is not properly specified\. When you are getting the endpoint, be sure to include the following parameter in the `GetDataEndpoint` call, depending on the API to be called:
 
-## Important Application Health Parameters to Monitor<a name="parameters"></a>
+```
+--api-name GET_MEDIA
+--api-name PUT_MEDIA
+--api-name GET_MEDIA_FOR_FRAGMENT_LIST
+--api-name LIST_FRAGMENTS
+```
 
-To make sure that your application is running correctly, we recommend that you monitor certain important parameters\.
+### Error: "Failed to put a frame in the stream"<a name="troubleshooting-api-putframe"></a>
 
-The most important parameter to monitor is the Amazon CloudWatch metric `MillisBehindLatest`\. This metric represents how far behind the current time you are reading from the stream\. This metric helps you determine whether you are processing records from the source stream fast enough\. 
+`PutMedia` can fail with the following error:
 
-As a general rule, you should set up a CloudWatch alarm to trigger if you fall behind more than one hour\. However, the amount of time depends on your use case\. You can adjust it as needed\. 
+```
+Failed to put a frame in the stream
+```
 
-For more information, see [Best Practices](best-practices.md)\.
+This error might occur if connectivity or permissions are not available to the service\. Run the following in the AWS CLI, and verify that the stream information can be retrieved:
 
-## Invalid Code Errors When Running an Application<a name="invalid-code"></a>
+```
+aws kinesisvideo describe-stream --stream-name StreamName --endpoint https://ServiceEndpoint.kinesisvideo.region.amazonaws.com
+```
 
-When you can't save and run the SQL code for your Amazon Kinesis Data Analytics application, the following are common causes:
-+ **The stream was redefined in your SQL code** – After you create a stream and the pump associated with the stream, you can't redefine the same stream in your code\. For more information about creating a stream, see [CREATE STREAM](http://docs.aws.amazon.com/kinesisanalytics/latest/sqlref/sql-reference-create-stream.html) in the *Amazon Kinesis Data Analytics SQL Reference*\. For more information about creating a pump, see [CREATE PUMP](http://docs.aws.amazon.com/kinesisanalytics/latest/sqlref/sql-reference-create-pump.html)\.
-+ **A GROUP BY clause uses multiple ROWTIME columns ** – You can specify only one ROWTIME column in the GROUP BY clause\. For more information, see [GROUP BY](http://docs.aws.amazon.com/kinesisanalytics/latest/sqlref/sql-reference-group-by-clause.html) and [ROWTIME](http://docs.aws.amazon.com/kinesisanalytics/latest/sqlref/sql-reference-rowtime.html) in the *Amazon Kinesis Data Analytics SQL Reference*\. 
-+ **One or more data types have an invalid casting ** – In this case, your code has an invalid implicit cast\. For example, you might be casting a `timestamp` to a `bigint` in your code\.
-+ **A stream has the same name as a service reserved stream name ** – A stream can't have the same name as the service\-reserved stream `error_stream`\. 
+If the call fails, see [Troubleshooting AWS CLI Errors](http://docs.aws.amazon.com/cli/latest/userguide/troubleshooting.html) for more information\.
 
-## Insufficient Throughput or High MillisBehindLatest<a name="insufficient-throughput"></a>
+### Error: "Service closed connection before final AckEvent was received"<a name="troubleshooting-api-closeconnection"></a>
 
-If your application's [MillisBehindLatest](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aka-metricscollected.html) metric is steadily increasing or consistently is above 1000 \(one second\), it can be due to the following reasons:
-+ Check your application's [InputBytes](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aka-metricscollected.html) CloudWatch metric\. If you are ingesting more than 4 MB/sec, this can cause an increase in `MillisBehindLatest`\. To improve your application's throughput, increase the value of the `InputParallelism` parameter\. For more information, see [Parallelizing Input Streams for Increased Throughput](input-parallelism.md)\. 
-+ Check your application's output delivery [Success](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aka-metricscollected.html) metric for failures in delivering to your destination\. Verify that you have correctly configured the output, and that your output stream has sufficient capacity\. 
-+ If your application uses an AWS Lambda function for pre\-processing or as an output, check the application’s [InputProcessing\.Duration](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aka-metricscollected.html) or [LambdaDelivery\.Duration](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aka-metricscollected.html) CloudWatch metric\. If the Lambda function invocation duration is longer than 5 seconds, consider doing the following:
-  + Increase the Lambda function’s **Memory** allocation\. You can do this on the AWS Lambda console, on the **Configuration** page, under **Basic settings**\. For more information, see [Configuring Lambda Functions](http://docs.aws.amazon.com/lambda/latest/dg/resource-model.html) in the *AWS Lambda Developer Guide*\.
-  + Increase the number of shards in your input stream of the application\. This increases the number of parallel functions that the application will invoke, which might increase throughput\.
-  + Verify that the function is not making blocking calls that are affecting performance, such as synchronous requests for external resources\. 
-  + Examine your AWS Lambda function to see whether there are other areas where you can improve performance\. Check the CloudWatch Logs of the application Lambda function\. For more information, see [Accessing Amazon CloudWatch Metrics for AWS Lambda](http://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions-access-metrics.html) in the *AWS Lambda Developer Guide*\.
-+ Verify that your application is not reaching the default limit for Kinesis Processing Units \(KPU\)\. If your application is reaching this limit, you can request a limit increase\. For more information, see [Automatically Scaling Applications to Increase Throughput](how-it-works-autoscaling.md)\.
+`PutMedia` can fail with the following error:
+
+```
+com.amazonaws.SdkClientException: Service closed connection before final AckEvent was received
+```
+
+This error might occur if `PushbackInputStream` is improperly implemented\. Ensure that the `unread()` methods are correctly implemented\.
+
+### Error: "STATUS\_STORE\_OUT\_OF\_MEMORY"<a name="troubleshooting-api-storeoutofmemory"></a>
+
+`PutMedia` can fail with the following error:
+
+```
+The content store is out of memory.
+```
+
+This error occurs when the content store is not allocated with sufficient size\. To increase the size of the content store, increase the value of `StorageInfo.storageSize`\. For more information, see [StorageInfo](producer-reference-structures-producer.md#producer-reference-structures-producer-storageinfo)\.
+
+## Troubleshooting HLS Issues<a name="troubleshooting-hls"></a>
+
+This section describes issues that you might encounter when using HLS with Kinesis Video Streams\.
+
+**Topics**
++ [Retrieving HLS Streaming Session URL Succeeds, but Playback Fails in Video Player](#troubleshooting-hls-playback)
++ [Latency Too High Between Producer and Player](#troubleshooting-hls-latency)
+
+### Retrieving HLS Streaming Session URL Succeeds, but Playback Fails in Video Player<a name="troubleshooting-hls-playback"></a>
+
+This situation occurs when an HLS streaming session URL can be successfully retrieved with `GetHLSStreamingSessionURL`, but the video fails to play back when the URL is provided to a video player\.
+
+To troubleshoot this situation, try the following:
++ See if the video stream will play back in the Kinesis Video Streams management console\. Consider any errors the console shows\.
++ If the fragment duration is less than one second, increase it to one second\. If the fragment duration is too short, the service might throttle the player, because it is making requests for video fragments too frequently\.
++ Verify that each HLS streaming session URL is being used by only one player\. If more than one player is using a single HLS streaming session URL, the service may receive too many requests and throttle them\.
++ Verify that all of the options you are specifying for the HLS streaming session are supported by your player\. Try different combinations of values for the following parameters: 
+  + `PlaybackMode`
+  + `FragmentSelectorType`
+  + `DiscontinuityMode`
+  + `MaxMediaPlaylistFragmentResults`
+
+### Latency Too High Between Producer and Player<a name="troubleshooting-hls-latency"></a>
+
+This situation occurs when the latency is too high from when the video is captured to when it is played in the video player\.
+
+Video is played back through HLS on a per\-fragment basis; therefore, latency can't be less than fragment duration\. Latency also includes the time needed for buffering and transferring data\. If your solution requires latency less than one second, consider using the `GetMedia` API instead\.
+
+The following parameters can be adjusted to reduce overall latency, but adjusting these parameters may also reduce video quality or increase rebuffering rate\.
++ **Fragment duration**: The fragment duration is the amount of video between divisions in the stream as controlled by the frequency of keyframes generated by the video encoder\.\. The recommended value is one second\. Having a shorter fragment duration means that less time is spent waiting for the fragment to complete before transmitting the video data to the service\. Shorter fragments are also faster for the service to process\. However, if the fragment duration is too short, the probability increases that the player will run out of content and have to stop and buffer content\. If the fragment duration is less than 500 milliseconds, the producer may create too many requests, causing the service to throttle them\.
++ **Bitrate**: A video stream with a lower bitrate takes less time to read, write, and transmit\. However, a video stream with a lower bitrate usually has a lower video quality\.
++ **Fragment count in media playlists**: A latency\-sensitive player should only load the newest fragments in a media playlist\. Most players start at the oldest fragment instead\. By reducing the number of fragments in the playlist, you reduce the time separation between the old and new fragments\. With a smaller playlist size, it is possible for a fragment to be skipped during playback, if there is a delay in adding new fragments to the playlist, or if there is a delay in the player getting an updated playlist\. We recommend using 3\-5 fragments, and to use a player that is configured to load only the newest fragments from a playlist\. 
++ **Player buffer size**: Most video players have a configurable minimum buffer duration, usually with a 10 second default\. For the lowest latency, you can set this value to 0 seconds, but doing so means that the player will rebuffer if there is any delay producing fragments, as the player will have no buffer for absorbing the delay\.
++ **Player "catch up"**: Video players typically do not automatically catch playback up to the front of the video buffer if the buffer fills up, such as when a delayed fragment causes a backlog of fragments to play\. A custom player can avoid this by either dropping frames, or increasing the playback speed \(e\.g\. to 1\.1x\) to catch up to the front of the buffer\. This will cause playback to be choppy or increase in speed as the player catches up, and rebuffering may be more frequent as the buffer size is kept short\.
+
+## Troubleshooting Java Issues<a name="troubleshooting-java"></a>
+
+This section describes how to troubleshoot common Java issues encountered when working with Kinesis Video Streams\.
+
+**Topics**
++ [Enabling Java logs](#troubleshooting-java-log)
+
+### Enabling Java logs<a name="troubleshooting-java-log"></a>
+
+To troubleshoot issues with Java samples and libraries, it is helpful to enable and examine the debug logs\. To enable debug logs, do the following:
+
+1. Add `log4j` to the `pom.xml``` file, in the `dependencies` node: 
+
+   ```
+   <dependency>
+       <groupId>log4j</groupId>
+       <artifactId>log4j</artifactId>
+       <version>1.2.17</version>
+   </dependency>
+   ```
+
+1. In the `target/classes` directory, create a file named `log4j.properties` with the following contents:
+
+   ```
+   # Root logger option
+   log4j.rootLogger=DEBUG, stdout
+   
+   # Redirect log messages to console
+   log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+   log4j.appender.stdout.Target=System.out
+   log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+   log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n
+   
+   log4j.logger.org.apache.http.wire=DEBUG
+   ```
+
+The debug logs then print to the IDE console\.
+
+## Troubleshooting Producer Library Issues<a name="troubleshooting-producer"></a>
+
+This section describes issues that you might encounter when using the [Producer Libraries](producer-sdk.md)\.
+
+**Topics**
++ [Cannot compile the Producer SDK](#troubleshooting-producer-compile)
++ [Video stream does not appear in the console](#troubleshooting-producer-console)
++ [Error: "Security token included in the request is invalid" when streaming data using the GStreamer demo application](#troubleshooting-producer-general-securitytoken)
++ [Error: "Failed to submit frame to Kinesis Video client"](#troubleshooting-producer-failed-frame-client)
++ [GStreamer application stops with "streaming stopped, reason not\-negotiated" message on OS X](#troubleshooting-producer-failed-stream-osx)
++ [Error: "Failed to allocate heap" when creating Kinesis Video Client in GStreamer demo on Raspberry Pi](#troubleshooting-producer-raspberrypi-heap)
++ [Error: "Illegal Instruction" when running GStreamer demo on Raspberry Pi](#troubleshooting-producer-raspberrypi-illegalinstruction)
++ [Camera fails to load on Raspberry Pi](#troubleshooting-producer-raspberrypi-camera)
++ [Camera can't be found on macOS High Sierra](#troubleshooting-producer-sierra-camera)
++ [jni\.h file not found when compiling on macOS High Sierra](#troubleshooting-producer-sierra-compile)
++ [Curl errors when running the GStreamer demo app](#troubleshooting-producer-curl)
++ [Time stamp/range assertion at run time on Raspberry Pi](#troubleshooting-producer-raspberrypi-timestamp-assert)
++ [Assertion on gst\_value\_set\_fraction\_range\_full on Raspberry Pi](#troubleshooting-producer-raspberrypi-gst-assert)
+
+### Cannot compile the Producer SDK<a name="troubleshooting-producer-compile"></a>
+
+Verify that the required libraries are in your path\. To verify this, use the following command:
+
+```
+$ env | grep LD_LIBRARY_PATH
+LD_LIBRARY_PATH=/home/local/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-native-build/downloads/local/lib
+```
+
+### Video stream does not appear in the console<a name="troubleshooting-producer-console"></a>
+
+To display your video stream in the console, it must be encoded using H\.264 in AvCC format\. If your stream is not displayed, verify the following:
++ Your [NAL Adaptation Flags](producer-reference-nal.md) are set to `NAL_ADAPTATION_ANNEXB_NALS | NAL_ADAPTATION_ANNEXB_CPD_NALS` if the original stream is in Annex\-B format\. This is the default value in the `StreamDefinition` constructor\.
++ You are providing the codec private data correctly\. For H\.264, this is the sequence parameter set \(SPS\) and picture parameter set \(PPS\)\. Depending on your media source, this data may be retrieved from the media source separately or encoded into the frame\.
+
+  Many elementary streams are in the following format, where `Ab` is the Annex\-B start code \(001 or 0001\):
+
+  ```
+  Ab(Sps)Ab(Pps)Ab(I-frame)Ab(P/B-frame) Ab(P/B-frame)…. Ab(Sps)Ab(Pps)Ab(I-frame)Ab(P/B-frame) Ab(P/B-frame)
+  ```
+
+  The CPD \(Codec Private Data\) which in the case of H\.264 is in the stream as SPS and PPS, can be adapted to the AvCC format\. Unless the media pipeline gives the CPD separately, the application can extract the CPD from the frame by looking for the first Idr frame \(which should contain the SPS/PPS\), extract the two NALUs \[which will be Ab\(Sps\)Ab\(Pps\)\] and set it in the CPD in `StreamDefinition`\.
+
+### Error: "Security token included in the request is invalid" when streaming data using the GStreamer demo application<a name="troubleshooting-producer-general-securitytoken"></a>
+
+If this error occurs, there is an issue with your credentials\. Verify the following:
++ If you are using temporary credentials, you must specify the session token\.
++ Verify that your temporary credentials are not expired\.
++ Verify that you have the proper rights set up\.
++ On macOS, verify that you do not have credentials cached in Keychain\.
+
+### Error: "Failed to submit frame to Kinesis Video client"<a name="troubleshooting-producer-failed-frame-client"></a>
+
+If this error occurs, the time stamps are not properly set in the source stream\. Try the following:
++ Use the latest SDK sample, which might have an update that fixes your issue\.
++ Set the high\-quality stream to a higher bit rate, and fix any jitter in the source stream if the camera supports doing so\.
+
+### GStreamer application stops with "streaming stopped, reason not\-negotiated" message on OS X<a name="troubleshooting-producer-failed-stream-osx"></a>
+
+Streaming may stop on OS X with the following message:
+
+```
+Debugging information: gstbasesrc.c(2939): void gst_base_src_loop(GstPad *) (): /GstPipeline:test-pipeline/GstAutoVideoSrc:source/GstAVFVideoSrc:source-actual-src-avfvide:
+streaming stopped, reason not-negotiated (-4)
+```
+
+A possible workaround for this is to remove the framerate parameters from the `gst_caps_new_simple` call in `kinesis_video_gstreamer_sample_app.cpp`:
+
+```
+GstCaps *h264_caps = gst_caps_new_simple("video/x-h264",
+                                             "profile", G_TYPE_STRING, "baseline",
+                                             "stream-format", G_TYPE_STRING, "avc",
+                                             "alignment", G_TYPE_STRING, "au",
+                                             "width", GST_TYPE_INT_RANGE, 320, 1920,
+                                             "height", GST_TYPE_INT_RANGE, 240, 1080,
+                                             "framerate", GST_TYPE_FRACTION_RANGE, 0, 1, 30, 1,
+                                             NULL);
+```
+
+### Error: "Failed to allocate heap" when creating Kinesis Video Client in GStreamer demo on Raspberry Pi<a name="troubleshooting-producer-raspberrypi-heap"></a>
+
+The GStreamer sample application tries to allocate 512 MB of RAM, which might not be available on your system\. You can reduce this allocation by reducing the following value in `KinesisVideoProducer.cpp`:
+
+```
+device_info.storageInfo.storageSize = 512 * 1024 * 1024;
+```
+
+### Error: "Illegal Instruction" when running GStreamer demo on Raspberry Pi<a name="troubleshooting-producer-raspberrypi-illegalinstruction"></a>
+
+If you encounter the following error when executing the GStreamer demo, ensure that you have compiled the application for the correct version of your device\. \(For example, ensure that you are not compiling for Raspberry Pi 3 when you are running on Raspberry Pi 2\.\)
+
+```
+INFO - Initializing curl.
+Illegal instruction
+```
+
+### Camera fails to load on Raspberry Pi<a name="troubleshooting-producer-raspberrypi-camera"></a>
+
+To check whether the camera is loaded, run the following:
+
+```
+$ ls /dev/video*
+```
+
+If nothing is found, run the following:
+
+```
+$ vcgencmd get_camera
+```
+
+The output should look similar to the following:
+
+```
+supported=1 detected=1
+```
+
+If the driver does not detect the camera, do the following:
+
+1. Check the physical camera setup and verify that it's connected properly\.
+
+1. Run the following to upgrade the firmware:
+
+   ```
+   $ sudo rpi-update
+   ```
+
+1. Restart the device\.
+
+1. Run the following to load the driver:
+
+   ```
+   $ sudo modprobe bcm2835-v4l2
+   ```
+
+1. Verify that the camera was detected:
+
+   ```
+   $ ls /dev/video*
+   ```
+
+### Camera can't be found on macOS High Sierra<a name="troubleshooting-producer-sierra-camera"></a>
+
+On macOS High Sierra, the demo application can't find the camera if more than one camera is available\.
+
+### jni\.h file not found when compiling on macOS High Sierra<a name="troubleshooting-producer-sierra-compile"></a>
+
+To resolve this error, update your installation of Xcode to the latest version\.
+
+### Curl errors when running the GStreamer demo app<a name="troubleshooting-producer-curl"></a>
+
+To resolve curl errors when you run the GStreamer demo application, copy [this certificate file](https://www.amazontrust.com/repository/SFSRootCAG2.pem) to `/etc/ssl/cert.pem`\.
+
+### Time stamp/range assertion at run time on Raspberry Pi<a name="troubleshooting-producer-raspberrypi-timestamp-assert"></a>
+
+If a time stamp range assertion occurs at run time, update the firmware and restart the device:
+
+```
+$ sudo rpi-update 
+$ sudo reboot
+```
+
+### Assertion on gst\_value\_set\_fraction\_range\_full on Raspberry Pi<a name="troubleshooting-producer-raspberrypi-gst-assert"></a>
+
+The following assertion appears if the `uv4l` service is running: 
+
+```
+gst_util_fraction_compare (numerator_start, denominator_start, numerator_end, denominator_end) < 0' failed
+```
+
+If this occurs, stop the `uv4l` service and restart the application\.
+
+## Troubleshooting Stream Parser Library Issues<a name="troubleshooting-parser"></a>
+
+This section describes issues that you might encounter when using the [Stream Parser Library](parser-library.md)\.
+
+**Topics**
++ [Cannot access a single frame from the stream](#troubleshooting-parser-frame)
++ [Fragment decoding error](#troubleshooting-parser-fragment)
+
+### Cannot access a single frame from the stream<a name="troubleshooting-parser-frame"></a>
+
+To access a single frame from a streaming source in your consumer application, ensure that your stream contains the correct codec private data\. For information about the format of the data in a stream, see [Data Model](how-data.md)\. 
+
+To learn how to use codec private data to access a frame, see the following test file on the GitHub website: [KinesisVideoRendererExampleTest\.java](https://github.com/aws/amazon-kinesis-video-streams-parser-library/blob/master/src/test/java/com/amazonaws/kinesisvideo/parser/examples/KinesisVideoRendererExampleTest.java)
+
+### Fragment decoding error<a name="troubleshooting-parser-fragment"></a>
+
+If your fragments are not properly encoded in an H\.264 format and level that the browser supports, you might see the following error when playing your stream in the console:
+
+```
+Fragment Decoding Error
+There was an error decoding the video data. Verify that the stream contains valid H.264 content
+```
+
+If this occurs, verify the following:
++ The resolution of the frames matches the resolution specified in the Codec Private Data\.
++ The H\.264 profile and level of the encoded frames matches the profile and level specified in the Codec Private Data\.
++ The browser supports the profile/level combination\. Most current browsers support all profile and level combinations\.
++ The time stamps are accurate and in the correct order, and no duplicate time stamps are being created\.
++ Your application is encoding the frame data using the H\.264 format\.
