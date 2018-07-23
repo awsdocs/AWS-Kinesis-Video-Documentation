@@ -2,13 +2,15 @@
 
 The following table describes the important changes to the documentation since the last release of Amazon Kinesis Video Streams\.
 + **Latest API version:** 2017\-11\-29
-+ **Latest documentation update:** June 20, 2018
++ **Latest documentation update:** July 18, 2018
 
 
 ****  
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+| C\+\+ Producer SDK Logging | How to configure logging for C\+\+ Producer SDK applications\. For more information, see [Using Logging with the C\+\+ Producer SDK](producer-sdk-cpp-logging.md)\. | July 18, 2018 | 
+| HLS video streaming | You can now view a Kinesis video stream using HTTP Live Streaming\. For more information, see [Kinesis Video Streams Playback with HLS](how-hls.md)\. | July 13, 2018 | 
 | Streaming from an RTSP Source | Sample application for Kinesis Video Streams that runs in a Docker container and streams video from an RTSP source\. For more information, see [RTSP and Docker](examples-rtsp.md)\. | June 20, 2018 | 
 | C\+\+ Producer SDK GStreamer Plugin | Shows how to build the [C\+\+ Producer Library](producer-sdk-cpp.md) to use as a GStreamer destination\. For more information, see [GStreamer Plugin](examples-gstreamer-plugin.md)\. | June 15, 2018 | 
 | Producer SDK callbacks reference documentation | Reference documentation for the callbacks used by the [Kinesis Video Streams Producer Libraries](producer-sdk.md)\. For more information, see [Producer SDK Callbacks](producer-reference-callbacks.md)\. | June 12, 2018 | 

@@ -2,6 +2,7 @@
 
 **Topics**
 + [Kinesis Video Streams API and Producer Libraries Support](how-it-works-kinesis-video-api-producer-sdk.md)
++ [Kinesis Video Streams Playback with HLS](how-hls.md)
 + [Controlling Access to Kinesis Video Streams Resources Using IAM](how-iam.md)
 + [Using Server\-Side Encryption with Kinesis Video Streams](how-kms.md)
 + [Kinesis Video Streams Data Model](how-data.md)

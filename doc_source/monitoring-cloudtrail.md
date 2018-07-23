@@ -59,7 +59,7 @@ The following is an example CloudTrail log entry\.
 		"deviceName": "my-device"
       		},
             "responseElements": {
-		"streamARN":arn:aws:kinesisvideo:us-east-1:123456789012:stream/VideoStream/12345”
+		"streamARN":arn:aws:kinesisvideo:us-east-1:123456789012:stream/VideoStream/12345"
              },
             "requestID": "db6c59f8-c757-11e3-bc3b-57923b443c1c",
             "eventID": "b7acfcd0-6ca9-4ee1-a3d7-c4e8d420d99b"
@@ -75,7 +75,7 @@ The following is an example CloudTrail log entry\.
                 "userName": "Alice"
             },
             "eventTime": "2018-05-25:17:06Z",
-            "eventSource": " kinesisvideo.amazonaws.com”,
+            "eventSource": " kinesisvideo.amazonaws.com",
             "eventName": "DeleteStream",
             "awsRegion": "us-east-1",
             "sourceIPAddress": "127.0.0.1",
@@ -99,7 +99,7 @@ The following is an example CloudTrail log entry\.
                 "userName": "Alice"
             },
             "eventTime": "2014-04-19T00:15:02Z",
-            "eventSource": " kinesisvideo.amazonaws.com”,
+            "eventSource": " kinesisvideo.amazonaws.com",
             "eventName": "DescribeStream",
             "awsRegion": "us-east-1",
             "sourceIPAddress": "127.0.0.1",
@@ -154,7 +154,7 @@ The following is an example CloudTrail log entry\.
             "userAgent": "aws-sdk-java/unknown-version Linux/x.xx",
             "requestParameters": {
                 "maxResults": 100, 
-                "streamNameCondition": {"comparisonValue":"MyVideoStream” comparisonOperator":"BEGINS_WITH"}}
+                "streamNameCondition": {"comparisonValue":"MyVideoStream" comparisonOperator":"BEGINS_WITH"}}
             }, 
             "responseElements": null,
             "requestID": "e9f9c8eb-c757-11e3-bf1d-6948db3cd570",

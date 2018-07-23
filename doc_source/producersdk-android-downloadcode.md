@@ -55,7 +55,7 @@ For prerequisites and other details about this example, see [Using the Android P
    try {
      mKinesisVideoClient = KinesisVideoAndroidClientFactory.createKinesisVideoClient(
      getActivity(),
-     Regions.US_WEST_2,
+     KinesisVideoDemoApp.KINESIS_VIDEO_REGION,
      KinesisVideoDemoApp.getCredentialsProvider());
    ```
 

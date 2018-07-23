@@ -24,10 +24,10 @@ kinesis_video_producer_ = KinesisVideoProducer::createSync(move(device_provider_
 The `createSync` method takes the following parameters:
 + A `DeviceInfoProvider` object, which returns a `DeviceInfo` object containing information about the device or storage configuration\.
 **Note**  
-You configure your content store size using the `deviceInfo.storageInfo.storageSize` parameter\. Your content streams share the content store\. To determine your storage size requirement, multiply the average frame size by the number of frames stored for the max duration for all the streams, and then multiply by 1\.2 to account for defragmentation\. For example, if your application has the following configuration:  
+You configure your content store size using the `deviceInfo.storageInfo.storageSize` parameter\. Your content streams share the content store\. To determine your storage size requirement, multiply the average frame size by the number of frames stored for the max duration for all the streams\. Then multiply by 1\.2 to account for defragmentation\. For example, suppose that your application has the following configuration:  
 Three streams
 3 minutes of maximum duration
-Each stream is 30 fps
+Each stream is 30 frames per second \(FPS\)
 Each frame is 10,000 KB in size
 The content store requirement for this application is **3 \(streams\) \* 3 \(minutes\) \* 60 \(seconds in a minute\) \* 10000 \(kb\) \* 1\.2 \(defragmentation allowance\) = 194\.4 Mb \~ 200Mb**\.
 + A `ClientCallbackProvider` object, which returns function pointers that report client\-specific events\.
@@ -144,7 +144,7 @@ The `PClientMetrics` object filled by `getKinesisVideoMetrics` contains the foll
 + **contentStoreAllocatedSize:** The allocated memory in the content store\.
 + **totalContentViewsSize:** The total memory used for the content view\. \(The content view is a series of indices of information in the content store\.\)
 + **totalFrameRate:** The aggregate number of frames per second across all active streams\.
-+ **totalTransferRate:** The total bits per second being sent in all streams\.
++ **totalTransferRate:** The total bits per second \(bps\) being sent in all streams\.
 
 The `PStreamMetrics` object filled by `getKinesisVideoStreamMetrics` contains the following information:
 + **currentViewDuration:** The difference in 100 ns units between the head of the content view \(when frames are encoded\) and the current position \(when frame data is being sent to Kinesis Video Streams\)\.

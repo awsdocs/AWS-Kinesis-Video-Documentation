@@ -4,4 +4,4 @@
 
 In addition, using [Docker]() to create the GStreamer pipeline standardizes the operating environment for Kinesis Video Streams, which greatly simplifies building and executing the application\.
 
-For information on using the C\+\+ Producer SDK as a GStreamer plugin in a Docker container, see [Run the GStreamer Element in a Docker Container](examples-gstreamer-plugin.md#examples-gstreamer-plugin-docker)\.
+For information about using the C\+\+ Producer SDK as a GStreamer plugin in a Docker container, see [Run the GStreamer Element in a Docker Container](examples-gstreamer-plugin.md#examples-gstreamer-plugin-docker)\.

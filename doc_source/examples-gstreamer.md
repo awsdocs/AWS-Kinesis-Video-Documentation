@@ -13,7 +13,7 @@ The GStreamer example is not currently available for Windows systems\.
 
 The GStreamer example typically requires the following components, which you can install using the following commands:
 + [Automake:](https://www.gnu.org/software/automake/) `brew install automake`
-+ [Autoconf:](http://www.gnu.org/software/autoconf/autoconf.html) `brew install autoconf automake`
++ [Autoconf:](http://www.gnu.org/software/autoconf/autoconf.html) `brew install autoconf`
 + [CMake:](https://cmake.org/) `brew install cmake`
 + [GStreamer:](https://gstreamer.freedesktop.org/) `brew install gstreamer gst-plugins-base gst-plugins-bad gst-plugins-good gst-plugins-ugly`
 + [GNU Bison:](https://www.gnu.org/software/bison/) `brew install bison && brew link bison --force`

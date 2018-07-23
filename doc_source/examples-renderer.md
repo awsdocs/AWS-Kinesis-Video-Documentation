@@ -27,6 +27,10 @@ To examine and use the Renderer example library, you must have the following:
 1. Open the Java IDE that you are using \(for example, [Eclipse](http://www.eclipse.org/) or [IntelliJ IDEA](https://www.jetbrains.com/idea/)\) and import the Apache Maven project that you downloaded: 
    + **In Eclipse:** Choose **File**, **Import**, **Maven**, **Existing Maven Projects**\. Navigate to the `kinesis-video-streams-parser-lib` directory\.
    + **In IntelliJ Idea: ** Choose **Import**\. Navigate to the `pom.xml` file in the root of the downloaded package\.
+**Note**  
+You may need to do the following if IntelliJ cannot find your dependencies:   
+**Build clean:** Choose **File**, **Settings**, **Build, Execution, Deployment**, **Compiler**\. Ensure that **Clear output directory on rebuild** is checked, and then choose **Build**, **Build Project**\.\)
+**Reimport the project:** Right\-click on the project, and choose **Maven**, **Reimport**\.
 
     For more information, see the related IDE documentation\.
 

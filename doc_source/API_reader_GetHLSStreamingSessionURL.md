@@ -1,6 +1,6 @@
 # GetHLSStreamingSessionURL<a name="API_reader_GetHLSStreamingSessionURL"></a>
 
-Retrieves an HTTP Live Streaming \(HLS\) URL for the stream\. The URL can then be opened in a browser or media player to view the stream contents\.
+Retrieves an HTTP Live Streaming \(HLS\) URL for the stream\. You can then open the URL in a browser or media player to view the stream contents\.
 
 You must specify either the `StreamName` or the `StreamARN`\.
 
@@ -25,13 +25,15 @@ Don't share or store this token where an unauthorized entity could access it\. T
 
 1. The media player receives the authenticated URL and requests stream metadata and media data normally\. When the media player requests data, it calls the following actions:
    +  **GetHLSMasterPlaylist:** Retrieves an HLS master playlist, which contains a URL for the `GetHLSMediaPlaylist` action, and additional metadata for the media player, including estimated bit rate and resolution\.
-   +  **GetHLSMediaPlaylist:** Retrieves an HLS media playlist, which contains a URL to access the MP4 intitialization fragment with the `GetMP4InitFragment` action, and URLs to access the MP4 media fragments with the `GetMP4MediaFragment` actions\. The HLS media playlist also contains metadata about the stream that the player needs to play it, such as whether the `PlaybackMode` is `LIVE` or `ON_DEMAND`\. The HLS media playlist is typically static for sessions with a `PlaybackType` of `ON_DEMAND`\. The HLS media playlist is continually updated with new fragments for sessions with a `PlaybackType` of `LIVE`\.
+   +  **GetHLSMediaPlaylist:** Retrieves an HLS media playlist, which contains a URL to access the MP4 initialization fragment with the `GetMP4InitFragment` action, and URLs to access the MP4 media fragments with the `GetMP4MediaFragment` actions\. The HLS media playlist also contains metadata about the stream that the player needs to play it, such as whether the `PlaybackMode` is `LIVE` or `ON_DEMAND`\. The HLS media playlist is typically static for sessions with a `PlaybackType` of `ON_DEMAND`\. The HLS media playlist is continually updated with new fragments for sessions with a `PlaybackType` of `LIVE`\.
    +  **GetMP4InitFragment:** Retrieves the MP4 initialization fragment\. The media player typically loads the initialization fragment before loading any media fragments\. This fragment contains the "`fytp`" and "`moov`" MP4 atoms, and the child atoms that are needed to initialize the media player decoder\.
 
      The initialization fragment does not correspond to a fragment in a Kinesis video stream\. It contains only the codec private data for the stream, which the media player needs to decode video frames\.
-   +  **GetMP4MediaFragment:** Retrieves MP4 media fragments\. These fragments contain the "`moof`" and "`mdat`" MP4 atoms and their child atoms, containing the encoded fragment's video frames and their time stamps\.
+   +  **GetMP4MediaFragment:** Retrieves MP4 media fragments\. These fragments contain the "`moof`" and "`mdat`" MP4 atoms and their child atoms, containing the encoded fragment's video frames and their time stamps\. 
 **Note**  
 After the first media fragment is made available in a streaming session, any fragments that don't contain the same codec private data are excluded in the HLS media playlist\. Therefore, the codec private data does not change between fragments in a session\.
+
+     Data retrieved with this action is billable\. See [Pricing](aws.amazon.comkinesis/video-streams/pricing/) for details\.
 
 **Note**  
 The following restrictions apply to HLS sessions:  
@@ -75,7 +77,7 @@ The request accepts the following data in JSON format\.
 
  ** [DiscontinuityMode](#API_reader_GetHLSStreamingSessionURL_RequestSyntax) **   <a name="KinesisVideo-reader_GetHLSStreamingSessionURL-request-DiscontinuityMode"></a>
 Specifies when flags marking discontinuities between fragments will be added to the media playlists\. The default is `ALWAYS` when [HLSFragmentSelector](API_reader_HLSFragmentSelector.md) is `SERVER_TIMESTAMP`, and `NEVER` when it is `PRODUCER_TIMESTAMP`\.  
-Media players typically build a timeline of media content to play, based on the timestamps of each fragment\. This means that if there is any overlap between fragments \(as is typical if [HLSFragmentSelector](API_reader_HLSFragmentSelector.md) is `SERVER_TIMESTAMP`\), the media player timeline will have small gaps between fragments in some places, and will overwrite frames in other places\. When there are discontinuity flags between fragments, the media player is expected to reset the timeline, resulting in the fragment being played immediately after the previous fragment\. We recommend to always have discontinuity flags between fragments if the fragment timestamps are not accurate, or if fragments may be missing\. Discontinuity flags should not be placed between fragments for the player timeline to accurately map to the producer timestamps,\.  
+Media players typically build a timeline of media content to play, based on the time stamps of each fragment\. This means that if there is any overlap between fragments \(as is typical if [HLSFragmentSelector](API_reader_HLSFragmentSelector.md) is `SERVER_TIMESTAMP`\), the media player timeline has small gaps between fragments in some places, and overwrites frames in other places\. When there are discontinuity flags between fragments, the media player is expected to reset the timeline, resulting in the fragment being played immediately after the previous fragment\. We recommend that you always have discontinuity flags between fragments if the fragment time stamps are not accurate or if fragments might be missing\. You should not place discontinuity flags between fragments for the player timeline to accurately map to the producer time stamps\.  
 Type: String  
 Valid Values:` ALWAYS | NEVER`   
 Required: No
@@ -83,23 +85,23 @@ Required: No
  ** [Expires](#API_reader_GetHLSStreamingSessionURL_RequestSyntax) **   <a name="KinesisVideo-reader_GetHLSStreamingSessionURL-request-Expires"></a>
 The time in seconds until the requested session expires\. This value can be between 300 \(5 minutes\) and 43200 \(12 hours\)\.  
 When a session expires, no new calls to `GetHLSMasterPlaylist`, `GetHLSMediaPlaylist`, `GetMP4InitFragment`, or `GetMP4MediaFragment` can be made for that session\.  
-The default is 300 \(five minutes\)\.  
+The default is 300 \(5 minutes\)\.  
 Type: Integer  
 Valid Range: Minimum value of 300\. Maximum value of 43200\.  
 Required: No
 
  ** [HLSFragmentSelector](#API_reader_GetHLSStreamingSessionURL_RequestSyntax) **   <a name="KinesisVideo-reader_GetHLSStreamingSessionURL-request-HLSFragmentSelector"></a>
-The time range of the requested fragment, and the source of the timestamps\.  
-This parameter is required if `PlaybackMode` is `ON_DEMAND`\. This parameter is optional if `PlaybackMode` is `LIVE`\. If `PlaybackMode` is `LIVE`, the `FragmentSelectorType` can be set, but the `TimestampRange` should not be set\.  
+The time range of the requested fragment, and the source of the time stamps\.  
+This parameter is required if `PlaybackMode` is `ON_DEMAND`\. This parameter is optional if `PlaybackMode` is `LIVE`\. If `PlaybackMode` is `LIVE`, the `FragmentSelectorType` can be set, but the `TimestampRange` should not be set\. If `PlaybackMode` is `ON_DEMAND`, both `FragmentSelectorType` and `TimestampRange` must be set\.  
 Type: [HLSFragmentSelector](API_reader_HLSFragmentSelector.md) object  
 Required: No
 
  ** [MaxMediaPlaylistFragmentResults](#API_reader_GetHLSStreamingSessionURL_RequestSyntax) **   <a name="KinesisVideo-reader_GetHLSStreamingSessionURL-request-MaxMediaPlaylistFragmentResults"></a>
-The maximum number of fragments that will be returned in the HLS media playlists\.  
+The maximum number of fragments that are returned in the HLS media playlists\.  
 When the `PlaybackMode` is `LIVE`, the most recent fragments are returned up to this value\. When the `PlaybackMode` is `ON_DEMAND`, the oldest fragments are returned, up to this maximum number\.  
 When there are a higher number of fragments available in a live HLS media playlist, video players often buffer content before starting playback\. Increasing the buffer size increases the playback latency, but it decreases the likelihood that rebuffering will occur during playback\. We recommend that a live HLS media playlist have a minimum of 3 fragments and a maximum of 10 fragments\.  
-The default is 5 fragments if `PlaybackMode` is `LIVE`, and 1000 if `PlaybackMode` is `ON_DEMAND`\.   
-The maximum value of 1000 fragments corresponds to more than 16 minutes of video on streams with one\-second fragments, and more than 2 1/2 hours of video on streams with ten\-second fragments\.  
+The default is 5 fragments if `PlaybackMode` is `LIVE`, and 1,000 if `PlaybackMode` is `ON_DEMAND`\.   
+The maximum value of 1,000 fragments corresponds to more than 16 minutes of video on streams with 1\-second fragments, and more than 2 1/2 hours of video on streams with 10\-second fragments\.  
 Type: Long  
 Valid Range: Minimum value of 1\. Maximum value of 1000\.  
 Required: No
@@ -111,7 +113,7 @@ Features of the two types of session include the following:
 **Note**  
 In `LIVE` mode, the newest available fragments are included in an HLS media playlist, even if there is a gap between fragments \(that is, if a fragment is missing\)\. A gap like this might cause a media player to halt or cause a jump in playback\. In this mode, fragments are not added to the HLS media playlist if they are older than the newest fragment in the playlist\. If the missing fragment becomes available after a subsequent fragment is added to the playlist, the older fragment is not added, and the gap is not filled\.
 +  ** `ON_DEMAND` **: For sessions of this type, the HLS media playlist contains all the fragments for the session, up to the number that is specified in `MaxMediaPlaylistFragmentResults`\. The playlist must be retrieved only once for each session\. When this type of session is played in a media player, the user interface typically displays a scrubber control for choosing the position in the playback window to display\.
-In both playback modes, if there are multiple fragments with the same start time stamp, the fragment that has the larger fragment number \(that is, the newer fragment\) is included in the HLS media playlist\. The other fragments are not included\. Fragments that have different time stamps but have overlapping durations are still included in the HLS media playlist\. This can lead to unexpected behavior in the media player\.  
+In both playback modes, if `FragmentSelectorType` is `PRODUCER_TIMESTAMP`, and if there are multiple fragments with the same start time stamp, the fragment that has the larger fragment number \(that is, the newer fragment\) is included in the HLS media playlist\. The other fragments are not included\. Fragments that have different time stamps but have overlapping durations are still included in the HLS media playlist\. This can lead to unexpected behavior in the media player\.  
 The default is `LIVE`\.  
 Type: String  
 Valid Values:` LIVE | ON_DEMAND`   

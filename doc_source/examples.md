@@ -1,6 +1,7 @@
 # Amazon Kinesis Video Streams Examples<a name="examples"></a>
 
 The following code examples demonstrate how to work with the Kinesis Video Streams API:
++ [Example: Using HLS in HTML and JavaScript](how-hls.md#how-hls-ex1): Shows how to retrieve an HLS streaming session for a Kinesis video stream and play it back in a webpage\.
 + [GStreamer Plugin](examples-gstreamer-plugin.md): Shows how to build the Kinesis Video Streams Producer SDK to use as a GStreamer destination\.
 + [Example: Sending Data to Kinesis Video Streams Using the PutMedia API](examples-putmedia.md): Send data that is already in a container format \(MKV\) using the [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) API\.
 + [Example: Streaming from an RTSP Source](examples-rtsp.md): Sample application that runs in a Docker container and streams video from an RTSP source\.

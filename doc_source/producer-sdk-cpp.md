@@ -24,7 +24,7 @@ This layer exposes a set of callback interfaces, which enable it to talk to the 
 
 Kinesis Video Streams provides default implementations for these interfaces\. You can also provide your own custom implementation—for example, if you need custom networking logic or you want to expose a low storage condition to the user interface\.
 
-For more information on callbacks in the Producer Libraries, see [Producer SDK Callbacks](producer-reference-callbacks.md)\.
+For more information about callbacks in the Producer Libraries, see [Producer SDK Callbacks](producer-reference-callbacks.md)\.
 
 ## Procedure: Using the C\+\+ Producer SDK<a name="producer-sdk-cpp-using"></a>
 

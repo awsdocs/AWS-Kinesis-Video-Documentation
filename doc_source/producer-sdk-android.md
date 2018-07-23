@@ -53,7 +53,7 @@ The procedure includes the following steps:
 
   1. Open the [Amazon Cognito console](https://console.aws.amazon.com/cognito/home)\.
 
-  1. Choose **Manage Federated Identities**\.
+  1. Choose **Manage Identity Pools**\.
 
   1. Choose **Create new identity pool**\.
 

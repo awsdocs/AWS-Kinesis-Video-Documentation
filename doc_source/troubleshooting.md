@@ -5,6 +5,7 @@ Use the following information to troubleshoot common issues encountered with Ama
 **Topics**
 + [Troubleshooting General Issues](#troubleshooting-general)
 + [Troubleshooting API Issues](#troubleshooting-api)
++ [Troubleshooting HLS Issues](#troubleshooting-hls)
 + [Troubleshooting Java Issues](#troubleshooting-java)
 + [Troubleshooting Producer Library Issues](#troubleshooting-producer)
 + [Troubleshooting Stream Parser Library Issues](#troubleshooting-parser)
@@ -31,12 +32,12 @@ g_object_set(G_OBJECT (data.encoder), "bframes", 0, "key-int-max", 45, "bitrate"
 This section describes API issues that you might encounter when working with Kinesis Video Streams\.
 
 **Topics**
-+ [Error: “Unable to determine service/operation name to be authorized”](#troubleshooting-api-name-auth)
-+ [Error: “Failed to put a frame in the stream”](#troubleshooting-api-putframe)
-+ [Error: “Service closed connection before final AckEvent was received”](#troubleshooting-api-closeconnection)
++ [Error: "Unable to determine service/operation name to be authorized"](#troubleshooting-api-name-auth)
++ [Error: "Failed to put a frame in the stream"](#troubleshooting-api-putframe)
++ [Error: "Service closed connection before final AckEvent was received"](#troubleshooting-api-closeconnection)
 + [Error: "STATUS\_STORE\_OUT\_OF\_MEMORY"](#troubleshooting-api-storeoutofmemory)
 
-### Error: “Unable to determine service/operation name to be authorized”<a name="troubleshooting-api-name-auth"></a>
+### Error: "Unable to determine service/operation name to be authorized"<a name="troubleshooting-api-name-auth"></a>
 
 `GetMedia` can fail with the following error:
 
@@ -53,7 +54,7 @@ This error might occur if the endpoint is not properly specified\. When you are 
 --api-name LIST_FRAGMENTS
 ```
 
-### Error: “Failed to put a frame in the stream”<a name="troubleshooting-api-putframe"></a>
+### Error: "Failed to put a frame in the stream"<a name="troubleshooting-api-putframe"></a>
 
 `PutMedia` can fail with the following error:
 
@@ -69,7 +70,7 @@ aws kinesisvideo describe-stream --stream-name StreamName --endpoint https://Ser
 
 If the call fails, see [Troubleshooting AWS CLI Errors](http://docs.aws.amazon.com/cli/latest/userguide/troubleshooting.html) for more information\.
 
-### Error: “Service closed connection before final AckEvent was received”<a name="troubleshooting-api-closeconnection"></a>
+### Error: "Service closed connection before final AckEvent was received"<a name="troubleshooting-api-closeconnection"></a>
 
 `PutMedia` can fail with the following error:
 
@@ -88,6 +89,41 @@ The content store is out of memory.
 ```
 
 This error occurs when the content store is not allocated with sufficient size\. To increase the size of the content store, increase the value of `StorageInfo.storageSize`\. For more information, see [StorageInfo](producer-reference-structures-producer.md#producer-reference-structures-producer-storageinfo)\.
+
+## Troubleshooting HLS Issues<a name="troubleshooting-hls"></a>
+
+This section describes issues that you might encounter when using HLS with Kinesis Video Streams\.
+
+**Topics**
++ [Retrieving HLS Streaming Session URL Succeeds, but Playback Fails in Video Player](#troubleshooting-hls-playback)
++ [Latency Too High Between Producer and Player](#troubleshooting-hls-latency)
+
+### Retrieving HLS Streaming Session URL Succeeds, but Playback Fails in Video Player<a name="troubleshooting-hls-playback"></a>
+
+This situation occurs when an HLS streaming session URL can be successfully retrieved with `GetHLSStreamingSessionURL`, but the video fails to play back when the URL is provided to a video player\.
+
+To troubleshoot this situation, try the following:
++ See if the video stream will play back in the Kinesis Video Streams management console\. Consider any errors the console shows\.
++ If the fragment duration is less than one second, increase it to one second\. If the fragment duration is too short, the service might throttle the player, because it is making requests for video fragments too frequently\.
++ Verify that each HLS streaming session URL is being used by only one player\. If more than one player is using a single HLS streaming session URL, the service may receive too many requests and throttle them\.
++ Verify that all of the options you are specifying for the HLS streaming session are supported by your player\. Try different combinations of values for the following parameters: 
+  + `PlaybackMode`
+  + `FragmentSelectorType`
+  + `DiscontinuityMode`
+  + `MaxMediaPlaylistFragmentResults`
+
+### Latency Too High Between Producer and Player<a name="troubleshooting-hls-latency"></a>
+
+This situation occurs when the latency is too high from when the video is captured to when it is played in the video player\.
+
+Video is played back through HLS on a per\-fragment basis; therefore, latency can't be less than fragment duration\. Latency also includes the time needed for buffering and transferring data\. If your solution requires latency less than one second, consider using the `GetMedia` API instead\.
+
+The following parameters can be adjusted to reduce overall latency, but adjusting these parameters may also reduce video quality or increase rebuffering rate\.
++ **Fragment duration**: The fragment duration is the amount of video between divisions in the stream as controlled by the frequency of keyframes generated by the video encoder\.\. The recommended value is one second\. Having a shorter fragment duration means that less time is spent waiting for the fragment to complete before transmitting the video data to the service\. Shorter fragments are also faster for the service to process\. However, if the fragment duration is too short, the probability increases that the player will run out of content and have to stop and buffer content\. If the fragment duration is less than 500 milliseconds, the producer may create too many requests, causing the service to throttle them\.
++ **Bitrate**: A video stream with a lower bitrate takes less time to read, write, and transmit\. However, a video stream with a lower bitrate usually has a lower video quality\.
++ **Fragment count in media playlists**: A latency\-sensitive player should only load the newest fragments in a media playlist\. Most players start at the oldest fragment instead\. By reducing the number of fragments in the playlist, you reduce the time separation between the old and new fragments\. With a smaller playlist size, it is possible for a fragment to be skipped during playback, if there is a delay in adding new fragments to the playlist, or if there is a delay in the player getting an updated playlist\. We recommend using 3\-5 fragments, and to use a player that is configured to load only the newest fragments from a playlist\. 
++ **Player buffer size**: Most video players have a configurable minimum buffer duration, usually with a 10 second default\. For the lowest latency, you can set this value to 0 seconds, but doing so means that the player will rebuffer if there is any delay producing fragments, as the player will have no buffer for absorbing the delay\.
++ **Player "catch up"**: Video players typically do not automatically catch playback up to the front of the video buffer if the buffer fills up, such as when a delayed fragment causes a backlog of fragments to play\. A custom player can avoid this by either dropping frames, or increasing the playback speed \(e\.g\. to 1\.1x\) to catch up to the front of the buffer\. This will cause playback to be choppy or increase in speed as the player catches up, and rebuffering may be more frequent as the buffer size is kept short\.
 
 ## Troubleshooting Java Issues<a name="troubleshooting-java"></a>
 

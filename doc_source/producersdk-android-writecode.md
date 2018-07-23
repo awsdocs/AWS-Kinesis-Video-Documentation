@@ -16,7 +16,7 @@ You create the `KinesisVideoClient` object by calling the `createKinesisVideoCli
 ```
 mKinesisVideoClient = KinesisVideoAndroidClientFactory.createKinesisVideoClient(
                     getActivity(),
-                    Regions.US_WEST_2,
+                    KinesisVideoDemoApp.KINESIS_VIDEO_REGION,
                     KinesisVideoDemoApp.getCredentialsProvider());
 ```
 

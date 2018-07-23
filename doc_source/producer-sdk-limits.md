@@ -2,6 +2,9 @@
 
 The following table contains the current limits for values in the [Producer Libraries](producer-sdk.md)\.
 
+**Note**  
+Before setting these values, you must validate your inputs\. The SDK doesn't validate these limits, and a runtime error occurs if the limits are exceeded\.
+
 
 ****  
 
