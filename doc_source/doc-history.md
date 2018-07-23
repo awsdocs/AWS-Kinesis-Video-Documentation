@@ -1,7 +1,7 @@
-# Document History for Amazon Kinesis Video Streams<a name="doc-history"></a>
+# Document History for Amazon Kinesis Data Analytics<a name="doc-history"></a>
 
-The following table describes the important changes to the documentation since the last release of Amazon Kinesis Video Streams\.
-+ **Latest API version:** 2017\-11\-29
+The following table describes the important changes to the documentation since the last release of Amazon Kinesis Data Analytics\.
++ **API version: 2015\-08\-14** 
 + **Latest documentation update:** July 18, 2018
 
 
@@ -9,20 +9,20 @@ The following table describes the important changes to the documentation since t
 
 | Change | Description | Date | 
 | --- | --- | --- | 
-| C\+\+ Producer SDK Logging | How to configure logging for C\+\+ Producer SDK applications\. For more information, see [Using Logging with the C\+\+ Producer SDK](producer-sdk-cpp-logging.md)\. | July 18, 2018 | 
-| HLS video streaming | You can now view a Kinesis video stream using HTTP Live Streaming\. For more information, see [Kinesis Video Streams Playback with HLS](how-hls.md)\. | July 13, 2018 | 
-| Streaming from an RTSP Source | Sample application for Kinesis Video Streams that runs in a Docker container and streams video from an RTSP source\. For more information, see [RTSP and Docker](examples-rtsp.md)\. | June 20, 2018 | 
-| C\+\+ Producer SDK GStreamer Plugin | Shows how to build the [C\+\+ Producer Library](producer-sdk-cpp.md) to use as a GStreamer destination\. For more information, see [GStreamer Plugin](examples-gstreamer-plugin.md)\. | June 15, 2018 | 
-| Producer SDK callbacks reference documentation | Reference documentation for the callbacks used by the [Kinesis Video Streams Producer Libraries](producer-sdk.md)\. For more information, see [Producer SDK Callbacks](producer-reference-callbacks.md)\. | June 12, 2018 | 
-| System requirements | Documentation for memory and storage requirements for producer devices and SDK\. For more information, see [Kinesis Video Streams System Requirements](system-requirements.md)\. | May 30, 2018 | 
-| CloudTrail support | Documentation for using CloudTrail to monitor API usage\. For more information, see [Logging Kinesis Video Streams API Calls with AWS CloudTrail](monitoring-cloudtrail.md)\. | May 24, 2018 | 
-| Producer SDK structures reference documentation | Reference documentation for the structures used by the [Kinesis Video Streams Producer Libraries](producer-sdk.md)\. For more information, see [Producer SDK Structures](producer-reference-structures-producer.md) and [Kinesis Video Stream Structures](producer-reference-structures-stream.md)\. | May 7, 2018 | 
-| Renderer example documentation | Documentation for the Renderer example application, which shows how to decode and display frames from a Kinesis video stream\. For more information, see [Example: Parsing and Rendering Kinesis Video Streams Fragments](examples-renderer.md)\. | Mar 15, 2018 | 
-| Producer SDK Limits reference documentation | Information about limits for operations in the [C\+\+ Producer Library](producer-sdk-cpp.md)\. For more information, see [Producer SDK Limits](producer-sdk-limits.md)\. | Mar 13, 2018 | 
-| C\+\+ Producer SDK for Raspberry Pi | Procedure for setting up and running the [C\+\+ Producer Library](producer-sdk-cpp.md) on a Raspberry Pi device\. For more information, see [Using the C\+\+ Producer SDK on Raspberry Pi](producersdk-cpp-rpi.md)\. | Mar 13, 2018 | 
-| Monitoring | Information about monitoring Kinesis Video Streams metrics and API calls using Amazon CloudWatch and AWS CloudTrail\. For more information, see [Monitoring Kinesis Video Streams](monitoring.md)\. | February 5, 2018 | 
-| Network Abstraction Layer \(NAL\) adaptation flag reference | Information about setting NAL adaptation flags when consuming streaming video\. For more information, see [NAL Adaptation Flags](producer-reference-nal.md)\. | January 15, 2018 | 
-| Android support for streaming video | Kinesis Video Streams now supports streaming video from Android devices\. For more information, see [Android Producer Library](producer-sdk-android.md)\. | January 12, 2018 | 
-| Kinesis Video example documentation | Documentation for the Kinesis Video example application, which shows how to use the [Kinesis Video Stream Parser Library](parser-library.md) in an application\. For more information, see [KinesisVideoExample](parser-library-write.md#parser-library-write-example)\. | January 9, 2018 | 
-| GStreamer example documentation | Documentation for the GStreamer example application that is included in the C\+\+ Producer SDK\. For more information, see [Example: Using GStreamer with Kinesis Video Streams](examples-gstreamer.md)\. | January 5, 2018 | 
-| Kinesis Video Streams documentation released | This is the initial release of the Amazon Kinesis Video Streams Developer Guide\. | November 29, 2017 | 
+| Kinesis Data Analytics available in Frankfurt region | Kinesis Analytics is now available in the EU \(Frankfurt\) Region region\. For more information, see [AWS Regions and Endpoints: Kinesis Data Analytics](http://docs.aws.amazon.com/general/latest/gr/rande.html#ka_region)\. | July 18, 2018 | 
+| Use reference data in the console | You can now work with application reference data in the console\. For more information, see [Example: Adding Reference Data to a Kinesis Data Analytics Application](app-add-reference-data.md) \. | July 13, 2018 | 
+| Windowed query examples | Example applications for windows and aggregation\. For more information, see [Examples: Windows and Aggregation](examples-window.md) \. | July 9, 2018 | 
+| Testing applications | Guidance on testing changes to application schema and code\. For more information, see [Testing Applications](best-practices.md#bp-testing) \. | July 3, 2018 | 
+| Example applications for preprocessing data | Additional code samples for REGEX\_LOG\_PARSE, REGEX\_REPLACE, and DateTime operators\. For more information, see [Examples: Transforming Data](examples-transforming.md) \. | May 18, 2018 | 
+| Increase in size of returned rows and SQL code | The limit for the size for a returned row is increased to 512 KB, and the limit for the size of the SQL code in an application is increased to 100 KB\. For more information, see [Limits](limits.md)\. | May 2, 2018 | 
+| AWS Lambda function examples in Java and \.NET | Code samples for creating Lambda functions for preprocessing records and for application destinations\. For more information, see [Creating Lambda Functions for Preprocessing](lambda-preprocessing-functions.md) and [Creating Lambda Functions for Application Destinations](how-it-works-output-lambda-functions.md)\. | March 22, 2018 | 
+| New HOTSPOTS function | Locate and return information about relatively dense regions in your data\. For more information, see [Example: Detecting Hotspots on a Stream \(HOTSPOTS Function\)](app-hotspots-detection.md)\. | March 19, 2018 | 
+| Lambda function as a destination | Send analytics results to a Lambda function as a destination\. For more information, see [Using a Lambda Function as Output](how-it-works-output-lambda.md)\. | December 20, 2017 | 
+| New RANDOM\_CUT\_FOREST\_WITH\_EXPLANATION function | Get an explanation of what fields contribute to an anomaly score in a data stream\. For more information, see [Example: Detecting Data Anomalies and Getting an Explanation \(RANDOM\_CUT\_FOREST\_WITH\_EXPLANATION Function\)](app-anomaly-detection-with-explanation.md)\. | November 2, 2017 | 
+| Schema discovery on static data | Run schema discovery on static data stored in an Amazon S3 bucket\. For more information, see [Using the Schema Discovery Feature on Static Data](sch-dis-ref.md)\. | October 6, 2017 | 
+| Lambda preprocessing feature | Preprocess records in an input stream with AWS Lambda before analysis\. For more information, see [Preprocessing Data Using a Lambda Function](lambda-preprocessing.md)\. | October 6, 2017 | 
+| Auto scaling applications | Automatically increase the data throughput of your application with auto scaling\. For more information, see [Automatically Scaling Applications to Increase Throughput](how-it-works-autoscaling.md)\. | September 13, 2017 | 
+| Multiple in\-application input streams | Increase application throughput with multiple in\-application streams\. For more information, see [Parallelizing Input Streams for Increased Throughput](input-parallelism.md)\. | June 29, 2017 | 
+| Guide to using the AWS Management Console for Kinesis Data Analytics | Edit an inferred schema and SQL code using the schema editor and SQL editor in the Kinesis Data Analytics console\. For more information, see [Step 4 \(Optional\) Edit the Schema and SQL Code Using the Console](console-feature-summary.md)\. | April 7, 2017 | 
+| Public release | Public release of the Amazon Kinesis Data Analytics Developer Guide\. | August 11, 2016 | 
+| Preview release | Preview release of the Amazon Kinesis Data Analytics Developer Guide\. | January 29, 2016 | 
