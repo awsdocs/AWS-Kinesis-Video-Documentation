@@ -1,6 +1,6 @@
 # Example: Parsing and Rendering Kinesis Video Streams Fragments<a name="examples-renderer"></a>
 
-The [Stream Parser Library](parser-library.md) contains a demo application named `KinesisVideoRendererExample` that demonstrates parsing and rendering Amazon Kinesis video stream fragments\. The example uses [JCodec](http://jcodec.org/) to decode the H\.264 encoded frames that are ingested using the [Example: Using GStreamer with Kinesis Video Streams](examples-gstreamer.md) application\. After the frame is decoded using JCodec, the visible image is rendered using [JFrame](https://docs.oracle.com/javase/7/docs/api/javax/swing/JFrame.html)\. 
+The [Stream Parser Library](parser-library.md) contains a demo application named `KinesisVideoRendererExample` that demonstrates parsing and rendering Amazon Kinesis video stream fragments\. The example uses [JCodec](http://jcodec.org/) to decode the H\.264 encoded frames that are ingested using the [Example: Kinesis Video Streams Producer SDK GStreamer Plugin](examples-gstreamer-plugin.md) application\. After the frame is decoded using JCodec, the visible image is rendered using [JFrame](https://docs.oracle.com/javase/7/docs/api/javax/swing/JFrame.html)\. 
 
 This example shows how to do the following:
 + Retrieve frames from a Kinesis video stream using the `GetMedia` API and render the stream for viewing\.
@@ -14,7 +14,7 @@ The following procedure demonstrates how to set up and use the Renderer demo app
 
 To examine and use the Renderer example library, you must have the following:
 + An Amazon Web Services \(AWS\) account\. If you don't already have an AWS account, see [Getting Started with Kinesis Video Streams](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/getting-started.html)
-+ A Java integrated development environment \(IDE\), such as [Eclipse Java Neon](http://www.eclipse.org/downloads/packages/eclipse-ide-java-and-dsl-developers/neon3) or [JetBrains IntelliJ Idea](https://www.jetbrains.com/idea/download/)\.
++ A Java integrated development environment \(IDE\), such as [Eclipse Java Neon](https://www.eclipse.org/downloads/packages/release/neon/3/eclipse-jee-neon-3) or [JetBrains IntelliJ Idea](https://www.jetbrains.com/idea/download/)\.
 
 ## Running the Renderer Example<a name="examples-renderer-procedure"></a>
 

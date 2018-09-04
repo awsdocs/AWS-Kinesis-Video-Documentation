@@ -7,7 +7,7 @@ You must specify either the `StreamName` or the `StreamARN`\.
 An Amazon Kinesis video stream has the following requirements for providing data through HLS:
 + The media type must be `video/h264`\.
 + Data retention must be greater than 0\.
-+ The fragments must contain codec private data in the AVC \(Advanced Video Coding\) for H\.264 format \([MPEG\-4 specification ISO/IEC 14496\-15](https://www.iso.org/standard/55980.html)\)\. For information about adapting stream data to a given format, see [NAL Adaptation Flags](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/latest/dg/producer-reference-nal.html)\.
++ The fragments must contain codec private data in the AVC \(Advanced Video Coding\) for H\.264 format \([MPEG\-4 specification ISO/IEC 14496\-15](https://www.iso.org/standard/55980.html)\)\. For information about adapting stream data to a given format, see [NAL Adaptation Flags](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-reference-nal.html)\.
 
 Kinesis Video Streams HLS sessions contain fragments in the fragmented MPEG\-4 form \(also called fMP4 or CMAF\), rather than the MPEG\-2 form \(also called TS chunks, which the HLS specification also supports\)\. For more information about HLS fragment types, see the [HLS specification](https://tools.ietf.org/html/draft-pantos-http-live-streaming-23)\.
 
@@ -33,7 +33,7 @@ Don't share or store this token where an unauthorized entity could access it\. T
 **Note**  
 After the first media fragment is made available in a streaming session, any fragments that don't contain the same codec private data are excluded in the HLS media playlist\. Therefore, the codec private data does not change between fragments in a session\.
 
-     Data retrieved with this action is billable\. See [Pricing](aws.amazon.comkinesis/video-streams/pricing/) for details\.
+     Data retrieved with this action is billable\. See [Pricing](https://aws.amazon.com/kinesis/video-streams/pricing/) for details\.
 
 **Note**  
 The following restrictions apply to HLS sessions:  

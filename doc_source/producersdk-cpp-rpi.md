@@ -1,4 +1,4 @@
-# Appendix: Using the C\+\+ Producer SDK on Raspberry Pi<a name="producersdk-cpp-rpi"></a>
+# Using the C\+\+ Producer SDK on Raspberry Pi<a name="producersdk-cpp-rpi"></a>
 
 The Raspberry Pi is a small, inexpensive computer that can be used to teach and learn basic computer programming skills\. This tutorial describes how you can set up and use the Amazon Kinesis Video Streams C\+\+ Producer SDK on a Raspberry Pi device\. The steps also include how to verify the installation using the GStreamer demo application\.
 

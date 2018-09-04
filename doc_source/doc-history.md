@@ -2,17 +2,18 @@
 
 The following table describes the important changes to the documentation since the last release of Amazon Kinesis Video Streams\.
 + **Latest API version:** 2017\-11\-29
-+ **Latest documentation update:** July 18, 2018
++ **Latest documentation update:** August 30, 2018
 
 
 ****  
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+| C\+\+ Producer SDK for Windows | The C\+\+ Producer SDK is now available for Microsoft Windows\. For more information, see [Using the C\+\+ Producer SDK on Windows](producer-sdk-win.md)\. | August 30, 2018 | 
 | C\+\+ Producer SDK Logging | How to configure logging for C\+\+ Producer SDK applications\. For more information, see [Using Logging with the C\+\+ Producer SDK](producer-sdk-cpp-logging.md)\. | July 18, 2018 | 
 | HLS video streaming | You can now view a Kinesis video stream using HTTP Live Streaming\. For more information, see [Kinesis Video Streams Playback with HLS](how-hls.md)\. | July 13, 2018 | 
 | Streaming from an RTSP Source | Sample application for Kinesis Video Streams that runs in a Docker container and streams video from an RTSP source\. For more information, see [RTSP and Docker](examples-rtsp.md)\. | June 20, 2018 | 
-| C\+\+ Producer SDK GStreamer Plugin | Shows how to build the [C\+\+ Producer Library](producer-sdk-cpp.md) to use as a GStreamer destination\. For more information, see [GStreamer Plugin](examples-gstreamer-plugin.md)\. | June 15, 2018 | 
+| C\+\+ Producer SDK GStreamer Plugin | Shows how to build the [C\+\+ Producer Library](producer-sdk-cpp.md) to use as a GStreamer destination\. For more information, see [GStreamer](examples-gstreamer-plugin.md)\. | June 15, 2018 | 
 | Producer SDK callbacks reference documentation | Reference documentation for the callbacks used by the [Kinesis Video Streams Producer Libraries](producer-sdk.md)\. For more information, see [Producer SDK Callbacks](producer-reference-callbacks.md)\. | June 12, 2018 | 
 | System requirements | Documentation for memory and storage requirements for producer devices and SDK\. For more information, see [Kinesis Video Streams System Requirements](system-requirements.md)\. | May 30, 2018 | 
 | CloudTrail support | Documentation for using CloudTrail to monitor API usage\. For more information, see [Logging Kinesis Video Streams API Calls with AWS CloudTrail](monitoring-cloudtrail.md)\. | May 24, 2018 | 
@@ -24,5 +25,4 @@ The following table describes the important changes to the documentation since t
 | Network Abstraction Layer \(NAL\) adaptation flag reference | Information about setting NAL adaptation flags when consuming streaming video\. For more information, see [NAL Adaptation Flags](producer-reference-nal.md)\. | January 15, 2018 | 
 | Android support for streaming video | Kinesis Video Streams now supports streaming video from Android devices\. For more information, see [Android Producer Library](producer-sdk-android.md)\. | January 12, 2018 | 
 | Kinesis Video example documentation | Documentation for the Kinesis Video example application, which shows how to use the [Kinesis Video Stream Parser Library](parser-library.md) in an application\. For more information, see [KinesisVideoExample](parser-library-write.md#parser-library-write-example)\. | January 9, 2018 | 
-| GStreamer example documentation | Documentation for the GStreamer example application that is included in the C\+\+ Producer SDK\. For more information, see [Example: Using GStreamer with Kinesis Video Streams](examples-gstreamer.md)\. | January 5, 2018 | 
 | Kinesis Video Streams documentation released | This is the initial release of the Amazon Kinesis Video Streams Developer Guide\. | November 29, 2017 | 

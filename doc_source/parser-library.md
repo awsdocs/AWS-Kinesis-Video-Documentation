@@ -29,4 +29,4 @@ This might be unavailable in your browser if you previously signed in to the AWS
     Part of the sign\-up procedure involves receiving a phone call and entering a PIN using the phone keypad\.
 
   Note your AWS account ID because you need it for configuring programmatic access to Kinesis video streams\.
-+ A Java integrated development environment \(IDE\), such as [Eclipse Java Neon](http://www.eclipse.org/downloads/packages/eclipse-ide-java-and-dsl-developers/neon3) or [JetBrains IntelliJ Idea](https://www.jetbrains.com/idea/download/)\.
++ A Java integrated development environment \(IDE\), such as [Eclipse Java Neon](https://www.eclipse.org/downloads/packages/release/neon/3/eclipse-jee-neon-3) or [JetBrains IntelliJ Idea](https://www.jetbrains.com/idea/download/)\.

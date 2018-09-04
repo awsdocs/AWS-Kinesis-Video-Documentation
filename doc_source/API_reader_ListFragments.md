@@ -1,6 +1,8 @@
 # ListFragments<a name="API_reader_ListFragments"></a>
 
-Returns a list of [Fragment](API_reader_Fragment.md) objects from the specified stream and start location within the archived data\.
+Returns a list of [Fragment](API_reader_Fragment.md) objects from the specified stream and time stamp range within the archived data\.
+
+Listing fragments is eventually consistent\. This means that even if the producer receives an acknowledgment that a fragment is persisted, the result might not be returned immediately from a request to `ListFragments`\. However, results are typically available in less than one second\.
 
 ## Request Syntax<a name="API_reader_ListFragments_RequestSyntax"></a>
 
@@ -81,7 +83,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 The following data is returned in JSON format by the service\.
 
  ** [Fragments](#API_reader_ListFragments_ResponseSyntax) **   <a name="KinesisVideo-reader_ListFragments-response-Fragments"></a>
-A list of fragment numbers that correspond to the time stamp range provided\.  
+A list of archived [Fragment](API_reader_Fragment.md) objects from the stream that meet the selector criteria\. There is no specific guaranteed ordering of the results, even across pages\.  
 Type: Array of [Fragment](API_reader_Fragment.md) objects
 
  ** [NextToken](#API_reader_ListFragments_ResponseSyntax) **   <a name="KinesisVideo-reader_ListFragments-response-NextToken"></a>

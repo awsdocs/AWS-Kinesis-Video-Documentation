@@ -22,7 +22,7 @@ When an account\-level Streams limit is reached, or a stream\-level limit is rea
 | UpdateStream | 50 TPS \[h\] | N/A | 5 TPS \[h\] |  | 
 | ListStreams | 300 TPS \[h\] | N/A | 5 TPS \[h\] |  | 
 | DeleteStream | 50 TPS \[h\] | N/A | 5 TPS \[h\] |  | 
-| GetDataEndpoint | 300 TPS \[h\] | N/A | 5 TPS \[h\] | When combined with account limit, this implies a maximum of 60 streams can be Put to and Read from \(with 4 consumers\)\. | 
+| GetDataEndpoint | 300 TPS \[h\] | N/A | 5 TPS \[h\] | Called every 45 minutes to refresh the streaming token for most PutMedia/GetMedia use cases\. Called every 1,000 fragments for ListFragments/GetMediaForFragmentList\. Caching data endpoints is safe if the application reloads them on failure\. | 
 
 ## Media and Archived Media API limits<a name="limits-akv-data"></a>
 

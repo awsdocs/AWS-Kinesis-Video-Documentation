@@ -112,7 +112,7 @@ For more information about the format of the frame, see [Kinesis Video Streams D
 
 The C\+\+ Producer SDK includes functionality for metrics and metric logging\. 
 
-You can use the `getKinesisVideoMetrics` and `getKinesisVideoStreamMetrics` APIs to retrieve information about Kinesis Video Streams and your active streams\.
+You can use the `getKinesisVideoMetrics` and `getKinesisVideoStreamMetrics` API operations to retrieve information about Kinesis Video Streams and your active streams\.
 
 The following code is from the `kinesis-video-pic/src/client/include/com/amazonaws/kinesis/video/client/Include.h` file\.
 

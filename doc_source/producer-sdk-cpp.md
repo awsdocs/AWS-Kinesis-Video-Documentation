@@ -31,8 +31,8 @@ For more information about callbacks in the Producer Libraries, see [Producer SD
 This procedure demonstrates how to use the Kinesis Video Streams client and media sources in a C\+\+ application to send data to your Kinesis video stream\.
 
 **Note**  
-The C\+\+ library includes a sample build script for macOS\. The C\+\+ Producer Library is not currently available for Windows\.   
-To use the C\+\+ Producer Library on a Raspberry Pi device, see [Appendix: Using the C\+\+ Producer SDK on Raspberry Pi](producersdk-cpp-rpi.md)\.
+The C\+\+ library includes a sample build script for macOS\. To use the C\+\+ Producer Library on Microsoft Windows, see [Using the C\+\+ Producer SDK on Windows](producer-sdk-win.md)\.   
+To use the C\+\+ Producer Library on a Raspberry Pi device, see [ Using the C\+\+ Producer SDK on Raspberry Pi](producersdk-cpp-rpi.md)\.
 
 The procedure includes the following steps:
 + [Step 1: Download and Configure the Code](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-cpp-download.html)
@@ -123,8 +123,8 @@ The procedure includes the following steps:
   + Install OpenJDK: `sudo apt-get install openjdk-8-jdk`
 
     ```
-    $ java -showversion
-    openjdk version "1.8.0_151"
+    $ java -version
+    openjdk version "1.8.0_171"
     ```
   + Set the `JAVA_HOME` environment variable: `export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/`
   + Run the build script: `./install-script`

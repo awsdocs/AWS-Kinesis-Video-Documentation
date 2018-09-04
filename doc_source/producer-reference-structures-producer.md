@@ -8,7 +8,7 @@ This section includes information about structures that you can use to provide d
 
 ## DeviceInfo/DefaultDeviceInfoProvider<a name="producer-reference-structures-producer-deviceinfo"></a>
 
-The **DeviceInfo** and **DevaultDeviceInfoProvider** objects control the behavior of the Kinesis Video Streams Producer object\.
+The **DeviceInfo** and **DefaultDeviceInfoProvider** objects control the behavior of the Kinesis Video Streams Producer object\.
 
 ### Member Fields<a name="producer-reference-structures-producer-deviceinfo-fields"></a>
 + **version**: An integer value used to ensure that the correct version of the structure is used with the current version of the code base\. The current version is specified using the `DEVICE_INFO_CURRENT_VERSION` macro\.

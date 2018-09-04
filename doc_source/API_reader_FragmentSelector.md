@@ -2,6 +2,14 @@
 
 Describes the time stamp range and time stamp origin of a range of fragments\.
 
+Only fragments with a start time stamp greater than or equal to the given start time and less than or equal to the end time will be returned\. For example, if a stream contains fragments with the following start time stamps: 
++ 00:00:00
++ 00:00:02
++ 00:00:04
++ 00:00:06
+
+ A fragment selector range with a start time of 00:00:01 and end time of 00:00:04 would return the fragments with start times of 00:00:02 and 00:00:04\. 
+
 ## Contents<a name="API_reader_FragmentSelector_Contents"></a>
 
  **FragmentSelectorType**   <a name="KinesisVideo-Type-reader_FragmentSelector-FragmentSelectorType"></a>

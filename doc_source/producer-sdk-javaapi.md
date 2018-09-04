@@ -32,6 +32,6 @@ The Java example uses a `SystemPropertiesCredentialsProvider` object to obtain y
 + Your `NativeLibraryPath` must contain your `KinesisVideoProducerJNI` file, available at [https://github\.com/awslabs/amazon\-kinesis\-video\-streams\-producer\-sdk\-cpp](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp)\. The file name extension for this file depends on your operating system: 
   + **KinesisVideoProducerJNI\.so** for Linux
   + **KinesisVideoProducerJNI\.dylib** for macOS
-  + **KinesisVideoProducerJNI\.dll** for Windows \(not currently available\)
+  + **KinesisVideoProducerJNI\.dll** for Windows
 **Note**  
-Pre\-built libraries for macOS, Ubuntu, and Raspbian are available in `src/main/resources/lib`\. For other environments, compile the [C\+\+ Producer Library](producer-sdk-cpp.md)\.
+Pre\-built libraries for macOS, Ubuntu, Windows, and Raspbian are available in `src/main/resources/lib`\. For other environments, compile the [C\+\+ Producer Library](producer-sdk-cpp.md)\.
