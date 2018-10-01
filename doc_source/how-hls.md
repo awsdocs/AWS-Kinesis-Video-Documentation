@@ -2,11 +2,11 @@
 
 [HTTP Live Streaming \(HLS\)](https://en.wikipedia.org/wiki/HTTP_Live_Streaming) is an industry\-standard HTTP\-based media streaming communications protocol\. You can use HLS to view an Amazon Kinesis video stream, either for live playback or to view archived video\.
 
-You can view a Kinesis video stream using either HLS or the [GetMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_GetMedia.html) API\. The differences between these methods are as follows:
+You can view a Kinesis video stream using either HLS or the [GetMedia](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_GetMedia.html) API\. The differences between these methods are as follows:
 + **GetMedia**: You use the `GetMedia` API to build your own applications to process Kinesis video streams\. `GetMedia` is a real\-time API with low latency\. If you want to create a player that uses `GetMedia`, you have to build it yourself\. For information about how to develop an application that displays a Kinesis video stream using `GetMedia`, see [Stream Parser Library](parser-library.md)\.
 + **HLS**: You can use HLS for live playback\. Latency is typically between 3 and 5 seconds, but it can be between 1 and 10 seconds, depending on the use case, player, and network conditions\. You can use a third\-party player \(such as [Video\.js](https://github.com/videojs/video.js/) or [Google Shaka Player](https://github.com/google/shaka-player)\) to display the video stream by providing the HLS streaming session URL, either programmatically or manually\. You can also play back video by typing the HLS streaming session URL in the **Location** bar of the [Apple Safari](https://www.apple.com/safari/) or [Microsoft Edge](https://www.microsoft.com/en-us/windows/microsoft-edge) browsers\.
 
-To view a Kinesis video stream using HLS, you first create a streaming session using [GetHLSStreamingSessionURL](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_GetHLSStreamingSessionURL.html)\. This action returns a URL \(containing a session token\) for accessing the HLS session\. You can then use the URL in a media player or a standalone application to display the stream\. 
+To view a Kinesis video stream using HLS, you first create a streaming session using [GetHLSStreamingSessionURL](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_GetHLSStreamingSessionURL.html)\. This action returns a URL \(containing a session token\) for accessing the HLS session\. You can then use the URL in a media player or a standalone application to display the stream\. 
 
 An Amazon Kinesis video stream has the following requirements for providing video through HLS:
 + The media type must be `video/h264`\.
@@ -67,7 +67,7 @@ kinesisVideo.getDataEndpoint({
 
 ### Retrieve the HLS Streaming Session URL<a name="how-hls-ex1-session"></a>
 
-When you have the archived content endpoint, call the [GetHLSStreamingSessionURL](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_GetHLSStreamingSessionURL.html) API to retrieve the HLS streaming session URL:
+When you have the archived content endpoint, call the [GetHLSStreamingSessionURL](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_GetHLSStreamingSessionURL.html) API to retrieve the HLS streaming session URL:
 
 ```
 // Step 3: Get an HLS Streaming Session URL

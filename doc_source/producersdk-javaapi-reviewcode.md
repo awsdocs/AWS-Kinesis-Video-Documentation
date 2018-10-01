@@ -1,6 +1,6 @@
 # Step 3: Run and Verify the Code<a name="producersdk-javaapi-reviewcode"></a>
 
-To run the Java test harness for the [Java Producer library](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-javaapi.html), do the following\.
+To run the Java test harness for the [Java Producer library](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-javaapi.html), do the following\.
 
 1. Choose **DemoAppMain**\.
 

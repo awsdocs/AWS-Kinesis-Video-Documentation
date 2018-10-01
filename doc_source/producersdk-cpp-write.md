@@ -1,6 +1,6 @@
 # Step 2: Write and Examine the Code<a name="producersdk-cpp-write"></a>
 
-In this section of the [C\+\+ Producer Library procedure](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html), you examine the code in the C\+\+ test harness \(`tst/ProducerTestFixture.h` and other files\)\. You downloaded this code in the previous section\.
+In this section of the [C\+\+ Producer Library procedure](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html), you examine the code in the C\+\+ test harness \(`tst/ProducerTestFixture.h` and other files\)\. You downloaded this code in the previous section\.
 
 The **Platform Independent** C\+\+ example shows the following coding pattern:
 + Create an instance of `KinesisVideoProducer` to access Kinesis Video Streams\.
@@ -59,7 +59,7 @@ The `StreamDefinition` object has the following fields:
 + Stream name\.
 + Data retention period\.
 + Tags for the stream\. These tags can be used by consumer applications to find the correct stream, or to get more information about the stream\. The tags can also be viewed in the AWS Management Console\.
-+ AWS KMS encryption key for the stream\. For more information, see [Using Server\-Side Encryption with Kinesis Video Streams](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/how-kms.html)\.
++ AWS KMS encryption key for the stream\. For more information, see [Using Server\-Side Encryption with Kinesis Video Streams](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/how-kms.html)\.
 + Streaming type\. Currently, the only valid value is `STREAMING_TYPE_REALTIME`\.
 + Media content type\. To view the stream in the console viewer, set this value to `"video/h264"`\.
 + Media latency\. This value is not currently used, and should be set to 0\.
@@ -106,7 +106,7 @@ The `Frame` object has the following fields:
 + Size of the frame in bytes\.
 + Frame data\.
 
-For more information about the format of the frame, see [Kinesis Video Streams Data Model](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/how-data.html)\.
+For more information about the format of the frame, see [Kinesis Video Streams Data Model](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/how-data.html)\.
 
 ## Metrics and Metric Logging<a name="producersdk-cpp-write-metrics"></a>
 

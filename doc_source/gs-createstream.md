@@ -21,7 +21,7 @@ This section contains the following procedures:
 
 ## Create a Video Stream Using the AWS CLI<a name="gs-createstream-cli"></a>
 
-1. Ensure that you have the AWS CLI installed and configured\. For more information, see the [AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/) documentation\.
+1. Ensure that you have the AWS CLI installed and configured\. For more information, see the [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/) documentation\.
 
 1. Run the following `Create-Stream` command in the AWS CLI: 
 

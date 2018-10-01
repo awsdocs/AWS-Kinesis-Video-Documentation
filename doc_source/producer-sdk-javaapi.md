@@ -21,9 +21,9 @@ This procedure demonstrates how to use the Kinesis Video Streams Java Producer C
 These steps don't require you to have a media source, such as a camera or microphone\. Instead, for testing purposes, the code generates sample frames that consist of a series of bytes\. You can use the same coding pattern when you send media data from real sources such as cameras and microphones\. 
 
 The procedure includes the following steps:
-+ [Download and Configure the Code](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-javaapi-downloadcode.html)
-+ [Write and Examine the Code](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-javaapi-writecode.html)
-+ [Run and Verify the Code](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-javaapi-reviewcode.html)
++ [Download and Configure the Code](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-javaapi-downloadcode.html)
++ [Write and Examine the Code](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-javaapi-writecode.html)
++ [Run and Verify the Code](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-javaapi-reviewcode.html)
 
 ### Prerequisites<a name="producersdk-javaapi-prerequisites"></a>
 + In the sample code, you provide credentials by specifying a profile that you set up in your AWS credentials profile file\. If you haven't already done so, first set up your credentials profile\. For more information, see [ Set up AWS Credentials and Region for Development](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html) in the *AWS SDK for Java*\.

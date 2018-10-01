@@ -41,11 +41,11 @@ Server\-side encryption of Kinesis video streams is available in all the AWS Reg
 
 Server\-side encryption is always enabled on Kinesis video streams\. If a user\-provided key is not specified when the stream is created, the default key \(provided by Kinesis Video Streams\) is used\.
 
-A user\-provided AWS KMS master key must be assigned to a Kinesis video stream when it is created\. You can't later assign a different key to a stream using the [UpdateStream](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_UpdateStream.html) API\.
+A user\-provided AWS KMS master key must be assigned to a Kinesis video stream when it is created\. You can't later assign a different key to a stream using the [UpdateStream](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_UpdateStream.html) API\.
 
 You can assign a user\-provided AWS KMS master key to a Kinesis video stream in two ways:
 + When creating a Kinesis video stream in the AWS Management Console, specify the AWS KMS master key in the **Encryption** section on the **Create new Kinesis Video stream** page\.
-+ When creating a Kinesis video stream using the [CreateStream](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_CreateStream.html) API, specify the key ID in the `KmsKeyId` parameter\.
++ When creating a Kinesis video stream using the [CreateStream](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_CreateStream.html) API, specify the key ID in the `KmsKeyId` parameter\.
 
 ## Creating and Using User\-Generated AWS KMS Master Keys<a name="creating-using-sse-master-keys-akvs"></a>
 
@@ -53,7 +53,7 @@ This section describes how to create and use your own AWS KMS master keys instea
 
 ### Creating User\-Generated AWS KMS Master Keys<a name="creating-sse-master-keys-akvs"></a>
 
-For information about how to create your own master keys, see [Creating Keys](http://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\. After you create keys for your account, the Kinesis Video Streams service returns these keys in the **KMS master key** list\.
+For information about how to create your own master keys, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\. After you create keys for your account, the Kinesis Video Streams service returns these keys in the **KMS master key** list\.
 
 ### Using User\-Generated AWS KMS Master Keys<a name="using-sse-master-keys-akvs"></a>
 
@@ -68,12 +68,12 @@ If you use the provided master key \(`aws/kinesis-video`\), the key is not prese
 
 ## Permissions to Use User\-Generated AWS KMS Master Keys<a name="permissions-user-key-KMS-akvs"></a>
 
-Before you can use server\-side encryption with a user\-generated AWS KMS master key, you must configure AWS KMS key policies to allow encryption of streams and encryption and decryption of stream records\. For examples and more information about AWS KMS permissions, see [AWS KMS API Permissions: Actions and Resources Reference](http://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html)\. 
+Before you can use server\-side encryption with a user\-generated AWS KMS master key, you must configure AWS KMS key policies to allow encryption of streams and encryption and decryption of stream records\. For examples and more information about AWS KMS permissions, see [AWS KMS API Permissions: Actions and Resources Reference](https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html)\. 
 
 **Note**  
 The use of the default service key for encryption does not require application of custom IAM permissions\.
 
-Before you use user\-generated AWS KMS master keys, ensure that your Kinesis video stream producers and consumers \(IAM principals\) are users in the AWS KMS master key policy\. Otherwise, writes and reads from a stream will fail, which could ultimately result in data loss, delayed processing, or hung applications\. You can manage permissions for AWS KMS keys using IAM policies\. For more information, see [Using IAM Policies with AWS KMS](http://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html)\.
+Before you use user\-generated AWS KMS master keys, ensure that your Kinesis video stream producers and consumers \(IAM principals\) are users in the AWS KMS master key policy\. Otherwise, writes and reads from a stream will fail, which could ultimately result in data loss, delayed processing, or hung applications\. You can manage permissions for AWS KMS keys using IAM policies\. For more information, see [Using IAM Policies with AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html)\.
 
 ### Example Producer Permissions<a name="example-producer-permissions-akvs"></a>
 

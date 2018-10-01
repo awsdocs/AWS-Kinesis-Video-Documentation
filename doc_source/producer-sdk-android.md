@@ -15,9 +15,9 @@ You must perform the following steps to integrate your code with Kinesis Video S
 This procedure demonstrates how to use the Kinesis Video Streams Android Producer Client in your Android application to send data to your Kinesis video stream\. 
 
 The procedure includes the following steps:
-+ [Download and Configure the Code](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-android-downloadcode.html)
-+ [Examine the Code](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-android-writecode.html)
-+ [Run and Verify the Code](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-android-reviewcode.html)
++ [Download and Configure the Code](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-android-downloadcode.html)
++ [Examine the Code](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-android-writecode.html)
++ [Run and Verify the Code](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-android-reviewcode.html)
 
 ### Prerequisites<a name="producersdk-android-prerequisites"></a>
 + We recommend [Android Studio](https://developer.android.com/studio/index.html) for examining, editing, and running the application code\. We recommend at least version 3\.0\.0, released October 2017\.

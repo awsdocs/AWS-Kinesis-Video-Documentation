@@ -57,7 +57,7 @@ After compiling the Kinesis Video Streams Producer SDK using MinGW, follow these
   export GST_PLUGIN_PATH=$PWD
   ```
 **Note**  
-*YOUR\_ACCESS\_KEY* and *YOUR\_SECRET\_ACCESS\_KEY* are the access keys for your AWS account used for signing programmatic requests that you make to AWS\. For more information, see [Managing Access Keys for IAM Users](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)\. 
+*YOUR\_ACCESS\_KEY* and *YOUR\_SECRET\_ACCESS\_KEY* are the access keys for your AWS account used for signing programmatic requests that you make to AWS\. For more information, see [Managing Access Keys for IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)\. 
 
 #### Step 2: Run the Sample Application for Your Media Source<a name="producer-sdk-win-mingw-run-2"></a>
 

@@ -2,7 +2,7 @@
 
 In this section, you download the low\-level libraries and configure the application to use your AWS credentials\. 
 
-For prerequisites and other details about this example, see [Using the C\+\+ Producer Library](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html)\.
+For prerequisites and other details about this example, see [Using the C\+\+ Producer Library](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html)\.
 
 1. Create a directory, and then clone the example source code from the GitHub repository\. 
 

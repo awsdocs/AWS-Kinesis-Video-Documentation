@@ -35,9 +35,9 @@ The C\+\+ library includes a sample build script for macOS\. To use the C\+\+ Pr
 To use the C\+\+ Producer Library on a Raspberry Pi device, see [ Using the C\+\+ Producer SDK on Raspberry Pi](producersdk-cpp-rpi.md)\.
 
 The procedure includes the following steps:
-+ [Step 1: Download and Configure the Code](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-cpp-download.html)
-+ [Step 2: Write and Examine the Code](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-cpp-write.html)
-+ [Step 3: Run and Verify the Code](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-cpp-test.html)
++ [Step 1: Download and Configure the Code](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-cpp-download.html)
++ [Step 2: Write and Examine the Code](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-cpp-write.html)
++ [Step 3: Run and Verify the Code](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producersdk-cpp-test.html)
 
 ### Prerequisites<a name="producer-sdk-cpp-prerequisites"></a>
 + **Credentials:** In the sample code, you provide credentials by specifying a profile that you set up in your AWS credentials profile file\. If you haven't already done so, first set up your credentials profile\. 

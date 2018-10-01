@@ -35,7 +35,7 @@ The `kvssink` element has the following optional parameters\. For more informati
 | replay\-duration | The duration to roll the current reader backward to replay during an error if restarting is enabled\. | Seconds | 40 | 
 | restart\-on\-error | Whether to restart when an error occurs\. | Boolean | true | 
 | retention\-period | The length of time the stream is preserved\. | Hours | 2 | 
-| rotation\-period | The key rotation period\. For more information, see [Rotating Customer Master Keys](http://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html)\. | Seconds | 2400 | 
+| rotation\-period | The key rotation period\. For more information, see [Rotating Customer Master Keys](https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html)\. | Seconds | 2400 | 
 | streaming\-type | The streaming type\. Valid values include: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/examples-gstreamer-plugin-parameters.html) | Enum GstKvsSinkStreamingType | 0: real time | 
 | timecode\-scale | The MKV timecode scale\. | Milliseconds | 1 | 
 | track\-name | The MKV track name\. | String | "kinesis\_video" | 

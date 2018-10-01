@@ -1,8 +1,8 @@
 # Step 3: Run and Verify the Code<a name="producersdk-cpp-test"></a>
 
-To run and verify the code for the [C\+\+ Producer Library procedure](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html), do the following:
+To run and verify the code for the [C\+\+ Producer Library procedure](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html), do the following:
 
-1. See [Prerequisites](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html#producer-sdk-cpp-prerequisites) for credential, certificate, and build requirements\.
+1. See [Prerequisites](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html#producer-sdk-cpp-prerequisites) for credential, certificate, and build requirements\.
 
 1. Build the project by using the `/kinesis-video-native-build/install-script` script\. Running the install script installs the following open source dependencies:
    + [curl lib](https://curl.haxx.se/docs/copyright.html)

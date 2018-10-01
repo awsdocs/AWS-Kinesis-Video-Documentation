@@ -1,6 +1,6 @@
 # Step 2: Examine the Code<a name="producersdk-android-writecode"></a>
 
-In this section of the [Android Producer Library procedure](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-android.html), you examine the example code\. 
+In this section of the [Android Producer Library procedure](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-android.html), you examine the example code\. 
 
 The Android test application \(`AmazonKinesisVideoDemoApp`\) shows the following coding pattern:
 + Create an instance of `KinesisVideoClient`\.

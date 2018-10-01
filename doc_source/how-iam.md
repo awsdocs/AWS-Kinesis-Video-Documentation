@@ -4,8 +4,8 @@ By using AWS Identity and Access Management \(IAM\) with Amazon Kinesis Video St
 
 For more information about IAM, see the following:
 + [AWS Identity and Access Management \(IAM\)](https://aws.amazon.com/iam/)
-+ [Getting Started](http://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started.html)
-+ [IAM User Guide](http://docs.aws.amazon.com/IAM/latest/UserGuide/)
++ [Getting Started](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started.html)
++ [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)
 
 **Topics**
 + [Policy Syntax](#policy-syntax)
@@ -40,7 +40,7 @@ There are various elements that make up a statement:
 + **Resource**: The resource that's affected by the action\. To specify a resource in the statement, you need to use its Amazon Resource Name \(ARN\)\.
 + **Condition**: Conditions are optional\. They can be used to control when your policy is in effect\.
 
-As you create and manage IAM policies, you might want to use the [IAM Policy Generator](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-generator) and the [IAM Policy Simulator](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html)\.
+As you create and manage IAM policies, you might want to use the [IAM Policy Generator](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-generator) and the [IAM Policy Simulator](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html)\.
 
 ## Actions for Kinesis Video Streams<a name="kinesis-using-iam-actions"></a>
 
@@ -64,7 +64,7 @@ To specify all Kinesis Video Streams operations, use the asterisk \(\*\) wildcar
 "Action": "kinesisvideo:*"
 ```
 
-For the complete list of Kinesis Video Streams API actions, see the [http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_Reference.html](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_Reference.html)\.
+For the complete list of Kinesis Video Streams API actions, see the [https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_Reference.html](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_Reference.html)\.
 
 ## Amazon Resource Names \(ARNs\) for Kinesis Video Streams<a name="kinesis-using-iam-arn-format"></a>
 
@@ -82,7 +82,7 @@ For example:
 "Resource": arn:aws:kinesisvideo::*:111122223333:stream/my-stream/0123456789012
 ```
 
-You can get the ARN of a stream using [DescribeStream](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html)\.
+You can get the ARN of a stream using [DescribeStream](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html)\.
 
 ## Granting Other IAM Accounts Access to a Kinesis Video Stream<a name="how-iam-crossaccount"></a>
 
@@ -107,7 +107,7 @@ You might need to grant permission to other IAM accounts to perform operations o
    }
    ```
 
-For step\-by\-step instructions on granting cross\-account access, see [Delegate Access Across AWS Accounts Using IAM Roles](http://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html)\.
+For step\-by\-step instructions on granting cross\-account access, see [Delegate Access Across AWS Accounts Using IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html)\.
 
 ## Example Policies for Kinesis Video Streams<a name="how-iam-policies"></a>
 

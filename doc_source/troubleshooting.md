@@ -68,7 +68,7 @@ This error might occur if connectivity or permissions are not available to the s
 aws kinesisvideo describe-stream --stream-name StreamName --endpoint https://ServiceEndpoint.kinesisvideo.region.amazonaws.com
 ```
 
-If the call fails, see [Troubleshooting AWS CLI Errors](http://docs.aws.amazon.com/cli/latest/userguide/troubleshooting.html) for more information\.
+If the call fails, see [Troubleshooting AWS CLI Errors](https://docs.aws.amazon.com/cli/latest/userguide/troubleshooting.html) for more information\.
 
 ### Error: "Service closed connection before final AckEvent was received"<a name="troubleshooting-api-closeconnection"></a>
 

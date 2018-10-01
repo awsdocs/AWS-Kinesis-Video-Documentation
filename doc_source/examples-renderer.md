@@ -13,7 +13,7 @@ The following procedure demonstrates how to set up and use the Renderer demo app
 ## Prerequisites<a name="examples-renderer-prerequisites"></a>
 
 To examine and use the Renderer example library, you must have the following:
-+ An Amazon Web Services \(AWS\) account\. If you don't already have an AWS account, see [Getting Started with Kinesis Video Streams](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/getting-started.html)
++ An Amazon Web Services \(AWS\) account\. If you don't already have an AWS account, see [Getting Started with Kinesis Video Streams](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/getting-started.html)
 + A Java integrated development environment \(IDE\), such as [Eclipse Java Neon](https://www.eclipse.org/downloads/packages/release/neon/3/eclipse-jee-neon-3) or [JetBrains IntelliJ Idea](https://www.jetbrains.com/idea/download/)\.
 
 ## Running the Renderer Example<a name="examples-renderer-procedure"></a>

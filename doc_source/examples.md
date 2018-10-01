@@ -6,7 +6,7 @@ The following code examples demonstrate how to work with the Kinesis Video Strea
 + [GStreamer](examples-gstreamer-plugin.md): Shows how to build the Kinesis Video Streams Producer SDK to use as a GStreamer destination\.
 + [Run the GStreamer Element in a Docker Container](examples-gstreamer-plugin.md#examples-gstreamer-plugin-docker): Shows how to use a pre\-built Docker image for sending RTSP video from an IP camera to Kinesis Video Streams\.
 + [Example: Streaming from an RTSP Source](examples-rtsp.md): Shows how to build your own Docker image and send RTSP video from an IP camera to Kinesis Video Streams\.
-+ [Example: Sending Data to Kinesis Video Streams Using the PutMedia API](examples-putmedia.md): Shows how to use the [Using the Java Producer Library](producer-sdk-javaapi.md) to send data to Kinesis Video Streams that is already in a container format \(MKV\) using the [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) API\.
++ [Example: Sending Data to Kinesis Video Streams Using the PutMedia API](examples-putmedia.md): Shows how to use the [Using the Java Producer Library](producer-sdk-javaapi.md) to send data to Kinesis Video Streams that is already in a container format \(MKV\) using the [PutMedia](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) API\.
 
 ## Examples: Retrieving Data from Kinesis Video Streams<a name="examples-toc-consumer"></a>
 + [KinesisVideoExample](parser-library-write.md#parser-library-write-example): Shows how to parse and log video fragments using the Kinesis Video Streams Parser Library\.
@@ -16,7 +16,7 @@ The following code examples demonstrate how to work with the Kinesis Video Strea
 + [Example: Using HLS in HTML and JavaScript](how-hls.md#how-hls-ex1): Shows how to retrieve an HLS streaming session for a Kinesis video stream and play it back in a webpage\.
 
 ## Prerequisites<a name="examples-prerequisites"></a>
-+ In the sample code, you provide credentials by specifying a profile that you set in your AWS credentials profile file, or by providing credentials in the Java system properties of your integrated development environment \(IDE\)\. So if you haven't already done so, first set up your credentials\. For more information, see [Set up AWS Credentials and Region for Development](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)\.
++ In the sample code, you provide credentials by specifying a profile that you set in your AWS credentials profile file, or by providing credentials in the Java system properties of your integrated development environment \(IDE\)\. So if you haven't already done so, first set up your credentials\. For more information, see [Set up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)\.
 + We recommend that you use a Java IDE to view and run the code, such as one of the following:
   + [Eclipse Java Neon](https://www.eclipse.org/downloads/packages/release/neon/3/eclipse-jee-neon-3)
   + [JetBrains IntelliJ IDEA](https://www.jetbrains.com/idea/)

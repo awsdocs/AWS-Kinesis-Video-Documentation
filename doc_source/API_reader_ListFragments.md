@@ -4,6 +4,9 @@ Returns a list of [Fragment](API_reader_Fragment.md) objects from the specified 
 
 Listing fragments is eventually consistent\. This means that even if the producer receives an acknowledgment that a fragment is persisted, the result might not be returned immediately from a request to `ListFragments`\. However, results are typically available in less than one second\.
 
+**Note**  
+You must first call the `GetDataEndpoint` API to get an endpoint\. Then send the `ListFragments` requests to this endpoint using the [\-\-endpoint\-url parameter](https://docs.aws.amazon.com/cli/latest/reference/)\. 
+
 ## Request Syntax<a name="API_reader_ListFragments_RequestSyntax"></a>
 
 ```
@@ -83,7 +86,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 The following data is returned in JSON format by the service\.
 
  ** [Fragments](#API_reader_ListFragments_ResponseSyntax) **   <a name="KinesisVideo-reader_ListFragments-response-Fragments"></a>
-A list of archived [Fragment](API_reader_Fragment.md) objects from the stream that meet the selector criteria\. There is no specific guaranteed ordering of the results, even across pages\.  
+A list of archived [Fragment](API_reader_Fragment.md) objects from the stream that meet the selector criteria\. Results are in no specific order, even across pages\.  
 Type: Array of [Fragment](API_reader_Fragment.md) objects
 
  ** [NextToken](#API_reader_ListFragments_ResponseSyntax) **   <a name="KinesisVideo-reader_ListFragments-response-NextToken"></a>

@@ -2,7 +2,7 @@
 
 Describes the time stamp range and time stamp origin of a range of fragments\.
 
-Only fragments with a start time stamp greater than or equal to the given start time and less than or equal to the end time will be returned\. For example, if a stream contains fragments with the following start time stamps: 
+Only fragments with a start time stamp greater than or equal to the given start time and less than or equal to the end time are returned\. For example, if a stream contains fragments with the following start time stamps: 
 + 00:00:00
 + 00:00:02
 + 00:00:04

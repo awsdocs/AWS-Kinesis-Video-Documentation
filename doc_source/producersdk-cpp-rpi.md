@@ -20,7 +20,7 @@ Before you set up the C\+\+ Producer SDK on your Raspberry Pi, ensure that you h
   + A connected camera module\.
   + An SD card with a capacity of at least 8 GB\.
   + The Raspbian operating system \(kernel version 4\.9 or later\) installed\. You can download the latest Raspbian image from the [Raspberry Pi Foundation website](https://www.raspberrypi.org/downloads/raspbian/)\. Follow the Raspberry Pi instructions to [install the downloaded image on an SD card](https://www.raspberrypi.org/documentation/installation/installing-images/README.md)\. 
-+ An AWS account with a Kinesis video stream\. For more information, see [Getting Started with Kinesis Video Streams](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/getting-started.html)\.
++ An AWS account with a Kinesis video stream\. For more information, see [Getting Started with Kinesis Video Streams](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/getting-started.html)\.
 
 ## Create an IAM User with Permission to Write to Kinesis Video Streams<a name="producersdk-cpp-rpi-iam"></a>
 
@@ -88,7 +88,7 @@ You can use the Raspberry Pi in *headless* mode, that is, without an attached ke
 
 1. On your computer, create a file named `wpa_supplicant.conf`\.
 
-1. Copy the following text and paste it into the `wpa_supplicant.conf` file \(or download a [sample wpa\_supplicant\.conf file](https://s3-us-west-2.amazonaws.com/kinesis-video-streaming/wpa_supplicant.conf)\):
+1. Copy the following text and paste it into the `wpa_supplicant.conf` file: 
 
    ```
    country=US

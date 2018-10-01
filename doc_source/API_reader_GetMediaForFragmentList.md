@@ -2,6 +2,9 @@
 
 Gets media for a list of fragments \(specified by fragment number\) from the archived data in an Amazon Kinesis video stream\.
 
+**Note**  
+You must first call the `GetDataEndpoint` API to get an endpoint\. Then send the `GetMediaForFragmentList` requests to this endpoint using the [\-\-endpoint\-url parameter](https://docs.aws.amazon.com/cli/latest/reference/)\. 
+
 The following limits apply when using the `GetMediaForFragmentList` API:
 + A client can call `GetMediaForFragmentList` up to five times per second per stream\. 
 + Kinesis Video Streams sends media data at a rate of up to 25 megabytes per second \(or 200 megabits per second\) during a `GetMediaForFragmentList` session\. 

@@ -1,6 +1,6 @@
 # Step 3: Run and Verify the Code<a name="producersdk-android-reviewcode"></a>
 
-To run the Android example application for the [Android Producer Library](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-android.html), do the following\.
+To run the Android example application for the [Android Producer Library](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-android.html), do the following\.
 
 1. Connect to an Android device\.
 

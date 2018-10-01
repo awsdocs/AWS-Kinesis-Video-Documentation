@@ -2,7 +2,7 @@
 
 In this section of the Android Producer Library procedure, you download the Android example code and open the project in Android Studio\. 
 
-For prerequisites and other details about this example, see [Using the Android Producer Library](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-android.html)\.
+For prerequisites and other details about this example, see [Using the Android Producer Library](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-android.html)\.
 
 1. Create a directory, and then clone the AWS Android SDK from the GitHub repository\. 
 
@@ -18,9 +18,9 @@ For prerequisites and other details about this example, see [Using the Android P
 
 1. Open the `AmazonKinesisVideoDemoApp/src/main/res/raw/awsconfiguration.json` file\.
 
-   In the `CredentialsProvider` node, provide the identity pool ID from the **To set up an identity pool** procedure in the [Prerequisites](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-android.html#producersdk-android-prerequisites) section, and provide your AWS Region \(for example, **us\-west\-2**\)\.
+   In the `CredentialsProvider` node, provide the identity pool ID from the **To set up an identity pool** procedure in the [Prerequisites](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-android.html#producersdk-android-prerequisites) section, and provide your AWS Region \(for example, **us\-west\-2**\)\.
 
-   In the `CognitoUserPool` node, provide the App client secret, App client ID, and Pool ID from the **To set up a user pool** procedure in the [Prerequisites](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-android.html#producersdk-android-prerequisites) section, and provide your AWS Region \(for example, **us\-west\-2**\)\.
+   In the `CognitoUserPool` node, provide the App client secret, App client ID, and Pool ID from the **To set up a user pool** procedure in the [Prerequisites](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-android.html#producersdk-android-prerequisites) section, and provide your AWS Region \(for example, **us\-west\-2**\)\.
 
 1. Your `awsconfiguration.json` file will look similar to the following:
 
@@ -59,7 +59,7 @@ For prerequisites and other details about this example, see [Using the Android P
      KinesisVideoDemoApp.getCredentialsProvider());
    ```
 
-   For AWS region constants, see [Regions](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/regions/Regions.html)\.
+   For AWS region constants, see [Regions](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/regions/Regions.html)\.
 
 ## Next Step<a name="producersdk-android-downloadcode-next"></a>
 

@@ -132,8 +132,8 @@ This is a sample application that shows how to use the Kinesis Video Stream Pars
 
 This class performs the following operations:
 + Creates a Kinesis video stream\. If a stream with the given name already exists, the stream is deleted and recreated\.
-+ Calls [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) to stream video fragments to the Kinesis video stream\.
-+ Calls [GetMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_GetMedia.html) to stream video fragments out of the Kinesis video stream\.
++ Calls [PutMedia](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) to stream video fragments to the Kinesis video stream\.
++ Calls [GetMedia](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_GetMedia.html) to stream video fragments out of the Kinesis video stream\.
 + Uses a [StreamingMkvReader](#parser-library-write-SMSR) to parse the returned fragments on the stream, and uses a [FragmentMetadataVisitor](#parser-library-write-FMV) to log the fragments\.
 
 ### Delete and recreate the stream<a name="parser-library-write-example-create"></a>
@@ -155,7 +155,7 @@ amazonKinesisVideo.createStream(new CreateStreamRequest().withStreamName(streamN
 
 ### Call PutMedia<a name="parser-library-write-example-putmedia"></a>
 
-The following code example \(from the `PutMediaWorker.java` file\) calls [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) on the stream:
+The following code example \(from the `PutMediaWorker.java` file\) calls [PutMedia](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) on the stream:
 
 ```
  putMedia.putMedia(new PutMediaRequest().withStreamName(streamName)
@@ -168,7 +168,7 @@ The following code example \(from the `PutMediaWorker.java` file\) calls [PutMed
 
 ### Call GetMedia<a name="parser-library-write-example-getmedia"></a>
 
-The following code example \(from the `GetMediaWorker.java` file\) calls [GetMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_GetMedia.html) on the stream:
+The following code example \(from the `GetMediaWorker.java` file\) calls [GetMedia](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_GetMedia.html) on the stream:
 
 ```
 GetMediaResult result = videoMedia.getMedia(new GetMediaRequest().withStreamName(streamName).withStartSelector(startSelector));
@@ -180,7 +180,7 @@ This section describes how to use [StreamingMkvReader](#parser-library-write-SMS
 
 #### Read the output of GetMedia with StreamingMkvReader<a name="parser-library-write-example-parse-smr"></a>
 
-The following code example \(from the `GetMediaWorker.java` file\) creates a [StreamingMkvReader](#parser-library-write-SMSR) and uses it to parse the result from the [GetMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_GetMedia.html) operation:
+The following code example \(from the `GetMediaWorker.java` file\) creates a [StreamingMkvReader](#parser-library-write-SMSR) and uses it to parse the result from the [GetMedia](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_GetMedia.html) operation:
 
 ```
 StreamingMkvReader mkvStreamReader = StreamingMkvReader.createDefault(new InputStreamParserByteSource(result.getPayload()));

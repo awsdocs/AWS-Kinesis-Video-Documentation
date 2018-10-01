@@ -62,7 +62,7 @@ The `kvssink` element has the following required parameters:
 + `storage-size`: The storage size of the device in kilobytes\. For information about configuring device storage, see [StorageInfo](producer-reference-structures-producer.md#producer-reference-structures-producer-storageinfo)\.
 + `access-key`: The AWS access key that is used to access Kinesis Video Streams\. You must provide either this parameter or `credential-path`\.
 + `secret-key`: The AWS secret key that is used to access Kinesis Video Streams\. You must provide either this parameter or `credential-path`\.
-+ `credential-path`: A path to a file containing your credentials for accessing Kinesis Video Streams\. For example credential files, see [Sample Static Credential](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gstreamer-plugin/sample_static_credential) and [Sample Rotating Credential](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gstreamer-plugin/sample_rotating_credential)\. For more information on rotating credentials, see [Managing Access Keys for IAM Users](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)\. You must provide either this parameter or `access-key` and `secret-key`\.
++ `credential-path`: A path to a file containing your credentials for accessing Kinesis Video Streams\. For example credential files, see [Sample Static Credential](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gstreamer-plugin/sample_static_credential) and [Sample Rotating Credential](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gstreamer-plugin/sample_rotating_credential)\. For more information on rotating credentials, see [Managing Access Keys for IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)\. You must provide either this parameter or `access-key` and `secret-key`\.
 
 For information about `kvssink` optional parameters, see [GStreamer Element Parameter Reference](examples-gstreamer-plugin-parameters.md)\.
 
@@ -81,7 +81,7 @@ These examples demonstrate how to use a GStreamer plugin to stream video from di
 The following command creates a GStreamer pipeline on Ubuntu that streams from a network RTSP camera, using the [rtspsrc](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-rtspsrc.html) GStreamer plugin:
 
 ```
-$ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE ! rtph264depay ! video/x-h264, format=avc,alignment=au ! kvssink stream-name="YourStreamName" storage-size=512 access-key="YourAccessKey" secret-key="YourSecretKey" 
+$ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE ! rtph264depay ! video/x-h264, format=avc,alignment=au ! kvssink stream-name="YourStreamName" storage-size=512 access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
 ### Example 2: Encode and Stream Video from a USB Camera on Ubuntu<a name="examples-gstreamer-plugin-launch-ex2"></a>
@@ -89,7 +89,7 @@ $ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE !
 The following command creates a GStreamer pipeline on Ubuntu that encodes the stream from a USB camera in H\.264 format, and streams it to Kinesis Video Streams\. This example uses the [v412src](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-v4l2src.html) GStreamer plugin\.
 
 ```
-$ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480,framerate=30/1 ! x264enc  bframes=0 key-int-max=45 bitrate=500 ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink stream-name="YourStreamName" storage-size=512 access-key="YourAccessKey" secret-key="YourSecretKey" 
+$ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480,framerate=30/1 ! x264enc  bframes=0 key-int-max=45 bitrate=500 ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink stream-name="YourStreamName" storage-size=512 access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
 ### Example 3: Stream Pre\-Encoded Video from a USB Camera on Ubuntu<a name="examples-gstreamer-plugin-launch-ex3"></a>
@@ -97,7 +97,7 @@ $ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! videoconvert ! v
 The following command creates a GStreamer pipeline on Ubuntu that streams video that the camera has already encoded in H\.264 format to Kinesis Video Streams\. This example uses the [v412src](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-v4l2src.html) GStreamer plugin\.
 
 ```
-$ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! h264parse ! video/x-h264,stream-format=avc,alignment=au ! kvssink stream-name="plugin" storage-size=512 access-key="YourAccessKey" secret-key="YourSecretKey" 
+$ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! h264parse ! video/x-h264,stream-format=avc,alignment=au ! kvssink stream-name="plugin" storage-size=512 access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
 ### Example 4: Stream Video from a Network Camera on macOS<a name="examples-gstreamer-plugin-launch-ex4"></a>
@@ -105,7 +105,7 @@ $ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! h264parse ! vide
 The following command creates a GStreamer pipeline on macOS that streams video to Kinesis Video Streams from a network camera\. This example uses the [rtspsrc](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-rtspsrc.html) GStreamer plugin\.
 
 ```
-$ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE ! rtph264depay ! video/x-h264, format=avc,alignment=au ! kvssink stream-name="YourStreamName" storage-size=512 
+$ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE ! rtph264depay ! video/x-h264, format=avc,alignment=au ! kvssink stream-name="YourStreamName" storage-size=512  access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
 ### Example 5: Stream Video from a Network Camera on Windows<a name="examples-gstreamer-plugin-launch-ex5"></a>
@@ -113,7 +113,7 @@ $ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE !
 The following command creates a GStreamer pipeline on Windows that streams video to Kinesis Video Streams from a network camera\. This example uses the [rtspsrc](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-rtspsrc.html) GStreamer plugin\.
 
 ```
-$ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE ! rtph264depay ! video/x-h264, format=avc,alignment=au ! kvssink stream-name="YourStreamName" storage-size=512 
+$ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE ! rtph264depay ! video/x-h264, format=avc,alignment=au ! kvssink stream-name="YourStreamName" storage-size=512  access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
 ### Example 6: Stream Video from a Camera on Raspberry Pi<a name="examples-gstreamer-plugin-launch-ex6"></a>
@@ -121,7 +121,7 @@ $ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE !
 The following command creates a GStreamer pipeline on Raspberry Pi that streams video to Kinesis Video Streams\. This example uses the [v412src](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-v4l2src.html) GStreamer plugin\.
 
 ```
-$ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480,framerate=30/1 ! omxh264enc control-rate=1 target-bitrate=5120000 periodicity-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,width=640,height=480,framerate=30/1,profile=baseline ! kvssink stream-name="YourStreamName" frame-timestamp=dts-only access-key="YourAccessKey" secret-key="YourSecretKey"
+$ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480,framerate=30/1 ! omxh264enc control-rate=1 target-bitrate=5120000 periodicity-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,width=640,height=480,framerate=30/1,profile=baseline ! kvssink stream-name="YourStreamName" frame-timestamp=dts-only access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
 ### Example 7: Stream Video from a Camera on Raspberry Pi and Specify Region<a name="examples-gstreamer-plugin-launch-ex7"></a>
@@ -129,7 +129,7 @@ $ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! videoconvert ! v
 The following command creates a GStreamer pipeline on Raspberry Pi that streams video to Kinesis Video Streams in the US East \(N\. Virginia\) region\. This example uses the [v412src](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-v4l2src.html) GStreamer plugin\.
 
 ```
-$ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480,framerate=30/1 ! omxh264enc control-rate=1 target-bitrate=5120000 periodicity-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,width=640,height=480,framerate=30/1,profile=baseline ! kvssink stream-name="YourStreamName" frame-timestamp=dts-only access-key="YourAccessKey" secret-key="YourSecretKey" aws-region=us-east-1
+$ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480,framerate=30/1 ! omxh264enc control-rate=1 target-bitrate=5120000 periodicity-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,width=640,height=480,framerate=30/1,profile=baseline ! kvssink stream-name="YourStreamName" frame-timestamp=dts-only access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
 ## Run the GStreamer Element in a Docker Container<a name="examples-gstreamer-plugin-docker"></a>
@@ -151,7 +151,7 @@ To run GStreamer with the Kinesis Video Streams Producer SDK element as a sink i
 
 ### Authenticate your Docker Client<a name="examples-gstreamer-plugin-docker-authenticate"></a>
 
-Authenticate your Docker client to the Amazon ECR registry that you intend to pull your image from\. You must get authentication tokens for each registry used, and the tokens are valid for 12 hours\. For more information, see [Registry Authentication](http://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth) in the *Amazon Elastic Container Registry User Guide*\.
+Authenticate your Docker client to the Amazon ECR registry that you intend to pull your image from\. You must get authentication tokens for each registry used, and the tokens are valid for 12 hours\. For more information, see [Registry Authentication](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth) in the *Amazon Elastic Container Registry User Guide*\.
 
 **Example : Authenticate with Amazon ECR**  
 

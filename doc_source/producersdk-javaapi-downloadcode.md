@@ -2,7 +2,7 @@
 
 In this section of the Java Producer Library procedure, you download the Java example code, import the project into your Java IDE, and configure the library locations\. 
 
-For prerequisites and other details about this example, see [Using the Java Producer Library](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-javaapi.html)\.
+For prerequisites and other details about this example, see [Using the Java Producer Library](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-javaapi.html)\.
 
 1. Create a directory, and then clone the example source code from the GitHub repository\. 
 
@@ -34,7 +34,7 @@ For prerequisites and other details about this example, see [Using the Java Prod
            new ProfileCredentialsProvider("credentials-profile-name"););
    ```
 
-   For more information, see [ProfileCredentialsProvider](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/profile/ProfileCredentialsProvider.html#ProfileCredentialsProvider-java.lang.String-) in the *AWS SDK for Java* reference\.
+   For more information, see [ProfileCredentialsProvider](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/profile/ProfileCredentialsProvider.html#ProfileCredentialsProvider-java.lang.String-) in the *AWS SDK for Java* reference\.
 
 ## Next Step<a name="producersdk-javaapi-downloadcode-next"></a>
 

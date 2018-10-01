@@ -4,7 +4,7 @@ You can monitor a Kinesis video stream using Amazon CloudWatch, which collects a
 
 To access the CloudWatch dashboard for a Kinesis video stream, choose **View stream metrics in CloudWatch** in the **Stream info** section of the console page for the stream\.
 
-For a list of available metrics that Kinesis Video Streams supports, see [Kinesis Video Streams Metrics and Dimensions](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/akac-metricscollected.html)\.
+For a list of available metrics that Kinesis Video Streams supports, see [Kinesis Video Streams Metrics and Dimensions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/akac-metricscollected.html)\.
 
 ## CloudWatch Metrics Guidance<a name="monitoring-cloudwatch-guidance"></a>
 
@@ -40,7 +40,7 @@ CloudWatch metrics can be useful for finding answers to the following questions:
 
 **Action items:**
 + If there is an increase in `PutMedia.ConnectionErrors`, look at the HTTP response/error codes received by the producer client to see what errors are occurring while establishing the connection\.
-+ If there is a drop in `PutMedia.Success` or increase in `PutMedia.ErrorAckCount`, look at the ack error code in the ack responses sent by the service to see why ingestion of data is failing\. For more information, see [AckErrorCode\.Values](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/kinesisvideo/model/AckErrorCode.Values.html)\.
++ If there is a drop in `PutMedia.Success` or increase in `PutMedia.ErrorAckCount`, look at the ack error code in the ack responses sent by the service to see why ingestion of data is failing\. For more information, see [AckErrorCode\.Values](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/kinesisvideo/model/AckErrorCode.Values.html)\.
 
 ### Why can't the data be read from the Kinesis Video Streams service at the same rate as it's being sent from the producer?<a name="monitoring-cloudwatch-guidance-rate"></a>
 
@@ -62,7 +62,7 @@ CloudWatch metrics can be useful for finding answers to the following questions:
 
 **Action items:**
 + If there is an increase in `PutMedia.FragmentIngestionLatency` or a drop in `PutMedia.IncomingFragments`, check the network bandwidth and whether the data is still being sent\.
-+ If there is a drop in `PutMedia.Success`, check the ack error codes\. For more information, see [AckErrorCode\.Values](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/kinesisvideo/model/AckErrorCode.Values.html)\.
++ If there is a drop in `PutMedia.Success`, check the ack error codes\. For more information, see [AckErrorCode\.Values](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/kinesisvideo/model/AckErrorCode.Values.html)\.
 + If there is an increase in `PutMedia.FragmentPersistLatency` or `ListFragments.Latency`, you are most likely experiencing a service issue\. If the condition persists for an extended period of time, check with your customer service contact to see if there is an issue with your service\.
 
 ### What is the delay in reading real\-time data, and why is the client lagging behind the head of the stream?<a name="monitoring-cloudwatch-guidance-delay"></a>
@@ -99,6 +99,6 @@ CloudWatch metrics can be useful for finding answers to the following questions:
 + `PutMedia.IncomingBytes`
 
 **Action items:**
-+ If there is an increase in `GetMedia.ConnectionErrors`, look at the HTTP response/error codes returned by the `GetMedia` request\. For more information, see [AckErrorCode\.Values](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/kinesisvideo/model/AckErrorCode.Values.html)\.
++ If there is an increase in `GetMedia.ConnectionErrors`, look at the HTTP response/error codes returned by the `GetMedia` request\. For more information, see [AckErrorCode\.Values](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/kinesisvideo/model/AckErrorCode.Values.html)\.
 + If you are trying to read the latest/live data, check `PutMedia.IncomingBytes` to see if there is data coming into the stream for the service to send to the consumers\.
 + If there is a drop in `GetMedia.Success` or `GetMediaForFragmentList.Success`, it’s likely due to the service being unable to send the data to the consumer\. If the condition persists for an extended period of time, check with your customer service contact to see if there is an issue with your service\.
