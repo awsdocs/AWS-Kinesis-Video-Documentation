@@ -42,7 +42,7 @@ First, you build the Docker image that the demo application will run inside\.
 Start the Kinesis Video Streams Docker container using the following command\. Provide the image ID from the previous step, your AWS credentials, the URL of your RTSP network camera, and the name of the Kinesis video stream to send the data\.
 
 ```
-$ docker run -it <IMAGE_ID> <AWS_ACCESS_KEY_ID> <AWS_SECRET_ACCESS_KEY> <RTSP_URL> <STREAM_NAME>
+$ docker run -it <IMAGE_ID> <AWS_ACCESS_KEY_ID> <AWS_SECRET_ACCESS_KEY> <STREAM_NAME> <RTSP_URL>
 ```
 
 To customize the application, comment or remove the `ENTRYPOINT` command in `Dockerfile`, and launch the container using the following command:
