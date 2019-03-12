@@ -27,15 +27,29 @@ To reduce the number of frames sent in each fragment, and thus reduce the amount
 g_object_set(G_OBJECT (data.encoder), "bframes", 0, "key-int-max", 45, "bitrate", 512, NULL);
 ```
 
+**Note**  
+Latencies are higher in the Mozilla Firefox browser due to the internal implementation of video rendering\.
+
 ## Troubleshooting API Issues<a name="troubleshooting-api"></a>
 
 This section describes API issues that you might encounter when working with Kinesis Video Streams\.
 
 **Topics**
++ [Error: "Unknown options"](#troubleshooting-api-unknown-options)
 + [Error: "Unable to determine service/operation name to be authorized"](#troubleshooting-api-name-auth)
 + [Error: "Failed to put a frame in the stream"](#troubleshooting-api-putframe)
 + [Error: "Service closed connection before final AckEvent was received"](#troubleshooting-api-closeconnection)
 + [Error: "STATUS\_STORE\_OUT\_OF\_MEMORY"](#troubleshooting-api-storeoutofmemory)
+
+### Error: "Unknown options"<a name="troubleshooting-api-unknown-options"></a>
+
+`GetMedia` and `GetMediaForFragmentList` can fail with the following error:
+
+```
+Unknown options: <filename>.mkv
+```
+
+This error occurs if you configured the AWS CLI with an `output` type of `json`\. Reconfigure the AWS CLI with the default output type \(`none`\)\. For information about configuring the AWS CLI, see [configure](https://docs.aws.amazon.com/cli/latest/reference/configure) in the *AWS CLI Command Reference*\.
 
 ### Error: "Unable to determine service/operation name to be authorized"<a name="troubleshooting-api-name-auth"></a>
 
@@ -92,38 +106,42 @@ This error occurs when the content store is not allocated with sufficient size\.
 
 ## Troubleshooting HLS Issues<a name="troubleshooting-hls"></a>
 
-This section describes issues that you might encounter when using HLS with Kinesis Video Streams\.
+This section describes issues that you might encounter when using HTTP Live Streaming \(HLS\) with Kinesis Video Streams\.
 
 **Topics**
-+ [Retrieving HLS Streaming Session URL Succeeds, but Playback Fails in Video Player](#troubleshooting-hls-playback)
-+ [Latency Too High Between Producer and Player](#troubleshooting-hls-latency)
++ [Retrieving HLS streaming session URL succeeds, but playback fails in video player](#troubleshooting-hls-playback)
++ [Latency too high between producer and player](#troubleshooting-hls-latency)
 
-### Retrieving HLS Streaming Session URL Succeeds, but Playback Fails in Video Player<a name="troubleshooting-hls-playback"></a>
+### Retrieving HLS streaming session URL succeeds, but playback fails in video player<a name="troubleshooting-hls-playback"></a>
 
-This situation occurs when an HLS streaming session URL can be successfully retrieved with `GetHLSStreamingSessionURL`, but the video fails to play back when the URL is provided to a video player\.
+This situation occurs when you can successfully retrieve an HLS streaming session URL using `GetHLSStreamingSessionURL`, but the video fails to play back when the URL is provided to a video player\.
 
 To troubleshoot this situation, try the following:
-+ See if the video stream will play back in the Kinesis Video Streams management console\. Consider any errors the console shows\.
-+ If the fragment duration is less than one second, increase it to one second\. If the fragment duration is too short, the service might throttle the player, because it is making requests for video fragments too frequently\.
-+ Verify that each HLS streaming session URL is being used by only one player\. If more than one player is using a single HLS streaming session URL, the service may receive too many requests and throttle them\.
-+ Verify that all of the options you are specifying for the HLS streaming session are supported by your player\. Try different combinations of values for the following parameters: 
++ Determine whether the video stream plays back in the Kinesis Video Streams console\. Consider any errors that the console shows\.
++ If the fragment duration is less than one second, increase it to one second\. If the fragment duration is too short, the service might throttle the player because it is making requests for video fragments too frequently\.
++ Verify that each HLS streaming session URL is being used by only one player\. If more than one player is using a single HLS streaming session URL, the service might receive too many requests and throttle them\.
++ Verify that your player supports all of the options that you are specifying for the HLS streaming session\. Try different combinations of values for the following parameters: 
+  + `ContainerFormat`
   + `PlaybackMode`
   + `FragmentSelectorType`
   + `DiscontinuityMode`
   + `MaxMediaPlaylistFragmentResults`
 
-### Latency Too High Between Producer and Player<a name="troubleshooting-hls-latency"></a>
+  Some media players \(like HTML5 and mobile players\) typically only support HLS with the fMP4 container format\. Other media players \(like Flash and custom players\) may only support HLS with the MPEG TS container format\. Experimenting with the `ContainerFormat` parameter is a good place to start troubleshooting\.
++ Verify that each fragment has a consistent number of tracks\. Verify that fragments in the stream are not changing between having both an audio and video track and just a video track\. Also verify that the encoder settings \(resolution, frame rate, etc\) are not changing between fragments in each track\.
+
+### Latency too high between producer and player<a name="troubleshooting-hls-latency"></a>
 
 This situation occurs when the latency is too high from when the video is captured to when it is played in the video player\.
 
-Video is played back through HLS on a per\-fragment basis; therefore, latency can't be less than fragment duration\. Latency also includes the time needed for buffering and transferring data\. If your solution requires latency less than one second, consider using the `GetMedia` API instead\.
+Video is played back through HLS on a per\-fragment basis\. Therefore, latency can't be less than fragment duration\. Latency also includes the time needed for buffering and transferring data\. If your solution requires latency of less than one second, consider using the `GetMedia` API instead\.
 
-The following parameters can be adjusted to reduce overall latency, but adjusting these parameters may also reduce video quality or increase rebuffering rate\.
-+ **Fragment duration**: The fragment duration is the amount of video between divisions in the stream as controlled by the frequency of keyframes generated by the video encoder\.\. The recommended value is one second\. Having a shorter fragment duration means that less time is spent waiting for the fragment to complete before transmitting the video data to the service\. Shorter fragments are also faster for the service to process\. However, if the fragment duration is too short, the probability increases that the player will run out of content and have to stop and buffer content\. If the fragment duration is less than 500 milliseconds, the producer may create too many requests, causing the service to throttle them\.
+You can adjust the following parameters to reduce the overall latency, but adjusting these parameters might also reduce the video quality or increase the rebuffering rate\.
++ **Fragment duration**: The fragment duration is the amount of video between divisions in the stream as controlled by the frequency of keyframes generated by the video encoder\. The recommended value is one second\. Having a shorter fragment duration means that less time is spent waiting for the fragment to complete before transmitting the video data to the service\. Shorter fragments are also faster for the service to process\. However, if the fragment duration is too short, the probability increases that the player will run out of content and have to stop and buffer content\. If the fragment duration is less than 500 milliseconds, the producer might create too many requests, causing the service to throttle them\.
 + **Bitrate**: A video stream with a lower bitrate takes less time to read, write, and transmit\. However, a video stream with a lower bitrate usually has a lower video quality\.
-+ **Fragment count in media playlists**: A latency\-sensitive player should only load the newest fragments in a media playlist\. Most players start at the oldest fragment instead\. By reducing the number of fragments in the playlist, you reduce the time separation between the old and new fragments\. With a smaller playlist size, it is possible for a fragment to be skipped during playback, if there is a delay in adding new fragments to the playlist, or if there is a delay in the player getting an updated playlist\. We recommend using 3\-5 fragments, and to use a player that is configured to load only the newest fragments from a playlist\. 
-+ **Player buffer size**: Most video players have a configurable minimum buffer duration, usually with a 10 second default\. For the lowest latency, you can set this value to 0 seconds, but doing so means that the player will rebuffer if there is any delay producing fragments, as the player will have no buffer for absorbing the delay\.
-+ **Player "catch up"**: Video players typically do not automatically catch playback up to the front of the video buffer if the buffer fills up, such as when a delayed fragment causes a backlog of fragments to play\. A custom player can avoid this by either dropping frames, or increasing the playback speed \(e\.g\. to 1\.1x\) to catch up to the front of the buffer\. This will cause playback to be choppy or increase in speed as the player catches up, and rebuffering may be more frequent as the buffer size is kept short\.
++ **Fragment count in media playlists**: A latency\-sensitive player should only load the newest fragments in a media playlist\. Most players start at the oldest fragment instead\. By reducing the number of fragments in the playlist, you reduce the time separation between the old and new fragments\. With a smaller playlist size, it is possible for a fragment to be skipped during playback, if there is a delay in adding new fragments to the playlist, or if there is a delay in the player getting an updated playlist\. We recommend using 3–5 fragments, and to use a player that is configured to load only the newest fragments from a playlist\. 
++ **Player buffer size**: Most video players have a configurable minimum buffer duration, usually with a 10\-second default\. For the lowest latency, you can set this value to 0 seconds\. However, doing so means that the player rebuffers if there is any delay producing fragments because the player will have no buffer for absorbing the delay\.
++ **Player "catch up"**: Video players typically don't automatically catch playback up to the front of the video buffer if the buffer fills up, such as when a delayed fragment causes a backlog of fragments to play\. A custom player can avoid this by either dropping frames, or increasing the playback speed \(for example, to 1\.1x\) to catch up to the front of the buffer\. This causes playback to be choppy or increase in speed as the player catches up, and rebuffering might be more frequent as the buffer size is kept short\.
 
 ## Troubleshooting Java Issues<a name="troubleshooting-java"></a>
 
@@ -178,9 +196,10 @@ This section describes issues that you might encounter when using the [Producer 
 + [Camera fails to load on Raspberry Pi](#troubleshooting-producer-raspberrypi-camera)
 + [Camera can't be found on macOS High Sierra](#troubleshooting-producer-sierra-camera)
 + [jni\.h file not found when compiling on macOS High Sierra](#troubleshooting-producer-sierra-compile)
-+ [Curl errors when running the GStreamer demo app](#troubleshooting-producer-curl)
-+ [Time stamp/range assertion at run time on Raspberry Pi](#troubleshooting-producer-raspberrypi-timestamp-assert)
++ [Curl errors when running the GStreamer demo application](#troubleshooting-producer-curl)
++ [Timestamp/range assertion at runtime on Raspberry Pi](#troubleshooting-producer-raspberrypi-timestamp-assert)
 + [Assertion on gst\_value\_set\_fraction\_range\_full on Raspberry Pi](#troubleshooting-producer-raspberrypi-gst-assert)
++ [STATUS\_MKV\_INVALID\_ANNEXB\_NALU\_IN\_FRAME\_DATA \(0x3200000d\) error on Android](#troubleshooting-producer-android-invalid-annexb)
 
 ### Cannot compile the Producer SDK<a name="troubleshooting-producer-compile"></a>
 
@@ -215,7 +234,7 @@ If this error occurs, there is an issue with your credentials\. Verify the follo
 
 ### Error: "Failed to submit frame to Kinesis Video client"<a name="troubleshooting-producer-failed-frame-client"></a>
 
-If this error occurs, the time stamps are not properly set in the source stream\. Try the following:
+If this error occurs, the timestamps are not properly set in the source stream\. Try the following:
 + Use the latest SDK sample, which might have an update that fixes your issue\.
 + Set the high\-quality stream to a higher bit rate, and fix any jitter in the source stream if the camera supports doing so\.
 
@@ -310,13 +329,13 @@ On macOS High Sierra, the demo application can't find the camera if more than on
 
 To resolve this error, update your installation of Xcode to the latest version\.
 
-### Curl errors when running the GStreamer demo app<a name="troubleshooting-producer-curl"></a>
+### Curl errors when running the GStreamer demo application<a name="troubleshooting-producer-curl"></a>
 
 To resolve curl errors when you run the GStreamer demo application, copy [this certificate file](https://www.amazontrust.com/repository/SFSRootCAG2.pem) to `/etc/ssl/cert.pem`\.
 
-### Time stamp/range assertion at run time on Raspberry Pi<a name="troubleshooting-producer-raspberrypi-timestamp-assert"></a>
+### Timestamp/range assertion at runtime on Raspberry Pi<a name="troubleshooting-producer-raspberrypi-timestamp-assert"></a>
 
-If a time stamp range assertion occurs at run time, update the firmware and restart the device:
+If a timestamp range assertion occurs at runtime, update the firmware and restart the device:
 
 ```
 $ sudo rpi-update 
@@ -332,6 +351,18 @@ gst_util_fraction_compare (numerator_start, denominator_start, numerator_end, de
 ```
 
 If this occurs, stop the `uv4l` service and restart the application\.
+
+### STATUS\_MKV\_INVALID\_ANNEXB\_NALU\_IN\_FRAME\_DATA \(0x3200000d\) error on Android<a name="troubleshooting-producer-android-invalid-annexb"></a>
+
+The following error appears if the [NAL Adaptation Flags](producer-reference-nal.md) are incorrect for the media stream: 
+
+```
+putKinesisVideoFrame(): Failed to put a frame with status code 0x3200000d
+```
+
+If this error occurs, provide the correct `.withNalAdaptationFlags` flag for your media \(for example, `NAL_ADAPTATION_ANNEXB_CPD_NALS`\)\. Provide this flag in the following line of the [Android Producer Library](producer-sdk-android.md): 
+
+[ https://github\.com/awslabs/aws\-sdk\-android\-samples/blob/master/AmazonKinesisVideoDemoApp/src/main/java/com/amazonaws/kinesisvideo/demoapp/fragment/StreamConfigurationFragment\.java\#L169](https://github.com/awslabs/aws-sdk-android-samples/blob/master/AmazonKinesisVideoDemoApp/src/main/java/com/amazonaws/kinesisvideo/demoapp/fragment/StreamConfigurationFragment.java#L169)
 
 ## Troubleshooting Stream Parser Library Issues<a name="troubleshooting-parser"></a>
 
@@ -360,5 +391,5 @@ If this occurs, verify the following:
 + The resolution of the frames matches the resolution specified in the Codec Private Data\.
 + The H\.264 profile and level of the encoded frames matches the profile and level specified in the Codec Private Data\.
 + The browser supports the profile/level combination\. Most current browsers support all profile and level combinations\.
-+ The time stamps are accurate and in the correct order, and no duplicate time stamps are being created\.
++ The timestamps are accurate and in the correct order, and no duplicate timestamps are being created\.
 + Your application is encoding the frame data using the H\.264 format\.

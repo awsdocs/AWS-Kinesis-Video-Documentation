@@ -5,7 +5,7 @@
 **Note**  
  Before using this API, you must call the `GetDataEndpoint` API to get an endpoint\. You then specify the endpoint in your `PutMedia` request\. 
 
- In the request, you use the HTTP headers to provide parameter information, for example, stream name, time stamp, and whether the time stamp value is absolute or relative to when the producer started recording\. You use the request body to send the media data\. Kinesis Video Streams supports only the Matroska \(MKV\) container format for sending media data using this API\. 
+ In the request, you use the HTTP headers to provide parameter information, for example, stream name, timestamp, and whether the timestamp value is absolute or relative to when the producer started recording\. You use the request body to send the media data\. Kinesis Video Streams supports only the Matroska \(MKV\) container format for sending media data using this API\. 
 
 You have the following options for sending data using this API:
 + Send media data in real time: For example, a security camera can send frames in real time as it generates them\. This approach minimizes the latency between the video recording and data sent on the wire\. This is referred to as a continuous producer\. In this case, a consumer application can read the stream in real time or when needed\. 
@@ -13,8 +13,9 @@ You have the following options for sending data using this API:
 
 When using this API, note the following considerations:
 + You must specify either `streamName` or `streamARN`, but not both\.
-+  You might find it easier to use a single long\-running `PutMedia` session and send a large number of media data fragments in the payload\. Note that for each fragment received, Kinesis Video Streams sends one or more acknowledgements\. Potential network considerations might cause you to not get all these acknowledgements as they are generated\. 
-+  You might choose multiple consecutive `PutMedia` sessions, each with fewer fragments to ensure that you get all acknowledgements from the service in real time\. 
++ To be able to play the media on the console or via HLS, track 1 of each fragment should contain h\.264 encoded video, the CodecID in the fragment metadata should be "V\_MPEG/ISO/AVC", and the fragment metadata should include AVCC formatted h\.264 codec private data\. Optionally, track 2 of each fragment should contain AAC encoded audio, the CodecID in the fragment metadata should be "A\_AAC", and the fragment metadata should include AAC codec private data\.
++ You might find it easier to use a single long\-running `PutMedia` session and send a large number of media data fragments in the payload\. For each fragment received, Kinesis Video Streams sends one or more acknowledgements\. Potential network considerations might cause you to not get all these acknowledgements as they are generated\.
++ You might choose multiple consecutive `PutMedia` sessions, each with fewer fragments to ensure that you get all acknowledgements from the service in real time\.
 
 **Note**  
 If you send data to the same stream on multiple simultaneous `PutMedia` sessions, the media fragments get interleaved on the stream\. You should make sure that this is OK in your application scenario\. 
@@ -25,14 +26,17 @@ The following limits apply when using the `PutMedia` API:
 + Kinesis Video Streams reads media data at a rate of up to 12\.5 MB/second, or 100 Mbps during a `PutMedia` session\. 
 
 Note the following constraints\. In these cases, Kinesis Video Streams sends the Error acknowledgement in the response\. 
-+ Fragments that have time codes spanning longer than 10 seconds and that contain more than 50 megabytes of data are not allowed\. 
++ Fragments that have time codes spanning longer than 10 seconds and that contain more than 50 MB of data are not allowed\. 
++ Fragments containing more than three tracks are not allowed\. Each frame in every fragment must have the same track number as one of the tracks defined in the fragment header\. Additionally, every fragment must contain at least one frame for each track defined in the fragment header\.
++ Each fragment must contain at least one frame for each track defined in the fragment metadata\.
++ The earliest frame timestamp in a fragment must be after the latest frame timestamp in the previous fragment\.
 +  An MKV stream containing more than one MKV segment or containing disallowed MKV elements \(like `track*`\) also results in the Error acknowledgement\. 
 
 Kinesis Video Streams stores each incoming fragment and related metadata in what is called a "chunk\." The fragment metadata includes the following: 
 + The MKV headers provided at the start of the `PutMedia` request
 + The following Kinesis Video Streams\-specific metadata for the fragment:
-  +  `server_timestamp` \- Time stamp when Kinesis Video Streams started receiving the fragment\. 
-  +  `producer_timestamp` \- Time stamp, when the producer started recording the fragment\. Kinesis Video Streams uses three pieces of information received in the request to calculate this value\. 
+  +  `server_timestamp` \- Timestamp when Kinesis Video Streams started receiving the fragment\. 
+  +  `producer_timestamp` \- Timestamp, when the producer started recording the fragment\. Kinesis Video Streams uses three pieces of information received in the request to calculate this value\. 
     + The fragment timecode value received in the request body along with the fragment\.
     + Two request headers: `producerStartTimestamp` \(when the producer started recording\) and `fragmentTimeCodeType` \(whether the fragment timecode in the payload is absolute or relative\)\.
 
@@ -78,7 +82,7 @@ Valid Values:` ABSOLUTE | RELATIVE`
 
  ** [ProducerStartTimestamp](#API_dataplane_PutMedia_RequestSyntax) **   <a name="KinesisVideo-dataplane_PutMedia-request-ProducerStartTimestamp"></a>
 You pass this value as the `x-amzn-producer-start-timestamp` HTTP header\.  
-This is the producer time stamp at which the producer started recording the media \(not the time stamp of the specific fragments in the request\)\.
+This is the producer timestamp at which the producer started recording the media \(not the timestamp of the specific fragments in the request\)\.
 
  ** [StreamARN](#API_dataplane_PutMedia_RequestSyntax) **   <a name="KinesisVideo-dataplane_PutMedia-request-StreamARN"></a>
 You pass this value as the `x-amzn-stream-arn` HTTP header\.  
@@ -135,10 +139,14 @@ The service then returns a stream containing a series of JSON objects \(`Acknowl
   + 4002 \- Fragment duration is greater than maximum limit, 10 seconds, allowed\.
   + 4003 \- Connection duration is greater than maximum allowed threshold\.
   + 4004 \- Fragment timecode is less than the timecode previous time code \(within a `PutMedia` call, you cannot send fragments out of order\)\.
-  + 4005 \- More than one track is found in MKV\.
+  + 4005 \- More than one track is found in MKV\. \(deprecated\)
   + 4006 \- Failed to parse the input stream as valid MKV format\.
   + 4007 \- Invalid producer timestamp\.
   + 4008 \- Stream no longer exists \(deleted\)\.
+  + 4009 \- Fragment metadata limit reached\.
+  + 4010 \- The track number in an MKV frame did not match the tracks in the MKV header\.
+  + 4011 \- The fragment did not contain any frames for at least one of the tracks in the MKV header\.
+  + 4012 \- More than the allowed number of tracks found in the input MKV\.
   + 4500 \- Access to the stream's specified KMS key is denied\.
   + 4501 \- The stream's specified KMS key is disabled\.
   + 4502 \- The stream's specified KMS key failed validation\.
@@ -184,7 +192,7 @@ HTTP Status Code: 404
 
 The format of the acknowledgement is as follows:
 
-#### <a name="w3aac35b4c11c11c47b3b5"></a>
+#### <a name="w3aac36b4c11c11c47b3b5"></a>
 
 ```
 {
@@ -204,6 +212,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/kinesis-video-data-2017-09-30/PutMedia) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/kinesis-video-data-2017-09-30/PutMedia) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/kinesis-video-data-2017-09-30/PutMedia) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/kinesis-video-data-2017-09-30/PutMedia) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/kinesis-video-data-2017-09-30/PutMedia) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesis-video-data-2017-09-30/PutMedia) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/kinesis-video-data-2017-09-30/PutMedia) 

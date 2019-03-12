@@ -132,6 +132,22 @@ The following command creates a GStreamer pipeline on Raspberry Pi that streams 
 $ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480,framerate=30/1 ! omxh264enc control-rate=1 target-bitrate=5120000 periodicity-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,width=640,height=480,framerate=30/1,profile=baseline ! kvssink stream-name="YourStreamName" frame-timestamp=dts-only access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
+### Example 8: Stream both audio and video in Raspberry\-PI and Ubuntu<a name="examples-gstreamer-plugin-launch-ex8"></a>
+
+See how to [run the gst\-launch\-1\.0 command to start streaming both audio and video in Raspberry\-PI and Ubuntu](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/install-instructions-linux.md#running-the-gst-launch-10-command-to-start-streaming-both-audio-and-video-in-raspberry-pi-and-ubuntu)\.
+
+### Example 9: Stream both audio and video in MacOS<a name="examples-gstreamer-plugin-launch-ex9"></a>
+
+See how to [run the gst\-launch\-1\.0 command to start streaming both audio and video in MacOS](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/install-instructions-macos.md#discovering-available-devices)\.
+
+### Example 10: Stream both audio and video in Windows using MSVC<a name="examples-gstreamer-plugin-launch-ex10"></a>
+
+See how to [run the gst\-launch\-1\.0 command to start streaming both audio and video in Windows using MSVC](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/install-instructions-windows-msvc.md#running-the-sample-demo-applications-to-stream-video-to-kinesis-video-streams)\.
+
+### Example 11: Stream both audio and video in Windows using MSYS2<a name="examples-gstreamer-plugin-launch-ex11"></a>
+
+See how to [run the gst\-launch\-1\.0 command to start streaming both audio and video in Windows using MSYS2](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/install-instructions-windows-msys2.md#running-the-sample-demo-applications-to-stream-video-to-kinesis-video-streams)\.
+
 ## Run the GStreamer Element in a Docker Container<a name="examples-gstreamer-plugin-docker"></a>
 
 Docker is a platform for developing, deploying, and running applications using containers\. Using Docker to create the GStreamer pipeline standardizes the operating environment for Kinesis Video Streams, which greatly simplifies building and executing the application\.
@@ -146,7 +162,7 @@ To run GStreamer with the Kinesis Video Streams Producer SDK element as a sink i
 
 **Topics**
 + [Authenticate your Docker Client](#examples-gstreamer-plugin-docker-authenticate)
-+ [Download the Docker image for Ubuntu, macOS, Windows, or Raspberry Pi](#examples-gstreamer-plugin-docker-download)
++ [Download the Docker Image for Ubuntu, macOS, Windows, or Raspberry Pi](#examples-gstreamer-plugin-docker-download)
 + [Run the Docker Image](#examples-gstreamer-plugin-docker-run)
 
 ### Authenticate your Docker Client<a name="examples-gstreamer-plugin-docker-authenticate"></a>
@@ -165,29 +181,29 @@ docker login -u AWS -p <Password>   https://YourAccountId.dkr.ecr.us-west-2.amaz
 ```
 The resulting output is a Docker login command that you use to authenticate your Docker client to your Amazon ECR registry\. 
 
-### Download the Docker image for Ubuntu, macOS, Windows, or Raspberry Pi<a name="examples-gstreamer-plugin-docker-download"></a>
+### Download the Docker Image for Ubuntu, macOS, Windows, or Raspberry Pi<a name="examples-gstreamer-plugin-docker-download"></a>
 
 Download the Docker image to your Docker environment using one the following commands, depending on your operating system:
 
-#### Download the Docker image for Ubuntu<a name="examples-gstreamer-plugin-docker-download-ubuntu"></a>
+#### Download the Docker Image for Ubuntu<a name="examples-gstreamer-plugin-docker-download-ubuntu"></a>
 
 ```
 sudo docker pull 546150905175.dkr.ecr.us-west-2.amazonaws.com/kinesis-video-producer-sdk-cpp-amazon-linux:latest
 ```
 
-#### Download the Docker image for macOS<a name="examples-gstreamer-plugin-docker-download-macos"></a>
+#### Download the Docker Image for macOS<a name="examples-gstreamer-plugin-docker-download-macos"></a>
 
 ```
 sudo docker pull 546150905175.dkr.ecr.us-west-2.amazonaws.com/kinesis-video-producer-sdk-cpp-amazon-linux:latest
 ```
 
-#### Download the Docker image for Windows<a name="examples-gstreamer-plugin-docker-download-windows"></a>
+#### Download the Docker Image for Windows<a name="examples-gstreamer-plugin-docker-download-windows"></a>
 
 ```
 docker pull 546150905175.dkr.ecr.us-west-2.amazonaws.com/kinesis-video-producer-sdk-cpp-amazon-windows:latest
 ```
 
-#### Download the Docker image for Raspberry Pi<a name="examples-gstreamer-plugin-docker-download-rpi"></a>
+#### Download the Docker Image for Raspberry Pi<a name="examples-gstreamer-plugin-docker-download-rpi"></a>
 
 ```
 sudo docker pull 546150905175.dkr.ecr.us-west-2.amazonaws.com/kinesis-video-producer-sdk-cpp-raspberry-pi:latest

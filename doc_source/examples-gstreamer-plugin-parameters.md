@@ -26,7 +26,7 @@ The `kvssink` element has the following optional parameters\. For more informati
 | fragment\-acks | Whether to use fragment ACKs\. | Boolean | true | 
 | fragment\-duration | The fragment duration that you want\. | Milliseconds | 2000 | 
 | framerate | The expected frame rate\. | Frames per second | 25 | 
-| frame\-timecodes | Whether to use frame timecodes or generate time stamps using the current time callback\.  | Boolean | true | 
+| frame\-timecodes | Whether to use frame timecodes or generate timestamps using the current time callback\.  | Boolean | true | 
 | frame\-timestamp |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/examples-gstreamer-plugin-parameters.html)  | Enum GstKvsSinkFrameTimestampType | default\-timestamp | 
 | key\-frame\-fragmentation | Whether to produce fragments on a key frame\. | Boolean | true | 
 | log\-config | The log configuration path\. | String | "\./kvs\_log\_configuration" | 
@@ -39,3 +39,4 @@ The `kvssink` element has the following optional parameters\. For more informati
 | streaming\-type | The streaming type\. Valid values include: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/examples-gstreamer-plugin-parameters.html) | Enum GstKvsSinkStreamingType | 0: real time | 
 | timecode\-scale | The MKV timecode scale\. | Milliseconds | 1 | 
 | track\-name | The MKV track name\. | String | "kinesis\_video" | 
+| iot\-certificate | IoT credentials to be used in the kvssink element\. Accepts the following keys and values: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/examples-gstreamer-plugin-parameters.html)  | String | None | 

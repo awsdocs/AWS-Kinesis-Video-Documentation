@@ -1,7 +1,7 @@
 # Amazon Kinesis Video Streams Developer Guide
 
 -----
-*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -26,6 +26,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Getting Started with Kinesis Video Streams](getting-started.md)
    + [Step 1: Set Up an AWS Account and Create an Administrator](gs-account.md)
    + [Step 2: Create a Kinesis Video Stream](gs-createstream.md)
+   + [Step 3: Send Data to a Kinesis Video Stream](gs-send-data.md)
    + [What's Next?](gs-console-whatnext.md)
 + [Kinesis Video Streams Producer Libraries](producer-sdk.md)
    + [Using the Java Producer Library](producer-sdk-javaapi.md)
@@ -62,6 +63,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Example: Sending Data to Kinesis Video Streams Using the PutMedia API](examples-putmedia.md)
    + [Example: Streaming from an RTSP Source](examples-rtsp.md)
    + [Example: Parsing and Rendering Kinesis Video Streams Fragments](examples-renderer.md)
+   + [Example: Identifying Objects in Video Streams Using Amazon SageMaker](examples-sagemaker.md)
 + [Monitoring Kinesis Video Streams](monitoring.md)
    + [Monitoring Kinesis Video Streams Metrics with CloudWatch](monitoring-cloudwatch.md)
    + [Logging Kinesis Video Streams API Calls with AWS CloudTrail](monitoring-cloudtrail.md)

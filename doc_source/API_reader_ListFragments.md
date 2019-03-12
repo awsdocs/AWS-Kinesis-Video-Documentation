@@ -1,6 +1,6 @@
 # ListFragments<a name="API_reader_ListFragments"></a>
 
-Returns a list of [Fragment](API_reader_Fragment.md) objects from the specified stream and time stamp range within the archived data\.
+Returns a list of [Fragment](API_reader_Fragment.md) objects from the specified stream and timestamp range within the archived data\.
 
 Listing fragments is eventually consistent\. This means that even if the producer receives an acknowledgment that a fragment is persisted, the result might not be returned immediately from a request to `ListFragments`\. However, results are typically available in less than one second\.
 
@@ -36,7 +36,7 @@ The request does not use any URI parameters\.
 The request accepts the following data in JSON format\.
 
  ** [FragmentSelector](#API_reader_ListFragments_RequestSyntax) **   <a name="KinesisVideo-reader_ListFragments-request-FragmentSelector"></a>
-Describes the time stamp range and time stamp origin for the range of fragments to return\.  
+Describes the timestamp range and timestamp origin for the range of fragments to return\.  
 Type: [FragmentSelector](API_reader_FragmentSelector.md) object  
 Required: No
 
@@ -122,6 +122,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/kinesis-video-reader-data-2017-09-30/ListFragments) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/kinesis-video-reader-data-2017-09-30/ListFragments) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/kinesis-video-reader-data-2017-09-30/ListFragments) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/kinesis-video-reader-data-2017-09-30/ListFragments) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/kinesis-video-reader-data-2017-09-30/ListFragments) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesis-video-reader-data-2017-09-30/ListFragments) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/kinesis-video-reader-data-2017-09-30/ListFragments) 

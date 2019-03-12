@@ -1,10 +1,10 @@
 # Step 1: Download and Configure the Code<a name="parser-library-download"></a>
 
-In this section, you download the Java library and test code and import the project into your Java IDE\.
+In this section, you download the Java library and test code, and import the project into your Java IDE\.
 
 For prerequisites and other details about this procedure, see [Kinesis Video Stream Parser Library](parser-library.md)\.
 
-1. Create a directory and clone the library source code from the GitHub repository\. 
+1. Create a directory and clone the library source code from the GitHub repository \([https://github\.com/aws/amazon\-kinesis\-video\-streams\-parser\-library](https://github.com/aws/amazon-kinesis-video-streams-parser-library)\)\. 
 
    ```
    $ git clone https://github.com/aws/amazon-kinesis-video-streams-parser-library

@@ -21,12 +21,12 @@ Type: Long
 Required: No
 
  **ProducerTimestamp**   <a name="KinesisVideo-Type-reader_Fragment-ProducerTimestamp"></a>
-The time stamp from the producer corresponding to the fragment\.  
+The timestamp from the producer corresponding to the fragment\.  
 Type: Timestamp  
 Required: No
 
  **ServerTimestamp**   <a name="KinesisVideo-Type-reader_Fragment-ServerTimestamp"></a>
-The time stamp from the AWS server corresponding to the fragment\.  
+The timestamp from the AWS server corresponding to the fragment\.  
 Type: Timestamp  
 Required: No
 
@@ -35,5 +35,6 @@ Required: No
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/kinesis-video-reader-data-2017-09-30/Fragment) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/kinesis-video-reader-data-2017-09-30/Fragment) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/kinesis-video-reader-data-2017-09-30/Fragment) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/kinesis-video-reader-data-2017-09-30/Fragment) 
 +  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/kinesis-video-reader-data-2017-09-30/Fragment) 

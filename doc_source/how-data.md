@@ -12,6 +12,7 @@ The following sections describe the components of MKV\-formatted data produced b
 
 **Topics**
 + [Stream Header Elements](#how-data-header-streamdefinition)
++ [Stream Track Data](#how-data-header-streamtrack)
 + [Frame Header Elements](#how-data-header-frame)
 + [MKV Frame Data](#how-data-frame)
 
@@ -40,7 +41,7 @@ The following MKV header elements are used by `StreamDefinition` \(defined in `S
 | restart\_on\_error | Indicates whether the stream should resume transmission after a stream error is raised\. | true | 
 | nal\_adaptation\_flags | Indicates whether NAL \(Network Abstraction Layer\) adaptation or codec private data is present in the content\. Valid flags include NAL\_ADAPTATION\_ANNEXB\_NALS and NAL\_ADAPTATION\_ANNEXB\_CPD\_NALS\. | NAL\_ADAPTATION\_ANNEXB\_NALS | 
 | frame\_rate | An estimate of the content frame rate\. This value is used for optimization; the actual frame rate is determined by the rate of incoming data\. Specifying 0 assigns the default of 24\. | 24 | 
-| avg\_bandwith\_bps | An estimate of the content bandwidth\. This value is used for optimization; the actual rate is determined by the bandwidth of incoming data\. For example, for a 720 p resolution video stream running at 25 FPS, you can expect the average bandwidth to be 5 Mbps\. | 5 | 
+| avg\_bandwidth\_bps | An estimate of the content bandwidth\. This value is used for optimization; the actual rate is determined by the bandwidth of incoming data\. For example, for a 720 p resolution video stream running at 25 FPS, you can expect the average bandwidth to be 5 Mbps\. | 5 | 
 | buffer\_duration | The duration that content is to be buffered on the producer\. If there is low network latency, this value can be reduced; if network latency is high, increasing this value prevents frames from being dropped before they can be sent, due to allocation failing to put frames into the smaller buffer\. |  | 
 | replay\_duration | The amount of time the video data stream is "rewound" in the case of connection loss\. This value can be zero if lost frames due to connection loss are not a concern; the value can be increased if the consuming application can eliminate redundant frames\. This value should be less than the buffer duration; otherwise the buffer duration is used\. |  | 
 | connection\_staleness | The duration that a connection is maintained when no data is received\. |  | 
@@ -48,6 +49,24 @@ The following MKV header elements are used by `StreamDefinition` \(defined in `S
 | track\_name | The user\-defined name of the track\. | my\_track | 
 | codecPrivateData | Data provided by the encoder used to decode the frame data, such as the frame width and height in pixels, which is needed by many downstream consumers\. In the [C\+\+ Producer Library](producer-sdk-cpp.md), the gMkvTrackVideoBits array in MkvStatics\.cpp includes pixel width and height for the frame\. |  | 
 | codecPrivateDataSize | The size of the data in the codecPrivateData parameter\. |  | 
+| track\_type | The type of the track for the stream\. | MKV\_TRACK\_INFO\_TYPE\_AUDIO or MKV\_TRACK\_INFO\_TYPE\_VIDEO | 
+| segment\_uuid | User\-defined segment uuid \(16 bytes\)\. |  | 
+| default\_track\_id | Unique non\-zero number for the track\. | 1 | 
+
+## Stream Track Data<a name="how-data-header-streamtrack"></a>
+
+The following MKV track elements are used by `StreamDefinition` \(defined in `StreamDefinition.h`\)\.
+
+
+****  
+
+| Element | Description | Typical Values | 
+| --- | --- | --- | 
+| track\_name  | User\-defined track name\. For example, "audio" for the audio track\.  | audio | 
+| codec\_id | Codec id for the track\. For example, "A\_AAC" for an audio track\. | A\_AAC | 
+| cpd | Data provided by the encoder used to decode the frame data\. This data can include frame width and height in pixels, which is needed by many downstream consumers\. In the [C\+\+ Producer Library](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html), the gMkvTrackVideoBits array in MkvStatics\.cpp includes pixel width and height for the frame\.  |  | 
+| cpd\_size | The size of the data in the codecPrivateData parameter\. |  | 
+| track\_type | The type of the track\. For example, you can use the enum value of MKV\_TRACK\_INFO\_TYPE\_AUDIO for audio\. | MKV\_TRACK\_INFO\_TYPE\_AUDIO | 
 
 ## Frame Header Elements<a name="how-data-header-frame"></a>
 

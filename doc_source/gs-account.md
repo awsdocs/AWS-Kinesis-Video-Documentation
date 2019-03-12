@@ -6,6 +6,8 @@ Before you use Kinesis Video Streams for the first time, complete the following 
 
 1. [Create an Administrator IAM User](#gs-account-user)
 
+1. [Create an AWS Account Key](#gs-account-key)
+
 ## Sign Up for AWS<a name="gs-account-create"></a>
 
 If you already have an AWS account, you can skip this step\.
@@ -16,11 +18,11 @@ When you sign up for Amazon Web Services \(AWS\), your AWS account is automatica
 
 1. Open [https://aws\.amazon\.com/](https://aws.amazon.com/), and then choose **Create an AWS Account**\.
 **Note**  
-This might be unavailable in your browser if you previously signed into the AWS Management Console\. In that case, choose **Sign in to a different account**, and then choose **Create a new AWS account**\.
+If you previously signed in to the AWS Management Console using AWS account root user credentials, choose **Sign in to a different account**\. If you previously signed in to the console using IAM credentials, choose **Sign\-in using root account credentials**\. Then choose **Create a new AWS account**\.
 
 1. Follow the online instructions\.
 
-   Part of the sign\-up procedure involves receiving a phone call and entering a PIN using the phone keypad\.
+   Part of the sign\-up procedure involves receiving a phone call and entering a verification code using the phone keypad\.
 
 Write down your AWS account ID because you need it for the next task\.
 
@@ -43,6 +45,20 @@ For more information about IAM, see the following:
 + [AWS Identity and Access Management \(IAM\)](https://aws.amazon.com/iam/)
 + [Getting Started](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started.html)
 + [IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)
+
+## Create an AWS Account Key<a name="gs-account-key"></a>
+
+You will need an AWS Account Key to access Kinesis Video Streams programmatically\. 
+
+To create an AWS Account Key, do the following:
+
+1. Sign in to the AWS Management Console and open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+
+1. Choose **Users** in the navigation bar, and choose the **Admininstrator** user\. 
+
+1. Choose the **Security credentials** tab, and choose **Create access key**\.
+
+1. Record the **Access key ID**\. Choose **Show** under **Secret access key**\. Record the **Secret access key**\.
 
 ## Next Step<a name="gs-next-step-2"></a>
 

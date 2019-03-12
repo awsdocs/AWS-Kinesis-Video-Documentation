@@ -3,8 +3,7 @@
  This section describes how to perform the following tasks in Amazon Kinesis Video Streams: 
 + Set up your AWS account and create an administrator, if you haven't already done so\.
 + Create a Kinesis video stream\.
-
-Other sections in this guide describe how to send data to the stream and view data on the stream\.
++ Send data to the Kinesis video stream from your camera and view the media in the console\.
 
 If you are new to Amazon Kinesis Video Streams, we recommend that you read [Amazon Kinesis Video Streams: How It Works](how-it-works.md) first\. 
 
@@ -14,4 +13,5 @@ Following the Getting Started sample will not incur any charges to your AWS acco
 **Topics**
 + [Step 1: Set Up an AWS Account and Create an Administrator](gs-account.md)
 + [Step 2: Create a Kinesis Video Stream](gs-createstream.md)
++ [Step 3: Send Data to a Kinesis Video Stream](gs-send-data.md)
 + [What's Next?](gs-console-whatnext.md)

@@ -34,8 +34,8 @@ Before setting these values, you must validate your inputs\. The SDK doesn't val
 | Max codec ID string length | 32 characters |   | 
 | Max track name string length | 32 characters |   | 
 | Max codec private data length | 1 MiB = 1 \* 1024 \* 1024 bytes |   | 
-| Min timecode scale value length | 100 ns | The minimum timecode scale value to represent the frame time stamps in the resulting MKV cluster\. The value is specified in increments of 100 ns, which is the SDK standard\. | 
-| Max timecode scale value length | 1 second | The maximum timecode scale value to represent the frame time stamps in the resulting MKV cluster\. The value is specified in increments of 100 ns, which is the SDK standard\. | 
+| Min timecode scale value length | 100 ns | The minimum timecode scale value to represent the frame timestamps in the resulting MKV cluster\. The value is specified in increments of 100 ns, which is the SDK standard\. | 
+| Max timecode scale value length | 1 second | The maximum timecode scale value to represent the frame timestamps in the resulting MKV cluster\. The value is specified in increments of 100 ns, which is the SDK standard\. | 
 | Min content view item count | 10 |   | 
 | Min buffer duration | 20 seconds | The value is specified in increments of 100 ns, which is the SDK standard\. | 
 | Max update version length | 128 characters |   | 

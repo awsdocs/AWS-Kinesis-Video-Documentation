@@ -42,7 +42,7 @@ Pattern: `[a-zA-Z0-9]+`
 Required: Yes
 
  ** [DataRetentionChangeInHours](#API_UpdateDataRetention_RequestSyntax) **   <a name="KinesisVideo-UpdateDataRetention-request-DataRetentionChangeInHours"></a>
-The retention period, in hours\. The value you specify replaces the current value\.  
+The retention period, in hours\. The value you specify replaces the current value\. The maximum value for this parameter is 87600 \(ten years\)\.  
 Type: Integer  
 Valid Range: Minimum value of 1\.  
 Required: Yes
@@ -112,6 +112,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/kinesisvideo-2017-09-30/UpdateDataRetention) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/kinesisvideo-2017-09-30/UpdateDataRetention) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/kinesisvideo-2017-09-30/UpdateDataRetention) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/kinesisvideo-2017-09-30/UpdateDataRetention) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/kinesisvideo-2017-09-30/UpdateDataRetention) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesisvideo-2017-09-30/UpdateDataRetention) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/kinesisvideo-2017-09-30/UpdateDataRetention) 

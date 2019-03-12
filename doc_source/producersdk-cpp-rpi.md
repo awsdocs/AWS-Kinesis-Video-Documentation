@@ -21,6 +21,21 @@ Before you set up the C\+\+ Producer SDK on your Raspberry Pi, ensure that you h
   + An SD card with a capacity of at least 8 GB\.
   + The Raspbian operating system \(kernel version 4\.9 or later\) installed\. You can download the latest Raspbian image from the [Raspberry Pi Foundation website](https://www.raspberrypi.org/downloads/raspbian/)\. Follow the Raspberry Pi instructions to [install the downloaded image on an SD card](https://www.raspberrypi.org/documentation/installation/installing-images/README.md)\. 
 + An AWS account with a Kinesis video stream\. For more information, see [Getting Started with Kinesis Video Streams](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/getting-started.html)\.
+**Note**  
+The C\+\+ Producer SDK uses the US West \(Oregon\) \(`us-west-2`\) Region by default\. To use the default AWS Region, create your Kinesis video stream in the US West \(Oregon\) Region\.   
+To use a different Region for your Kinesis video stream, do one of the following:  
+Set the following environment variable to your Region \(for example, *us\-east\-1*\):  
+
+    ```
+    export AWS_DEFAULT_REGION=us-east-1 
+    ```
+After downloading the source code \(see [Download and Build the Kinesis Video Streams C\+\+ Producer SDK](#producersdk-cpp-rpi-download)\), change the following values in the `amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-producer/DefaultCallbackProvider.h` file to your Region:  
+
+    ```
+    const std::string DEFAULT_AWS_REGION  = "us-east-1";
+    const std::string KINESIS_VIDEO_SERVICE_NAME = "kinesisvideo";
+    const std::string DEFAULT_CONTROL_PLANE_URI = "https://kinesisvideo.us-east-1.amazonaws.com";
+    ```
 
 ## Create an IAM User with Permission to Write to Kinesis Video Streams<a name="producersdk-cpp-rpi-iam"></a>
 
@@ -121,7 +136,7 @@ You can connect remotely to your Raspberry Pi in headless mode\. If you are usin
    + On macOS or Linux, use `ssh`:
 
      ```
-     $ ssh pi@<IP address>
+     $   ssh pi@<IP address>
      ```
    + On Windows, use [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), a free SSH client for Windows\.
 
@@ -134,7 +149,7 @@ Follow these steps to configure the Raspberry Pi camera to send video from the d
 1. Open an editor to update the `modules` file with the following command:
 
    ```
-   $  sudo nano /etc/modules
+   $   sudo nano /etc/modules
    ```
 
 1. Add the following line to the end of the file, if it's not already there:
@@ -148,7 +163,7 @@ Follow these steps to configure the Raspberry Pi camera to send video from the d
 1. Reboot the Raspberry Pi:
 
    ```
-   $  sudo reboot
+   $   sudo reboot
    ```
 
 1. When the device reboots, connect to it again through your terminal application if you are connecting remotely\.
@@ -156,7 +171,7 @@ Follow these steps to configure the Raspberry Pi camera to send video from the d
 1. Open `raspi-config`:
 
    ```
-   $  sudo raspi-config
+   $   sudo raspi-config
    ```
 
 1. Choose **Interfacing Options**, **Camera**\. Enable the camera if it's not already enabled, and reboot if prompted\.
@@ -164,7 +179,7 @@ Follow these steps to configure the Raspberry Pi camera to send video from the d
 1. Verify that the camera is working by typing the following command:
 
    ```
-   $  raspistill -v -o test.jpg
+   $   raspistill -v -o test.jpg
    ```
 
    The display shows a five\-second preview from the camera, takes a picture \(saved to `test.jpg`\), and displays informational messages\.
@@ -176,21 +191,21 @@ The C\+\+ Producer SDK requires that you install the following software prerequi
 1. Install Git:
 
    ```
-   $  sudo apt-get update
-   $  sudo apt-get install git
+   $   sudo apt-get update
+   $   sudo apt-get install git
    ```
 
 1. Install Yacc, Lex, and OpenJDK \(Open Java Development Kit\):
 
    ```
-   $  sudo apt-get install byacc flex
-   $  sudo apt-get install openjdk-8-jdk
+   $   sudo apt-get install byacc flex
+   $   sudo apt-get install openjdk-8-jdk
    ```
 
 1. Set the `JAVA_HOME` environment variable:
 
    ```
-   $  export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-armhf/
+   $   export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-armhf/
    ```
 **Note**  
 If you reboot the device before building the SDK, you must repeat this step\. You can also set this environment variable in your \~/\.profile file\.
@@ -198,7 +213,7 @@ If you reboot the device before building the SDK, you must repeat this step\. Yo
 1. CMake is used to build the SDK\. Install CMake with the following command:
 
    ```
-   $  sudo apt-get install cmake
+   $   sudo apt-get install cmake
    ```
 
 1. Copy the following PEM file to `/etc/ssl/cert.pem`:
@@ -210,25 +225,25 @@ If you reboot the device before building the SDK, you must repeat this step\. Yo
 1. Install the C\+\+ Producer SDK:
 
    ```
-   $  git clone https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp
+   $   git clone https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp
    ```
 
 1. Change your current working directory to the install directory:
 
    ```
-   $  cd amazon-kinesis-video-stream-producer-sdk-cpp/kinesis-video-native-build
+   $   cd amazon-kinesis-video-stream-producer-sdk-cpp/kinesis-video-native-build
    ```
 
 1. Make the install script executable:
 
    ```
-   $  chmod +x install-script
+   $   chmod +x install-script
    ```
 
 1. Run the install script\. The script downloads the source and builds several open\-source projects\. It might take several hours to run the first time it is executed:
 
    ```
-   $  ./install-script
+   $   ./install-script
    ```
 
 1. Type **Y** to verify\. Then the build script runs\.
@@ -237,12 +252,12 @@ If you reboot the device before building the SDK, you must repeat this step\. Yo
 
 1. To run the sample application, you need the following information:
    + The name of the stream you created in the [Prerequisites](#producersdk-cpp-rpi-prerequisites) section\.
-   + The account credentials \(Access Key ID and secret access key\) that you created in [Create an IAM User with Permission to Write to Kinesis Video Streams](#producersdk-cpp-rpi-iam)\.
+   + The account credentials \(access key ID and secret access key\) that you created in [Create an IAM User with Permission to Write to Kinesis Video Streams](#producersdk-cpp-rpi-iam)\.
 
 1. Run the sample application using the following command:
 
    ```
-   $ export AWS_ACCESS_KEY_ID=<Access Key ID> 
+   $  export AWS_ACCESS_KEY_ID=<Access Key ID> 
    export AWS_SECRET_ACCESS_KEY=<Secret Access Key> 
    ./kinesis_video_gstreamer_sample_app Stream Name
    ```
@@ -250,7 +265,7 @@ If you reboot the device before building the SDK, you must repeat this step\. Yo
 1. You can specify the image size, framerate, and bitrate as follows:
 
    ```
-   $ export AWS_ACCESS_KEY_ID=<Access Key ID> 
+   $  export AWS_ACCESS_KEY_ID=<Access Key ID> 
    export AWS_SECRET_ACCESS_KEY=<Secret Access Key> 
    ./kinesis_video_gstreamer_sample_app -w <width> -h <height> -f <framerate> 
                        -b <bitrateInKBPS> Stream Name
@@ -259,8 +274,8 @@ If you reboot the device before building the SDK, you must repeat this step\. Yo
 1. If the sample application exits with a `library not found` error, type the following commands to verify that the project is correctly linked to its open\-source dependencies:
 
    ```
-   $  rm -rf ./kinesis-video-native-build/CMakeCache.txt ./kinesis-video-native-build/CMakeFiles
-   $  ./kinesis-video-native-build/install-script
+   $   rm -rf ./kinesis-video-native-build/CMakeCache.txt ./kinesis-video-native-build/CMakeFiles
+   $   ./kinesis-video-native-build/install-script
    ```
 
 1. Open the Kinesis Video Streams console at [https://console\.aws\.amazon\.com/kinesisvideo/](https://console.aws.amazon.com/kinesisvideo/)\.
@@ -271,7 +286,7 @@ The video stream that is sent from the Raspberry Pi appears in the console\.
 
 When the stream is playing, you can experiment with the following features of the Kinesis Video Streams console:
 + In the **Video preview** section, use the navigation controls to rewind or fast\-forward the stream\.
-+ In the **Stream info** section, notice the codec, resolution, and bit rate of the stream\. The resolution and bitrate values are set purposefully low on the Raspberry Pi to minimize bandwidth usage for this tutorial\. To view the Amazon CloudWatch metrics that are being created for your stream, choose **View stream metrics in CloudWatch**\.
++ In the **Stream info** section, notice the codec, resolution, and bitrate of the stream\. The resolution and bitrate values are set purposefully low on the Raspberry Pi to minimize bandwidth usage for this tutorial\. To view the Amazon CloudWatch metrics that are being created for your stream, choose **View stream metrics in CloudWatch**\.
 + Under **Data retention period**, notice that the video stream is retained for one day\. You can edit this value and set it to **No data retention**, or set a value from one day to several years\.
 
   Under server\-side encryption, notice that your data is being encrypted at rest using a key maintained by the AWS Key Management Service \(AWS KMS\)\.

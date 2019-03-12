@@ -50,7 +50,7 @@ In this section, you download the Java example code, import the project into you
 
         1. On the **Libraries** tab, choose **Add Jars**\.
 
-        1. In the **JAR selection** wizard, choose all \.jars in the project's `lib` directory\.
+        1. In the **JAR selection** wizard, choose all the \.jars in the project's `lib` directory\.
 
 ## Step 2: Write and Examine the Code<a name="examples-putmedia-write"></a>
 
@@ -74,8 +74,8 @@ Creating the `PutMediaClient` object takes the following parameters:
   ```
 **Note**  
 The `PutMedia` API example does not create a stream\. You must create a stream either by using the test application for the [Using the Java Producer Library](producer-sdk-javaapi.md), by using the Kinesis Video Streams console, or by using the AWS CLI\.
-+ The current time stamp\.
-+ The time code type\. The example uses `RELATIVE`, indicating that the time stamp is relative to the start of the container\.
++ The current timestamp\.
++ The time code type\. The example uses `RELATIVE`, indicating that the timestamp is relative to the start of the container\.
 + An `AWSKinesisVideoV4Signer` object that verifies that the received packets were sent by the authorized sender\.
 + The maximum upstream bandwidth in Kbps\.
 + An `AckConsumer` object to receive packet received acknowledgements\.

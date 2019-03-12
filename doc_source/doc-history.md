@@ -2,13 +2,15 @@
 
 The following table describes the important changes to the documentation since the last release of Amazon Kinesis Video Streams\.
 + **Latest API version:** 2017\-11\-29
-+ **Latest documentation update:** September 28, 2018
++ **Latest documentation update:** January 21, 2019
 
 
 ****  
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+| Getting Started: Send Data to a Kinesis video stream | Basic tutorial for sending media data from a camera to a Kinesis video stream\. For more information, see [Step 3: Send Data to a Kinesis Video Stream](gs-send-data.md)\. | January 21, 2019 | 
+| Library template for integration with Amazon SageMaker | Sample application for Kinesis Video Streams that uses Amazon SageMaker to identify when certain objects appear in an Amazon Kinesis video stream\. For more information, see [Amazon SageMaker](examples-sagemaker.md)\. | November 19, 2018 | 
 | Streaming metadata | You can use the Producer SDK to embed metadata in a Kinesis video stream\. For more information, see [Using Streaming Metadata with Kinesis Video Streams](how-meta.md)\. | September 28, 2018 | 
 | C\+\+ Producer SDK for Windows | The C\+\+ Producer SDK is now available for Microsoft Windows\. For more information, see [Using the C\+\+ Producer SDK on Windows](producer-sdk-win.md)\. | August 30, 2018 | 
 | C\+\+ Producer SDK logging | You can configure logging for C\+\+ Producer SDK applications\. For more information, see [Using Logging with the C\+\+ Producer SDK](producer-sdk-cpp-logging.md)\. | July 18, 2018 | 

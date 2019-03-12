@@ -18,12 +18,6 @@ Benefits of using Kinesis Video Streams include the following:
 + **Stream data more securely ** – Kinesis Video Streams encrypts all data as it flows through the service and when it persists the data\. Kinesis Video Streams enforces Transport Layer Security \(TLS\)\-based encryption on data streaming from devices, and encrypts all data at rest using AWS Key Management Service \(AWS KMS\)\. Additionally, you can manage access to your data using AWS Identity and Access Management \(IAM\)\.
 + **Pay as you go ** – For more information, see [AWS Pricing](https://aws.amazon.com/pricing/)\.
 
-Kinesis Video Streams is suitable for a variety of industry scenarios\. For example: 
-+ Smart city initiatives – Push video streams from traffic cameras to Kinesis video streams, and write consumer applications that can track real\-time traffic patterns\. You can also batch process the historical data to understand changes that result from new construction or traffic routing changes\.
-+ Home scenarios – Connect home security cameras, baby monitors, and other cameras embedded in appliances to build experiences that keep consumers safe and make their lives more productive and fun\.
-+ Intelligent retail features – Capture video from multiple in\-store cameras to automate people\-counting, generate store heat maps to understand in\-store customer activity, optimize layout and merchandise display, and other actions to help drive customer satisfaction\.
-+ Industrial automation – Use license plate readers that automatically detect when trucks enter and leave the warehouse\. Count pallets and track movement of material and goods on the shop floor\. Use thermal cameras to notify when industrial machinery is overheating to drive preventative maintenance and keep workers safe\.
-
 ## Are You a First\-Time User of Kinesis Video Streams?<a name="first-time-user"></a>
 
 If you're a first\-time user of Kinesis Video Streams, we recommend that you read the following sections in order:

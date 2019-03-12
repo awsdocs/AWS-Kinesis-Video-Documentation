@@ -37,7 +37,7 @@ The content store requirement for this application is **3 \(streams\) \* 3 \(min
 
 ## Creating an Instance of KinesisVideoStream<a name="producersdk-cpp-write-create-stream"></a>
 
-You create the `KinesisVideoStream` object by calling the `KinesisVideoProducer::CreateStream` method with a `StreamDefinition` parameter\. The example creates the `KinesisVideoStream` in the `ProducerTestFixture.h` file:
+You create the `KinesisVideoStream` object by calling the `KinesisVideoProducer::CreateStream` method with a `StreamDefinition` parameter\. The example creates the `KinesisVideoStream` in the `ProducerTestFixture.h` file with the track type as video, and with track id as 1:
 
 ```
 auto stream_definition = make_unique<StreamDefinition>(stream_name,
@@ -61,13 +61,29 @@ The `StreamDefinition` object has the following fields:
 + Tags for the stream\. These tags can be used by consumer applications to find the correct stream, or to get more information about the stream\. The tags can also be viewed in the AWS Management Console\.
 + AWS KMS encryption key for the stream\. For more information, see [Using Server\-Side Encryption with Kinesis Video Streams](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/how-kms.html)\.
 + Streaming type\. Currently, the only valid value is `STREAMING_TYPE_REALTIME`\.
-+ Media content type\. To view the stream in the console viewer, set this value to `"video/h264"`\.
++ Media content type\.
 + Media latency\. This value is not currently used, and should be set to 0\.
 + Playback duration of each fragment\.
 + Media timecode scale\.
 + Whether the media uses key frame fragmentation\.
 + Whether the media uses timecodes\.
 + Whether the media uses absolute fragment times\.
+
+## Adding an audio track to the Kinesis Video Stream<a name="producersdk-cpp-write-add-audiotrack-to-stream"></a>
+
+You can add audio track details to a video track stream definition by using the addTrack method of the StreamDefinition:
+
+```
+stream_definition->addTrack(DEFAULT_AUDIO_TRACKID, DEFAULT_AUDIO_TRACK_NAME, DEFAULT_AUDIO_CODEC_ID, MKV_TRACK_INFO_TYPE_AUDIO);
+```
+
+The addTrack method requires the following parameters:
++ Track id \(as 1 for audio\)\. This should be unique and non\-zero value\.
++ User\-defined track name \(e\.g\. "audio" for the audio track\)\. 
++ Codec id for this track \(e\.g\. for audio track "A\_AAC"\)\.
++ Track type \(e\.g\. use the enum value of MKV\_TRACK\_INFO\_TYPE\_AUDIO for audio\)\. 
+
+If you have codec private data for the audio track, then you can pass it when calling the addTrack function\. You can also send the codec private data after creating the KinesisVideoStream object while calling the start method in KinesisVideoStream\.
 
 ## Putting a Frame into the Kinesis Video Stream<a name="producersdk-cpp-write-putframe"></a>
 
@@ -107,6 +123,16 @@ The `Frame` object has the following fields:
 + Frame data\.
 
 For more information about the format of the frame, see [Kinesis Video Streams Data Model](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/how-data.html)\.
+
+## Putting a KinesisVideoFrame into a specific track of KinesisVideoStream<a name="producersdk-cpp-write-putframeintospecifictrack"></a>
+
+You can use the PutFrameHelper class to put frame data into a specific track\. First, call the getFrameDataBuffer to get a pointer to one of the pre\-allocated buffers to fill in the KinesisVideoFrame data\. Then, you can call the putFrameMultiTrack to send the KinesisVideoFrame along with the boolean value to indicate the type of frame data\. Use true if it's a video data or false if the frame contains audio data\. The putFrameMultiTrack method uses a queueing mechanism to ensure that the MKV Fragments maintain monotonically increasing frame time stamps and any two fragments do not overlap\. For example, MKV timestamp of the first frame of a fragment should always be greater than the MKV timestamp of the last frame of the previous fragment\. 
+
+The PutFrameHelper has the following fields:
++ Maximum number of audio frames in the queue 
++ Maximum number of video frames in the queue
++ Size to allocate for a single audio frame
++ Size to allocate for a single video frame
 
 ## Metrics and Metric Logging<a name="producersdk-cpp-write-metrics"></a>
 

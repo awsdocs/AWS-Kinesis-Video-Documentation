@@ -69,8 +69,8 @@ The response returns the following as the HTTP body\.
  ** [Payload](#API_reader_GetMediaForFragmentList_ResponseSyntax) **   <a name="KinesisVideo-reader_GetMediaForFragmentList-response-Payload"></a>
 The payload that Kinesis Video Streams returns is a sequence of chunks from the specified stream\. For information about the chunks, see [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html)\. The chunks that Kinesis Video Streams returns in the `GetMediaForFragmentList` call also include the following additional Matroska \(MKV\) tags:   
 + AWS\_KINESISVIDEO\_FRAGMENT\_NUMBER \- Fragment number returned in the chunk\.
-+ AWS\_KINESISVIDEO\_SERVER\_SIDE\_TIMESTAMP \- Server\-side time stamp of the fragment\.
-+ AWS\_KINESISVIDEO\_PRODUCER\_SIDE\_TIMESTAMP \- Producer\-side time stamp of the fragment\.
++ AWS\_KINESISVIDEO\_SERVER\_SIDE\_TIMESTAMP \- Server\-side timestamp of the fragment\.
++ AWS\_KINESISVIDEO\_PRODUCER\_SIDE\_TIMESTAMP \- Producer\-side timestamp of the fragment\.
 The following tags will be included if an exception occurs:  
 + AWS\_KINESISVIDEO\_FRAGMENT\_NUMBER \- The number of the fragment that threw the exception
 + AWS\_KINESISVIDEO\_EXCEPTION\_ERROR\_CODE \- The integer code of the exception
@@ -104,6 +104,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/kinesis-video-reader-data-2017-09-30/GetMediaForFragmentList) 

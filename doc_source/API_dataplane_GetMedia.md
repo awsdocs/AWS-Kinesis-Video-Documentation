@@ -83,8 +83,8 @@ The response returns the following as the HTTP body\.
 + AWS\_KINESISVIDEO\_CONTINUATION\_TOKEN \(UTF\-8 string\) \- In the event your `GetMedia` call terminates, you can use this continuation token in your next request to get the next chunk where the last request terminated\.
 + AWS\_KINESISVIDEO\_MILLIS\_BEHIND\_NOW \(UTF\-8 string\) \- Client applications can use this tag value to determine how far behind the chunk returned in the response is from the latest chunk on the stream\. 
 + AWS\_KINESISVIDEO\_FRAGMENT\_NUMBER \- Fragment number returned in the chunk\.
-+ AWS\_KINESISVIDEO\_SERVER\_TIMESTAMP \- Server time stamp of the fragment\.
-+ AWS\_KINESISVIDEO\_PRODUCER\_TIMESTAMP \- Producer time stamp of the fragment\.
++ AWS\_KINESISVIDEO\_SERVER\_TIMESTAMP \- Server timestamp of the fragment\.
++ AWS\_KINESISVIDEO\_PRODUCER\_TIMESTAMP \- Producer timestamp of the fragment\.
 The following tags will be present if an error occurs:  
 + AWS\_KINESISVIDEO\_ERROR\_CODE \- String description of an error that caused GetMedia to stop\.
 + AWS\_KINESISVIDEO\_ERROR\_ID: Integer code of the error\.
@@ -93,7 +93,7 @@ The error codes are as follows:
 + 4000 \- Requested fragment is not found
 + 4500 \- Access denied for the stream's KMS key
 + 4501 \- Stream's KMS key is disabled
-+ 4502 \- Validation error on the Stream's KMS key
++ 4502 \- Validation error on the stream's KMS key
 + 4503 \- KMS key specified in the stream is unavailable
 + 4504 \- Invalid usage of the KMS key specified in the stream
 + 4505 \- Invalid state of the KMS key specified in the stream
@@ -135,6 +135,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/kinesis-video-data-2017-09-30/GetMedia) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/kinesis-video-data-2017-09-30/GetMedia) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/kinesis-video-data-2017-09-30/GetMedia) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/kinesis-video-data-2017-09-30/GetMedia) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/kinesis-video-data-2017-09-30/GetMedia) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesis-video-data-2017-09-30/GetMedia) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/kinesis-video-data-2017-09-30/GetMedia) 

@@ -9,15 +9,16 @@ You can view a Kinesis video stream using either HLS or the [GetMedia](https://d
 To view a Kinesis video stream using HLS, you first create a streaming session using [GetHLSStreamingSessionURL](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_GetHLSStreamingSessionURL.html)\. This action returns a URL \(containing a session token\) for accessing the HLS session\. You can then use the URL in a media player or a standalone application to display the stream\. 
 
 An Amazon Kinesis video stream has the following requirements for providing video through HLS:
-+ The media type must be `video/h264`\.
 + Data retention must be greater than 0\.
-+ The fragments must contain codec private data in the AVC \(Advanced Video Coding\) for H\.264 format \([MPEG\-4 specification ISO/IEC 14496\-15](https://www.iso.org/standard/55980.html)\)\. For information about adapting stream data to a given format, see [NAL Adaptation Flags](producer-reference-nal.md)\. 
++ Track 1 of the stream must have a codec ID of `V_MPEG/ISO/AVC` and contain H\.264 encoded media\. If there is an audio track \(optional\), it must be track number 2 and have a codec ID of `A_AAC` and contain AAC encoded audio\.
++ The fragments must contain codec private data in the Advanced Video Coding \(AVC\) for H\.264 format \([ MPEG\-4 specification ISO/IEC 14496\-15](https://www.iso.org/standard/55980.html)\) for the video media\. They must also contain codec private data for ACC \([AAC specification ISO/IEC 13818\-7](https://www.iso.org/standard/43345.html)\) for the audio media \(if present\)\. For information about adapting stream data to a given format, see [NAL Adaptation Flags](producer-reference-nal.md)\. 
 
 ## Example: Using HLS in HTML and JavaScript<a name="how-hls-ex1"></a>
 
 The following example shows how to retrieve an HLS streaming session for a Kinesis video stream and play it back in a webpage\. The example shows how to play back video in the following players:
 + [Video\.js](https://github.com/videojs/video.js/) 
 + [Google Shaka Player](https://github.com/google/shaka-player)
++ [hls\.js](https://github.com/video-dev/hls.js/)
 
 **Topics**
 + [Set Up the Kinesis Video Streams Client](#how-hls-ex1-setup)
@@ -35,15 +36,13 @@ To access streaming video with HLS, first create and configure the Kinesis Video
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.278.1/aws-sdk.min.js"></script>
 ...
 
-var streamName = $('#streamName').val();
+var streamName = 'STREAM_NAME';
 
 // Step 1: Configure SDK Clients
 var options = {
     accessKeyId: 'ACCESS_KEY_ID',
     secretAccessKey: 'SECRET_KEY',
-    sessionToken: $('#sessionToken').val() || undefined,
-    region: 'REGION',
-    endpoint: $('#endpoint').val() || undefined
+    region: 'REGION'
 }
 var kinesisVideo = new AWS.KinesisVideo(options);
 var kinesisVideoArchivedContent = new AWS.KinesisVideoArchivedMedia(options);
@@ -72,19 +71,21 @@ When you have the archived content endpoint, call the [GetHLSStreamingSessionURL
 ```
 // Step 3: Get an HLS Streaming Session URL
 console.log('Fetching HLS Streaming Session URL');
+var playbackMode = 'PLAYBACK_MODE'; // 'LIVE' or 'ON_DEMAND'
+var startTimestamp = new Date('START_TIMESTAMP'); // For ON_DEMAND only
+var endTimestamp = new Date('END_TIMESTAMP'); // For ON_DEMAND only
+var fragmentSelectorType = 'FRAGMENT_SELECTOR_TYPE'; // 'SERVER_TIMESTAMP' or 'PRODUCER_TIMESTAMP'
 kinesisVideoArchivedContent.getHLSStreamingSessionURL({
     StreamName: streamName,
-    PlaybackMode: $('#playbackMode').val(),
+    PlaybackMode: playbackMode,
     HLSFragmentSelector: {
-        FragmentSelectorType: $('#fragmentSelectorType').val(),
-        TimestampRange: $('#playbackMode').val() === "LIVE" ? undefined : {
-            StartTimestamp: new Date($('#startTimestamp').val()),
-            EndTimestamp: new Date($('#endTimestamp').val())
+        FragmentSelectorType: fragmentSelectorType,
+        TimestampRange: playbackMode === 'LIVE' ? undefined : {
+            StartTimestamp: startTimestamp,
+            EndTimestamp: endTimestamp
         }
     },
-    DiscontinuityMode: $('#discontinuityMode').val(),
-    MaxMediaPlaylistFragmentResults: parseInt($('#maxMediaPlaylistFragmentResults').val()),
-    Expires: parseInt($('#expires').val())
+    Expires: parseInt(SESSION_EXPIRATION_SECONDS)
 }, function(err, response) {
     if (err) { return console.error(err); }
     console.log('HLS Streaming Session URL: ' + response.HLSStreamingSessionURL);
@@ -104,22 +105,19 @@ The following code example shows how to provide the streaming session URL to a [
 
 ...
 
-// Step 4: Give the URL to the video player.
-var playerName = $('#player').val();
-if (playerName === 'VideoJS') {
-    var playerElement = $('#videojs');
-    playerElement.show();
-    var player = videojs('videojs');
-    console.log('Created VideoJS Player');
-    
-    player.src({
-        src: response.HLSStreamingSessionURL,
-        type: 'application/x-mpegURL'
-    });
-    console.log('Set player source');
-    
-    player.play();
-    console.log('Starting playback');
+var playerElement = $('#videojs');
+playerElement.show();
+var player = videojs('videojs');
+console.log('Created VideoJS Player');
+
+player.src({
+    src: response.HLSStreamingSessionURL,
+    type: 'application/x-mpegURL'
+});
+console.log('Set player source');
+
+player.play();
+console.log('Starting playback');
 }
 ```
 
@@ -132,15 +130,38 @@ The following code example shows how to provide the streaming session URL to a [
                 
 ...
 
-if (playerName === 'Shaka Player') {
-    var playerElement = $('#shaka');
-    playerElement.show();
-    var player = new shaka.Player(playerElement[0]);
-    console.log('Created Shaka Player');
-    player.load(response.HLSStreamingSessionURL).then(function() {
-        console.log('Starting playback');
+var playerElement = $('#shaka');
+playerElement.show();
+var player = new shaka.Player(playerElement[0]);
+console.log('Created Shaka Player');
+player.load(response.HLSStreamingSessionURL).then(function() {
+    console.log('Starting playback');
 });
 console.log('Set player source');
+```
+
+The following code example shows how to provide the streaming session URL to an [hls\.js](https://github.com/video-dev/hls.js/) player: 
+
+```
+<!-- hls.js Player elements -->
+<video id="hlsjs" class="player" controls autoplay></video>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+...
+
+var playerElement = $('#hlsjs');
+playerElement.show();
+var player = new Hls();
+console.log('Created HLS.js Player');
+
+player.loadSource(response.HLSStreamingSessionURL);
+player.attachMedia(playerElement[0]);
+console.log('Set player source');
+
+player.on(Hls.Events.MANIFEST_PARSED, function() {
+    video.play();
+    console.log('Starting playback');
+});
 ```
 
 ### Troubleshooting<a name="how-hls-ex1-ts"></a>
@@ -149,4 +170,4 @@ If the video stream does not play back correctly, see [Troubleshooting HLS Issue
 
 ### Completed Example<a name="how-hls-ex1-complete"></a>
 
-You can download or view the completed example code [here](https://github.com/aws-samples/amazon-kinesis-video-streams-hls-viewer/blob/master/index.html)\.
+You can [download or view the completed example code](https://github.com/aws-samples/amazon-kinesis-video-streams-hls-viewer/blob/master/index.html)\.

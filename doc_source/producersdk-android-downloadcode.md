@@ -49,7 +49,7 @@ For prerequisites and other details about this example, see [Using the Android P
    }
    ```
 
-1. Update the `StreamingFragment.java` file with your region:
+1. Update the `AmazonKinesisVideoDemoApp/src/main/java/com/amazonaws/kinesisvideo/demoapp/fragment/StreamingFragment.java` with your region:
 
    ```
    try {

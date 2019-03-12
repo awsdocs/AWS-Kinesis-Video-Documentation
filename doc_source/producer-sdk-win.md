@@ -38,7 +38,7 @@ Follow these steps to use the MinGW runtime environment to compile the Kinesis V
 1. Navigate to the `amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-native-build` directory, and run the following install script to build the Producer SDK:
 
    ```
-   msys2-install-script -a
+   ./msys2-install-script -a
    ```
 **Note**  
 Accept all of the prompts when the script runs\.
@@ -138,7 +138,7 @@ Remove the `CMakeFiles` directory and the `CMakeCachedList.txt` file in the `kin
 This script builds the following components:  
 The [C\+\+ Producer Library](producer-sdk-cpp.md) libraries\.
 The C\+\+ Producer SDK [GStreamer](examples-gstreamer-plugin.md) \(`kvssink`\)\.
-The [](examples-rtsp.md) demo, which shows how to stream data from an RTSP \(network\) camera\.
+The [RTSP and Docker](examples-rtsp.md) demo, which shows how to stream data from an RTSP \(network\) camera\.
 
 #### Running the Producer SDK to Send Video to Kinesis Video Streams<a name="producer-sdk-win-mingw-run"></a>
 

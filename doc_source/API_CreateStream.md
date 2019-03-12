@@ -21,7 +21,10 @@ Content-type: application/json
    "[DeviceName](#KinesisVideo-CreateStream-request-DeviceName)": "string",
    "[KmsKeyId](#KinesisVideo-CreateStream-request-KmsKeyId)": "string",
    "[MediaType](#KinesisVideo-CreateStream-request-MediaType)": "string",
-   "[StreamName](#KinesisVideo-CreateStream-request-StreamName)": "string"
+   "[StreamName](#KinesisVideo-CreateStream-request-StreamName)": "string",
+   "[Tags](#KinesisVideo-CreateStream-request-Tags)": { 
+      "string" : "string" 
+   }
 }
 ```
 
@@ -59,11 +62,11 @@ Required: No
 
  ** [MediaType](#API_CreateStream_RequestSyntax) **   <a name="KinesisVideo-CreateStream-request-MediaType"></a>
 The media type of the stream\. Consumers of the stream can use this information when processing the stream\. For more information about media types, see [Media Types](http://www.iana.org/assignments/media-types/media-types.xhtml)\. If you choose to specify the `MediaType`, see [Naming Requirements](https://tools.ietf.org/html/rfc6838#section-4.2) for guidelines\.  
-To play video on the console, the media must be H\.264 encoded, and you need to specify this video type in this parameter as `video/h264`\.   
+Example valid values include "video/h264" and "video/h264,audio/aac"\.  
 This parameter is optional; the default value is `null` \(or empty in JSON\)\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
-Pattern: `[\w\-\.\+]+/[\w\-\.\+]+`   
+Pattern: `[\w\-\.\+]+/[\w\-\.\+]+(,[\w\-\.\+]+/[\w\-\.\+]+)*`   
 Required: No
 
  ** [StreamName](#API_CreateStream_RequestSyntax) **   <a name="KinesisVideo-CreateStream-request-StreamName"></a>
@@ -73,6 +76,13 @@ Type: String
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
 Pattern: `[a-zA-Z0-9_.-]+`   
 Required: Yes
+
+ ** [Tags](#API_CreateStream_RequestSyntax) **   <a name="KinesisVideo-CreateStream-request-Tags"></a>
+A list of tags to associate with the specified stream\. Each tag is a key\-value pair \(the value is optional\)\.  
+Type: String to string map  
+Key Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Value Length Constraints: Minimum length of 0\. Maximum length of 256\.  
+Required: No
 
 ## Response Syntax<a name="API_CreateStream_ResponseSyntax"></a>
 
@@ -125,6 +135,10 @@ HTTP Status Code: 400
 The stream is currently not available for this operation\.  
 HTTP Status Code: 400
 
+ **TagsPerResourceExceededLimitException**   
+You have exceeded the limit of tags that you can associate with the resource\. Kinesis video streams support up to 50 tags\.   
+HTTP Status Code: 400
+
 ## See Also<a name="API_CreateStream_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
@@ -132,6 +146,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/kinesisvideo-2017-09-30/CreateStream) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/kinesisvideo-2017-09-30/CreateStream) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/kinesisvideo-2017-09-30/CreateStream) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/kinesisvideo-2017-09-30/CreateStream) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/kinesisvideo-2017-09-30/CreateStream) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesisvideo-2017-09-30/CreateStream) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/kinesisvideo-2017-09-30/CreateStream) 

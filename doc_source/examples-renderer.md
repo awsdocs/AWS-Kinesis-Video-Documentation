@@ -13,7 +13,7 @@ The following procedure demonstrates how to set up and use the Renderer demo app
 ## Prerequisites<a name="examples-renderer-prerequisites"></a>
 
 To examine and use the Renderer example library, you must have the following:
-+ An Amazon Web Services \(AWS\) account\. If you don't already have an AWS account, see [Getting Started with Kinesis Video Streams](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/getting-started.html)
++ An Amazon Web Services \(AWS\) account\. If you don't already have an AWS account, see [Getting Started with Kinesis Video Streams](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/getting-started.html)\.
 + A Java integrated development environment \(IDE\), such as [Eclipse Java Neon](https://www.eclipse.org/downloads/packages/release/neon/3/eclipse-jee-neon-3) or [JetBrains IntelliJ Idea](https://www.jetbrains.com/idea/download/)\.
 
 ## Running the Renderer Example<a name="examples-renderer-procedure"></a>
@@ -24,13 +24,13 @@ To examine and use the Renderer example library, you must have the following:
    $ git clone https://github.com/aws/amazon-kinesis-video-streams-parser-library
    ```
 
-1. Open the Java IDE that you are using \(for example, [Eclipse](http://www.eclipse.org/) or [IntelliJ IDEA](https://www.jetbrains.com/idea/)\) and import the Apache Maven project that you downloaded: 
+1. Open the Java IDE that you are using \(for example, [Eclipse](http://www.eclipse.org/) or [IntelliJ IDEA](https://www.jetbrains.com/idea/)\), and import the Apache Maven project that you downloaded: 
    + **In Eclipse:** Choose **File**, **Import**, **Maven**, **Existing Maven Projects**\. Navigate to the `kinesis-video-streams-parser-lib` directory\.
    + **In IntelliJ Idea: ** Choose **Import**\. Navigate to the `pom.xml` file in the root of the downloaded package\.
 **Note**  
-You may need to do the following if IntelliJ cannot find your dependencies:   
-**Build clean:** Choose **File**, **Settings**, **Build, Execution, Deployment**, **Compiler**\. Ensure that **Clear output directory on rebuild** is checked, and then choose **Build**, **Build Project**\.\)
-**Reimport the project:** Right\-click on the project, and choose **Maven**, **Reimport**\.
+If IntelliJ can't find your dependencies, you might have to do the following:   
+**Build clean:** Choose **File**, **Settings**, **Build, Execution, Deployment**, **Compiler**\. Ensure that **Clear output directory on rebuild** is selected, and then choose **Build**, **Build Project**\.
+**Reimport the project:** Open the context \(right\-click\) menu for the project, and choose **Maven**, **Reimport**\.
 
     For more information, see the related IDE documentation\.
 

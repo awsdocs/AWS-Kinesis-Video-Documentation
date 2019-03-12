@@ -34,4 +34,4 @@ The Java example uses a `SystemPropertiesCredentialsProvider` object to obtain y
   + **KinesisVideoProducerJNI\.dylib** for macOS
   + **KinesisVideoProducerJNI\.dll** for Windows
 **Note**  
-Pre\-built libraries for macOS, Ubuntu, Windows, and Raspbian are available in `src/main/resources/lib`\. For other environments, compile the [C\+\+ Producer Library](producer-sdk-cpp.md)\.
+Pre\-built libraries for macOS, Ubuntu, Windows, and Raspbian are available in `src/main/resources/lib` at [https://github\.com/awslabs/amazon\-kinesis\-video\-streams\-producer\-sdk\-java](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-java)\. For other environments, compile the [C\+\+ Producer Library](producer-sdk-cpp.md)\.

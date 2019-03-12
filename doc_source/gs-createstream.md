@@ -26,9 +26,17 @@ This section contains the following procedures:
 1. Run the following `Create-Stream` command in the AWS CLI: 
 
    ```
-   $ aws kinesisvideo create-stream --stream-name "MyKinesisVideoStream" --data-retention-in-hours "24"
+   $ aws kinesisvideo create-stream --stream-name "MyKVStream" --data-retention-in-hours "24"
+   ```
+
+   The response will look similar to the following:
+
+   ```
+   {
+       "StreamARN": "arn:aws:kinesisvideo:us-west-2:123456789012:stream/MyKVSStream/123456789012"
+   }
    ```
 
 ## Next Step<a name="gs-next-step-3"></a>
 
-[What's Next? ](gs-console-whatnext.md)
+[Step 3: Send Data to a Kinesis Video Stream](gs-send-data.md)

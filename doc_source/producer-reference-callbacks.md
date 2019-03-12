@@ -23,7 +23,7 @@ The `ClientCallbackProvider` object exposes client\-level callback functions\. T
 
 **Callback methods:**
 + `getClientReadyCallback`: Reports a ready state for the client\.
-+ `getStorageOverflowPressureCallback`: Reports storage overflow or pressure\. This callback is called when the storage utilization exceeds the `STORAGE_PRESSURE_NOTIFICATION_THRESHOLD` value, which is 5 percent of the overall storage size\. For more information, see [StorageInfo](producer-reference-structures-producer.md#producer-reference-structures-producer-storageinfo)\.
++ `getStorageOverflowPressureCallback`: Reports storage overflow or pressure\. This callback is called when the storage utilization drops below the `STORAGE_PRESSURE_NOTIFICATION_THRESHOLD` value, which is 5 percent of the overall storage size\. For more information, see [StorageInfo](producer-reference-structures-producer.md#producer-reference-structures-producer-storageinfo)\.
 
 For the source code for `ClientCallbackProvider`, see [Include\.h](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-pic/src/client/include/com/amazonaws/kinesis/video/client/Include.h)\.
 
@@ -82,7 +82,7 @@ streamCallbackProvider->streamClosedHandler(...);
 | DroppedFrameReportFunc | Reports when a frame is dropped\. | Notification | 
 | DroppedFragmentReportFunc | Reports when a fragment is dropped\. This function is not currently used and is reserved for future use\. | Notification | 
 | FragmentAckReceivedFunc | Called when a fragment ACK \(buffering, received, persisted, and error\) is received\. | Notification | 
-| StorageOverflowPressureFunc | Called when the storage utilization exceeds the STORAGE\_PRESSURE\_NOTIFICATION\_THRESHOLD value, which is defined as 5 percent of the overall storage size\. | Notification | 
+| StorageOverflowPressureFunc | Called when the storage utilization drops below the STORAGE\_PRESSURE\_NOTIFICATION\_THRESHOLD value, which is defined as 5 percent of the overall storage size\. | Notification | 
 | StreamClosedFunc | Called when the last bits of the remaining frames are streamed\. | Notification | 
 | StreamConnectionStaleFunc | Called when the stream enters a stale connection state\. In this condition, the producer is sending data to the service but is not receiving acknowledgements\. | Notification | 
 | StreamDataAvailableFunc | Called when stream data is available\. | Notification | 
