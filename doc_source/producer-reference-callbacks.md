@@ -16,6 +16,7 @@ In the preceding diagram, `DefaultCallbackProvider` derives from `CallbackProvid
 + [ClientCallbackProvider](#producer-reference-callbacks-clientcallbackprovider)
 + [StreamCallbackProvider](#producer-reference-callbacks-streamcallbackprovider)
 + [ClientCallbacks Structure](#producer-reference-callbacks-clientcallbacks)
++ [Callback Implementations to Retry Streaming](#producer-reference-callbacks-retry)
 
 ## ClientCallbackProvider<a name="producer-reference-callbacks-clientcallbackprovider"></a>
 
@@ -112,3 +113,11 @@ The authorization information is provided using the `__AuthInfo` structure, whic
 + `data`: A byte array containing the authentication information\.
 + `size`: The size of the `data` parameter\.
 + `expiration`: The expiration of the credentials in 100 nanosecond units\.
+
+## Callback Implementations to Retry Streaming<a name="producer-reference-callbacks-retry"></a>
+
+The Kinesis Video Producer SDK provides the status of streaming through callback functions\. It is recommended that you implement the following callback mechanisms to recover from any momentary network issues encountered during streaming\.
++ **Stream latency pressure callback** \- this callback mechanism gets triggered when the SDK encounters a stream latency condition\. This happens when the accumulated buffer size is larger than the MAX\_LATENCY value\. When the stream is created, the streaming application sets MAX\_LATENCY to the default value of 60 seconds\. The typical implementation for this callback is to reset the connection\. You can use the sample implementation at [https://github\.com/awslabs/amazon\-kinesis\-video\-streams\-producer\-sdk\-cpp/blob/master/kinesis\-video\-gstreamer\-plugin/plugin\-src/StreamLatencyStateMachine\.cpp](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gstreamer-plugin/plugin-src/StreamLatencyStateMachine.cpp) as needed\. Note that there is no option to store the frames undelivered due to network outage into a secondary storage for back\-fill\. 
++ **Stream staleness callback** \- this callback gets triggered when the producer can send data to the AWS KVS service \(uplink\) but it’s not able to get the acknowledgements \(buffered ACK\) back in time \(default is 60 seconds\)\. Depending on the network settings, either the stream latency pressure callback or the stream staleness callback, or both can get triggered\. Similar to the stream latency pressure callback retry implementation, the typical implementation is to reset the connection and start a new connection for streaming\. You can use the sample implementation at [https://github\.com/awslabs/amazon\-kinesis\-video\-streams\-producer\-sdk\-cpp/blob/master/kinesis\-video\-gstreamer\-plugin/plugin\-src/ConnectionStaleStateMachine\.cpp](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gstreamer-plugin/plugin-src/ConnectionStaleStateMachine.cpp) as needed\. 
++ **Stream error callback** \- this callback gets triggered when the SDK encounters a timeout on the network connection or other errors during the call to the KVS API service calls\. To recover from network timeout errors, you can refer to and use the sample implementation for recreating the stream at [https://github\.com/awslabs/amazon\-kinesis\-video\-streams\-producer\-sdk\-cpp/blob/master/kinesis\-video\-gst\-demo/kinesis\_video\_gstreamer\_sample\_app\.cpp\#L1023](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gst-demo/kinesis_video_gstreamer_sample_app.cpp#L1023) \.
++ **Dropped frame callback** \- this callback gets triggered when the storage size is full either due to slow network speed or a stream error\. If the network speed results in dropped frames, then you can either increase the storage size, reduce the video frame size or frame rate to match the network speed\.

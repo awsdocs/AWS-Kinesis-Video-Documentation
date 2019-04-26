@@ -59,6 +59,9 @@ Kinesis Video Streams stores each incoming fragment and related metadata in what
 **Note**  
 This operation is only available for the AWS SDK for Java\. It is not supported in AWS SDKs for other languages\.
 
+**Note**  
+Kinesis Video Streams does not parse and validate the codec private data during ingestion and archival via the PutMedia API\. KVS extracts and validates the necessary information from the codec private data for MPEG\-TS and MP4 fragment packaging when consuming the stream via the HLS APIs\.
+
 ## Request Syntax<a name="API_dataplane_PutMedia_RequestSyntax"></a>
 
 ```
@@ -192,7 +195,7 @@ HTTP Status Code: 404
 
 The format of the acknowledgement is as follows:
 
-#### <a name="w3aac36b4c11c11c47b3b5"></a>
+#### <a name="w3aac36b4c11c11c49b3b5"></a>
 
 ```
 {

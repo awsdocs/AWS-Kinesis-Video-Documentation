@@ -80,6 +80,37 @@ To create the sample application, you use AWS CloudFormation and the templates t
 
 AWS CloudFormation creates the application\. 
 
+The following table lists several parameters used by the Docker container when you create a stack using this AWS CloudFormation template\. Their values are predefined in the `SSM` resource in the template, but you can customize them as needed\. 
+
+
+|  |  |  | 
+| --- |--- |--- |
+| Resource name  | Default value | Description | 
+| inferenceInterval | 6 | The sampling ratio for video frames that are sent to the SageMaker endpoint\. Currently, we only support inferencing on I\-Frames\. The default value of 6 means that 1 out of every 6 I\-Frames is sent to the SageMaker endpoint\. | 
+| sageMakerTaskQueueSize | 5000 | The size of the queue that maintains the pending requests to the SageMaker endpoint\. The size of the queue is affected by ‘inferenceInternval’ and ‘sageMakerTaskTimeoutInMilli’\. If sagemaker inference takes longer, requests are buffered in this queue\.  | 
+| sageMakerTaskThreadPoolSize | 20 | Number of threads that is used to concurrently execute SageMaker requests\. | 
+| sageMakerTaskTimeoutInMilli | 20000 | The maximum duration allowed for a single request \(or a retry request\) that is sent to the SageMaker endpoint\. | 
+| sageMakerTaskThreadPoolName | SageMakerThreadPool\-%d | The name of the threadpool that is sending requests to the SageMaker endpoint\. | 
+
+To customize the values of these parameters, download the AWS CloudFormation template by choosing the template URL on the **Create stack** page, and then locate these parameters in the `Params` section of the template that looks like this:
+
+```
+Params:
+    Type: AWS::SSM::Parameter
+    Properties: 
+      Name:
+        Ref: AppName
+      Description: "Configuration for SageMaker app"
+      Type: String
+      Value: 
+        Fn::Sub: |
+          {"streamNames":[${StreamNames}], "tagFilters":[${TagFilters}],"sageMakerEndpoint":"${SageMakerEndpoint}",
+           "endPointAcceptContentType": "${EndPointAcceptContentType}",
+           "kdsStreamName":"${Kds}","inferenceInterval":6,"sageMakerTaskQueueSize":5000,
+           "sageMakerTaskThreadPoolSize":20,"sageMakerTaskTimeoutInMilli":20000,
+           "sageMakerTaskThreadPoolName":"SageMakerThreadPool-%d"}
+```
+
 ## Monitoring the Application<a name="examples-sagemaker-monitor"></a>
 
 The application created by the AWS CloudFormation template includes an Amazon CloudWatch dashboard and a CloudWatch log stream that you use to monitor application metrics and events\.

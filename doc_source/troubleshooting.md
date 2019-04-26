@@ -200,6 +200,7 @@ This section describes issues that you might encounter when using the [Producer 
 + [Timestamp/range assertion at runtime on Raspberry Pi](#troubleshooting-producer-raspberrypi-timestamp-assert)
 + [Assertion on gst\_value\_set\_fraction\_range\_full on Raspberry Pi](#troubleshooting-producer-raspberrypi-gst-assert)
 + [STATUS\_MKV\_INVALID\_ANNEXB\_NALU\_IN\_FRAME\_DATA \(0x3200000d\) error on Android](#troubleshooting-producer-android-invalid-annexb)
++ [Maximum Fragment Duration Was Reached Error](#troubleshooting-producer-maxfragmentduration)
 
 ### Cannot compile the Producer SDK<a name="troubleshooting-producer-compile"></a>
 
@@ -363,6 +364,18 @@ putKinesisVideoFrame(): Failed to put a frame with status code 0x3200000d
 If this error occurs, provide the correct `.withNalAdaptationFlags` flag for your media \(for example, `NAL_ADAPTATION_ANNEXB_CPD_NALS`\)\. Provide this flag in the following line of the [Android Producer Library](producer-sdk-android.md): 
 
 [ https://github\.com/awslabs/aws\-sdk\-android\-samples/blob/master/AmazonKinesisVideoDemoApp/src/main/java/com/amazonaws/kinesisvideo/demoapp/fragment/StreamConfigurationFragment\.java\#L169](https://github.com/awslabs/aws-sdk-android-samples/blob/master/AmazonKinesisVideoDemoApp/src/main/java/com/amazonaws/kinesisvideo/demoapp/fragment/StreamConfigurationFragment.java#L169)
+
+### Maximum Fragment Duration Was Reached Error<a name="troubleshooting-producer-maxfragmentduration"></a>
+
+This error occurs when a media fragment in a stream exceeds the maximum fragment duration limit\. By default, Kinesis Video Streams sets a stream’s maximum fragment duration to 10 seconds\.
+
+To resolve this issue, try the following:
++ If you are using a webcam/USB camera, do one of the following:
+  + If the you are using key frame\-based fragmentation, then set the encoder to provide key frames within 10 seconds\.
+  + If you are not using key frame\-based fragmentation, then when defining the stream in [Step 2: Write and Examine the Code](producersdk-cpp-write.md), set the maximum fragment duration limit to a value that's less than 10 seconds\.
+  + If you are using software encoders \(like x264\) in the GStreamer pipeline, you can set the key\-int\-max attribute to a value within 10 seconds \(for example, set key\-int\-max to 60, with fps set to 30, to enable key frames every 2 seconds\)\.
++ If you are using an RPI camera, set the keyframe\-interval attribute to be less than 10 seconds\.
++ If you are using an IP \(RTSP\) camera, set the GOP size to 60\. 
 
 ## Troubleshooting Stream Parser Library Issues<a name="troubleshooting-parser"></a>
 
