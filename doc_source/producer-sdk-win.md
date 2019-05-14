@@ -35,10 +35,10 @@ Follow these steps to use the MinGW runtime environment to compile the Kinesis V
    git clone https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp.git
    ```
 
-1. Navigate to the `amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-native-build` directory, and run the following install script to build the Producer SDK:
+1. Navigate to the [amazon\-kinesis\-video\-streams\-producer\-sdk\-cpp/kinesis\-video\-native\-build](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/tree/master/kinesis-video-native-build) directory, and run the following install script to build the Producer SDK:
 
    ```
-   ./msys2-install-script -a
+   ./min-install-script
    ```
 **Note**  
 Accept all of the prompts when the script runs\.

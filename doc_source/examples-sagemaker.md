@@ -60,6 +60,7 @@ To create the sample application, you use AWS CloudFormation and the templates t
 **To use AWS CloudFormation to create the application**
 
 1. Sign in to the AWS Management Console and open the AWS CloudFormation console using one of the following links for your AWS Region\. The link launches the correct stack for your Region:
+   +  [ Launch in Asia Pacific \(Sydney\) Region \(ap\-southeast\-2\)](https://ap-southeast-2.console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/create/review?templateURL=https:%2F%2Fs3-ap-southeast-2.amazonaws.com%2Fkvsit-ap-southeast-2%2Fcfn-template.template.yml) 
    +  [ Launch in Asia Pacific \(Tokyo\) Region \(ap\-northeast\-1\)](https://ap-northeast-1.console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/create/review?templateURL=https://s3-ap-northeast-1.amazonaws.com/kvsit-ap-northeast-1/cfn-template.template.yml) 
    +  [ Launch in EU \(Frankfurt\) Region \(eu\-central\-1\)](https://eu-central-1.console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks/create/review?templateURL=https://s3.eu-central-1.amazonaws.com/kvsit-eu-central-1/cfn-template.template.yml) 
    +  [ Launch in EU \(Ireland\) Region \(eu\-west\-1\)](https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/create/review?templateURL=https://s3-eu-west-1.amazonaws.com/kvsit-eu-west-1/cfn-template.template.yml) 
