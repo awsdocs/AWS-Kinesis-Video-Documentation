@@ -201,6 +201,7 @@ This section describes issues that you might encounter when using the [Producer 
 + [Assertion on gst\_value\_set\_fraction\_range\_full on Raspberry Pi](#troubleshooting-producer-raspberrypi-gst-assert)
 + [STATUS\_MKV\_INVALID\_ANNEXB\_NALU\_IN\_FRAME\_DATA \(0x3200000d\) error on Android](#troubleshooting-producer-android-invalid-annexb)
 + [Maximum Fragment Duration Was Reached Error](#troubleshooting-producer-maxfragmentduration)
++ ["Invalid thing name passed" error when using IoT authorization](#troubleshooting-producer-thingname)
 
 ### Cannot compile the Producer SDK<a name="troubleshooting-producer-compile"></a>
 
@@ -376,6 +377,10 @@ To resolve this issue, try the following:
   + If you are using software encoders \(like x264\) in the GStreamer pipeline, you can set the key\-int\-max attribute to a value within 10 seconds \(for example, set key\-int\-max to 60, with fps set to 30, to enable key frames every 2 seconds\)\.
 + If you are using an RPI camera, set the keyframe\-interval attribute to be less than 10 seconds\.
 + If you are using an IP \(RTSP\) camera, set the GOP size to 60\. 
+
+### "Invalid thing name passed" error when using IoT authorization<a name="troubleshooting-producer-thingname"></a>
+
+To avoid this error \(`HTTP Error 403: Response: {"message":"Invalid thing name passed"}`\) when you're using IoT credentials for authorization, make sure that the value of `stream-name` \(a required parameter of the `kvssink` element\) is identital to the value of `iot-thingname`\. For more information, see [GStreamer Element Parameter Reference](examples-gstreamer-plugin-parameters.md)\.
 
 ## Troubleshooting Stream Parser Library Issues<a name="troubleshooting-parser"></a>
 

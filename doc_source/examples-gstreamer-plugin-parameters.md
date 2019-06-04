@@ -3,7 +3,9 @@
 To send video to the Amazon Kinesis Video Streams Producer SDK, you specify `kvssink` as the *sink*, or final destination of the pipeline\. This reference provides information about `kvssink` required and optional parameters\. For more information, see [Example: Kinesis Video Streams Producer SDK GStreamer Plugin](examples-gstreamer-plugin.md)\.
 
 The `kvssink` element has the following required parameters:
-+ `stream-name`: The name of the destination Kinesis video stream\.
++ `stream-name`: The name of the destination Kinesis video stream\. 
+**Note**  
+When using IoT authorization, the value of `stream-name` must be identical to the value of `iot-thingname` \(in IoT provisioning\)\. For more information, see ["Invalid thing name passed" error when using IoT authorization](troubleshooting.md#troubleshooting-producer-thingname)\.
 + `storage-size`: The storage size of the device in kilobytes\. For information about configuring device storage, see [StorageInfo](producer-reference-structures-producer.md#producer-reference-structures-producer-storageinfo)\.
 + `access-key`: The AWS access key that is used to access Kinesis Video Streams\. You must provide either this parameter or `credential-path`\.
 + `secret-key`: The AWS secret key that is used to access Kinesis Video Streams\. You must provide either this parameter or `credential-path`\.

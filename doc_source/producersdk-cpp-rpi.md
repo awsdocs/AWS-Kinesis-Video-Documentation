@@ -231,7 +231,7 @@ If you reboot the device before building the SDK, you must repeat this step\. Yo
 1. Change your current working directory to the install directory:
 
    ```
-   $   cd amazon-kinesis-video-stream-producer-sdk-cpp/kinesis-video-native-build
+   $   cd amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-native-build
    ```
 
 1. Make the install script executable:
