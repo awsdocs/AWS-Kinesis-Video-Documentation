@@ -5,7 +5,7 @@
 **Note**  
 You must first call the `GetDataEndpoint` API to get an endpoint\. Then send the `GetMedia` requests to this endpoint using the [\-\-endpoint\-url parameter](https://docs.aws.amazon.com/cli/latest/reference/)\. 
 
-When you put media data \(fragments\) on a stream, Kinesis Video Streams stores each incoming fragment and related metadata in what is called a "chunk\." For more information, see [PutMedia](API_dataplane_PutMedia.md)\. The `GetMedia` API returns a stream of these chunks starting from the chunk that you specify in the request\. 
+When you put media data \(fragments\) on a stream, Kinesis Video Streams stores each incoming fragment and related metadata in what is called a "chunk\." For more information, see [PutMedia](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html)\. The `GetMedia` API returns a stream of these chunks starting from the chunk that you specify in the request\. 
 
 The following limits apply when using the `GetMedia` API:
 + A client can call `GetMedia` up to five times per second per stream\. 
@@ -86,7 +86,7 @@ Pattern: `^[a-zA-Z0-9_\.\-]+$`
 The response returns the following as the HTTP body\.
 
  ** [Payload](#API_dataplane_GetMedia_ResponseSyntax) **   <a name="KinesisVideo-dataplane_GetMedia-response-Payload"></a>
- The payload Kinesis Video Streams returns is a sequence of chunks from the specified stream\. For information about the chunks, see [PutMedia](API_dataplane_PutMedia.md)\. The chunks that Kinesis Video Streams returns in the `GetMedia` call also include the following additional Matroska \(MKV\) tags:   
+ The payload Kinesis Video Streams returns is a sequence of chunks from the specified stream\. For more information about the chunks, see [PutMedia](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html)\. The chunks that Kinesis Video Streams returns in the `GetMedia` call also include the following additional Matroska \(MKV\) tags:   
 + AWS\_KINESISVIDEO\_CONTINUATION\_TOKEN \(UTF\-8 string\) \- In the event your `GetMedia` call terminates, you can use this continuation token in your next request to get the next chunk where the last request terminated\.
 + AWS\_KINESISVIDEO\_MILLIS\_BEHIND\_NOW \(UTF\-8 string\) \- Client applications can use this tag value to determine how far behind the chunk returned in the response is from the latest chunk on the stream\. 
 + AWS\_KINESISVIDEO\_FRAGMENT\_NUMBER \- Fragment number returned in the chunk\.

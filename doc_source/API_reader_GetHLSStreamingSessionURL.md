@@ -2,15 +2,15 @@
 
 Retrieves an HTTP Live Streaming \(HLS\) URL for the stream\. You can then open the URL in a browser or media player to view the stream contents\.
 
-You must specify either the `StreamName` or the `StreamARN`\.
+Both the `StreamName` and the `StreamARN` parameters are optional, but you must specify either the `StreamName` or the `StreamARN` when invoking this API operation\.
 
 An Amazon Kinesis video stream has the following requirements for providing data through HLS:
-+ The media must contain h\.264 encoded video and, optionally, AAC encoded audio\. Specifically, the codec id of track 1 should be `V_MPEG/ISO/AVC`\. Optionally, the codec id of track 2 should be `A_AAC`\.
++ The media must contain h\.264 or h\.265 encoded video and, optionally, AAC encoded audio\. Specifically, the codec id of track 1 should be `V_MPEG/ISO/AVC` \(for h\.264\) or `V_MPEG/ISO/HEVC` \(for h\.265\)\. Optionally, the codec id of track 2 should be `A_AAC`\.
 + Data retention must be greater than 0\.
-+ The video track of each fragment must contain codec private data in the Advanced Video Coding \(AVC\) for H\.264 format \([MPEG\-4 specification ISO/IEC 14496\-15](https://www.iso.org/standard/55980.html)\)\. For information about adapting stream data to a given format, see [NAL Adaptation Flags](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-reference-nal.html)\.
++ The video track of each fragment must contain codec private data in the Advanced Video Coding \(AVC\) for H\.264 format or HEVC for H\.265 format \([MPEG\-4 specification ISO/IEC 14496\-15](https://www.iso.org/standard/55980.html)\)\. For information about adapting stream data to a given format, see [NAL Adaptation Flags](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-reference-nal.html)\.
 + The audio track \(if present\) of each fragment must contain codec private data in the AAC format \([AAC specification ISO/IEC 13818\-7](https://www.iso.org/standard/43345.html)\)\.
 
-Kinesis Video Streams HLS sessions contain fragments in the fragmented MPEG\-4 form \(also called fMP4 or CMAF\), rather than the MPEG\-2 form \(also called TS chunks, which the HLS specification also supports\)\. For more information about HLS fragment types, see the [HLS specification](https://tools.ietf.org/html/draft-pantos-http-live-streaming-23)\.
+Kinesis Video Streams HLS sessions contain fragments in the fragmented MPEG\-4 form \(also called fMP4 or CMAF\) or the MPEG\-2 form \(also called TS chunks, which the HLS specification also supports\)\. For more information about HLS fragment types, see the [HLS specification](https://tools.ietf.org/html/draft-pantos-http-live-streaming-23)\.
 
 The following procedure shows how to use HLS with Kinesis Video Streams:
 
@@ -44,7 +44,8 @@ If the `ContainerFormat` is `MPEG_TS`, this API is used instead of `GetMP4InitFr
 **Note**  
 The following restrictions apply to HLS sessions:  
 A streaming session URL should not be shared between players\. The service might throttle a session if multiple media players are sharing it\. For connection limits, see [Kinesis Video Streams Limits](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html)\.
-A Kinesis video stream can have a maximum of five active HLS streaming sessions\. If a new session is created when the maximum number of sessions is already active, the oldest \(earliest created\) session is closed\. The number of active `GetMedia` connections on a Kinesis video stream does not count against this limit, and the number of active HLS sessions does not count against the active `GetMedia` connection limit\.
+A Kinesis video stream can have a maximum of ten active HLS streaming sessions\. If a new session is created when the maximum number of sessions is already active, the oldest \(earliest created\) session is closed\. The number of active `GetMedia` connections on a Kinesis video stream does not count against this limit, and the number of active HLS sessions does not count against the active `GetMedia` connection limit\.  
+The maximum limits for active HLS and MPEG\-DASH streaming sessions are independent of each other\.
 
 You can monitor the amount of data that the media player consumes by monitoring the `GetMP4MediaFragment.OutgoingBytes` Amazon CloudWatch metric\. For information about using CloudWatch to monitor Kinesis Video Streams, see [Monitoring Kinesis Video Streams](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/monitoring.html)\. For pricing information, see [Amazon Kinesis Video Streams Pricing](https://aws.amazon.com/kinesis/video-streams/pricing/) and [AWS Pricing](https://aws.amazon.com/pricing/)\. Charges for both HLS sessions and outgoing AWS data apply\.
 
@@ -113,7 +114,7 @@ Required: No
 
  ** [Expires](#API_reader_GetHLSStreamingSessionURL_RequestSyntax) **   <a name="KinesisVideo-reader_GetHLSStreamingSessionURL-request-Expires"></a>
 The time in seconds until the requested session expires\. This value can be between 300 \(5 minutes\) and 43200 \(12 hours\)\.  
-When a session expires, no new calls to `GetHLSMasterPlaylist`, `GetHLSMediaPlaylist`, `GetMP4InitFragment`, or `GetMP4MediaFragment` can be made for that session\.  
+When a session expires, no new calls to `GetHLSMasterPlaylist`, `GetHLSMediaPlaylist`, `GetMP4InitFragment`, `GetMP4MediaFragment`, or `GetTSFragment` can be made for that session\.  
 The default is 300 \(5 minutes\)\.  
 Type: Integer  
 Valid Range: Minimum value of 300\. Maximum value of 43200\.  
@@ -121,7 +122,7 @@ Required: No
 
  ** [HLSFragmentSelector](#API_reader_GetHLSStreamingSessionURL_RequestSyntax) **   <a name="KinesisVideo-reader_GetHLSStreamingSessionURL-request-HLSFragmentSelector"></a>
 The time range of the requested fragment, and the source of the timestamps\.  
-This parameter is required if `PlaybackMode` is `ON_DEMAND`\. This parameter is optional if `PlaybackMode` is `LIVE`\. If `PlaybackMode` is `LIVE`, the `FragmentSelectorType` can be set, but the `TimestampRange` should not be set\. If `PlaybackMode` is `ON_DEMAND`, both `FragmentSelectorType` and `TimestampRange` must be set\.  
+This parameter is required if `PlaybackMode` is `ON_DEMAND` or `LIVE_REPLAY`\. This parameter is optional if PlaybackMode is`` `LIVE`\. If `PlaybackMode` is `LIVE`, the `FragmentSelectorType` can be set, but the `TimestampRange` should not be set\. If `PlaybackMode` is `ON_DEMAND` or `LIVE_REPLAY`, both `FragmentSelectorType` and `TimestampRange` must be set\.  
 Type: [HLSFragmentSelector](API_reader_HLSFragmentSelector.md) object  
 Required: No
 
@@ -129,23 +130,24 @@ Required: No
 The maximum number of fragments that are returned in the HLS media playlists\.  
 When the `PlaybackMode` is `LIVE`, the most recent fragments are returned up to this value\. When the `PlaybackMode` is `ON_DEMAND`, the oldest fragments are returned, up to this maximum number\.  
 When there are a higher number of fragments available in a live HLS media playlist, video players often buffer content before starting playback\. Increasing the buffer size increases the playback latency, but it decreases the likelihood that rebuffering will occur during playback\. We recommend that a live HLS media playlist have a minimum of 3 fragments and a maximum of 10 fragments\.  
-The default is 5 fragments if `PlaybackMode` is `LIVE`, and 1,000 if `PlaybackMode` is `ON_DEMAND`\.   
+The default is 5 fragments if `PlaybackMode` is `LIVE` or `LIVE_REPLAY`, and 1,000 if `PlaybackMode` is `ON_DEMAND`\.   
 The maximum value of 1,000 fragments corresponds to more than 16 minutes of video on streams with 1\-second fragments, and more than 2 1/2 hours of video on streams with 10\-second fragments\.  
 Type: Long  
 Valid Range: Minimum value of 1\. Maximum value of 1000\.  
 Required: No
 
  ** [PlaybackMode](#API_reader_GetHLSStreamingSessionURL_RequestSyntax) **   <a name="KinesisVideo-reader_GetHLSStreamingSessionURL-request-PlaybackMode"></a>
-Whether to retrieve live or archived, on\-demand data\.  
-Features of the two types of session include the following:  
+Whether to retrieve live, live replay, or archived, on\-demand data\.  
+Features of the three types of sessions include the following:  
 +  ** `LIVE` **: For sessions of this type, the HLS media playlist is continually updated with the latest fragments as they become available\. We recommend that the media player retrieve a new playlist on a one\-second interval\. When this type of session is played in a media player, the user interface typically displays a "live" notification, with no scrubber control for choosing the position in the playback window to display\.
 **Note**  
 In `LIVE` mode, the newest available fragments are included in an HLS media playlist, even if there is a gap between fragments \(that is, if a fragment is missing\)\. A gap like this might cause a media player to halt or cause a jump in playback\. In this mode, fragments are not added to the HLS media playlist if they are older than the newest fragment in the playlist\. If the missing fragment becomes available after a subsequent fragment is added to the playlist, the older fragment is not added, and the gap is not filled\.
++  ** `LIVE_REPLAY` **: For sessions of this type, the HLS media playlist is updated similarly to how it is updated for `LIVE` mode except that it starts by including fragments from a given start time\. Instead of fragments being added as they are ingested, fragments are added as the duration of the next fragment elapses\. For example, if the fragments in the session are two seconds long, then a new fragment is added to the media playlist every two seconds\. This mode is useful to be able to start playback from when an event is detected and continue live streaming media that has not yet been ingested as of the time of the session creation\. This mode is also useful to stream previously archived media without being limited by the 1,000 fragment limit in the `ON_DEMAND` mode\. 
 +  ** `ON_DEMAND` **: For sessions of this type, the HLS media playlist contains all the fragments for the session, up to the number that is specified in `MaxMediaPlaylistFragmentResults`\. The playlist must be retrieved only once for each session\. When this type of session is played in a media player, the user interface typically displays a scrubber control for choosing the position in the playback window to display\.
-In both playback modes, if `FragmentSelectorType` is `PRODUCER_TIMESTAMP`, and if there are multiple fragments with the same start timestamp, the fragment that has the larger fragment number \(that is, the newer fragment\) is included in the HLS media playlist\. The other fragments are not included\. Fragments that have different timestamps but have overlapping durations are still included in the HLS media playlist\. This can lead to unexpected behavior in the media player\.  
+In all playback modes, if `FragmentSelectorType` is `PRODUCER_TIMESTAMP`, and if there are multiple fragments with the same start timestamp, the fragment that has the larger fragment number \(that is, the newer fragment\) is included in the HLS media playlist\. The other fragments are not included\. Fragments that have different timestamps but have overlapping durations are still included in the HLS media playlist\. This can lead to unexpected behavior in the media player\.  
 The default is `LIVE`\.  
 Type: String  
-Valid Values:` LIVE | ON_DEMAND`   
+Valid Values:` LIVE | LIVE_REPLAY | ON_DEMAND`   
 Required: No
 
  ** [StreamARN](#API_reader_GetHLSStreamingSessionURL_RequestSyntax) **   <a name="KinesisVideo-reader_GetHLSStreamingSessionURL-request-StreamARN"></a>
@@ -206,7 +208,7 @@ No codec private data was found in at least one of tracks of the video stream\.
 HTTP Status Code: 400
 
  **NoDataRetentionException**   
-A `PlaybackMode` of `ON_DEMAND` was requested for a stream that does not retain data \(that is, has a `DataRetentionInHours` of 0\)\.   
+A streaming session was requested for a stream that does not retain data \(that is, has a `DataRetentionInHours` of 0\)\.   
 HTTP Status Code: 400
 
  **NotAuthorizedException**   
@@ -215,11 +217,11 @@ HTTP Status Code: 401
 
  **ResourceNotFoundException**   
  `GetMedia` throws this error when Kinesis Video Streams can't find the stream that you specified\.  
- `GetHLSStreamingSessionURL` throws this error if a session with a `PlaybackMode` of `ON_DEMAND` is requested for a stream that has no fragments within the requested time range, or if a session with a `PlaybackMode` of `LIVE` is requested for a stream that has no fragments within the last 30 seconds\.  
+ `GetHLSStreamingSessionURL` and `GetDASHStreamingSessionURL` throw this error if a session with a `PlaybackMode` of `ON_DEMAND` or `LIVE_REPLAY`is requested for a stream that has no fragments within the requested time range, or if a session with a `PlaybackMode` of `LIVE` is requested for a stream that has no fragments within the last 30 seconds\.  
 HTTP Status Code: 404
 
  **UnsupportedStreamMediaTypeException**   
-The type of the media \(for example, h\.264 video or ACC audio\) could not be determined from the codec IDs of the tracks in the first fragment for a playback session\. The codec ID for track 1 should be `V_MPEG/ISO/AVC` and, optionally, the codec ID for track 2 should be `A_AAC`\.  
+The type of the media \(for example, h\.264 or h\.265 video or ACC or G\.711 audio\) could not be determined from the codec IDs of the tracks in the first fragment for a playback session\. The codec ID for track 1 should be `V_MPEG/ISO/AVC` and, optionally, the codec ID for track 2 should be `A_AAC`\.  
 HTTP Status Code: 400
 
 ## See Also<a name="API_reader_GetHLSStreamingSessionURL_SeeAlso"></a>

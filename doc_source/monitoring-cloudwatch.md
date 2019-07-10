@@ -56,6 +56,12 @@ Kinesis Video Streams provides the following metrics:
 |  `GetTSFragment.Requests` |  Number of `GetTSFragment` API requests for a given stream\. Units: Count  | 
 |  `GetTSFragment.Success` |  1 for every successful request; 0 for every failure\. The average value indicates the rate of success\. Units: Count  | 
 |  `GetTSFragment.OutgoingBytes` |  Total number of bytes sent out from the service as part of the `GetTSFragment` API for a given stream\. Units: Bytes  | 
+|  `GetDASHStreamingSessionURL.Latency` |  Latency of the `GetDASHStreamingSessionURL` API calls for the given stream name\. Units: Milliseconds  | 
+|  `GetDASHStreamingSessionURL.Requests` |  Number of `GetDASHStreamingSessionURL` API requests for a given stream\. Units: Count  | 
+|  `GetDASHStreamingSessionURL.Success` |  1 for every successful request; 0 for every failure\. The average value indicates the rate of success\. Units: Count  | 
+|  `GetDASHManifest.Latency` |  Latency of the `GetDASHManifest` API calls for the given stream name\. Units: Milliseconds  | 
+|  `GetDASHManifest.Requests` |  Number of `GetDASHManifest` API requests for a given stream\. Units: Count  | 
+|  `GetDASHManifest.Success` |  1 for every successful request; 0 for every failure\. The average value indicates the rate of success\. Units: Count  | 
 
 ## CloudWatch Metrics Guidance<a name="monitoring-cloudwatch-guidance"></a>
 

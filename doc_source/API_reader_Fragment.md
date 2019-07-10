@@ -10,7 +10,7 @@ Type: Long
 Required: No
 
  **FragmentNumber**   <a name="KinesisVideo-Type-reader_Fragment-FragmentNumber"></a>
-The index value of the fragment\.  
+The unique identifier of the fragment\. This value monotonically increases based on the ingestion order\.  
 Type: String  
 Length Constraints: Minimum length of 1\.  
 Required: No

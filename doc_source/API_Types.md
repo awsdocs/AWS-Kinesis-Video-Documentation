@@ -8,6 +8,8 @@ The following data types are supported by Amazon Kinesis Video Streams Media:
 +  [StartSelector](API_dataplane_StartSelector.md) 
 
 The following data types are supported by Amazon Kinesis Video Streams Archived Media:
++  [DASHFragmentSelector](API_reader_DASHFragmentSelector.md) 
++  [DASHTimestampRange](API_reader_DASHTimestampRange.md) 
 +  [Fragment](API_reader_Fragment.md) 
 +  [FragmentSelector](API_reader_FragmentSelector.md) 
 +  [HLSFragmentSelector](API_reader_HLSFragmentSelector.md) 

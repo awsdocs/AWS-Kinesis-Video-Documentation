@@ -222,6 +222,11 @@ If you reboot the device before building the SDK, you must repeat this step\. Yo
 
 ## Download and Build the Kinesis Video Streams C\+\+ Producer SDK<a name="producersdk-cpp-rpi-download"></a>
 
+**Important**  
+For a faster build time, you can use Package manager to install the open source dependencies and the build tools for the Kinesis Video Streams C\+\+ Producer SDK\. For more information, see [https://github\.com/awslabs/amazon\-kinesis\-video\-streams\-producer\-sdk\-cpp/blob/master/install\-instructions\-linux\.md\#install\-steps\-for\-ubuntu\-17x\-and\-raspbian\-stretch\-using\-apt\-get](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/install-instructions-linux.md#install-steps-for-ubuntu-17x-and-raspbian-stretch-using-apt-get)\. 
+
+You can also download and build the Kinesis Video Streams C\+\+ Producer SDK using the following procedure\. This approach takes longer time to build, depending on network connectivity and processor speed\. 
+
 1. Install the C\+\+ Producer SDK:
 
    ```

@@ -1,4 +1,4 @@
-# Using Server\-Side Encryption with Kinesis Video Streams<a name="how-kms"></a>
+# Data Protection in Kinesis Video Streams<a name="how-kms"></a>
 
 Server\-side encryption using AWS Key Management Service \(AWS KMS\) keys makes it easier for you to meet strict data management requirements by encrypting your data at rest in Amazon Kinesis Video Streams\.
 

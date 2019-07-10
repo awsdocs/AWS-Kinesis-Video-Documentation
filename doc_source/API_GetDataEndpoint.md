@@ -31,7 +31,7 @@ The request accepts the following data in JSON format\.
  ** [APIName](#API_GetDataEndpoint_RequestSyntax) **   <a name="KinesisVideo-GetDataEndpoint-request-APIName"></a>
 The name of the API action for which to get an endpoint\.  
 Type: String  
-Valid Values:` PUT_MEDIA | GET_MEDIA | LIST_FRAGMENTS | GET_MEDIA_FOR_FRAGMENT_LIST | GET_HLS_STREAMING_SESSION_URL`   
+Valid Values:` PUT_MEDIA | GET_MEDIA | LIST_FRAGMENTS | GET_MEDIA_FOR_FRAGMENT_LIST | GET_HLS_STREAMING_SESSION_URL | GET_DASH_STREAMING_SESSION_URL`   
 Required: Yes
 
  ** [StreamARN](#API_GetDataEndpoint_RequestSyntax) **   <a name="KinesisVideo-GetDataEndpoint-request-StreamARN"></a>

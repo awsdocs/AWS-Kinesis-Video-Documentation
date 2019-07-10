@@ -21,7 +21,7 @@ The `StreamDefinition` object in the C\+\+ layer wraps the `StreamInfo` object i
 | stream\_name | string | An optional stream name\. For more information about the length of the stream name, see [Producer SDK Limits](producer-sdk-limits.md) \. Each stream should have a unique name\. | If no name is specified, a name is generated randomly\. | 
 | retention\_period | duration<uint64\_t, ratio<3600>> | The retention period for the stream, in seconds\. Specifying 0 indicates no retention\. | 3600 \(One hour\) | 
 | tags | const map<string, string>\*  | A map of key\-value pairs that contain user information\. If the stream already has a set of tags, the new tags are appended to the existing set of tags\.  | No tags | 
-| kms\_key\_id | string | The AWS KMS key ID to be used for encrypting the stream\. For more information, see [Using Server\-Side Encryption with Kinesis Video Streams](how-kms.md)\. | The default KMS key \(aws/kinesis\-video\.\) | 
+| kms\_key\_id | string | The AWS KMS key ID to be used for encrypting the stream\. For more information, see [Data Protection in Kinesis Video Streams](how-kms.md)\. | The default KMS key \(aws/kinesis\-video\.\) | 
 | streaming\_type | STREAMING\_TYPE enumeration | The only supported value is STREAMING\_TYPE\_REALTIME\. |  | 
 | content\_type | string | The content format of the stream\. The Kinesis Video Streams console can play back content in the video/h264 format\. | video/h264 | 
 | max\_latency | duration<uint64\_t, milli> | The maximum latency in milliseconds for the stream\. The stream latency pressure callback \(if specified\) is called when the buffer duration exceeds this amount of time\. Specifying 0 indicates that no stream latency pressure callback will be called\.  | milliseconds::zero\(\) | 

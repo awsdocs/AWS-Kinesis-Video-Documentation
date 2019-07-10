@@ -4,9 +4,13 @@ This section contains error and status code information for the [Producer Librar
 
 For information about solutions to common issues, see [Troubleshooting Kinesis Video Streams](troubleshooting.md)\.
 
-## Errors and Status Codes Returned by PutFrame Callbacks<a name="producer-sdk-errors-putframe"></a>
+**Topics**
++ [Errors and Status Codes Returned by PutFrame Callbacks \- Platform Independent Code \(PIT\)](#producer-sdk-errors-putframe)
++ [Errors and Status Codes Returned by PutFrame Callbacks \- C Producer Library](#producer-sdk-errors-putframe-c)
 
-The following sections contain error and status information that is returned by callbacks for the `PutFrame` operation\.
+## Errors and Status Codes Returned by PutFrame Callbacks \- Platform Independent Code \(PIT\)<a name="producer-sdk-errors-putframe"></a>
+
+The following sections contain error and status information that is returned by callbacks for the `PutFrame` operation within the Platform Independent Codebase \(PIT\)\.
 
 **Topics**
 + [Error and Status Codes Returned by the Client Library](#producer-sdk-errors-client)
@@ -309,3 +313,37 @@ The following table contains error and status information that is returned by me
 |  0x30000004  | STATUS\_CONTENT\_VIEW\_INVALID\_INDEX  | An invalid index is specified\. | 
 |  0x30000005  | STATUS\_CONTENT\_VIEW\_INVALID\_TIMESTAMP  | There was an invalid timestamp or a timestamp overlap\. The frame decoding timestamp should be greater or equal to the previous frame timestamp, plus the previous frame duration: `DTS\(n\) >= DTS\(n\-1\) \+ Duration\(n\-1\)`\. This error often indicates an "unstable" encoder\. The encoder produces a burst of encoded frames, and their timestamps are smaller than the intra\-frame durations\. Or the stream is configured to use SDK timestamps, and the frames are sent faster than the frame durations\. To help with some "jitter" in the encoder, specify a smaller frame duration in the StreamInfo\.StreamCaps structure\. For example, if the stream is 25FPS, each frame's duration is 40 ms\. However, to handle the encoder jitter, we recommend that you use half of that frame duration \(20 ms\)\. Some streams require more precise control over the timing for error detection\.  | 
 |  0x30000006  |  STATUS\_INVALID\_CONTENT\_VIEW\_LENGTH  | An invalid content view item data length was specified\.  | 
+
+## Errors and Status Codes Returned by PutFrame Callbacks \- C Producer Library<a name="producer-sdk-errors-putframe-c"></a>
+
+The following section contains error and status information that is returned by callbacks for the `PutFrame` operation within the C producer library\.
+
+
+****  
+
+| Code | Message | Description | Recommended Action | 
+| --- | --- | --- | --- | 
+| 0x15000001 | STATUS\_STOP\_CALLBACK\_CHAIN | The callback chain has stopped\. |  | 
+| 0x15000002 | STATUS\_MAX\_CALLBACK\_CHAIN | The maximum callback chain was reached\. |  | 
+| 0x15000003 | STATUS\_INVALID\_PLATFORM\_CALLBACKS\_VERSION | Invalid PlatformCallbacks structure version\. | Specify the correct current version of the structure\. | 
+| 0x15000004 | STATUS\_INVALID\_PRODUCER\_CALLBACKS\_VERSION | Invalid ProducerCallbacks structure version\. | Specify the correct current version of the structure\. | 
+| 0x15000005 | STATUS\_INVALID\_STREAM\_CALLBACKS\_VERSION | Invalid StreamCallbacks structure version\. | Specify the correct current version of the structure\. | 
+| 0x15000006 | STATUS\_INVALID\_AUTH\_CALLBACKS\_VERSION | Invalid AuthCallbacks structure version\. | Specify the correct current version of the structure\. | 
+| 0x15000007 | STATUS\_INVALID\_API\_CALLBACKS\_VERSION | Invalid ApiCallbacks structure version\. | Specify the correct current version of the structure\. | 
+| 0x15000008 | STATUS\_INVALID\_AWS\_CREDENTIALS\_VERSION | Invalid AwsCredentials structure version\. | Specify the correct current version of the structure\. | 
+| 0x15000009 | STATUS\_MAX\_REQUEST\_HEADER\_COUNT | The maximum request header count was reached\. |  | 
+| 0x1500000a | STATUS\_MAX\_REQUEST\_HEADER\_NAME\_LEN | The maximum request header name length was reached\. |  | 
+| 0x1500000b | STATUS\_MAX\_REQUEST\_HEADER\_VALUE\_LEN | The maximum request header value length was reached\. |  | 
+| 0x1500000c | STATUS\_INVALID\_API\_CALL\_RETURN\_JSON | Invalid return JSON for an API call\. |  | 
+| 0x1500000d | STATUS\_CURL\_INIT\_FAILED | Curl initialization failed\. |  | 
+| 0x1500000e | STATUS\_CURL\_LIBRARY\_INIT\_FAILED | Curl lib initialization failed\. |  | 
+| 0x1500000f | STATUS\_INVALID\_DESCRIBE\_STREAM\_RETURN\_JSON | Invalid return JSON for DescribeStream\. |  | 
+| 0x150000010 | STATUS\_HMAC\_GENERATION\_ERROR | HMAC generation error\. |  | 
+| 0x150000011 | STATUS\_IOT\_FAILED | IOT authorization failed\. |  | 
+| 0x150000012 | STATUS\_MAX\_ROLE\_ALIAS\_LEN\_EXCEEDED | The maximum role alias length was reached\. | Specify a shorter alias length\. | 
+| 0x150000013 | STATUS\_MAX\_USER\_AGENT\_NAME\_POSTFIX\_LEN\_EXCEEDED | The maximum agent name postfix length was reached\. |  | 
+| 0x150000014 | STATUS\_MAX\_CUSTOM\_USER\_AGENT\_LEN\_EXCEEDED | The maximum customer user agent length was reached\. |  | 
+| 0x150000015 | STATUS\_INVALID\_USER\_AGENT\_LENGTH | Invalid user agent length\.  |  | 
+| 0x150000016 | STATUS\_INVALID\_ENDPOINT\_CACHING\_PERIOD | Invalid endpoint caching period\. | Specify a caching period that is less than 24 hours\. | 
+| 0x150000017 | STATUS\_IOT\_EXPIRATION\_OCCURS\_IN\_PAST | IOT expiration timestamp occurs in the past\. |  | 
+| 0x150000018 | STATUS\_IOT\_EXPIRATION\_PARSING\_FAILED | The IOT expiration parsing has failed\. |  | 

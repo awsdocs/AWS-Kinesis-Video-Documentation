@@ -14,7 +14,7 @@ The following code examples demonstrate how to work with the Kinesis Video Strea
 + [Example: Identifying Objects in Video Streams Using Amazon SageMaker](examples-sagemaker.md): Demonstrates a solution that uses Amazon SageMaker to determine when certain objects appear in a video stream\.
 
 ## Examples: Playing Back Video Data<a name="examples-toc-playback"></a>
-+ [Example: Using HLS in HTML and JavaScript](how-hls.md#how-hls-ex1): Shows how to retrieve an HLS streaming session for a Kinesis video stream and play it back in a webpage\.
++ [Example: Using HLS in HTML and JavaScript](hls-playback.md#how-hls-ex1): Shows how to retrieve an HLS streaming session for a Kinesis video stream and play it back in a webpage\.
 
 ## Prerequisites<a name="examples-prerequisites"></a>
 + In the sample code, you provide credentials by specifying a profile that you set in your AWS credentials profile file, or by providing credentials in the Java system properties of your integrated development environment \(IDE\)\. So if you haven't already done so, first set up your credentials\. For more information, see [Set up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html)\.

@@ -24,11 +24,20 @@ For information about SDK prerequisites and downloading, see [Step 1: Download a
 
 ## Compile the GStreamer Example<a name="gs-send-data-2"></a>
 
-You can compile and install the GStreamer sample in the ` kinesis-video-native-build` directory using the following command:
-
-```
-./gstreamer-plugin-install-script
-```
+You can compile and install the GStreamer sample in the ` kinesis-video-native-build` directory using the following commands:
++ macOS:
+  + Install homebrew
+  + Run `brew install pkg-config openssl cmake gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly log4cplus`
+  + Go to kinesis\-video\-native\-build directory and run `./min-install-script`
++ Ubuntu and Raspbian:
+  + Run the following:
+    + `$ sudo apt-get update`
+    + `$ sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev gstreamer1.0-plugins-base-apps`
+    + `$ sudo apt-get install gstreamer1.0-plugins-bad gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-tools`
+  + If on Raspbian, run `$ sudo apt-get install gstreamer1.0-omx` after running previous commands\.
+  + Go to kinesis\-video\-native\-build directory and run `./min-install-script`
++ Windows:
+  + Inside mingw32 or mingw64 shell, go to kinesis\-video\-native\-build directory and run `./min-install-script`
 
 ## Run the GStreamer Example<a name="gs-send-data-3"></a>
 
@@ -42,7 +51,7 @@ The GStreamer application sends media from your camera to the Kinesis Video Stre
 You can run the GStreamer example application on Ubuntu with the following command\. Specify your camera device with the `device` parameter\.
 
 ```
-$ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! h264parse ! video/x-h264,stream-format=avc,alignment=au ! kvssink stream-name="MyKinesisVideoStream" storage-size=512 access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
+$ gst-launch-1.0 v4l2src device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480 ! x264enc bframes=0 key-int-max=45 bitrate=512 tune=zerolatency ! h264parse ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink stream-name="MyKinesisVideoStream" storage-size=512 access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
 ### Run the GStreamer Example on macOS<a name="gs-send-data-3-macos"></a>
@@ -50,7 +59,7 @@ $ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! h264parse ! vide
 You can run the GStreamer example application on MacOS with the following command:
 
 ```
-$ gst-launch-1.0 autovideosrc ! videoconvert ! video/x-raw,format=I420,width=640,height=480,framerate=30/1 ! vtenc_h264_hw allow-frame-reordering=FALSE realtime=TRUE max-keyframe-interval=45 bitrate=500 ! h264parse ! video/x-h264,stream-format=avc,alignment=au,width=640,height=480,framerate=30/1 ! kvssink stream-name=MyKinesisVideoStream storage-size=512
+$ gst-launch-1.0 autovideosrc ! videoconvert ! video/x-raw,format=I420,width=1280,height=720 ! vtenc_h264_hw allow-frame-reordering=FALSE realtime=TRUE max-keyframe-interval=45 bitrate=512 ! h264parse ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink stream-name=MyKinesisVideoStream storage-size=512 access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
 ### Run the GStreamer Example on Windows<a name="gs-send-data-3-windows"></a>
@@ -58,7 +67,7 @@ $ gst-launch-1.0 autovideosrc ! videoconvert ! video/x-raw,format=I420,width=640
 You can run the GStreamer example application on Windows with the following command:
 
 ```
-gst-launch-1.0 ksvideosrc do-timestamp=TRUE ! video/x-raw,width=640,height=480,framerate=30/1 ! videoconvert ! x264enc bframes=0 key-int-max=45 bitrate=512 ! video/x-h264,profile=baseline,stream-format=avc,alignment=au,width=640,height=480,framerate=30/1 ! kvssink stream-name="MyKinesisVideoStream" access-key=your_accesskey_id secret-key=your_secret_access_key
+$ gst-launch-1.0 ksvideosrc ! videoconvert ! video/x-raw,format=I420,width=640,height=480 ! x264enc bframes=0 key-int-max=45 bitrate=512 tune=zerolatency ! h264parse ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink stream-name="MyKinesisVideoStream" storage-size=512 access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
 ### Run the GStreamer Example on Raspbian \(Raspberry Pi\)<a name="gs-send-data-3-rpi"></a>
@@ -66,7 +75,7 @@ gst-launch-1.0 ksvideosrc do-timestamp=TRUE ! video/x-raw,width=640,height=480,f
 You can run the GStreamer example application on Raspbian with the following command\. Specify your camera device with the `device` parameter\.
 
 ```
-$ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480,framerate=30/1 ! omxh264enc control-rate=1 target-bitrate=5120000 periodicity-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,width=640,height=480,framerate=30/1,profile=baseline ! kvssink stream-name="MyKinesisVideoStream" frame-timestamp=dts-only access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
+$ gst-launch-1.0 v4l2src device=/dev/video0 ! videoconvert ! video/x-raw,format=I420,width=640,height=480 ! omxh264enc control-rate=2 target-bitrate=512000 periodicity-idr=45 inline-header=FALSE ! h264parse ! video/x-h264,stream-format=avc,alignment=au,profile=baseline ! kvssink stream-name="MyKinesisVideoStream" access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
 ## Consume Media Data<a name="gs-send-data-4"></a>
@@ -79,7 +88,7 @@ To view the media data sent from your camera in the Kinesis Video Streams consol
 
 ### Consume Media Data using HLS<a name="gs-send-data-4-2"></a>
 
-You can create a client application that consumes data from a Kinesis video stream using Hypertext Live Streaming \(HLS\)\. For information about creating an application that consumes media data using HLS, see [Kinesis Video Streams Playback with HLS](how-hls.md)\.
+You can create a client application that consumes data from a Kinesis video stream using Hypertext Live Streaming \(HLS\)\. For information about creating an application that consumes media data using HLS, see [Kinesis Video Streams Playback](how-playback.md)\.
 
 ## Next Step<a name="gs-next-step-4"></a>
 
