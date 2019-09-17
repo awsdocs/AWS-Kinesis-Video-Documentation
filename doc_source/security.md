@@ -11,6 +11,7 @@ This documentation helps you understand how to apply the shared responsibility m
 **Topics**
 + [Data Protection in Kinesis Video Streams](how-kms.md)
 + [Controlling Access to Kinesis Video Streams Resources Using IAM](how-iam.md)
++ [Controlling Access to Kinesis Video Streams Resources Using AWS IoT](how-iot.md)
 + [Monitoring Amazon Kinesis Video Streams](security-monitoring.md)
 + [Compliance Validation for Amazon Kinesis Video Streams](akda-java-compliance.md)
 + [Resilience in Amazon Kinesis Video Streams](disaster-recovery-resiliency.md)

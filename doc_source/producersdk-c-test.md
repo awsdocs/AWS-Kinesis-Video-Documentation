@@ -2,7 +2,7 @@
 
 To run and verify the code for the [ Producer Library procedure](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html), do the following:
 
-1. See [Prerequisites](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-c.html#producer-sdk-c-prerequisites) for credential, certificate, and build requirements\.
+1. Verify that the [Prerequisites](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-c.html#producer-sdk-c-prerequisites) for credential, certificate, and build requirements are set up\.
 
 1. Build the project by using the `/kinesis-video-native-build/install-script` script\. Running the install script installs the following open source dependencies:
    + [curl lib](https://curl.haxx.se/docs/copyright.html)
@@ -27,4 +27,4 @@ To run and verify the code for the [ Producer Library procedure](https://docs.aw
 You can monitor the progress of the test suite in the debug output in your IDE\. You can also monitor the traffic on your stream by watching the metrics that are associated with your stream in the Amazon CloudWatch console, such as `PutMedia.IncomingBytes`\.
 
 **Note**  
-Because the test harness only sends frames of empty bytes, the console doesn't display the data as a video stream\.
+The console doesn't display the data as a video stream because the test harness only sends frames of empty bytes\.

@@ -5,7 +5,7 @@ Retrieves an MPEG Dynamic Adaptive Streaming over HTTP \(DASH\) URL for the stre
 Both the `StreamName` and the `StreamARN` parameters are optional, but you must specify either the `StreamName` or the `StreamARN` when invoking this API operation\.
 
 An Amazon Kinesis video stream has the following requirements for providing data through MPEG\-DASH:
-+ The media must contain h\.264 or h\.265 encoded video and, optionally, AAC or G\.711 encoded audio\. Specifically, the codec id of track 1 should be `V_MPEG/ISO/AVC` \(for h\.264\) or V\_MPEGH/ISO/HEVC \(for H\.265\)\. Optionally, the codec id of track 2 should be `A_AAC` \(for AAC\) or A\_MS/ACM \(for G\.711\)\.
++ The media must contain h\.264 or h\.265 encoded video and, optionally, AAC or G\.711 encoded audio\. Specifically, the codec ID of track 1 should be `V_MPEG/ISO/AVC` \(for h\.264\) or V\_MPEGH/ISO/HEVC \(for H\.265\)\. Optionally, the codec ID of track 2 should be `A_AAC` \(for AAC\) or A\_MS/ACM \(for G\.711\)\.
 + Data retention must be greater than 0\.
 + The video track of each fragment must contain codec private data in the Advanced Video Coding \(AVC\) for H\.264 format and HEVC for H\.265 format\. For more information, see [MPEG\-4 specification ISO/IEC 14496\-15](https://www.iso.org/standard/55980.html)\. For information about adapting stream data to a given format, see [NAL Adaptation Flags](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-reference-nal.html)\.
 + The audio track \(if present\) of each fragment must contain codec private data in the AAC format \([AAC specification ISO/IEC 13818\-7](https://www.iso.org/standard/43345.html)\) or the [MS Wave format](http://www-mmsp.ece.mcgill.ca/Documents/AudioFormats/WAVE/WAVE.html)\.
@@ -20,7 +20,7 @@ Don't share or store this token where an unauthorized entity could access it\. T
 
    The media that is made available through the manifest consists only of the requested stream, time range, and format\. No other media data \(such as frames outside the requested window or alternate bitrates\) is made available\.
 
-1. Provide the URL \(containing the encrypted session token\) for the MPEG\-DASH manifest to a media player that supports the MPEG\-DASH protocol\. Kinesis Video Streams makes the initialization fragment, and media fragments available through the manifest URL\. The initialization fragment contains the codec private data for the stream, and other data needed to set up the video or audio decoder and renderer\. The media fragments contain encoded video frames or encoded audio samples\.
+1. Provide the URL \(containing the encrypted session token\) for the MPEG\-DASH manifest to a media player that supports the MPEG\-DASH protocol\. Kinesis Video Streams makes the initialization fragment and media fragments available through the manifest URL\. The initialization fragment contains the codec private data for the stream, and other data needed to set up the video or audio decoder and renderer\. The media fragments contain encoded video frames or encoded audio samples\.
 
 1. The media player receives the authenticated URL and requests stream metadata and media data normally\. When the media player requests data, it calls the following actions:
    +  **GetDASHManifest:** Retrieves an MPEG DASH manifest, which contains the metadata for the media that you want to playback\.
@@ -83,7 +83,7 @@ The request does not use any URI parameters\.
 The request accepts the following data in JSON format\.
 
  ** [DASHFragmentSelector](#API_reader_GetDASHStreamingSessionURL_RequestSyntax) **   <a name="KinesisVideo-reader_GetDASHStreamingSessionURL-request-DASHFragmentSelector"></a>
-The time range of the requested fragment, and the source of the timestamps\.  
+The time range of the requested fragment and the source of the timestamps\.  
 This parameter is required if `PlaybackMode` is `ON_DEMAND` or `LIVE_REPLAY`\. This parameter is optional if PlaybackMode is`` `LIVE`\. If `PlaybackMode` is `LIVE`, the `FragmentSelectorType` can be set, but the `TimestampRange` should not be set\. If `PlaybackMode` is `ON_DEMAND` or `LIVE_REPLAY`, both `FragmentSelectorType` and `TimestampRange` must be set\.  
 Type: [DASHFragmentSelector](API_reader_DASHFragmentSelector.md) object  
 Required: No

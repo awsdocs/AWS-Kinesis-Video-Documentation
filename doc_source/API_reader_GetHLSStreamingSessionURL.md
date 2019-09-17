@@ -5,7 +5,7 @@ Retrieves an HTTP Live Streaming \(HLS\) URL for the stream\. You can then open 
 Both the `StreamName` and the `StreamARN` parameters are optional, but you must specify either the `StreamName` or the `StreamARN` when invoking this API operation\.
 
 An Amazon Kinesis video stream has the following requirements for providing data through HLS:
-+ The media must contain h\.264 or h\.265 encoded video and, optionally, AAC encoded audio\. Specifically, the codec id of track 1 should be `V_MPEG/ISO/AVC` \(for h\.264\) or `V_MPEG/ISO/HEVC` \(for h\.265\)\. Optionally, the codec id of track 2 should be `A_AAC`\.
++ The media must contain h\.264 or h\.265 encoded video and, optionally, AAC encoded audio\. Specifically, the codec ID of track 1 should be `V_MPEG/ISO/AVC` \(for h\.264\) or `V_MPEG/ISO/HEVC` \(for h\.265\)\. Optionally, the codec ID of track 2 should be `A_AAC`\.
 + Data retention must be greater than 0\.
 + The video track of each fragment must contain codec private data in the Advanced Video Coding \(AVC\) for H\.264 format or HEVC for H\.265 format \([MPEG\-4 specification ISO/IEC 14496\-15](https://www.iso.org/standard/55980.html)\)\. For information about adapting stream data to a given format, see [NAL Adaptation Flags](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-reference-nal.html)\.
 + The audio track \(if present\) of each fragment must contain codec private data in the AAC format \([AAC specification ISO/IEC 13818\-7](https://www.iso.org/standard/43345.html)\)\.
@@ -99,10 +99,14 @@ Valid Values:` FRAGMENTED_MP4 | MPEG_TS`
 Required: No
 
  ** [DiscontinuityMode](#API_reader_GetHLSStreamingSessionURL_RequestSyntax) **   <a name="KinesisVideo-reader_GetHLSStreamingSessionURL-request-DiscontinuityMode"></a>
-Specifies when flags marking discontinuities between fragments will be added to the media playlists\. The default is `ALWAYS` when [HLSFragmentSelector](API_reader_HLSFragmentSelector.md) is `SERVER_TIMESTAMP`, and `NEVER` when it is `PRODUCER_TIMESTAMP`\.  
-Media players typically build a timeline of media content to play, based on the timestamps of each fragment\. This means that if there is any overlap between fragments \(as is typical if [HLSFragmentSelector](API_reader_HLSFragmentSelector.md) is `SERVER_TIMESTAMP`\), the media player timeline has small gaps between fragments in some places, and overwrites frames in other places\. When there are discontinuity flags between fragments, the media player is expected to reset the timeline, resulting in the fragment being played immediately after the previous fragment\. We recommend that you always have discontinuity flags between fragments if the fragment timestamps are not accurate or if fragments might be missing\. You should not place discontinuity flags between fragments for the player timeline to accurately map to the producer timestamps\.  
+Specifies when flags marking discontinuities between fragments are to be added to the media playlists\. The default is `ALWAYS` when [HLSFragmentSelector](API_reader_HLSFragmentSelector.md) is set to `SERVER_TIMESTAMP`, and `NEVER` when [HLSFragmentSelector](API_reader_HLSFragmentSelector.md) is set to `PRODUCER_TIMESTAMP`\.  
+Media players typically build a timeline of media content to play, based on the timestamps of each fragment\. This means that if there is any overlap or gap between fragments \(as is typical if [HLSFragmentSelector](API_reader_HLSFragmentSelector.md) is set to `SERVER_TIMESTAMP`\), the media player timeline will also have small gaps between fragments in some places, and will overwrite frames in other places\. Gaps in the media player timeline can cause playback to stall and overlaps can cause playback to be jittery\. When there are discontinuity flags between fragments, the media player is expected to reset the timeline, resulting in the next fragment being played immediately after the previous fragment\.   
+The following modes are supported:  
++  `ALWAYS`: a discontinuity marker is placed between every fragment in the HLS media playlist\. It is recommended to use a value of `ALWAYS` if the fragment timestamps are not accurate\.
++  `NEVER`: no discontinuity markers are placed anywhere\. It is recommended to use a value of `NEVER` to ensure the media player timeline most accurately maps to the producer timestamps\. 
++  `ON_DISCONTIUNITY`: a discontinuity marker is placed between fragments that have a gap or overlap of more than 50 milliseconds\. For most playback scenarios, it is recommended to use a value of `ON_DISCONTINUITY` so that the media player timeline is only reset when there is a significant issue with the media timeline \(e\.g\. a missing fragment\)\.
 Type: String  
-Valid Values:` ALWAYS | NEVER`   
+Valid Values:` ALWAYS | NEVER | ON_DISCONTINUITY`   
 Required: No
 
  ** [DisplayFragmentTimestamp](#API_reader_GetHLSStreamingSessionURL_RequestSyntax) **   <a name="KinesisVideo-reader_GetHLSStreamingSessionURL-request-DisplayFragmentTimestamp"></a>
@@ -121,7 +125,7 @@ Valid Range: Minimum value of 300\. Maximum value of 43200\.
 Required: No
 
  ** [HLSFragmentSelector](#API_reader_GetHLSStreamingSessionURL_RequestSyntax) **   <a name="KinesisVideo-reader_GetHLSStreamingSessionURL-request-HLSFragmentSelector"></a>
-The time range of the requested fragment, and the source of the timestamps\.  
+The time range of the requested fragment and the source of the timestamps\.  
 This parameter is required if `PlaybackMode` is `ON_DEMAND` or `LIVE_REPLAY`\. This parameter is optional if PlaybackMode is`` `LIVE`\. If `PlaybackMode` is `LIVE`, the `FragmentSelectorType` can be set, but the `TimestampRange` should not be set\. If `PlaybackMode` is `ON_DEMAND` or `LIVE_REPLAY`, both `FragmentSelectorType` and `TimestampRange` must be set\.  
 Type: [HLSFragmentSelector](API_reader_HLSFragmentSelector.md) object  
 Required: No

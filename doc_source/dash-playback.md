@@ -3,7 +3,7 @@
 To view a Kinesis video stream using MPEG\-DASH, you first create a streaming session using [GetDASHStreamingSessionURL](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_GetDASHStreamingSessionURL.html)\. This action returns a URL \(containing a session token\) for accessing the MPEG\-DASH session\. You can then use the URL in a media player or a standalone application to display the stream\. 
 
 An Amazon Kinesis video stream has the following requirements for providing video through MPEG\-DASH:
-+ The media must contain h\.264 or h\.265 encoded video and, optionally, AAC or G\.711 encoded audio\. Specifically, the codec id of track 1 should be `V_MPEG/ISO/AVC` \(for h\.264\) or V\_MPEGH/ISO/HEVC \(for H\.265\)\. Optionally, the codec id of track 2 should be `A_AAC` \(for AAC\) or A\_MS/ACM \(for G\.711\)\.
++ The media must contain h\.264 or h\.265 encoded video and, optionally, AAC or G\.711 encoded audio\. Specifically, the codec ID of track 1 should be `V_MPEG/ISO/AVC` \(for h\.264\) or V\_MPEGH/ISO/HEVC \(for H\.265\)\. Optionally, the codec ID of track 2 should be `A_AAC` \(for AAC\) or A\_MS/ACM \(for G\.711\)\.
 + Data retention must be greater than 0\.
 + The video track of each fragment must contain codec private data in the Advanced Video Coding \(AVC\) for H\.264 format and HEVC for H\.265 format\. For more information, see [MPEG\-4 specification ISO/IEC 14496\-15](https://www.iso.org/standard/55980.html)\. For information about adapting stream data to a given format, see [NAL Adaptation Flags](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-reference-nal.html)\.
 + The audio track \(if present\) of each fragment must contain codec private data in the AAC format \([AAC specification ISO/IEC 13818\-7](https://www.iso.org/standard/43345.html)\) or the [MS Wave format](http://www-mmsp.ece.mcgill.ca/Documents/AudioFormats/WAVE/WAVE.html)\.
@@ -42,7 +42,7 @@ var kinesisVideoArchivedContent = new AWS.KinesisVideoArchivedMedia(options);
 
 ### Retrieve the Kinesis Video Streams Archived Content Endpoint for MPEG\-DASH Playback<a name="dash-example-endpoint"></a>
 
-After the clients are initiated, retrieve the Kinesis Video Streams archived content endpoint to retrieve the MPEG\-DASH streaming session URL:
+After the clients are initiated, retrieve the Kinesis Video Streams archived content endpoint so that you can retrieve the MPEG\-DASH streaming session URL as follows:
 
 ```
  // Step 2: Get a data endpoint for the stream
@@ -58,7 +58,7 @@ kinesisVideo.getDataEndpoint({
 
 ### Retrieve the MPEG\-DASH Streaming Session URL<a name="dash-example-session"></a>
 
-When you have the archived content endpoint, call the [GetDASHStreamingSessionURL](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_GetDASHStreamingSessionURL.html) API to retrieve the MPEG\-DASH streaming session URL:
+When you have the archived content endpoint, call the [GetDASHStreamingSessionURL](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_GetDASHStreamingSessionURL.html) API to retrieve the MPEG\-DASH streaming session URL as follows:
 
 ```
 // Step 3: Get a Streaming Session URL
@@ -87,7 +87,7 @@ if (protocol === 'DASH') {
 
 ### Display the Streaming Video with MPEG\-DASH Playback<a name="dash-example-display"></a>
 
-When you have the MPEG\-DASH streaming session URL, provide it to the video player\. The method for providing the URL to the video player is specific to the player used\.
+When you have the MPEG\-DASH streaming session URL, provide it to the video player\. The method for providing the URL to the video player is specific to the player that you use\.
 
 The following code example shows how to provide the streaming session URL to a [Google Shaka](https://github.com/google/shaka-player) player: 
 
@@ -139,4 +139,4 @@ console.log('Set player source');
 
 ### Completed Example<a name="dash-example-complete"></a>
 
-You can [download or view the completed example code](https://github.com/aws-samples/amazon-kinesis-video-streams-hls-viewer/blob/master/index.html)\.
+You can [download or view the completed example code](https://github.com/aws-samples/amazon-kinesis-video-streams-hls-viewer/blob/master/index.html) on GitHub\.
