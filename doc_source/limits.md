@@ -20,9 +20,13 @@ When an account\-level Streams limit is reached, or a stream\-level limit is rea
 | CreateStream | 50 TPS \[s\] | 2500 streams per account \[s\] in US East \(N\. Virginia\) and US West \(Oregon\) regions\. 1000 streams per account \[s\] in all other supported regions\.  This limit can be increased up to 100,000 \(or more\) streams per account \[s\]\. Sign in to the AWS Management Console at [https://console.aws.amazon.com/](https://console.aws.amazon.com/) and submit a [service limit increase case](https://console.aws.amazon.com/support/v1#/case/create%3FissueType=service-limit-increase%26limitType=service-code-kinesis) for Kinesis Video Streams to request an increase of this limit\.    |  | Devices, CLIs, SDK\-driven access, and the console can all invoke this API\. Only one API call succeeds if the stream doesn’t already exist\. | 
 | DescribeStream | 300 TPS \[h\] | N/A | 5 TPS \[h\] |  | 
 | UpdateStream | 50 TPS \[h\] | N/A | 5 TPS \[h\] |  | 
-| ListStreams | 300 TPS \[h\] | N/A |  |  | 
+| ListStreams | 50 TPS \[h\] | N/A |  |  | 
 | DeleteStream | 50 TPS \[h\] | N/A | 5 TPS \[h\] |  | 
-| GetDataEndpoint | 300 TPS \[h\] | N/A | 5 TPS \[h\] | Called every 45 minutes to refresh the streaming token for most PutMedia/GetMedia use cases\. Called every 1,000 fragments for ListFragments/GetMediaForFragmentList\. Caching data endpoints is safe if the application reloads them on failure\. | 
+| GetDataEndpoint | 300 TPS \[h\] | N/A | 5 TPS \[h\] | Called every 45 minutes to refresh the streaming token for most PutMedia/GetMedia use cases\.  Caching data endpoints is safe if the application reloads them on failure\. | 
+| UpdateDataRetention | 50 TPS \[h\]  | N/A | 5 TPS \[h\] |  | 
+| TagStream | 50 TPS \[h\]  | N/A | 5 TPS \[h\] |  | 
+| UntagStream | 50 TPS \[h\]  | N/A | 5 TPS \[h\] |  | 
+| ListTagsForStream | 50 TPS \[h\]  | N/A | 5 TPS \[h\] |  | 
 
 ## Media and Archived Media API limits<a name="limits-akv-data"></a>
 
