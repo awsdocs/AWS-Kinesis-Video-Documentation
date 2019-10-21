@@ -180,6 +180,26 @@ The `PStreamMetrics` object filled by `getKinesisVideoStreamMetrics` contains th
 + **currentFrameRate:** The last measured rate of the stream, in frames per second\.
 + **currentTransferRate:** The last measured rate of the stream, in bytes per second\.
 
+## Teardown<a name="producersdk-cpp-write-teardown"></a>
+
+If you want to send the remaining bytes in a buffer and wait for the `ACK`, you can use `stopSync`:
+
+```
+kinesis_video_stream->stopSync();
+```
+
+Or you can call `stop` to end the streaming: 
+
+```
+kinesis_video_stream->stop();
+```
+
+After stopping the stream, you can free the stream through invoking the following API:
+
+```
+kinesis_video_producer_->freeStream(kinesis_video_stream); 
+```
+
 ## Next Step<a name="producersdk-cpp-write-next"></a>
 
 [Step 3: Run and Verify the Code](producersdk-cpp-test.md)

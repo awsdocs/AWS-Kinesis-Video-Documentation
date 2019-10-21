@@ -11,13 +11,19 @@ This way of authenticating your camera's requests to Kinesis Video Streams requi
 For more information about AWS IoT, see [AWS IoT Core Documentation](https://docs.aws.amazon.com/iot/?id=docs_gateway)\. For more information about IAM, see [AWS Identity and Access Management \(IAM\)](https://aws.amazon.com/iam/)\.
 
 **Topics**
++ [IoT ThingName as Stream Name](#how-iot-thingnamestreamname)
++ [IoT CertificateId as Stream Name](#how-iot-iotcertstreamname)
+
+## IoT ThingName as Stream Name<a name="how-iot-thingnamestreamname"></a>
+
+**Topics**
 + [Step 1: Create an IoT Thing Type and an IoT Thing](#how-iot-create-thing-type)
 + [Step 2: Create an IAM Role to be Assumed by IoT](#how-iot-add-iot-policy)
 + [Step 3: Create and Configure the X\.509 Certificate](#how-iot-create-cert-keys)
 + [Step 4: Test the IoT Credentials with Your Kinesis Video Stream](#how-iot-test-it)
 + [Step 5: Deploying IoT Certificates and Credentials on Your Camera's File System and Streaming Data to Your Video Stream](#how-iot-test-it)
 
-## Step 1: Create an IoT Thing Type and an IoT Thing<a name="how-iot-create-thing-type"></a>
+### Step 1: Create an IoT Thing Type and an IoT Thing<a name="how-iot-create-thing-type"></a>
 
 In IoT, a thing is a representation of a specific device or logical entity\. In this case, an IoT thing represents your Kinesis video stream for which you want to configure resource\-level access control\. In order to create a thing, first, you must create an IoT thing type\. IoT thing types enable you to store description and configuration information that is common to all things associated with the same thing type\.
 
@@ -33,7 +39,7 @@ In IoT, a thing is a representation of a specific device or logical entity\. In 
    aws --profile default  iot create-thing --thing-name kvs_example_camera_stream --thing-type-name kvs_example_camera > iot-thing.json
    ```
 
-## Step 2: Create an IAM Role to be Assumed by IoT<a name="how-iot-add-iot-policy"></a>
+### Step 2: Create an IAM Role to be Assumed by IoT<a name="how-iot-add-iot-policy"></a>
 
 IAM roles are similar to IAM users, in that a role is an AWS identity with permission policies that determine what the identity can and cannot do in AWS\. A role can be assumed by anyone who needs it\. When you assume a role, it provides you with temporary security credentials for your role session\.
 
@@ -137,7 +143,7 @@ Perform the following steps to create and configure this IAM role:
    EOF
    ```
 
-## Step 3: Create and Configure the X\.509 Certificate<a name="how-iot-create-cert-keys"></a>
+### Step 3: Create and Configure the X\.509 Certificate<a name="how-iot-create-cert-keys"></a>
 
 Communication between a device \(your video stream\) and AWS IoT is protected through the use of X\.509 certificates\. 
 
@@ -171,7 +177,7 @@ Communication between a device \(your video stream\) and AWS IoT is protected th
    curl --silent 'https://www.amazontrust.com/repository/SFSRootCAG2.pem' --output cacert.pem
    ```
 
-## Step 4: Test the IoT Credentials with Your Kinesis Video Stream<a name="how-iot-test-it"></a>
+### Step 4: Test the IoT Credentials with Your Kinesis Video Stream<a name="how-iot-test-it"></a>
 
 Now you can test the IoT credentials that you've set up so far\. 
 
@@ -203,7 +209,7 @@ You can use the following command to get the IOT\_GET\_CRENDETIAL\_ENDPOINT:
    AWS_ACCESS_KEY_ID=$(jq --raw-output '.credentials.accessKeyId' token.json) AWS_SECRET_ACCESS_KEY=$(jq --raw-output '.credentials.secretAccessKey' token.json) AWS_SESSION_TOKEN=$(jq --raw-output '.credentials.sessionToken' token.json) aws kinesisvideo describe-stream --stream-name kvs_example_camera_stream
    ```
 
-## Step 5: Deploying IoT Certificates and Credentials on Your Camera's File System and Streaming Data to Your Video Stream<a name="how-iot-test-it"></a>
+### Step 5: Deploying IoT Certificates and Credentials on Your Camera's File System and Streaming Data to Your Video Stream<a name="how-iot-test-it"></a>
 
 **Note**  
 The steps in this section describe sending media to a Kinesis video stream from a camera that is using the [C\+\+ Producer Library](http://gaianab.aka.corp.amazon.com/workspaces/acuity/src/AWSAcuityApiDoc/build/server-root/kinesisvideostreams/latest/dg/producer-sdk-cpp.html)\.
@@ -216,3 +222,49 @@ The steps in this section describe sending media to a Kinesis video stream from 
    $ gst-launch-1.0 rtspsrc location=rtsp://YourCameraRtspUrl short-header=TRUE ! rtph264depay ! video/x-h264, format=avc,alignment=au !
     h264parse ! kvssink stream-name="kvs_example_camera_stream" iot-certificate="iot-certificate,endpoint=iot-credential-endpoint-host-name,cert-path=/path/to/certificate.pem,key-path=/path/to/private.pem.key,ca-path=/path/to/cacert.pem,role-aliases=KvsCameraIoTRoleAlias"
    ```
+
+## IoT CertificateId as Stream Name<a name="how-iot-iotcertstreamname"></a>
+
+If you want to represent your device \(for example, your camera\) through an IoT thing but authorize a different stream name, then you can use the IoT `certifiacateId` attribute as your stream name and provide Kinesis Video Streams permissions on the stream using IoT\. The steps for accomplishing this are similar to the ones outlined above, with a few changes\.
++ Modify the permissions policy to your IAM role \(iam\-permission\-document\.json\) as follows:
+
+  ```
+  {
+      "Version": "2012-10-17",
+      "Statement": [
+          {
+              "Effect": "Allow",
+              "Action": [
+                  "kinesisvideo:DescribeStream",
+                  "kinesisvideo:PutMedia",
+                  "kinesisvideo:TagStream",
+                  "kinesisvideo:GetDataEndpoint"
+              ],
+              "Resource": "arn:aws:kinesisvideo:*:*:stream/${credentials-iot:AwsCertificateId}/*" 
+          }
+      ]
+  }
+  ```
+**Note**  
+The resource ARN uses certificate ID as the placeholder for the stream name\. The IAM permission will work when you use the certificate id as the stream name\. Get the certificate ID from the certificate so that we can use that as stream name in the following describe stream api call\.  
+
+  ```
+  export CERTIFICATE_ID=`cat certificate | jq --raw-output '.certificateId'jq --raw-output '.certificateId'`
+  ```
++ Verify this change using the Kinesis Video Streams describe\-stream CLI command:
+
+  ```
+  AWS_ACCESS_KEY_ID=$(jq --raw-output '.credentials.accessKeyId' token.json) AWS_SECRET_ACCESS_KEY=$(jq --raw-output '.credentials.secretAccessKey' token.json) AWS_SESSION_TOKEN=$(jq --raw-output '.credentials.sessionToken' token.json) aws kinesisvideo describe-stream --stream-name ${CERTIFICATE_ID}
+  ```
++ Pass the certificatId to the IoT credentials provider in the [sample application](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gst-demo/kinesis_video_gstreamer_sample_app.cpp#L506) in the Kinesis Video Streams C\+\+ SDK: 
+
+  ```
+  credential_provider = make_unique<IotCertCredentialProvider>(iot_get_credential_endpoint,
+          cert_path,
+          private_key_path,
+          role_alias,
+          ca_cert_path,
+          certificateId);
+  ```
+**Note**  
+Note that you are passing the thingname to the IoT credentials provider\. You can use getenv to pass the thingname to the demo application similar to passing the other IoT attributes\. Use the certificate ID as the stream name in the command line parameters when you are running the sample application\.
