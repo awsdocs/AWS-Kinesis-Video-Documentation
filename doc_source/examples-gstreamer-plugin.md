@@ -55,7 +55,7 @@ export LD_LIBRARY_PATH=<YourSdkFolderPath>/kinesis-video-native-build/downloads/
 
 ## Run the GStreamer Element<a name="examples-gstreamer-plugin-run"></a>
 
-To run GStreamer with the Kinesis Video Streams Producer SDK element as a sink, execute the `gst-launch-1.0` command\. Use settings that are appropriate for the GStreamer plugin to use—for example, [v412src](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-v4l2src.html) for v412 devices on Linux systems, or [rtspsrc](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-rtspsrc.html) for RTSP devices\. Specify `kvssink` as the sink \(final destination of the pipeline\) to send video to the Producer SDK\. 
+To run GStreamer with the Kinesis Video Streams Producer SDK element as a sink, execute the `gst-launch-1.0` command\. Use settings that are appropriate for the GStreamer plugin to use—for example, [v4l2src](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-v4l2src.html) for v4l2 devices on Linux systems, or [rtspsrc](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-rtspsrc.html) for RTSP devices\. Specify `kvssink` as the sink \(final destination of the pipeline\) to send video to the Producer SDK\. 
 
 The `kvssink` element has the following required parameters:
 + `stream-name`: The name of the destination Kinesis video stream\.

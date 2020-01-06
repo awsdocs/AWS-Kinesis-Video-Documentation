@@ -29,6 +29,7 @@ The request accepts the following data in JSON format\.
 If you specify this parameter and the result of a `ListTagsForStream` call is truncated, the response includes a token that you can use in the next request to fetch the next batch of tags\.  
 Type: String  
 Length Constraints: Minimum length of 0\. Maximum length of 512\.  
+Pattern: `[a-zA-Z0-9+/=]*`   
 Required: No
 
  ** [StreamARN](#API_ListTagsForStream_RequestSyntax) **   <a name="KinesisVideo-ListTagsForStream-request-StreamARN"></a>
@@ -68,13 +69,16 @@ The following data is returned in JSON format by the service\.
  ** [NextToken](#API_ListTagsForStream_ResponseSyntax) **   <a name="KinesisVideo-ListTagsForStream-response-NextToken"></a>
 If you specify this parameter and the result of a `ListTags` call is truncated, the response includes a token that you can use in the next request to fetch the next set of tags\.  
 Type: String  
-Length Constraints: Minimum length of 0\. Maximum length of 512\.
+Length Constraints: Minimum length of 0\. Maximum length of 512\.  
+Pattern: `[a-zA-Z0-9+/=]*` 
 
  ** [Tags](#API_ListTagsForStream_ResponseSyntax) **   <a name="KinesisVideo-ListTagsForStream-response-Tags"></a>
 A map of tag keys and values associated with the specified stream\.  
 Type: String to string map  
 Key Length Constraints: Minimum length of 1\. Maximum length of 128\.  
-Value Length Constraints: Minimum length of 0\. Maximum length of 256\.
+Key Pattern: `^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$`   
+Value Length Constraints: Minimum length of 0\. Maximum length of 256\.  
+Value Pattern: `[\p{L}\p{Z}\p{N}_.:/=+\-@]*` 
 
 ## Errors<a name="API_ListTagsForStream_Errors"></a>
 

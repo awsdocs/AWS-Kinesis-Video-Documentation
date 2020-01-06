@@ -44,7 +44,7 @@ Server\-side encryption is always enabled on Kinesis video streams\. If a user\-
 A user\-provided AWS KMS master key must be assigned to a Kinesis video stream when it is created\. You can't later assign a different key to a stream using the [UpdateStream](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_UpdateStream.html) API\.
 
 You can assign a user\-provided AWS KMS master key to a Kinesis video stream in two ways:
-+ When creating a Kinesis video stream in the AWS Management Console, specify the AWS KMS master key in the **Encryption** section on the **Create new Kinesis Video stream** page\.
++ When creating a Kinesis video stream in the AWS Management Console, specify the AWS KMS master key in the **Encryption** tab on the **Create a new video stream** page\.
 + When creating a Kinesis video stream using the [CreateStream](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_CreateStream.html) API, specify the key ID in the `KmsKeyId` parameter\.
 
 ## Creating and Using User\-Generated AWS KMS Master Keys<a name="creating-using-sse-master-keys-akvs"></a>

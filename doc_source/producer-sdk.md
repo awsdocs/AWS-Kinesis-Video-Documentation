@@ -47,3 +47,5 @@ Currently, the Kinesis Video Streams Producer Library is available for C\+\+ app
  [Using the Android Producer Library](producer-sdk-android.md) 
 
  [Using the C\+\+ Producer Library](producer-sdk-cpp.md) 
+
+ [](producer-sdk-c-api.md) 

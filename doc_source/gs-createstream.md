@@ -10,12 +10,11 @@ This section contains the following procedures:
 
 1. Sign in to the AWS Management Console and open the Kinesis console at [https://console\.aws\.amazon\.com/kinesis](https://console.aws.amazon.com/kinesis)\.
 
-1. On the **Manage streams** page, choose **Create**\.
+1. On the **Video streams** page, choose **Create video stream**\.
 
-1. On the **Create new KinesisVideo Stream** page, type **ExampleStream** for the stream name\. Leave the **Use default settings** check box selected\.   
-![\[Screenshot of the Create New Video Stream page.\]](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/images/gs-10.png)
+1. On the **Create a new video stream** page, type **ExampleStream** for the stream name\. Leave the **Default configuration** radio button selected\. 
 
-1. Choose **Create stream**\.
+1. Choose **Create video stream**\.
 
 1. After Kinesis Video Streams creates the stream, review the details on the **ExampleStream** page\.
 

@@ -202,7 +202,7 @@ HTTP Status Code: 404
 
 The format of the acknowledgement is as follows:
 
-#### <a name="w9aac38b4c11c11c51b3b5"></a>
+#### <a name="w9aac38b4c13c11c51b3b5"></a>
 
 ```
 {

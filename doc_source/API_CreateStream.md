@@ -81,7 +81,9 @@ Required: Yes
 A list of tags to associate with the specified stream\. Each tag is a key\-value pair \(the value is optional\)\.  
 Type: String to string map  
 Key Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Key Pattern: `^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$`   
 Value Length Constraints: Minimum length of 0\. Maximum length of 256\.  
+Value Pattern: `[\p{L}\p{Z}\p{N}_.:/=+\-@]*`   
 Required: No
 
 ## Response Syntax<a name="API_CreateStream_ResponseSyntax"></a>
@@ -132,7 +134,7 @@ Not implemented\.
 HTTP Status Code: 400
 
  **ResourceInUseException**   
-The stream is currently not available for this operation\.  
+The signaling channel is currently not available for this operation\.  
 HTTP Status Code: 400
 
  **TagsPerResourceExceededLimitException**   

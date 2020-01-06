@@ -1,7 +1,7 @@
 # Amazon Kinesis Video Streams Developer Guide
 
 -----
-*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -86,15 +86,24 @@ Amazon's trademarks and trade dress may not be used in
 + [API Reference](API_Reference.md)
    + [Actions](API_Operations.md)
       + [Amazon Kinesis Video Streams](API_Operations_Amazon_Kinesis_Video_Streams.md)
+         + [CreateSignalingChannel](API_CreateSignalingChannel.md)
          + [CreateStream](API_CreateStream.md)
+         + [DeleteSignalingChannel](API_DeleteSignalingChannel.md)
          + [DeleteStream](API_DeleteStream.md)
+         + [DescribeSignalingChannel](API_DescribeSignalingChannel.md)
          + [DescribeStream](API_DescribeStream.md)
          + [GetDataEndpoint](API_GetDataEndpoint.md)
+         + [GetSignalingChannelEndpoint](API_GetSignalingChannelEndpoint.md)
+         + [ListSignalingChannels](API_ListSignalingChannels.md)
          + [ListStreams](API_ListStreams.md)
+         + [ListTagsForResource](API_ListTagsForResource.md)
          + [ListTagsForStream](API_ListTagsForStream.md)
+         + [TagResource](API_TagResource.md)
          + [TagStream](API_TagStream.md)
+         + [UntagResource](API_UntagResource.md)
          + [UntagStream](API_UntagStream.md)
          + [UpdateDataRetention](API_UpdateDataRetention.md)
+         + [UpdateSignalingChannel](API_UpdateSignalingChannel.md)
          + [UpdateStream](API_UpdateStream.md)
       + [Amazon Kinesis Video Streams Media](API_Operations_Amazon_Kinesis_Video_Streams_Media.md)
          + [GetMedia](API_dataplane_GetMedia.md)
@@ -104,10 +113,19 @@ Amazon's trademarks and trade dress may not be used in
          + [GetHLSStreamingSessionURL](API_reader_GetHLSStreamingSessionURL.md)
          + [GetMediaForFragmentList](API_reader_GetMediaForFragmentList.md)
          + [ListFragments](API_reader_ListFragments.md)
+      + [Amazon Kinesis Video Signaling Channels](API_Operations_Amazon_Kinesis_Video_Signaling_Channels.md)
+         + [GetIceServerConfig](API_AWSAcuitySignalingService_GetIceServerConfig.md)
+         + [SendAlexaOfferToMaster](API_AWSAcuitySignalingService_SendAlexaOfferToMaster.md)
    + [Data Types](API_Types.md)
       + [Amazon Kinesis Video Streams](API_Types_Amazon_Kinesis_Video_Streams.md)
+         + [ChannelInfo](API_ChannelInfo.md)
+         + [ChannelNameCondition](API_ChannelNameCondition.md)
+         + [ResourceEndpointListItem](API_ResourceEndpointListItem.md)
+         + [SingleMasterChannelEndpointConfiguration](API_SingleMasterChannelEndpointConfiguration.md)
+         + [SingleMasterConfiguration](API_SingleMasterConfiguration.md)
          + [StreamInfo](API_StreamInfo.md)
          + [StreamNameCondition](API_StreamNameCondition.md)
+         + [Tag](API_Tag.md)
       + [Amazon Kinesis Video Streams Media](API_Types_Amazon_Kinesis_Video_Streams_Media.md)
          + [StartSelector](API_dataplane_StartSelector.md)
       + [Amazon Kinesis Video Streams Archived Media](API_Types_Amazon_Kinesis_Video_Streams_Archived_Media.md)
@@ -118,5 +136,7 @@ Amazon's trademarks and trade dress may not be used in
          + [HLSFragmentSelector](API_reader_HLSFragmentSelector.md)
          + [HLSTimestampRange](API_reader_HLSTimestampRange.md)
          + [TimestampRange](API_reader_TimestampRange.md)
+      + [Amazon Kinesis Video Signaling Channels](API_Types_Amazon_Kinesis_Video_Signaling_Channels.md)
+         + [IceServer](API_AWSAcuitySignalingService_IceServer.md)
    + [Common Errors](CommonErrors.md)
    + [Common Parameters](CommonParameters.md)

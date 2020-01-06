@@ -44,6 +44,7 @@ A list of the keys of the tags that you want to remove\.
 Type: Array of strings  
 Array Members: Minimum number of 1 item\. Maximum number of 50 items\.  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$`   
 Required: Yes
 
 ## Response Syntax<a name="API_UntagStream_ResponseSyntax"></a>

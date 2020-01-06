@@ -36,6 +36,7 @@ Required: No
 If you specify this parameter, when the result of a `ListStreams` operation is truncated, the call returns the `NextToken` in the response\. To get another batch of streams, provide this token in your next request\.  
 Type: String  
 Length Constraints: Minimum length of 0\. Maximum length of 512\.  
+Pattern: `[a-zA-Z0-9+/=]*`   
 Required: No
 
  ** [StreamNameCondition](#API_ListStreams_RequestSyntax) **   <a name="KinesisVideo-ListStreams-request-StreamNameCondition"></a>
@@ -76,7 +77,8 @@ The following data is returned in JSON format by the service\.
  ** [NextToken](#API_ListStreams_ResponseSyntax) **   <a name="KinesisVideo-ListStreams-response-NextToken"></a>
 If the response is truncated, the call returns this element with a token\. To get the next batch of streams, use this token in your next request\.   
 Type: String  
-Length Constraints: Minimum length of 0\. Maximum length of 512\.
+Length Constraints: Minimum length of 0\. Maximum length of 512\.  
+Pattern: `[a-zA-Z0-9+/=]*` 
 
  ** [StreamInfoList](#API_ListStreams_ResponseSyntax) **   <a name="KinesisVideo-ListStreams-response-StreamInfoList"></a>
 An array of `StreamInfo` objects\.  

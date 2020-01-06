@@ -94,7 +94,7 @@ The caller is not authorized to perform this operation\.
 HTTP Status Code: 401
 
  **ResourceInUseException**   
-The stream is currently not available for this operation\.  
+The signaling channel is currently not available for this operation\.  
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   
