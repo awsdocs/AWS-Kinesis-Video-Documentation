@@ -29,7 +29,7 @@ Set the following environment variable to your Region \(for example, *us\-east\-
     ```
     export AWS_DEFAULT_REGION=us-east-1 
     ```
-After downloading the source code \(see [Download and Build the Kinesis Video Streams C\+\+ Producer SDK](#producersdk-cpp-rpi-download)\), change the following values in the `amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-producer/DefaultCallbackProvider.h` file to your Region:  
+After downloading the source code \(see [Download and Build the Kinesis Video Streams C\+\+ Producer SDK](#producersdk-cpp-rpi-download)\), change the following values in the `amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-producer/src/DefaultCallbackProvider.h` file to your Region:  
 
     ```
     const std::string DEFAULT_AWS_REGION  = "us-east-1";

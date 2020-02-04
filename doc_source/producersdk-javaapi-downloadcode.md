@@ -31,7 +31,7 @@ For prerequisites and other details about this example, see [Using the Java Prod
    final KinesisVideoClient kinesisVideoClient = KinesisVideoJavaClientFactory
        .createKinesisVideoClient(
            Regions.US_WEST_2,
-           new ProfileCredentialsProvider("credentials-profile-name"););
+           new ProfileCredentialsProvider("credentials-profile-name"));
    ```
 
    For more information, see [ProfileCredentialsProvider](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/profile/ProfileCredentialsProvider.html#ProfileCredentialsProvider-java.lang.String-) in the *AWS SDK for Java* reference\.

@@ -49,14 +49,12 @@ For prerequisites and other details about this example, see [Using the Android P
    }
    ```
 
-1. Update the `AmazonKinesisVideoDemoApp/src/main/java/com/amazonaws/kinesisvideo/demoapp/fragment/StreamingFragment.java` with your region:
+1. Update the `AmazonKinesisVideoDemoApp/src/main/java/com/amazonaws/kinesisvideo/demoapp/KinesisVideoDemoApp.java` with your region \(in the sample below, it’s set to **US\_WEST\_2**\): 
 
    ```
-   try {
-     mKinesisVideoClient = KinesisVideoAndroidClientFactory.createKinesisVideoClient(
-     getActivity(),
-     KinesisVideoDemoApp.KINESIS_VIDEO_REGION,
-     KinesisVideoDemoApp.getCredentialsProvider());
+   public class KinesisVideoDemoApp extends Application {
+       public static final String TAG = KinesisVideoDemoApp.class.getSimpleName();
+       public static Regions KINESIS_VIDEO_REGION = Regions.US_WEST_2;
    ```
 
    For AWS region constants, see [Regions](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/regions/Regions.html)\.
