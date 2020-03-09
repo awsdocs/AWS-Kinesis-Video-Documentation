@@ -256,7 +256,7 @@ The resource ARN uses certificate ID as the placeholder for the stream name\. Th
   ```
   AWS_ACCESS_KEY_ID=$(jq --raw-output '.credentials.accessKeyId' token.json) AWS_SECRET_ACCESS_KEY=$(jq --raw-output '.credentials.secretAccessKey' token.json) AWS_SESSION_TOKEN=$(jq --raw-output '.credentials.sessionToken' token.json) aws kinesisvideo describe-stream --stream-name ${CERTIFICATE_ID}
   ```
-+ Pass the certificatId to the IoT credentials provider in the [sample application](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gst-demo/kinesis_video_gstreamer_sample_app.cpp#L506) in the Kinesis Video Streams C\+\+ SDK: 
++ Pass the certificateId to the IoT credentials provider in the [sample application](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gst-demo/kinesis_video_gstreamer_sample_app.cpp#L506) in the Kinesis Video Streams C\+\+ SDK: 
 
   ```
   credential_provider = make_unique<IotCertCredentialProvider>(iot_get_credential_endpoint,
