@@ -225,7 +225,7 @@ The steps in this section describe sending media to a Kinesis video stream from 
 
 ## IoT CertificateId as Stream Name<a name="how-iot-iotcertstreamname"></a>
 
-If you want to represent your device \(for example, your camera\) through an IoT thing but authorize a different stream name, then you can use the IoT `certifiacateId` attribute as your stream name and provide Kinesis Video Streams permissions on the stream using IoT\. The steps for accomplishing this are similar to the ones outlined above, with a few changes\.
+If you want to represent your device \(for example, your camera\) through an IoT thing but authorize a different stream name, then you can use the IoT `certificateId` attribute as your stream name and provide Kinesis Video Streams permissions on the stream using IoT\. The steps for accomplishing this are similar to the ones outlined above, with a few changes\.
 + Modify the permissions policy to your IAM role \(iam\-permission\-document\.json\) as follows:
 
   ```
@@ -256,7 +256,7 @@ The resource ARN uses certificate ID as the placeholder for the stream name\. Th
   ```
   AWS_ACCESS_KEY_ID=$(jq --raw-output '.credentials.accessKeyId' token.json) AWS_SECRET_ACCESS_KEY=$(jq --raw-output '.credentials.secretAccessKey' token.json) AWS_SESSION_TOKEN=$(jq --raw-output '.credentials.sessionToken' token.json) aws kinesisvideo describe-stream --stream-name ${CERTIFICATE_ID}
   ```
-+ Pass the certificatId to the IoT credentials provider in the [sample application](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gst-demo/kinesis_video_gstreamer_sample_app.cpp#L506) in the Kinesis Video Streams C\+\+ SDK: 
++ Pass the certificateId to the IoT credentials provider in the [sample application](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gst-demo/kinesis_video_gstreamer_sample_app.cpp#L506) in the Kinesis Video Streams C\+\+ SDK: 
 
   ```
   credential_provider = make_unique<IotCertCredentialProvider>(iot_get_credential_endpoint,
