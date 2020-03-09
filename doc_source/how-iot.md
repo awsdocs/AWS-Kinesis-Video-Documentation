@@ -225,7 +225,7 @@ The steps in this section describe sending media to a Kinesis video stream from 
 
 ## IoT CertificateId as Stream Name<a name="how-iot-iotcertstreamname"></a>
 
-If you want to represent your device \(for example, your camera\) through an IoT thing but authorize a different stream name, then you can use the IoT `certifiacateId` attribute as your stream name and provide Kinesis Video Streams permissions on the stream using IoT\. The steps for accomplishing this are similar to the ones outlined above, with a few changes\.
+If you want to represent your device \(for example, your camera\) through an IoT thing but authorize a different stream name, then you can use the IoT `certificateId` attribute as your stream name and provide Kinesis Video Streams permissions on the stream using IoT\. The steps for accomplishing this are similar to the ones outlined above, with a few changes\.
 + Modify the permissions policy to your IAM role \(iam\-permission\-document\.json\) as follows:
 
   ```
