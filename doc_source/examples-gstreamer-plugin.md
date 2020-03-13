@@ -172,14 +172,10 @@ Authenticate your Docker client to the Amazon ECR registry that you intend to pu
 **Example : Authenticate with Amazon ECR**  
 
 ```
-aws ecr get-login --no-include-email --region us-west-2 --registry-ids 546150905175
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 546150905175.dkr.ecr.us-west-2.amazonaws.com
 ```
-The preceding command produces output similar to the following:  
 
-```
-docker login -u AWS -p <Password>   https://YourAccountId.dkr.ecr.us-west-2.amazonaws.com
-```
-The resulting output is a Docker login command that you use to authenticate your Docker client to your Amazon ECR registry\. 
+Once successfully login, your Docker client is authenticated to the Amazon ECR registry of 546150905175\. 
 
 ### Download the Docker Image for Ubuntu, macOS, Windows, or Raspberry Pi<a name="examples-gstreamer-plugin-docker-download"></a>
 
