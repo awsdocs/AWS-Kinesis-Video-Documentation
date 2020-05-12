@@ -7,30 +7,13 @@ For prerequisites and other details about this example, see [Using the C\+\+ Pro
 1. Create a directory, and then clone the example source code from the GitHub repository\. 
 
    ```
-   $ git clone https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp 
+   git clone --recursive https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp.git
    ```
+**Note**  
+If you don't run git clone with `--recursive`, run `git submodule update --init` in the `amazon-kinesis-video-streams-producer-sdk-cpp/open-source` directory\. You must also install pkg\-config, CMake, and a build enviroment\. If you want to build the GStreamer plugin, you also have to install it locally\.  
+For more information, see the README\.md in [https://github\.com/awslabs/amazon\-kinesis\-video\-streams\-producer\-sdk\-cpp](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp)\.
 
 1. Open the code in the integrated development environment \(IDE\) of your choice \(for example, [Eclipse](http://www.eclipse.org/)\)\.
-
-1. At the command line, set the `ACCESS_KEY_ENV_VAR` and `SECRET_KEY_ENV_VAR` environment variables to your AWS credentials\. Alternatively, you can hardcode your AWS credentials in the following lines of `ProducerTestFixture.h`: 
-
-   ```
-           if (nullptr == (accessKey = getenv(ACCESS_KEY_ENV_VAR))) {
-               accessKey = "AccessKey";
-           }
-   
-           if (nullptr == (secretKey = getenv(SECRET_KEY_ENV_VAR))) {
-               secretKey = "SecretKey";
-           }
-   ```
-
-1. In `tst/ProducerTestFixture.h`, find the call to `CreateStream`\. Change the name of the stream definition from `ScaryTestStream2` to a unique name:
-
-   ```
-   shared_ptr<KinesisVideoStream> CreateTestStream(int index) {
-           char stream_name[MAX_STREAM_NAME_LEN];
-           sprintf(stream_name, "ScaryTestStream_%d", index);
-   ```
 
 ## Next Step<a name="producersdk-cpp-download-next"></a>
 

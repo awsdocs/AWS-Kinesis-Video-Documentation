@@ -2,15 +2,34 @@
 
 To run and verify the code for the [ Producer Library procedure](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html), do the following:
 
-1. Verify that the [Prerequisites](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-c.html#producer-sdk-c-prerequisites) for credential, certificate, and build requirements are set up\.
+1. Run the following commands to create a `build` directory in your [downloaded C SDK](https://github.com/awslabs/amazon-kinesis-video-streams-producer-c.git), and execute `cmake` from it:
 
-1. Build the project by using the `/kinesis-video-native-build/install-script` script\. Running the install script installs the following open source dependencies:
-   + [curl lib](https://curl.haxx.se/docs/copyright.html)
-   + [jsmn](https://github.com/zserge/jsmn)
-   + [openssl \(crypto and ssl\)](https://github.com/openssl/openssl/blob/master/LICENSE)
-   + [Google Test](https://github.com/google/googletest/)
+   ```
+   mkdir -p amazon-kinesis-video-streams-producer-c/build; 
+   cd amazon-kinesis-video-streams-producer-c/build; 
+   cmake ..
+   ```
 
-1. The sample application `kinesis_video_cproducer_video_only_sample` sends h\.264\-encoded video frames inside the folder `kinesis-video-c-producer/samples/h264SampleFrames` to Kinesis Video Streams\. The following command sends the video frames in a loop for ten seconds to Kinesis Video Streams:
+   You can pass the following options to `cmake ..`
+   + `-DBUILD_DEPENDENCIES` \- whether or not to build depending libraries from source
+   + `-DBUILD_TEST=TRUE` \- build unit/integration tests, may be useful for confirm support for your device\. 
+
+     `./tst/webrtc_client_test`
+   + `-DCODE_COVERAGE` \-enable coverage reporting
+   + `-DCOMPILER_WARNINGS` \- enable all compiler warnings
+   + `-DADDRESS_SANITIZER` \- build with AddressSanitizer
+   + `-DMEMORY_SANITIZER` \- build with MemorySanitizer
+   + `-DTHREAD_SANITIZER` \- build with ThreadSanitizer
+   + `-DUNDEFINED_BEHAVIOR_SANITIZER` \- build with UndefinedBehaviorSanitizer
+   + `-DALIGNED_MEMORY_MODEL` \- build for aligned memory model only devices\. Default is `OFF`\.
+
+1. Navigate to the `build` directory you just created with the step above, and run `make` to build the WebRTC C SDK and its provided samples\. 
+
+   ```
+   make
+   ```
+
+1. The sample application `kinesis_video_cproducer_video_only_sample` sends h\.264\-encoded video frames inside the folder `samples/h264SampleFrames` to Kinesis Video Streams\. The following command sends the video frames in a loop for ten seconds to Kinesis Video Streams:
 
    ```
    ./kinesis_video_cproducer_video_only_sample YourStreamName 10                   

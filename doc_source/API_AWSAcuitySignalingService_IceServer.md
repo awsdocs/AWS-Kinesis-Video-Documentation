@@ -36,4 +36,4 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/kinesis-video-signaling-2019-12-04/IceServer) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/kinesis-video-signaling-2019-12-04/IceServer) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/kinesis-video-signaling-2019-12-04/IceServer) 
-+  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/kinesis-video-signaling-2019-12-04/IceServer) 
++  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/kinesis-video-signaling-2019-12-04/IceServer) 

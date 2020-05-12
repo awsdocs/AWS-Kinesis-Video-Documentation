@@ -93,7 +93,7 @@ Perform the following steps to create and configure this IAM role:
                    "kinesisvideo:TagStream",
                    "kinesisvideo:GetDataEndpoint"
                ],
-               "Resource": "arn:aws:kinesisvideo:*:*:stream/\${credentials-iot:ThingName}/*"
+               "Resource": "arn:aws:kinesisvideo:*:*:stream/${credentials-iot:ThingName}/*"
            }
        ]
    }
@@ -212,9 +212,9 @@ You can use the following command to get the IOT\_GET\_CRENDETIAL\_ENDPOINT:
 ### Step 5: Deploying IoT Certificates and Credentials on Your Camera's File System and Streaming Data to Your Video Stream<a name="how-iot-test-it"></a>
 
 **Note**  
-The steps in this section describe sending media to a Kinesis video stream from a camera that is using the [C\+\+ Producer Library](http://gaianab.aka.corp.amazon.com/workspaces/acuity/src/AWSAcuityApiDoc/build/server-root/kinesisvideostreams/latest/dg/producer-sdk-cpp.html)\.
+The steps in this section describe sending media to a Kinesis video stream from a camera that is using the [C\+\+ Producer Library](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html)\.
 
-1. Copy the X\.509 certificate, the private key, and the CA certificate generated in the steps above to your camera's file system\. You need to specify the paths for where these files are stored, the role alias name, and the IOT credentials endpoint for running the gst\-launch\-1\.0 command or your sample application\. For more information, see [Running the gst\-launch\-1\.0 command to start streaming from RTSP camera source](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/install-instructions-macos.md#running-the-gst-launch-10-command-to-start-streaming-from-rtsp-camera-source)\.
+1. Copy the X\.509 certificate, the private key, and the CA certificate generated in the steps above to your camera's file system\. You need to specify the paths for where these files are stored, the role alias name, and the IOT credentials endpoint for running the gst\-launch\-1\.0 command or your sample application\. 
 
 1. The following sample command uses IoT certificate authorization to send video to Kinesis Video Streams: 
 
@@ -256,7 +256,7 @@ The resource ARN uses certificate ID as the placeholder for the stream name\. Th
   ```
   AWS_ACCESS_KEY_ID=$(jq --raw-output '.credentials.accessKeyId' token.json) AWS_SECRET_ACCESS_KEY=$(jq --raw-output '.credentials.secretAccessKey' token.json) AWS_SESSION_TOKEN=$(jq --raw-output '.credentials.sessionToken' token.json) aws kinesisvideo describe-stream --stream-name ${CERTIFICATE_ID}
   ```
-+ Pass the certificatId to the IoT credentials provider in the [sample application](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gst-demo/kinesis_video_gstreamer_sample_app.cpp#L506) in the Kinesis Video Streams C\+\+ SDK: 
++ Pass the certificatId to the IoT credentials provider in the [sample application](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/samples/kinesis_video_gstreamer_sample_app.cpp) in the Kinesis Video Streams C\+\+ SDK: 
 
   ```
   credential_provider = make_unique<IotCertCredentialProvider>(iot_get_credential_endpoint,

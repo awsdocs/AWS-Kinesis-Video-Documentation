@@ -12,7 +12,8 @@ Required: No
  **FragmentNumber**   <a name="KinesisVideo-Type-reader_Fragment-FragmentNumber"></a>
 The unique identifier of the fragment\. This value monotonically increases based on the ingestion order\.  
 Type: String  
-Length Constraints: Minimum length of 1\.  
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `^[0-9]+$`   
 Required: No
 
  **FragmentSizeInBytes**   <a name="KinesisVideo-Type-reader_Fragment-FragmentSizeInBytes"></a>
@@ -36,4 +37,4 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/kinesis-video-reader-data-2017-09-30/Fragment) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/kinesis-video-reader-data-2017-09-30/Fragment) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/kinesis-video-reader-data-2017-09-30/Fragment) 
-+  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/kinesis-video-reader-data-2017-09-30/Fragment) 
++  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/kinesis-video-reader-data-2017-09-30/Fragment) 

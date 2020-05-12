@@ -2,21 +2,32 @@
 
 To run and verify the code for the [C\+\+ Producer Library procedure](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html), do the following:
 
-1. See [Prerequisites](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-sdk-cpp.html#producer-sdk-cpp-prerequisites) for credential, certificate, and build requirements\.
-
-1. Build the project by using the `/kinesis-video-native-build/install-script` script\. Running the install script installs the following open source dependencies:
-   + [curl lib](https://curl.haxx.se/docs/copyright.html)
-   + [openssl \(crypto and ssl\)](https://github.com/openssl/openssl/blob/master/LICENSE)
-   + [log4cplus](https://github.com/log4cplus/log4cplus/blob/master/LICENSE)
-   + [jsoncpp](https://github.com/open-source-parsers/jsoncpp/blob/master/LICENSE)
-**Note**  
-To configure **log4cplus**, set the following value in `PlatformUtils.h` to point to your logging function:  
+1. Run the following commands to create a `build` directory in your [downloaded SDK](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp), and execute `cmake` from it:
 
    ```
-   #define __LOG(p1, p2, p3, ...)     printf(p3, ##__VA_ARGS__)
+   mkdir -p amazon-kinesis-video-streams-producer-c/build; 
+   cd amazon-kinesis-video-streams-producer-c/build; 
+   cmake ..
    ```
 
-1. The executable is built in `kinesis-video-native-build/start`\. Launch it to run the unit test and kick off dummy frame streaming\.
+   You can pass the following options to `cmake ..`
+   + `-DBUILD_DEPENDENCIES` \- whether or not to build depending libraries from source
+   + `-DBUILD_TEST=TRUE` \- build unit/integration tests, may be useful for confirm support for your device\. 
+
+     `./tst/webrtc_client_test`
+   + `-DCODE_COVERAGE` \-enable coverage reporting
+   + `-DCOMPILER_WARNINGS` \- enable all compiler warnings
+   + `-DADDRESS_SANITIZER` \- build with AddressSanitizer
+   + `-DMEMORY_SANITIZER` \- build with MemorySanitizer
+   + `-DTHREAD_SANITIZER` \- build with ThreadSanitizer
+   + `-DUNDEFINED_BEHAVIOR_SANITIZER` \- build with UndefinedBehaviorSanitizer
+   + `-DALIGNED_MEMORY_MODEL` \- build for aligned memory model only devices\. Default is `OFF`\.
+
+1. Navigate to the `build` directory you created with the step above, and run `make` to build the WebRTC C\+\+ SDK and its provided samples\. 
+
+   ```
+   make
+   ```
 
 1. To enable verbose logs, define the `HEAP_DEBUG` and `LOG_STREAMING` C\-defines by uncommenting the appropriate lines in `CMakeList.txt`\.
 

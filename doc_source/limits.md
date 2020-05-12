@@ -48,11 +48,12 @@ The following errors or acks are thrown when a fragment\-level limit is reached:
 | API | Stream\-level limit | Connection\-level limit | Bandwidth limit | Fragment\-level limit | Relevant Exceptions and Notes | 
 | --- | --- | --- | --- | --- | --- | 
 | PutMedia | 5 TPS \[h\] | 1 \[s\] | 12\.5 MB/second, or 100 Mbps \[s\] | [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html) | A typical PutMedia request contains data for several seconds, resulting in a lower TPS per stream\. In the case of multiple concurrent connections that exceed limits, the last connection is accepted\. | 
-| GetHLSStreamingSessionURL | 5 TPS Burst, 1 TPS Sustained \[h\] | N/A | N/A | N/A | Only 10 sessions per stream can be active at a time \[s\]\. After the limit has been reached, the oldest session is revoked when a new session is created\. | 
-| GetDASHStreamingSessionURL | 5 TPS Burst, 1 TPS Sustained \[h\] | N/A | N/A | N/A | Only 10 sessions per stream can be active at a time \[s\]\. After the limit has been reached, the oldest session is revoked when a new session is created\. | 
+| GetHLSStreamingSessionURL | 5 TPS Burst, 1 TPS Sustained \[h\] | N/A | N/A | N/A | Only 10 sessions per stream can be active at a time \[h\]\. After the limit has been reached, the oldest session is revoked when a new session is created\. | 
+| GetDASHStreamingSessionURL | 5 TPS Burst, 1 TPS Sustained \[h\] | N/A | N/A | N/A | Only 10 sessions per stream can be active at a time \[h\]\. After the limit has been reached, the oldest session is revoked when a new session is created\. | 
 | GetMedia | 5 TPS \[h\] | 3 \[s\] | 25 MB/s or 200 Mbps \[s\] | N/A | Only three clients can concurrently receive content from the media stream at any moment of time\. Further client connections are rejected\. A unique consuming client shouldn’t need more than 2 or 3 TPS because after the connection is established, we anticipate that the application will read continuously\.  If a typical fragment is approximately 5 MB, this limit means \~75 MB/ sec per Kinesis video stream\. Such a stream would have an outgoing bitrate of 2x the streams' maximum incoming bitrate\. | 
 | ListFragments | 5 TPS \[h\] | N/A | N/A | N/A |  | 
 | GetMediaForFragmentList | 5 TPS \[h\] | 5 \[s\] | 25 MB/s or 200 MbpsA \[s\] | Maximum number of fragments: 1000 \[h\] | Five fragment\-based consuming applications can concurrently get media\. Further connections are rejected\. | 
+| GetClip | 1 TPS \[h\] | N/A | 100 MB size limit \[h\] | Maximum number of fragments: 200 \[h\] | There's a 25 transactions per second \(TPS\) account\-level limit \[s\] for this API\. | 
 
 
 **Video Playback Protocol API limits**  

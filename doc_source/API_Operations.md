@@ -26,6 +26,7 @@ The following actions are supported by Amazon Kinesis Video Streams Media:
 +  [PutMedia](API_dataplane_PutMedia.md) 
 
 The following actions are supported by Amazon Kinesis Video Streams Archived Media:
++  [GetClip](API_reader_GetClip.md) 
 +  [GetDASHStreamingSessionURL](API_reader_GetDASHStreamingSessionURL.md) 
 +  [GetHLSStreamingSessionURL](API_reader_GetHLSStreamingSessionURL.md) 
 +  [GetMediaForFragmentList](API_reader_GetMediaForFragmentList.md) 

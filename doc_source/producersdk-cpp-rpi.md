@@ -29,13 +29,6 @@ Set the following environment variable to your Region \(for example, *us\-east\-
     ```
     export AWS_DEFAULT_REGION=us-east-1 
     ```
-After downloading the source code \(see [Download and Build the Kinesis Video Streams C\+\+ Producer SDK](#producersdk-cpp-rpi-download)\), change the following values in the `amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-producer/src/DefaultCallbackProvider.h` file to your Region:  
-
-    ```
-    const std::string DEFAULT_AWS_REGION  = "us-east-1";
-    const std::string KINESIS_VIDEO_SERVICE_NAME = "kinesisvideo";
-    const std::string DEFAULT_CONTROL_PLANE_URI = "https://kinesisvideo.us-east-1.amazonaws.com";
-    ```
 
 ## Create an IAM User with Permission to Write to Kinesis Video Streams<a name="producersdk-cpp-rpi-iam"></a>
 
@@ -222,21 +215,33 @@ If you reboot the device before building the SDK, you must repeat this step\. Yo
 
 ## Download and Build the Kinesis Video Streams C\+\+ Producer SDK<a name="producersdk-cpp-rpi-download"></a>
 
-**Important**  
-For a faster build time, you can use Package manager to install the open source dependencies and the build tools for the Kinesis Video Streams C\+\+ Producer SDK\. For more information, see [https://github\.com/awslabs/amazon\-kinesis\-video\-streams\-producer\-sdk\-cpp/blob/master/install\-instructions\-linux\.md\#install\-steps\-for\-ubuntu\-17x\-and\-raspbian\-stretch\-using\-apt\-get](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/install-instructions-linux.md#install-steps-for-ubuntu-17x-and-raspbian-stretch-using-apt-get)\. 
-
 You can also download and build the Kinesis Video Streams C\+\+ Producer SDK using the following procedure\. This approach takes longer time to build, depending on network connectivity and processor speed\. 
 
-1. Install the C\+\+ Producer SDK:
+1. Run the following commands to create a `build` directory in your [downloaded SDK](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp), and execute `cmake` from it:
 
    ```
-   $   git clone https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp
+   mkdir -p amazon-kinesis-video-streams-producer-c/build; 
+   cd amazon-kinesis-video-streams-producer-c/build; 
+   cmake ..
    ```
 
-1. Change your current working directory to the install directory:
+   You can pass the following options to `cmake ..`
+   + `-DBUILD_DEPENDENCIES` \- whether or not to build depending libraries from source
+   + `-DBUILD_TEST=TRUE` \- build unit/integration tests, may be useful for confirm support for your device\. 
+
+     `./tst/webrtc_client_test`
+   + `-DCODE_COVERAGE` \-enable coverage reporting
+   + `-DCOMPILER_WARNINGS` \- enable all compiler warnings
+   + `-DADDRESS_SANITIZER` \- build with AddressSanitizer
+   + `-DMEMORY_SANITIZER` \- build with MemorySanitizer
+   + `-DTHREAD_SANITIZER` \- build with ThreadSanitizer
+   + `-DUNDEFINED_BEHAVIOR_SANITIZER` \- build with UndefinedBehaviorSanitizer
+   + `-DALIGNED_MEMORY_MODEL` \- build for aligned memory model only devices\. Default is `OFF`\.
+
+1. Navigate to the `build` directory you just created with the step above, and run `make` to build the SDK and its provided samples\. 
 
    ```
-   $   cd amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-native-build
+   make
    ```
 
 1. Make the install script executable:
@@ -248,7 +253,7 @@ You can also download and build the Kinesis Video Streams C\+\+ Producer SDK usi
 1. Run the install script\. The script downloads the source and builds several open\-source projects\. It might take several hours to run the first time it is executed:
 
    ```
-   $   ./install-script
+   ./install-script
    ```
 
 1. Type **Y** to verify\. Then the build script runs\.
@@ -279,8 +284,8 @@ You can also download and build the Kinesis Video Streams C\+\+ Producer SDK usi
 1. If the sample application exits with a `library not found` error, type the following commands to verify that the project is correctly linked to its open\-source dependencies:
 
    ```
-   $   rm -rf ./kinesis-video-native-build/CMakeCache.txt ./kinesis-video-native-build/CMakeFiles
-   $   ./kinesis-video-native-build/install-script
+   $   rm -rf ./build/CMakeCache.txt ./build/CMakeFiles
+   $   ./build/install-script
    ```
 
 1. Open the Kinesis Video Streams console at [https://console\.aws\.amazon\.com/kinesisvideo/](https://console.aws.amazon.com/kinesisvideo/)\.

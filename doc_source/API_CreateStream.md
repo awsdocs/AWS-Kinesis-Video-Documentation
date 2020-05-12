@@ -58,6 +58,7 @@ If no key ID is specified, the default, Kinesis Video\-managed key \(`aws/kinesi
  For more information, see [DescribeKey](https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters)\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 2048\.  
+Pattern: `.+`   
 Required: No
 
  ** [MediaType](#API_CreateStream_RequestSyntax) **   <a name="KinesisVideo-CreateStream-request-MediaType"></a>
@@ -152,4 +153,4 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesisvideo-2017-09-30/CreateStream) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/kinesisvideo-2017-09-30/CreateStream) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/kinesisvideo-2017-09-30/CreateStream) 
-+  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/kinesisvideo-2017-09-30/CreateStream) 
++  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/kinesisvideo-2017-09-30/CreateStream) 

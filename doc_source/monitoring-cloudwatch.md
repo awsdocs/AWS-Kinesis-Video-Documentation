@@ -64,6 +64,10 @@ Kinesis Video Streams provides the following metrics:
 |  `GetDASHManifest.Latency` |  Latency of the `GetDASHManifest` API calls for the given stream name\. Units: Milliseconds  | 
 |  `GetDASHManifest.Requests` |  Number of `GetDASHManifest` API requests for a given stream\. Units: Count  | 
 |  `GetDASHManifest.Success` |  1 for every successful request; 0 for every failure\. The average value indicates the rate of success\.  Failures include both 400 \(user\) errors and 500 \(system\) errors\. For more information about enabling a summary of requests and responses, including AWS request IDs, see [Request/Response Summary Logging](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/java-dg-logging.html#sdk-net-logging-request-response)\.  Units: Count  | 
+|  `GetClip.Latency` |  Latency of the GetClip API calls for the given video stream name\.  Units: Miliseconds  | 
+|  `GetClip.Requests` |  Number of GetClip API requests for a given video stream\.  Units: Count  | 
+|  `GetClip.Success` |  1 for every successful request; 0 for every failure\. The average value indicates the rate of success\.   Failures include both 400 \(user\) errors and 500 \(system\) errors\. For more information about enabling a summary of requests and responses, including AWS request IDs, see [Request/Response Summary Logging](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/java-dg-logging.html#sdk-net-logging-request-response)\. Units: Count  | 
+|  `GetClip.OutgoingBytes` |  Total number of bytes sent out from the service as part of the GetClip API for a given video stream\.  Units: Bytes  | 
 
 ## CloudWatch Metrics Guidance<a name="monitoring-cloudwatch-guidance"></a>
 

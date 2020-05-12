@@ -31,7 +31,7 @@ The request accepts the following data in JSON format\.
  ** [APIName](#API_GetDataEndpoint_RequestSyntax) **   <a name="KinesisVideo-GetDataEndpoint-request-APIName"></a>
 The name of the API action for which to get an endpoint\.  
 Type: String  
-Valid Values:` PUT_MEDIA | GET_MEDIA | LIST_FRAGMENTS | GET_MEDIA_FOR_FRAGMENT_LIST | GET_HLS_STREAMING_SESSION_URL | GET_DASH_STREAMING_SESSION_URL`   
+Valid Values:` PUT_MEDIA | GET_MEDIA | LIST_FRAGMENTS | GET_MEDIA_FOR_FRAGMENT_LIST | GET_HLS_STREAMING_SESSION_URL | GET_DASH_STREAMING_SESSION_URL | GET_CLIP`   
 Required: Yes
 
  ** [StreamARN](#API_GetDataEndpoint_RequestSyntax) **   <a name="KinesisVideo-GetDataEndpoint-request-StreamARN"></a>
@@ -100,4 +100,4 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesisvideo-2017-09-30/GetDataEndpoint) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/kinesisvideo-2017-09-30/GetDataEndpoint) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/kinesisvideo-2017-09-30/GetDataEndpoint) 
-+  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/kinesisvideo-2017-09-30/GetDataEndpoint) 
++  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/kinesisvideo-2017-09-30/GetDataEndpoint) 

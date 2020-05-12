@@ -185,11 +185,11 @@ The value for this input parameter is invalid\.
 HTTP Status Code: 400
 
  **InvalidEndpointException**   
- Status Code: 400, Caller used wrong endpoint to write data to a stream\. On receiving such an exception, the user must call `GetDataEndpoint` with `AccessMode` set to "READ" and use the endpoint Kinesis Video returns in the next `GetMedia` call\.   
+Caller used wrong endpoint to write data to a stream\. On receiving such an exception, the user must call `GetDataEndpoint` with `APIName` set to `PUT_MEDIA` and use the endpoint from response to invoke the next `PutMedia` call\.   
 HTTP Status Code: 400
 
  **NotAuthorizedException**   
-Status Code: 403, The caller is not authorized to perform an operation on the given stream, or the token has expired\.  
+The caller is not authorized to perform an operation on the given stream, or the token has expired\.  
 HTTP Status Code: 401
 
  **ResourceNotFoundException**   
@@ -226,4 +226,4 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesis-video-data-2017-09-30/PutMedia) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/kinesis-video-data-2017-09-30/PutMedia) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/kinesis-video-data-2017-09-30/PutMedia) 
-+  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/kinesis-video-data-2017-09-30/PutMedia) 
++  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/kinesis-video-data-2017-09-30/PutMedia) 

@@ -32,17 +32,35 @@ Follow these steps to use the MinGW runtime environment to compile the Kinesis V
 1. Download the Kinesis Video Streams Producer SDK from GitHub:
 
    ```
-   git clone https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp.git
+   git clone --recursive https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp.git
    ```
 
-1. Navigate to the [amazon\-kinesis\-video\-streams\-producer\-sdk\-cpp/kinesis\-video\-native\-build](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/tree/master/kinesis-video-native-build) directory, and run the following install script to build the Producer SDK:
+1. Run the following commands to create a `build` directory in your [downloaded SDK](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp), and execute `cmake` from it:
 
    ```
-   ./min-install-script
+   mkdir -p amazon-kinesis-video-streams-producer-c/build; 
+   cd amazon-kinesis-video-streams-producer-c/build; 
+   cmake ..
    ```
-**Note**  
-Accept all of the prompts when the script runs\.
-Log4cplus is compiled from source, but all other components are downloaded as pre\-built binaries\.
+
+   You can pass the following options to `cmake ..`
+   + `-DBUILD_DEPENDENCIES` \- whether or not to build depending libraries from source
+   + `-DBUILD_TEST=TRUE` \- build unit/integration tests, may be useful for confirm support for your device\. 
+
+     `./tst/webrtc_client_test`
+   + `-DCODE_COVERAGE` \-enable coverage reporting
+   + `-DCOMPILER_WARNINGS` \- enable all compiler warnings
+   + `-DADDRESS_SANITIZER` \- build with AddressSanitizer
+   + `-DMEMORY_SANITIZER` \- build with MemorySanitizer
+   + `-DTHREAD_SANITIZER` \- build with ThreadSanitizer
+   + `-DUNDEFINED_BEHAVIOR_SANITIZER` \- build with UndefinedBehaviorSanitizer
+   + `-DALIGNED_MEMORY_MODEL` \- build for aligned memory model only devices\. Default is `OFF`\.
+
+1. Navigate to the `build` directory you just created with the step above, and run `nmake` to build the SDK and its provided samples\. 
+
+   ```
+   nmake
+   ```
 
 ### Running the Producer SDK to Send Video to Kinesis Video Streams<a name="producer-sdk-win-mingw-run"></a>
 
@@ -61,7 +79,7 @@ After compiling the Kinesis Video Streams Producer SDK using MinGW, follow these
 
 #### Step 2: Run the Sample Application for Your Media Source<a name="producer-sdk-win-mingw-run-2"></a>
 
-1. To stream video from your PC webcam, run the sample application from the `kinesis-video-native-build` directory using the following command:
+1. To stream video from your PC webcam, run the sample application from the `samples` folder using the following command:
 
    ```
    kinesis_video_gstreamer_sample_app.exe my-stream-name
@@ -82,7 +100,7 @@ The following example demonstrates using IoT parameters to stream video from an 
    gst-launch-1.0 rtspsrc location=rtsp://YourCameraRtspUrl short-header=TRUE ! rtph264depay ! video/x-h264, format=avc,alignment=au ! kvssink stream-name="your-iot-stream" iot-certificate="iot-certificate,endpoint=endpoint,cert-path=/path/to/certificate,key-path=/path/to/private/key,ca-path=/path/to/ca-cert,role-aliases=role-aliases"
    ```
 
-1. To stream video from an RTSP \(network\) camera, run the sample application from the `kinesis-video-native-build` directory using the following command:
+1. To stream video from an RTSP \(network\) camera, run the sample application from the `samples` folder using the following command:
 
    ```
    kinesis_video_gstreamer_sample_rtsp_app.exe RTSP-camera-URL my-test-rtsp-stream

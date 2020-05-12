@@ -26,6 +26,7 @@ Required: No
 The ID of the AWS Key Management Service \(AWS KMS\) key that Kinesis Video Streams uses to encrypt data on the stream\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 2048\.  
+Pattern: `.+`   
 Required: No
 
  **MediaType**   <a name="KinesisVideo-Type-StreamInfo-MediaType"></a>
@@ -68,4 +69,4 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/kinesisvideo-2017-09-30/StreamInfo) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/kinesisvideo-2017-09-30/StreamInfo) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/kinesisvideo-2017-09-30/StreamInfo) 
-+  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/kinesisvideo-2017-09-30/StreamInfo) 
++  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/kinesisvideo-2017-09-30/StreamInfo) 

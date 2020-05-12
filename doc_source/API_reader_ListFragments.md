@@ -56,7 +56,8 @@ Required: No
  ** [NextToken](#API_reader_ListFragments_RequestSyntax) **   <a name="KinesisVideo-reader_ListFragments-request-NextToken"></a>
 A token to specify where to start paginating\. This is the [ListFragments:NextToken](#KinesisVideo-reader_ListFragments-response-NextToken) from a previously truncated response\.  
 Type: String  
-Length Constraints: Minimum length of 1\.  
+Length Constraints: Minimum length of 1\. Maximum length of 4096\.  
+Pattern: `[a-zA-Z0-9+/]+={0,2}`   
 Required: No
 
  ** [StreamName](#API_reader_ListFragments_RequestSyntax) **   <a name="KinesisVideo-reader_ListFragments-request-StreamName"></a>
@@ -99,7 +100,8 @@ Type: Array of [Fragment](API_reader_Fragment.md) objects
  ** [NextToken](#API_reader_ListFragments_ResponseSyntax) **   <a name="KinesisVideo-reader_ListFragments-response-NextToken"></a>
 If the returned list is truncated, the operation returns this token to use to retrieve the next page of results\. This value is `null` when there are no more results to return\.  
 Type: String  
-Length Constraints: Minimum length of 1\.
+Length Constraints: Minimum length of 1\. Maximum length of 4096\.  
+Pattern: `[a-zA-Z0-9+/]+={0,2}` 
 
 ## Errors<a name="API_reader_ListFragments_Errors"></a>
 
@@ -133,4 +135,4 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesis-video-reader-data-2017-09-30/ListFragments) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/kinesis-video-reader-data-2017-09-30/ListFragments) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/kinesis-video-reader-data-2017-09-30/ListFragments) 
-+  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/kinesis-video-reader-data-2017-09-30/ListFragments) 
++  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/kinesis-video-reader-data-2017-09-30/ListFragments) 

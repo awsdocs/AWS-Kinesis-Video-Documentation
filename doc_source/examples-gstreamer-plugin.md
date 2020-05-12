@@ -23,46 +23,22 @@ This topic shows how to construct a GStreamer media pipeline capable of streamin
 
 The GStreamer Plugin example is included with the Kinesis Video Streams C\+\+ Producer SDK\. For information about SDK prerequisites and downloading, see [Step 1: Download and Configure the C\+\+ Producer Library Code](producersdk-cpp-download.md)\.
 
-To build the Producer SDK GStreamer sink as a dynamic library on macOS, Ubuntu, Raspberry Pi, or Windows, execute the following command in the `kinesis-video-native-build` directory:
+You can build the Producer SDK GStreamer sink as a dynamic library on macOS, Ubuntu, Raspberry Pi, or Windows\. The GStreamer plugin is located in your `build` directory\. To load this plugin, it needs to be in your `GST_PLUGIN_PATH`\. Run the following command:
 
 ```
-./gstreamer-plugin-install-script
-```
-
-After the sink is built, you can execute `gst-launch-1.0` from the following directory:
-
-```
-<YourSdkFolderPath>/kinesis-video-native-build/downloads/local/bin
-```
-
-You can either run `gst-launch-1.0` from this directory, or add it to the `PATH` environment variable:
-
-```
-$ export PATH=<YourSdkFolderPath>/kinesis-video-native-build/downloads/local/bin:$PATH
-```
-
-Add the library directory to your path so that the GStreamer plugin can be found:
-
-```
-export GST_PLUGIN_PATH=<YourSdkFolderPath>/kinesis-video-native-build/downloads/local/lib:$GST_PLUGIN_PATH
-```
-
-Set the library path for the SDK:
-
-```
-export LD_LIBRARY_PATH=<YourSdkFolderPath>/kinesis-video-native-build/downloads/local/lib
+export GST_PLUGIN_PATH=`pwd`/build
 ```
 
 ## Run the GStreamer Element<a name="examples-gstreamer-plugin-run"></a>
 
-To run GStreamer with the Kinesis Video Streams Producer SDK element as a sink, execute the `gst-launch-1.0` command\. Use settings that are appropriate for the GStreamer plugin to use—for example, [v4l2src](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-v4l2src.html) for v4l2 devices on Linux systems, or [rtspsrc](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-rtspsrc.html) for RTSP devices\. Specify `kvssink` as the sink \(final destination of the pipeline\) to send video to the Producer SDK\. 
+To run GStreamer with the Kinesis Video Streams Producer SDK element as a sink, execute the `gst-launch-1.0` command\. Use settings that are appropriate for the GStreamer plugin to use\. For example, [v4l2src](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-v4l2src.html) for v4l2 devices on Linux systems, or [rtspsrc](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-rtspsrc.html) for RTSP devices\. Specify `kvssink` as the sink \(final destination of the pipeline\) to send video to the Producer SDK\. 
 
 The `kvssink` element has the following required parameters:
 + `stream-name`: The name of the destination Kinesis video stream\.
 + `storage-size`: The storage size of the device in kilobytes\. For information about configuring device storage, see [StorageInfo](producer-reference-structures-producer.md#producer-reference-structures-producer-storageinfo)\.
 + `access-key`: The AWS access key that is used to access Kinesis Video Streams\. You must provide either this parameter or `credential-path`\.
 + `secret-key`: The AWS secret key that is used to access Kinesis Video Streams\. You must provide either this parameter or `credential-path`\.
-+ `credential-path`: A path to a file containing your credentials for accessing Kinesis Video Streams\. For example credential files, see [Sample Static Credential](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gstreamer-plugin/sample_static_credential) and [Sample Rotating Credential](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/kinesis-video-gstreamer-plugin/sample_rotating_credential)\. For more information on rotating credentials, see [Managing Access Keys for IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)\. You must provide either this parameter or `access-key` and `secret-key`\.
++ `credential-path`: A path to a file containing your credentials for accessing Kinesis Video Streams\.  For more information on rotating credentials, see [Managing Access Keys for IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)\. You must provide either this parameter or `access-key` and `secret-key`\.
 
 For information about `kvssink` optional parameters, see [GStreamer Element Parameter Reference](examples-gstreamer-plugin-parameters.md)\.
 
@@ -70,6 +46,12 @@ For the latest information about GStreamer plugins and parameters, see [GStreame
 
 ```
 gst-inspect-1.0 kvssink
+```
+
+If the build failed or GST\_PLUGIN\_PATH is not proprely set, your output looks similar to this:
+
+```
+No such element or plugin 'kvssink'
 ```
 
 ## Example GStreamer Launch Commands<a name="examples-gstreamer-plugin-launch"></a>
@@ -134,19 +116,15 @@ $ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! videoconvert ! v
 
 ### Example 8: Stream both audio and video in Raspberry\-PI and Ubuntu<a name="examples-gstreamer-plugin-launch-ex8"></a>
 
-See how to [run the gst\-launch\-1\.0 command to start streaming both audio and video in Raspberry\-PI and Ubuntu](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/install-instructions-linux.md#running-the-gst-launch-10-command-to-start-streaming-both-audio-and-video-in-raspberry-pi-and-ubuntu)\.
+See how to [run the gst\-launch\-1\.0 command to start streaming both audio and video in Raspberry\-PI and Ubuntu](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/docs/linux.md#running-the-gst-launch-10-command-to-start-streaming-both-audio-and-video-in-raspberry-pi-and-ubuntu)\.
 
 ### Example 9: Stream both audio and video in MacOS<a name="examples-gstreamer-plugin-launch-ex9"></a>
 
-See how to [run the gst\-launch\-1\.0 command to start streaming both audio and video in MacOS](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/install-instructions-macos.md#discovering-available-devices)\.
+See how to [run the gst\-launch\-1\.0 command to start streaming both audio and video in MacOS](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/docs/macos.md#running-the-gst-launch-10-command-to-start-streaming-both-audio-and-raw-video-in-mac-os)\.
 
-### Example 10: Stream both audio and video in Windows using MSVC<a name="examples-gstreamer-plugin-launch-ex10"></a>
+### Example 10: Upload MKV file that contains both audio and video<a name="examples-gstreamer-plugin-launch-ex10"></a>
 
-See how to [run the gst\-launch\-1\.0 command to start streaming both audio and video in Windows using MSVC](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/install-instructions-windows-msvc.md#running-the-sample-demo-applications-to-stream-video-to-kinesis-video-streams)\.
-
-### Example 11: Stream both audio and video in Windows using MSYS2<a name="examples-gstreamer-plugin-launch-ex11"></a>
-
-See how to [run the gst\-launch\-1\.0 command to start streaming both audio and video in Windows using MSYS2](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/install-instructions-windows-msys2.md#running-the-sample-demo-applications-to-stream-video-to-kinesis-video-streams)\.
+See how to [run the gst\-launch\-1\.0 command to upload MKV file that contains both audio and video](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/docs/windows.md#running-the-gst-launch-10-command-to-upload-mkv-file-that-contains-both-audio-and-video)\.
 
 ## Run the GStreamer Element in a Docker Container<a name="examples-gstreamer-plugin-docker"></a>
 

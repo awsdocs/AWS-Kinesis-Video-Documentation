@@ -72,6 +72,10 @@ HTTP Status Code: 400
 The caller is not authorized to perform this operation\.  
 HTTP Status Code: 401
 
+ **ResourceInUseException**   
+The signaling channel is currently not available for this operation\.  
+HTTP Status Code: 400
+
  **ResourceNotFoundException**   
 Amazon Kinesis Video Streams can't find the stream that you specified\.  
 HTTP Status Code: 404
@@ -91,4 +95,4 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/kinesisvideo-2017-09-30/DeleteStream) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/kinesisvideo-2017-09-30/DeleteStream) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/kinesisvideo-2017-09-30/DeleteStream) 
-+  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/kinesisvideo-2017-09-30/DeleteStream) 
++  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/kinesisvideo-2017-09-30/DeleteStream) 

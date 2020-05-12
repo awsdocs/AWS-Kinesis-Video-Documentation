@@ -5,10 +5,11 @@ In this section, you download the low\-level libraries\. For prerequisites and o
 1. Create a directory, and then clone the example source code from the GitHub repository\. 
 
    ```
-   $ git clone https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp 
+   git clone --recursive https://github.com/awslabs/amazon-kinesis-video-streams-producer-c.git
    ```
-
-   The C Producer Library code is stored in the `kinesis-video-c-producer` folder in [https://github\.com/awslabs/amazon\-kinesis\-video\-streams\-producer\-sdk\-cpp](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp)\.
+**Note**  
+If you miss running git clone with `--recursive`, run `git submodule update --init` in the `amazon-kinesis-video-streams-producer-c/open-source` directory\. You must also install pkg\-config, automake, CMake, and a build enviroment\.  
+For more information, see the `README.md` in [https://github\.com/awslabs/amazon\-kinesis\-video\-streams\-producer\-c\.git](https://github.com/awslabs/amazon-kinesis-video-streams-producer-c.git)\.
 
 1. Open the code in the integrated development environment \(IDE\) of your choice \(for example, [Eclipse](http://www.eclipse.org/)\)\.
 
