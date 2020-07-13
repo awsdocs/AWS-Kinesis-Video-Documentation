@@ -12,7 +12,7 @@ An Amazon Kinesis video stream has the following requirements for providing vide
 
 The following example shows how to retrieve an MPEG\-DASH streaming session for a Kinesis video stream and play it back in a webpage\. The example shows how to play back video in the following players:
 + [Google Shaka Player](https://github.com/google/shaka-player)
-+ [dash\.js](https://github.com/video-dev/hls.js/)
++ [dash\.js](https://github.com/Dash-Industry-Forum/dash.js)
 
 **Topics**
 + [Set Up the Kinesis Video Streams Client for MPEG\-DASH Playback](#dash-example-setup)
