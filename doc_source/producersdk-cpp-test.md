@@ -35,3 +35,5 @@ You can monitor the progress of the test suite in the debug output in your IDE\.
 
 **Note**  
 Because the test harness only sends frames of empty bytes, the console doesn't display the data as a video stream\.
+
+GStreamer and JNI is NOT built by default, if you wish to build both you MUST execute cmake .. -DBUILD_GSTREAMER_PLUGIN=ON -DBUILD_JNI=TRUE
