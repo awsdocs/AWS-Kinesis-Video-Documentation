@@ -19,7 +19,7 @@ Before you set up the C\+\+ Producer SDK on your Raspberry Pi, ensure that you h
   + Board version: 3 Model B or later\.
   + A connected camera module\.
   + An SD card with a capacity of at least 8 GB\.
-  + The Raspbian operating system \(kernel version 4\.9 or later\) installed\. You can download the latest Raspbian image from the [Raspberry Pi Foundation website](https://www.raspberrypi.org/downloads/raspbian/)\. Follow the Raspberry Pi instructions to [install the downloaded image on an SD card](https://www.raspberrypi.org/documentation/installation/installing-images/README.md)\. 
+  + The Raspbian operating system \(kernel version 4\.9 or later\) installed\. You can download the latest Raspbian image from the [Raspberry Pi Foundation website](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit)\. Follow the Raspberry Pi instructions to [install the downloaded image on an SD card](https://www.raspberrypi.org/documentation/installation/installing-images/README.md)\. 
 + An AWS account with a Kinesis video stream\. For more information, see [Getting Started with Kinesis Video Streams](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/getting-started.html)\.
 **Note**  
 The C\+\+ Producer SDK uses the US West \(Oregon\) \(`us-west-2`\) Region by default\. To use the default AWS Region, create your Kinesis video stream in the US West \(Oregon\) Region\.   
