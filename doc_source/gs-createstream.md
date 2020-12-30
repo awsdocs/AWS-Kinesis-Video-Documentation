@@ -8,9 +8,9 @@ This section contains the following procedures:
 
 ## Create a Video Stream Using the Console<a name="gs-createstream-console"></a>
 
-1. Sign in to the AWS Management Console and open the Kinesis console at [https://console\.aws\.amazon\.com/kinesis](https://console.aws.amazon.com/kinesis)\.
+1. Sign in to the AWS Management Console and open the Kinesis Video Streams console at [https://console\.aws\.amazon\.com/kinesisvideo/home](https://console.aws.amazon.com/kinesisvideo/home)\.
 
-1. On the **Video streams** page, choose **Create video stream**\.
+1. In the **New Kinesis Video Streams resource** block, choose **Video stream** and choose **Create** button\.
 
 1. On the **Create a new video stream** page, type **ExampleStream** for the stream name\. Leave the **Default configuration** radio button selected\. 
 
