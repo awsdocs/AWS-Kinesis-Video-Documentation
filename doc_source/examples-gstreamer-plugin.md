@@ -148,16 +148,11 @@ To run GStreamer with the Kinesis Video Streams Producer SDK element as a sink i
 Authenticate your Docker client to the Amazon ECR registry that you intend to pull your image from\. You must get authentication tokens for each registry used, and the tokens are valid for 12 hours\. For more information, see [Registry Authentication](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth) in the *Amazon Elastic Container Registry User Guide*\.
 
 **Example : Authenticate with Amazon ECR**  
+The docker image is located in an ECR registry in the account: 546150905175 the following command will allow docker to authenticate and be able to pull the image from it. 
 
 ```
-aws ecr get-login --no-include-email --region us-west-2 --registry-ids 546150905175
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 546150905175.dkr.ecr.us-west-2.amazonaws.com
 ```
-The preceding command produces output similar to the following:  
-
-```
-docker login -u AWS -p <Password>   https://YourAccountId.dkr.ecr.us-west-2.amazonaws.com
-```
-The resulting output is a Docker login command that you use to authenticate your Docker client to your Amazon ECR registry\. 
 
 ### Download the Docker Image for Ubuntu, macOS, Windows, or Raspberry Pi<a name="examples-gstreamer-plugin-docker-download"></a>
 
