@@ -20,6 +20,8 @@ The GStreamer sample is included in the C\+\+ Producer SDK\. You can download th
 $ git clone https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp 
 ```
 
+Go into that folder and follow the README instructions to install dependencies and build the libraries.  This is required before you can build the example below.
+
 For information about SDK prerequisites and downloading, see [Step 1: Download and Configure the C\+\+ Producer Library Code](producersdk-cpp-download.md)\.
 
 ## Compile the GStreamer Example<a name="gs-send-data-2"></a>
