@@ -171,7 +171,7 @@ Communication between a device \(your video stream\) and AWS IoT is protected th
    aws --profile default  iot describe-endpoint --endpoint-type iot:CredentialProvider --output text > iot-credential-provider.txt
    ```
 
-1. In addition to the X\.509 cerficiate created above, you must also have a CA certificate to establish trust with the back\-end service through TLS\. You can get the CA certificate using the following command:
+1. In addition to the X\.509 certificate created above, you must also have a CA certificate to establish trust with the back\-end service through TLS\. You can get the CA certificate using the following command:
 
    ```
    curl --silent 'https://www.amazontrust.com/repository/SFSRootCAG2.pem' --output cacert.pem
@@ -256,7 +256,7 @@ The resource ARN uses certificate ID as the placeholder for the stream name\. Th
   ```
   AWS_ACCESS_KEY_ID=$(jq --raw-output '.credentials.accessKeyId' token.json) AWS_SECRET_ACCESS_KEY=$(jq --raw-output '.credentials.secretAccessKey' token.json) AWS_SESSION_TOKEN=$(jq --raw-output '.credentials.sessionToken' token.json) aws kinesisvideo describe-stream --stream-name ${CERTIFICATE_ID}
   ```
-+ Pass the certificatId to the IoT credentials provider in the [sample application](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/samples/kinesis_video_gstreamer_sample_app.cpp) in the Kinesis Video Streams C\+\+ SDK: 
++ Pass the certificateId to the IoT credentials provider in the [sample application](https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp/blob/master/samples/kinesis_video_gstreamer_sample_app.cpp) in the Kinesis Video Streams C\+\+ SDK: 
 
   ```
   credential_provider = make_unique<IotCertCredentialProvider>(iot_get_credential_endpoint,
