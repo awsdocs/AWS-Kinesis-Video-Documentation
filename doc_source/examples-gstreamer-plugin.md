@@ -63,7 +63,7 @@ These examples demonstrate how to use a GStreamer plugin to stream video from di
 The following command creates a GStreamer pipeline on Ubuntu that streams from a network RTSP camera, using the [rtspsrc](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-rtspsrc.html) GStreamer plugin:
 
 ```
-$ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE ! rtph264depay ! video/x-h264, format=avc,alignment=au ! kvssink stream-name="YourStreamName" storage-size=512 access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
+$ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE ! rtph264depay ! h264parse ! video/x-h264, format=avc,alignment=au ! kvssink stream-name="YourStreamName" storage-size=512 access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
 ### Example 2: Encode and Stream Video from a USB Camera on Ubuntu<a name="examples-gstreamer-plugin-launch-ex2"></a>
@@ -87,7 +87,7 @@ $ gst-launch-1.0 v4l2src do-timestamp=TRUE device=/dev/video0 ! h264parse ! vide
 The following command creates a GStreamer pipeline on macOS that streams video to Kinesis Video Streams from a network camera\. This example uses the [rtspsrc](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-rtspsrc.html) GStreamer plugin\.
 
 ```
-$ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE ! rtph264depay ! video/x-h264, format=avc,alignment=au ! kvssink stream-name="YourStreamName" storage-size=512  access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
+$ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE ! rtph264depay ! h264parse ! video/x-h264, format=avc,alignment=au ! kvssink stream-name="YourStreamName" storage-size=512  access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
 ### Example 5: Stream Video from a Network Camera on Windows<a name="examples-gstreamer-plugin-launch-ex5"></a>
@@ -95,7 +95,7 @@ $ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE !
 The following command creates a GStreamer pipeline on Windows that streams video to Kinesis Video Streams from a network camera\. This example uses the [rtspsrc](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good/html/gst-plugins-good-plugins-rtspsrc.html) GStreamer plugin\.
 
 ```
-$ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE ! rtph264depay ! video/x-h264, format=avc,alignment=au ! kvssink stream-name="YourStreamName" storage-size=512  access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
+$ gst-launch-1.0 rtspsrc location="rtsp://YourCameraRtspUrl" short-header=TRUE ! rtph264depay ! h264parse ! video/x-h264, format=avc,alignment=au ! kvssink stream-name="YourStreamName" storage-size=512  access-key="YourAccessKey" secret-key="YourSecretKey" aws-region="YourAWSRegion"
 ```
 
 ### Example 6: Stream Video from a Camera on Raspberry Pi<a name="examples-gstreamer-plugin-launch-ex6"></a>
@@ -228,9 +228,9 @@ Docker launches the container, and presents you with a command prompt for execut
 In the container, set the environment variables using the following command:
 
 ```
-export LD_LIBRARY_PATH=/opt/awssdk/amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-native-build/downloads/local/lib:$LD_LIBRARY_PATH
-export PATH=/opt/awssdk/amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-native-build/downloads/local/bin:$PATH
-export GST_PLUGIN_PATH=/opt/awssdk/amazon-kinesis-video-streams-producer-sdk-cpp/kinesis-video-native-build/downloads/local/lib:$GST_PLUGIN_PATH
+export LD_LIBRARY_PATH=/opt/amazon-kinesis-video-streams-producer-sdk-cpp/open-source/local/lib:$LD_LIBRARY_PATH
+export PATH=/opt/amazon-kinesis-video-streams-producer-sdk-cpp/open-source/local/lib:$PATH
+export GST_PLUGIN_PATH=/opt/amazon-kinesis-video-streams-producer-sdk-cpp/open-source/local/lib:$GST_PLUGIN_PATH
 ```
 
 Start streaming from the camera using the `gst-launch-1.0` command that is appropriate for your device\. 
