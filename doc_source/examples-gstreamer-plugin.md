@@ -229,7 +229,7 @@ In the container, set the environment variables using the following command:
 
 ```
 export LD_LIBRARY_PATH=/opt/amazon-kinesis-video-streams-producer-sdk-cpp/open-source/local/lib:$LD_LIBRARY_PATH
-export PATH=/opt/amazon-kinesis-video-streams-producer-sdk-cpp/open-source/local/lib:$PATH
+export PATH=/opt/amazon-kinesis-video-streams-producer-sdk-cpp/open-source/local/bin:$PATH
 export GST_PLUGIN_PATH=/opt/amazon-kinesis-video-streams-producer-sdk-cpp/open-source/local/lib:$GST_PLUGIN_PATH
 ```
 
